@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        backMad: "#F7F2EC",
+        backMad: "#F5ECE1",
         redMad: "#8C1C13",
         textMad: "#252525",
         encartMad: "#BF4342",

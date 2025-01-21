@@ -1,0 +1,28 @@
+---
+import { AstroFont } from "astro-font";
+---
+
+<AstroFont
+  config={[
+    {
+      name: "Arbutus Slab",
+      src: [],
+      googleFontsURL:
+        "https://fonts.googleapis.com/css2?family=Arbutus+Slab&display=swap",
+      preload: true,
+      display: "swap",
+      selector: "h1, h2, h3, h4, h5, h6",
+      fallback: "serif",
+    },
+    {
+      name: "Inter",
+      src: [],
+      googleFontsURL:
+        "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+      preload: true,
+      display: "swap",
+      selector: "body, p, span, div",
+      fallback: "sans-serif",
+    },
+  ]}
+/>

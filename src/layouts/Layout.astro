@@ -1,34 +1,13 @@
 ---
-import { AstroFont } from "astro-font";
+import AstroFont from "./Font.astro";
+import SEO from "./Seo.astro";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <AstroFont
-      config={[
-        {
-          name: "Arbutus Slab",
-          src: [],
-          googleFontsURL:
-            "https://fonts.googleapis.com/css2?family=Arbutus+Slab&display=swap",
-          preload: true,
-          display: "swap",
-          selector: "h1, h2, h3, h4, h5, h6",
-          fallback: "serif",
-        },
-        {
-          name: "Inter",
-          src: [],
-          googleFontsURL:
-            "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-          preload: true,
-          display: "swap",
-          selector: "body, p, span, div",
-          fallback: "sans-serif",
-        },
-      ]}
-    />
+    <AstroFont />
+    <SEO {...Astro.props.seo} />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -36,15 +15,6 @@ import { AstroFont } from "astro-font";
     <title>Act In Mad</title>
   </head>
   <body>
-    <slot />
+    <slot class="bg-backMad" />
   </body>
 </html>
-
-<style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-</style>
