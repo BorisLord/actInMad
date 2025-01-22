@@ -3,64 +3,37 @@ import { SEO, type Props } from "astro-seo";
 
 export const defaultSeo: Props = {
   title: "Act In Mad",
+  titleTemplate: " - Act In Mad",
   description:
-    "Discover amazing performances and acting techniques with Act In Mad.",
-  canonical: "https://example.com/",
-  noindex: false,
-  nofollow: false,
+    "Venez decouvrir le theatre, en cours, ou sur scene avec Act In Mad.",
+  canonical: "https://actinmad.art/",
+  charset: "UTF-8",
   languageAlternates: [
     {
-      href: "https://example.com/fr",
+      href: "https://actinmad.art/",
       hrefLang: "fr",
-    },
-    {
-      href: "https://example.com/es",
-      hrefLang: "es",
     },
   ],
   openGraph: {
     basic: {
-      title: "Act In Mad",
+      title: "Venez decouvrir Act In Mad",
       type: "website",
-      image: "https://example.com/og-image.jpg",
-      url: "https://example.com/",
+      image: "./assets/actInMadRed.svg",
+      url: "https://actinmad.art/",
     },
     optional: {
       siteName: "Act In Mad",
-      description: "A site about great performances.",
+      description: "L'ecole de theatre qui vous transcende",
+      locale: "fr_FR",
     },
     image: {
-      url: "https://example.com/og-image.jpg",
       secureUrl: "https://example.com/og-image-secure.jpg",
-      type: "image/jpeg",
+      type: "image/svg",
       width: 1200,
-      height: 630,
-      alt: "A descriptive alt text for the image.",
+      height: 1200,
+      alt: "Le logo de la compagnie Act In Mad",
     },
   },
-  twitter: {
-    card: "summary_large_image",
-    site: "@ActInMad",
-    creator: "@creator_handle",
-    title: "Act In Mad",
-    description: "Discover the art of acting with Act In Mad.",
-    image: "https://example.com/twitter-image.jpg",
-    imageAlt: "An amazing performance.",
-  },
-  extend: {
-    link: [{ rel: "stylesheet", href: "https://example.com/custom-style.css" }],
-    meta: [
-      {
-        name: "twitter:image",
-        content: "https://example.com/twitter-image.jpg",
-      },
-      {
-        name: "twitter:title",
-        content: "Act In Mad - Performances",
-      },
-    ],
-  },
-  surpressWarnings: true,
 };
 
 const seo = { ...defaultSeo, ...Astro.props };
@@ -69,7 +42,7 @@ const seo = { ...defaultSeo, ...Astro.props };
 <SEO {...seo} />
 
 <!-- 
-    https://metatags.io/ 
+    https://metatags.io/
     https://search.google.com/test/rich-results    
     https://github.com/jonasmerlin/astro-seo#readme
 -->
