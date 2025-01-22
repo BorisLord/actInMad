@@ -1,6 +1,10 @@
 ---
 import { SEO, type Props } from "astro-seo";
 
+// https://metatags.io/
+// https://search.google.com/test/rich-results
+// https://github.com/jonasmerlin/astro-seo#readme
+
 export const defaultSeo: Props = {
   title: "Act In Mad",
   titleTemplate: "Act In Mad",
@@ -18,7 +22,7 @@ export const defaultSeo: Props = {
     basic: {
       title: "Venez decouvrir Act In Mad",
       type: "website",
-      image: "./assets/actInMadRed.svg",
+      image: "https://actinmad.dellabs.nexus/images/actInMadRed.jpeg",
       url: "https://actinmad.art/",
     },
     optional: {
@@ -43,9 +47,3 @@ const seo = { ...defaultSeo, ...Astro.props };
 ---
 
 <SEO {...seo} />
-
-<!-- 
-    https://metatags.io/
-    https://search.google.com/test/rich-results    
-    https://github.com/jonasmerlin/astro-seo#readme
--->
