@@ -17,7 +17,7 @@ RUN npm run build
 FROM httpd:2.4 AS runtime
 
 # Installer curl pour le healthcheck
-RUN apt-get update && apt-get install -y curl && apt-get clean
+RUN apt-get update && apt-get install -y curl wget && apt-get clean
 
 # Copier les fichiers générés dans le dossier d'accueil d'Apache
 COPY --from=build /app/dist /usr/local/apache2/htdocs/

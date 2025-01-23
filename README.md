@@ -1,12 +1,10 @@
 # Act In Mad
 
-
 ## Theater company based in Paris
 
 [linkedIn](https://www.linkedin.com/company/act-in-mad/) | [Instagram](https://www.instagram.com/act_in_mad/)
 
 ---
-
 
 #### Buld with [Astro](https://astro.build/)
 
