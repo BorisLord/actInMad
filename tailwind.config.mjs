@@ -5,14 +5,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        backMad: '#F5ECE1',
-        redMad: '#8C1C13',
-        textMad: '#252525',
-        encartMad: '#BF4342',
+        madBack: '#F5ECE1',
+        madRed: '#8C1C13',
+        madText: '#252525',
+        madEncart: '#BF4342',
       },
       fontFamily: {
-        titleMad: ['Arbutus Slab', 'serif'],
-        bodyMad: ['Inter', 'sans-serif'],
+        madTitleFont: ['Arbutus Slab', 'serif'],
+        madBodyFont: ['Inter', 'sans-serif'],
       },
     },
   },
