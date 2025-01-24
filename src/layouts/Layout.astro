@@ -2,20 +2,21 @@
 import AstroFont from './Font.astro';
 import SEO from './Seo.astro';
 import Nav from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
 
 const links = [
-  { label: 'Acceuil', href: '/acceuil' },
-  { label: 'Ateliers', href: '/ateliers' },
-  { label: 'Compagnie', href: '/compagnie' },
-  { label: 'Contact', href: '/contact' },
-  { label: 'Coulisses', href: '/login' },
+  { label: 'Acceuil', href: '/' },
+  { label: 'Ateliers', href: '/Ateliers' },
+  { label: 'Compagnie', href: '/Compagnie' },
+  { label: 'Coulisses', href: '/Login' },
+  { label: 'Contact', href: '/Contact' },
   // { label: 'Blog', href: '/blog' },
 ];
 
-const authLinks = [
-  { label: 'Coulisses', href: '/login', type: 'primary' },
-  // { label: 'Register', href: '/register', type: 'secondary' },
-];
+// const authLinks = [
+// { label: 'Coulisses', href: '/login', type: 'primary' },
+// { label: 'Register', href: '/register', type: 'secondary' },
+// ];
 ---
 
 <!doctype html>
@@ -29,12 +30,13 @@ const authLinks = [
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>Act In Mad</title>
   </head>
-  <body>
+  <body class="bg-madBack">
     <header>
-      <Nav links={links} authLinks={authLinks} />
+      <Nav links={links} />
     </header>
     <main>
       <slot />
     </main>
+    <Footer />
   </body>
 </html>
