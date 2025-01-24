@@ -1,37 +1,8 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import actInMadRed from "../assets/actInMadRed.svg";
+import Layout from '../layouts/Layout.astro';
+import Acceuil from './Acceuil.astro';
 ---
 
 <Layout>
-  <div class="bg-backMad">
-    <div class="absolute inset-0 z-0"></div>
-    <div
-      id="container"
-      class="relative z-10 flex flex-col items-center justify-center h-screen px-6 text-center"
-    >
-      <div class="flex flex-col md:flex-row items-center gap-8">
-        <!-- Logo -->
-        <section id="hero" class="flex flex-col items-center md:items-start">
-          <img src={actInMadRed.src} alt="ActInMad Logo" class="w-60 h-60" />
-        </section>
-
-        <!-- Content -->
-        <div class="flex flex-col items-center md:items-start">
-          <h1 class="text-3xl font-bold text-gray-400">Bienvenue</h1>
-          <h2 class="mt-2 text-xl font-medium text-gray-600">
-            Nous sommes en construction
-          </h2>
-          <section id="links" class="mt-4">
-            <a
-              href="https://www.instagram.com/act_in_mad/"
-              class="inline-block px-6 py-3 bg-gradient-to-r from-[#8B0000] to-[#70554B] text-white text-lg font-medium rounded-lg shadow hover:from-[#A12C2C] hover:to-[#E9DCC6] transition-all"
-            >
-              Join our Instagram
-            </a>
-          </section>
-        </div>
-      </div>
-    </div>
-  </div>
+  <Acceuil />
 </Layout>
