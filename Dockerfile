@@ -12,6 +12,8 @@ FROM httpd:2.4 AS runtime
 
 RUN apt-get update && apt-get install -y curl wget && apt-get clean
 
+RUN sed -i 's/#ErrorDocument 404 \/missing.html/ErrorDocument 404 \/404.html/' /usr/local/apache2/conf/httpd.conf
+
 COPY --from=build /app/dist /usr/local/apache2/htdocs/
 
 EXPOSE 80
