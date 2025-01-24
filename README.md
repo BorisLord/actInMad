@@ -1,18 +1,16 @@
-# Act In Mad
+# Act In Mad 🎭
 
-## Theater company based in Paris
+Compagnie de Théâtre & Ateliers Spectacles Amateurs <br/>
+Oser le jeu • Frôler la folie !
 
-[linkedIn](https://www.linkedin.com/company/act-in-mad/) | [Instagram](https://www.instagram.com/act_in_mad/)
+[Instagram](https://www.instagram.com/act_in_mad/) | [ActInMad](https://actinmad.art/)
 
 ---
 
-#### Buld with [Astro](https://astro.build/)
+### Built with
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- [Astro](https://astro.build/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Docker](https://www.docker.com/)
+- Deploy on [Coolify](https://coolify.io/)
+- Served by [Apache](https://httpd.apache.org/)
