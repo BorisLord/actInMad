@@ -2,6 +2,7 @@
 
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  safelist: ['text-madRed', 'text-gray-500', 'hover:text-madEncart'],
   theme: {
     extend: {
       colors: {

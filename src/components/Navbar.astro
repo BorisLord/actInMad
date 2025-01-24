@@ -45,6 +45,9 @@ const currentPath = Astro.url.pathname;
       >
         <Icon id="menu-icon" name="lucide:book-open-text" size="28" />
       </button>
+      <span class="text-madRed text-lg">
+        {links.find((link: any) => link.href === currentPath)?.label || ''}
+      </span>
     </div>
 
     <nav
@@ -73,10 +76,10 @@ const currentPath = Astro.url.pathname;
       const toggleButton = document.getElementById('menu-toggle');
       const menu = document.getElementById('menu');
 
-      if (toggleButton && menu) {
+      if (toggleButton) {
         toggleButton.addEventListener('click', () => {
           // Basculer la visibilité du menu
-          menu.classList.toggle('hidden');
+          menu?.classList.toggle('hidden');
         });
       }
 
