@@ -1,4 +1,4 @@
-FROM node:lts AS build
+FROM node:lts-alpine AS build
 
 WORKDIR /app
 
@@ -8,9 +8,9 @@ RUN npm install
 
 RUN npm run build
 
-FROM httpd:2.4 AS runtime
+FROM httpd:2.4-alpine AS runtime
 
-RUN apt-get update && apt-get install -y curl wget && apt-get clean
+RUN apk add --no-cache curl wget
 
 RUN sed -i 's/#ErrorDocument 404 \/missing.html/ErrorDocument 404 \/404.html/' /usr/local/apache2/conf/httpd.conf
 
