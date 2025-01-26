@@ -1,5 +1,9 @@
 FROM node:lts-alpine AS build
 
+ARG MODE
+
+ENV MODE=${MODE}
+
 WORKDIR /app
 
 COPY . .

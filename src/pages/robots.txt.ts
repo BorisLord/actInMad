@@ -1,13 +1,23 @@
 import type { APIRoute } from 'astro';
 
-const getRobotsTxt = (sitemapURL: URL) => `
-User-agent: *
-Allow: /
+const envMode = import.meta.env.MODE || 'staging';
 
-Sitemap: ${sitemapURL.href}
+const getRobotsTxt = (sitemapURL: URL, isStaging: boolean) => `
+User-agent: *
+${isStaging ? 'Disallow: /' : 'Allow: /'}
+
+${isStaging ? '' : `Sitemap: ${sitemapURL.href}`}
 `;
 
 export const GET: APIRoute = ({ site }) => {
+  const isStaging = envMode === 'staging';
+
   const sitemapURL = new URL('sitemap-index.xml', site);
-  return new Response(getRobotsTxt(sitemapURL));
+  const robotsTxt = getRobotsTxt(sitemapURL, isStaging);
+
+  return new Response(robotsTxt, {
+    headers: {
+      'Content-Type': 'text/plain',
+    },
+  });
 };
