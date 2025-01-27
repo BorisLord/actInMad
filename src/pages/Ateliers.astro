@@ -1,22 +1,26 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 // ! Ajouter le SEO des pages
-
 ---
 
-<Layout
-  ><div
-    class="flex flex-col items-center justify-center min-h-screen text-center bg-gray-50"
+<Layout>
+  <div
+    class="flex flex-col items-center justify-center min-h-screen overflow-hidden text-center bg-madBack"
   >
-    <h1 class="text-3xl font-bold text-gray-400">Bienvenue</h1>
-    <h2 class="mt-2 text-xl font-medium text-gray-600">
-      Nous sommes en répétition
-    </h2>
+    <h1 class="text-3xl font-bold">Bienvenue</h1>
+    <h2 class="mt-2 text-2xl font-medium">Nous sommes en répétition !</h2>
+    <h3 class="mt-2 text-xl font-medium">
+      En attendant la Première... <br />retrouvez-nous sur
+    </h3>
     <a
       href="https://www.instagram.com/act_in_mad/"
-      class="mt-4 px-6 py-3 bg-gradient-to-r from-[#8B0000] to-[#70554B] text-white text-lg font-medium rounded-lg shadow hover:from-[#A12C2C] hover:to-[#E9DCC6] transition-all"
+      class="mt-4 p-3 text-white bg-madRed rounded-lg"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="instagram logo"
     >
-      Join our Instagram
+      <Icon name="lucide:instagram" size="40" />
     </a>
   </div>
 </Layout>

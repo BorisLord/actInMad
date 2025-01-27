@@ -1,7 +1,7 @@
 ---
 import AstroFont from './Font.astro';
 import SEO from './Seo.astro';
-import Nav from '../components/Navbar.astro';
+// import Nav from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 
 const links = [
@@ -25,15 +25,15 @@ const links = [
     <AstroFont />
     <SEO {...Astro.props.seo} />
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>Act In Mad</title>
   </head>
   <body class="bg-madBack">
-    <header>
+    <!-- <header>
       <Nav links={links} />
-    </header>
+    </header> -->
     <main>
       <slot />
     </main>
