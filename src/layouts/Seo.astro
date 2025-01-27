@@ -63,4 +63,5 @@ export const defaultSeo: Props = {
 const seo = { ...defaultSeo, ...Astro.props };
 ---
 
-{isProduction && <SEO {...seo} />}
+<!-- {isProduction && <SEO {...seo} />} -->
+<SEO {...seo} />
