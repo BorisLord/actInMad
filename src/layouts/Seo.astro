@@ -1,50 +1,51 @@
 ---
-import { SEO, type Props } from "astro-seo";
+import { SEO, type Props } from 'astro-seo';
 
 // https://metatags.io/
 // https://search.google.com/test/rich-results
 // https://github.com/jonasmerlin/astro-seo#readme
 
+const isProduction = import.meta.env.MODE === 'production';
+
 export const defaultSeo: Props = {
-  title: "Act In Mad",
+  title: 'Act In Mad',
   titleTemplate:
-    "Act In Mad 🎭 Compagnie de Théâtre & Ateliers Spectacles Amateurs",
-  description: "🔥Oser le jeu • Frôler la folie !",
-  canonical: "https://actinmad.art/",
-  charset: "UTF-8",
+    'Act In Mad 🎭 Compagnie de Théâtre & Ateliers Spectacles Amateurs',
+  description: '🔥Oser le jeu • Frôler la folie !',
+  canonical: 'https://actinmad.art/',
+  charset: 'UTF-8',
   languageAlternates: [
     {
-      href: "https://actinmad.art/",
-      hrefLang: "fr",
+      href: 'https://actinmad.art/',
+      hrefLang: 'fr',
     },
   ],
   openGraph: {
     basic: {
       title:
-        "Act In Mad 🎭 Compagnie de Théâtre & Ateliers Spectacles Amateurs",
-      type: "website",
-      image: "https://actinmad.dellabs.nexus/images/actInMadRed.jpeg",
-      url: "https://actinmad.art/",
+        'Act In Mad 🎭 Compagnie de Théâtre & Ateliers Spectacles Amateurs',
+      type: 'website',
+      image: 'https://actinmad.art/images/actInMadRed.jpeg',
+      url: 'https://actinmad.art/',
     },
     optional: {
-      siteName: "Act In Mad",
-      description: "🔥Oser le jeu • Frôler la folie !",
-      locale: "fr_FR",
+      siteName: 'Act In Mad',
+      description: '🔥Oser le jeu • Frôler la folie !',
+      locale: 'fr_FR',
     },
     image: {
-      secureUrl: "https://actinmad.dellabs.nexus/images/actInMadRed.jpeg",
-      // CHANGE ME
-      // secureUrl: "https://actinmad.art/images/actInMadRed.jpeg",
-      type: "image/jpeg",
+      secureUrl: 'https://actinmad.art/images/actInMadRed.jpeg',
+      type: 'image/jpeg',
       // width: 1200,
       width: 600,
       // height: 630,
       height: 315,
-      alt: "Logo de la compagnie Act In Mad",
+      alt: 'Logo de la compagnie Act In Mad',
     },
   },
 };
+
 const seo = { ...defaultSeo, ...Astro.props };
 ---
 
-<SEO {...seo} />
+{isProduction && <SEO {...seo} />}
