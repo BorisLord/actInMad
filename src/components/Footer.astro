@@ -4,104 +4,107 @@ import madBeigeName from '../assets/madBeigeName.svg';
 import { Icon } from 'astro-icon/components';
 ---
 
-<footer class="bg-madRed">
-  <div class="mx-auto max-w-5xl px-2 py-10 sm:px-6 lg:px-8">
-    <div class="flex justify-center text-teal-600">
-      <img
-        src={madArchLogo.src}
-        alt="L'arche d'Act In Mad"
-        class="h-10 w-auto -mt-1"
-      />
-      <img
-        src={madBeigeName.src}
-        alt="Le nom Act In Mad"
-        class="h-8 w-auto ml-3 mt-1"
-      />
+<footer class="bg-madRed pb-2">
+  <div
+    class="flex flex-col justify-between px-2 py-6 sm:flex-row sm:px-6 lg:px-8"
+  >
+    <div class="flex flex-1 justify-center mb-4 sm:mb-0">
+      <ul class="flex items-center gap-6 md:gap-8">
+        <li>
+          <a
+            title="Envoyez-nous un email"
+            aria-label="Envoyez-nous un email"
+            rel="noopener noreferrer"
+            href="mailto:act.in.mad@gmail.com"
+            target="_blank"
+            class="text-madBack"
+          >
+            <Icon name="lucide:mail" size="24" />
+          </a>
+        </li>
+        <li>
+          <a
+            title="Consultez notre page Facebook"
+            aria-label="Suivez-nous sur Facebook"
+            rel="noopener noreferrer"
+            href="https://www.facebook.com/share/1F9fBbu8Ux/"
+            target="_blank"
+            class="text-madBack"
+          >
+            <Icon name="lucide:facebook" size="24" />
+          </a>
+        </li>
+        <li>
+          <a
+            title="Consultez notre page Instagram"
+            aria-label="Suivez-nous sur Instagram"
+            rel="noopener noreferrer"
+            href="https://www.instagram.com/act_in_mad/"
+            target="_blank"
+            class="text-madBack"
+          >
+            <Icon name="lucide:instagram" size="24" />
+          </a>
+        </li>
+      </ul>
     </div>
 
-    <p class="mx-auto mt-4 max-w-md text-center leading-relaxed text-madBack">
-      Compagnie de Théâtre & Ateliers Spectacles Amateurs <br />Oser le jeu •
-      Frôler la folie !
-    </p>
-
-    <ul class="mt-8 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
-      <li>
-        <a class="text-madBack" href="#"> Mentions legale? </a>
-      </li>
-
-      <li>
-        <a class="text-madBack" href="#"> Contact? </a>
-      </li>
-
-      <li>
-        <a class="text-madBack" href="#"> Blog/Articles? </a>
-      </li>
-
-      <li>
-        <a class="text-madBack" href="#"> FAQ? </a>
-      </li>
-    </ul>
-
-    <ul class="mt-6 flex justify-center gap-6 md:gap-8">
-      <li>
-        <a
-          title="Consultez notre page Facebook"
-          aria-label="Suivez-nous sur Facebook"
-          rel="noopener noreferrer"
-          href="https://www.facebook.com/share/1F9fBbu8Ux/"
-          target="_blank"
-          class="text-madBack"
-        >
-          <span class="sr-only">Consultez notre page Facebook</span>
-          <Icon name="lucide:facebook" size="24" />
-        </a>
-      </li>
-
-      <li>
-        <a
-          title="Consultez notre page Instagram"
-          aria-label="Suivez-nous sur Instagram"
-          rel="noopener noreferrer"
-          href="https://www.instagram.com/act_in_mad/"
-          target="_blank"
-          class="text-madBack"
-        >
-          <span class="sr-only">Consultez notre Instagram</span>
-          <Icon name="lucide:instagram" size="24" />
-        </a>
-      </li>
-
-      <li>
-        <a
-          title="Consultez notre page Github"
-          aria-label="Le code heberge sur Github"
-          rel="noopener noreferrer"
-          href="https://github.com/BorisLord/actInMad"
-          target="_blank"
-          class="text-madBack"
-        >
-          <span class="sr-only">Consultez notre page GitHub</span>
-          <Icon name="lucide:github" size="24" />
-        </a>
-      </li>
-    </ul>
-
-    <div class="flex justify-center mt-4 md:justify-end">
-      <p class="text-sm text-madBack text-center">
-        Made with &hearts; with <a
-          href="https://astro.build/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="underline">Astro</a
-        > by <a
-          href="https://github.com/BorisLord"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="underline"
-        >
-          Boris
-        </a>for Act In Mad &copy; 2025
+    <div class="flex flex-col items-center text-center">
+      <div class="flex items-center">
+        <img
+          src={madArchLogo.src}
+          alt="L'arche d'Act In Mad"
+          class="h-8 w-auto mb-2"
+          loading="lazy"
+        />
+        <img
+          src={madBeigeName.src}
+          alt="Le nom Act In Mad"
+          class="h-6 w-auto ml-3"
+          loading="lazy"
+        />
+      </div>
+      <p class="mt-1 max-w-md text-madBack">
+        Compagnie de Théâtre <br />Ateliers Spectacles Amateurs <br />Oser le
+        jeu • Frôler la folie !
       </p>
     </div>
+
+    <div class="flex flex-1 justify-center mt-3">
+      <ul class="flex flex-col items-center gap-2 md:gap-5">
+        <li>
+          <a class="text-madBack" href="/">Mentions légales</a>
+        </li>
+        <li>
+          <a class="text-madBack" href="/">Blog/Articles</a>
+        </li>
+        <li>
+          <a class="text-madBack" href="/">FAQ</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="text-center -mt-2">
+    <p class="text-sm text-madBack">
+      Made with &hearts; by
+      <a
+        href="https://github.com/BorisLord"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline"
+      >
+        Boris
+      </a> using
+      <a
+        href="https://astro.build/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline"
+      >
+        Astro
+      </a>
+      for Act In Mad &copy; 2025
+    </p>
   </div>
 </footer>
