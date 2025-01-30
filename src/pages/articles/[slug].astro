@@ -6,9 +6,10 @@ import { DateTime } from 'luxon';
 
 export async function getStaticPaths() {
   const pb = new PocketBase(API_URL);
-  const records = await pb.collection('articles').getFullList({});
+  const records = await pb
+    .collection('articles')
+    .getFullList({ filter: 'isActive=true' });
 
-  // Si records est vide, ne rien faire
   if (records.length === 0) {
     return [];
   }
@@ -20,41 +21,25 @@ export async function getStaticPaths() {
 }
 
 const { article } = Astro.props;
-
-const formatDate = (date: string) => {
-  return DateTime.fromSQL(date).setLocale('fr').toFormat('dd MMMM yyyy');
-};
-
-const isSameDate = (created: string, updated: string) => {
-  return (
-    DateTime.fromSQL(created).toISODate() ===
-    DateTime.fromSQL(updated).toISODate()
-  );
-};
-
-const formattedCreatedDate = formatDate(article.created);
-const formattedUpdatedDate = formatDate(article.updated);
-const showUpdated = !isSameDate(article.created, article.updated);
 ---
 
 <Layout>
   <div class="max-w-3xl mx-auto p-4 pt-12">
-    {/* Ajout de pt-8 pour l'espace en haut */}
-    <div>
-      <div class="flex justify-between">
-        <div>
-          <h1 class="text-3xl font-bold">{article.title}</h1>
-          <p class="text-gray-500 italic mt-3">
-            Écrit par {article.writter || 'Auteur anonyme'}
-          </p>
-        </div>
-        <div class="text-right text-xs text-gray-500">
-          <p>
-            Publié le {formattedCreatedDate}
-          </p>
-
-          {showUpdated && <p>Mis à jour le {formattedUpdatedDate}</p>}
-        </div>
+    <div class="flex flex-col sm:flex-row justify-between">
+      <div>
+        <h1 class="text-3xl font-bold">{article.title}</h1>
+      </div>
+      <div class="text-left sm:text-right text-xs text-gray-500 mt-2 sm:mt-0">
+        <p>
+          Publié le {
+            DateTime.fromSQL(article.releaseDate)
+              .setLocale('fr')
+              .toFormat('dd MMMM yyyy')
+          }
+        </p>
+        <p class="text-gray-500 italic mt-1">
+          Écrit par {article.writter || 'Auteur anonyme'}
+        </p>
       </div>
     </div>
     {
@@ -67,9 +52,8 @@ const showUpdated = !isSameDate(article.created, article.updated);
       )
     }
     <article
-      class="prose max-w-none mt-6 mb-20 text-justify"
+      class="prose max-w-none mt-8 mb-20 text-justify"
       set:html={article.content}
     />
-    {/* mb-12 remplacé par mb-16 */}
   </div>
 </Layout>
