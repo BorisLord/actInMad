@@ -5,7 +5,6 @@ import { API_URL } from 'astro:env/client';
 import { DateTime } from 'luxon';
 
 export async function getStaticPaths() {
-  console.log('APIIIIIIIIIIIIIIIIIII', API_URL);
   const pb = new PocketBase(API_URL);
   const records = await pb.collection('articles').getFullList({});
 
@@ -14,7 +13,6 @@ export async function getStaticPaths() {
     return [];
   }
 
-  // console.log(records[0]);
   return records.map((article) => ({
     params: { slug: article.slug },
     props: { article },
@@ -40,16 +38,17 @@ const showUpdated = !isSameDate(article.created, article.updated);
 ---
 
 <Layout>
-  <div class="max-w-3xl mx-auto p-4">
+  <div class="max-w-3xl mx-auto p-4 pt-12">
+    {/* Ajout de pt-8 pour l'espace en haut */}
     <div>
       <div class="flex justify-between">
         <div>
-          <h1 class="text-2xl font-bold">{article.title}</h1>
-          <p class="text-gray-500">
+          <h1 class="text-3xl font-bold">{article.title}</h1>
+          <p class="text-gray-500 italic mt-3">
             Écrit par {article.writter || 'Auteur anonyme'}
           </p>
         </div>
-        <div class="text-right text-xs">
+        <div class="text-right text-xs text-gray-500">
           <p>
             Publié le {formattedCreatedDate}
           </p>
@@ -63,13 +62,14 @@ const showUpdated = !isSameDate(article.created, article.updated);
         <img
           src={`${API_URL}/api/files/articles/${article.id}/${article.images[0]}`}
           alt={article.Title}
-          class="w-full h-64 object-cover mt-4 rounded-md"
+          class="w-full h-72 object-cover mt-4 rounded-md"
         />
       )
     }
-    <article class="prose max-w-none mt-6" set:html={article.content} />
+    <article
+      class="prose max-w-none mt-6 mb-20 text-justify"
+      set:html={article.content}
+    />
+    {/* mb-12 remplacé par mb-16 */}
   </div>
 </Layout>
-
-http://pocketbase-yggsoowcwok4og4gkoooow0o:8080
-

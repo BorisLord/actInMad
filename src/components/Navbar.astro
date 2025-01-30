@@ -83,40 +83,20 @@ const currentPath = Astro.url.pathname;
         }
       </ul>
     </nav>
-
-    <script>
-      const toggleButton = document.getElementById('menu-toggle');
-      const menu = document.getElementById('menu');
-
-      if (toggleButton) {
-        toggleButton.addEventListener('click', () => {
-          // Basculer la visibilité du menu
-          menu?.classList.toggle('hidden');
-        });
-      }
-
-      window.addEventListener('DOMContentLoaded', () => {
-        menu?.classList.add('hidden');
-      });
-    </script>
   </div>
-
-  <!-- Auth Links -->
-  <!-- <div class="flex items-center gap-4">
-  <div class="sm:flex sm:gap-4">
-    {
-          authLinks.map((authLink: any) => (
-            <a
-              href={authLink.href}
-              class={`rounded-md px-5 py-2.5 text-sm font-medium shadow ${
-                authLink.type === 'primary'
-                  ? 'bg-madEncart text-white'
-                  : 'bg-gray-100 text-madEncart'
-              }`}
-            >
-              {authLink.label}
-            </a>
-          ))
-        }
-      </div> -->
 </div>
+
+<script>
+  const toggleButton = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu');
+
+  if (toggleButton) {
+    toggleButton.addEventListener('click', () => {
+      menu?.classList.toggle('hidden');
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    menu?.classList.add('hidden');
+  });
+</script>
