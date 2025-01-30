@@ -1,8 +1,10 @@
 FROM node:lts-alpine AS build
 
 ARG MODE
+ARG API_URL
 
 ENV MODE=${MODE}
+ENV API_URL=${API_URL}
 
 WORKDIR /app
 

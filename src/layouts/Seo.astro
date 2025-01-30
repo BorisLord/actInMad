@@ -10,10 +10,9 @@ const isProduction = import.meta.env.MODE === 'production';
 export const defaultSeo: Props = {
   title: 'Act In Mad',
   titleTemplate:
-    'Act In Mad 🎭 Compagnie de Théâtre & Ateliers Spectacles Amateurs - Paris',
+    'Act In Mad 🎭 Ateliers Spectacles Amateurs & Compagnie de Théâtre - Paris',
   description: '🔥 Cours de théâtre à Paris • Oser le jeu Frôler la folie !',
   canonical: 'https://actinmad.art/',
-  charset: 'UTF-8',
   languageAlternates: [
     {
       href: 'https://actinmad.art/',
@@ -28,17 +27,11 @@ export const defaultSeo: Props = {
       image: 'https://actinmad.art/images/actInMadRed.jpeg',
       url: 'https://actinmad.art/',
     },
-    optional: {
-      description:
-        '🔥 Cours de théâtre à Paris • Frôlez la folie et osez le jeu !',
-      locale: 'fr_FR',
-      siteName: 'Act In Mad',
-    },
+
     image: {
-      secureUrl: 'https://actinmad.art/images/actInMadRed.jpeg',
       type: 'image/jpeg',
-      width: 1200,
-      height: 630,
+      width: 1080,
+      height: 913,
       alt: "Logo de l'ecole de theatre Act In Mad à Paris",
     },
   },
@@ -58,10 +51,6 @@ export const defaultSeo: Props = {
         name: 'keywords',
         content:
           'cours de théâtre paris, école de théâtre paris, ateliers théâtre amateurs, compagnie de théâtre paris, spectacle amateur paris, théâtre improvisation paris, scène ouverte paris, cours de théâtre Île-de-France, école de théâtre Île-de-France',
-      },
-      {
-        name: 'robots',
-        content: 'index, follow',
       },
       {
         name: 'author',

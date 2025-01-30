@@ -19,6 +19,7 @@ export default defineConfig({
       : 'https://staging.actinmad.art',
   env: {
     schema: {
+      API_URL: envField.string({ context: 'client', access: 'public' }),
       MODE: envField.enum({
         context: 'server',
         access: 'public',
@@ -27,7 +28,7 @@ export default defineConfig({
       }),
     },
   },
-  output: 'static',
+  // output: 'server',
   integrations: [
     tailwind(),
     icon(),
