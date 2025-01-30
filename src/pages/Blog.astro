@@ -5,7 +5,7 @@ import { API_URL } from 'astro:env/client';
 
 const pb = new PocketBase(API_URL);
 const records = await pb.collection('articles').getFullList({});
-console.log(records);
+console.log('IIIII222222222222222', API_URL);
 ---
 
 <Layout>

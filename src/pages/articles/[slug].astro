@@ -5,6 +5,7 @@ import { API_URL } from 'astro:env/client';
 import { DateTime } from 'luxon';
 
 export async function getStaticPaths() {
+  console.log('APIIIIIIIIIIIIIIIIIII', API_URL);
   const pb = new PocketBase(API_URL);
   const records = await pb.collection('articles').getFullList({});
 
@@ -13,7 +14,7 @@ export async function getStaticPaths() {
     return [];
   }
 
-  console.log(records[0]);
+  // console.log(records[0]);
   return records.map((article) => ({
     params: { slug: article.slug },
     props: { article },
