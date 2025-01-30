@@ -4,8 +4,8 @@ ARG MODE
 ARG API_URL
 
 ENV MODE=${MODE}
+ENV API_URL=${API_URL}
 
-# ENV API_URL=${API_URL}
 # Create docker-compose to have acces to the docker network during build to fetch articles from db
 
 WORKDIR /app
