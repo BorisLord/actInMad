@@ -3,10 +3,11 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev:astro": "astro dev",
+    "dev:pb": "cd pocketbase && ./pocketbase serve",
     "build": "astro build",
     "preview": "astro preview",
-    "fastPrev": "astro build && astro preview",
+    "buildPrev": "astro build && astro preview",
     "astro": "astro"
   },
   "dependencies": {
