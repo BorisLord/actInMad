@@ -1,4 +1,4 @@
-FROM node:lts-alpine AS build
+FROM node:lts AS build
 
 ARG MODE
 ARG API_URL
