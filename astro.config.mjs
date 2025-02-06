@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig, envField } from "astro/config";
-
-
+import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 import { loadEnv } from "vite";
@@ -14,7 +13,9 @@ if (!["production", "staging"].includes(mode)) {
 }
 
 export default defineConfig({
-
+  vite: {
+    plugins: [tailwindcss()],
+  },
   site:
     mode === "production"
       ? "https://actinmad.art"
