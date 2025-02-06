@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig, envField } from "astro/config";
-import tailwind from "@astrojs/tailwind";
+
+
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 import { loadEnv } from "vite";
@@ -13,6 +14,7 @@ if (!["production", "staging"].includes(mode)) {
 }
 
 export default defineConfig({
+
   site:
     mode === "production"
       ? "https://actinmad.art"
@@ -30,7 +32,6 @@ export default defineConfig({
   },
   // output: 'server',
   integrations: [
-    tailwind(),
     icon(),
     sitemap({
       filter: (page) => mode === "prod" || !page.includes("staging"),
