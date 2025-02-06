@@ -1,20 +1,29 @@
 /// <reference path="../pb_data/types.d.ts" />
-migrate((app) => {
-  const collection = app.findCollectionByNameOrId("pbc_1125843985")
+migrate(
+  (app) => {
+    const collection = app.findCollectionByNameOrId("pbc_1125843985");
 
-  // update collection data
-  unmarshal({
-    "name": "articles"
-  }, collection)
+    // update collection data
+    unmarshal(
+      {
+        name: "articles",
+      },
+      collection,
+    );
 
-  return app.save(collection)
-}, (app) => {
-  const collection = app.findCollectionByNameOrId("pbc_1125843985")
+    return app.save(collection);
+  },
+  (app) => {
+    const collection = app.findCollectionByNameOrId("pbc_1125843985");
 
-  // update collection data
-  unmarshal({
-    "name": "posts"
-  }, collection)
+    // update collection data
+    unmarshal(
+      {
+        name: "posts",
+      },
+      collection,
+    );
 
-  return app.save(collection)
-})
+    return app.save(collection);
+  },
+);

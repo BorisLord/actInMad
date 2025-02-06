@@ -1,14 +1,14 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import PocketBase from 'pocketbase';
-import { API_URL } from 'astro:env/client';
-import defImg from '../assets/defaultImg.jpg';
-import { DateTime } from 'luxon';
+import Layout from "../layouts/Layout.astro";
+import PocketBase from "pocketbase";
+import { API_URL } from "astro:env/client";
+import defImg from "../assets/defaultImg.jpg";
+import { DateTime } from "luxon";
 
 const pb = new PocketBase(API_URL);
 const records = await pb
-  .collection('articles')
-  .getFullList({ filter: 'isActive=true', sort: '-releaseDate' });
+  .collection("articles")
+  .getFullList({ filter: "isActive=true", sort: "-releaseDate" });
 ---
 
 <Layout>
@@ -33,13 +33,13 @@ const records = await pb
                 {article.title}
               </h2>
               <p class="text-sm text-gray-500">
-                Écrit par {article.writter || 'Auteur anonyme'}
+                Écrit par {article.writter || "Auteur anonyme"}
               </p>
               <p class="text-xs text-gray-500 mb-4">
-                Publié le{' '}
+                Publié le{" "}
                 {DateTime.fromSQL(article.releaseDate)
-                  .setLocale('fr')
-                  .toFormat('dd MMMM yyyy')}
+                  .setLocale("fr")
+                  .toFormat("dd MMMM yyyy")}
               </p>
 
               {article.images.length > 0 ? (

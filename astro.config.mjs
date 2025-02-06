@@ -1,30 +1,30 @@
 // @ts-check
-import { defineConfig, envField } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
-import sitemap from '@astrojs/sitemap';
-import icon from 'astro-icon';
-import { loadEnv } from 'vite';
+import { defineConfig, envField } from "astro/config";
+import tailwind from "@astrojs/tailwind";
+import sitemap from "@astrojs/sitemap";
+import icon from "astro-icon";
+import { loadEnv } from "vite";
 
-const env = loadEnv(process.env.MODE || 'staging', process.cwd(), '');
+const env = loadEnv(process.env.MODE || "staging", process.cwd(), "");
 
-const mode = env.MODE || 'staging';
-if (!['production', 'staging'].includes(mode)) {
+const mode = env.MODE || "staging";
+if (!["production", "staging"].includes(mode)) {
   throw new Error(`Invalid MODE value: ${mode}`);
 }
 
 export default defineConfig({
   site:
-    mode === 'production'
-      ? 'https://actinmad.art'
-      : 'https://staging.actinmad.art',
+    mode === "production"
+      ? "https://actinmad.art"
+      : "https://staging.actinmad.art",
   env: {
     schema: {
-      API_URL: envField.string({ context: 'client', access: 'public' }),
+      API_URL: envField.string({ context: "client", access: "public" }),
       MODE: envField.enum({
-        context: 'server',
-        access: 'public',
-        values: ['production', 'staging'],
-        default: 'staging',
+        context: "server",
+        access: "public",
+        values: ["production", "staging"],
+        default: "staging",
       }),
     },
   },
@@ -33,8 +33,8 @@ export default defineConfig({
     tailwind(),
     icon(),
     sitemap({
-      filter: (page) => mode === 'prod' || !page.includes('staging'),
-      changefreq: 'monthly',
+      filter: (page) => mode === "prod" || !page.includes("staging"),
+      changefreq: "monthly",
       lastmod: new Date(),
     }),
   ],

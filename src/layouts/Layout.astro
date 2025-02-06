@@ -1,16 +1,16 @@
 ---
-import AstroFont from './Font.astro';
-import SEO from './Seo.astro';
-import Nav from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
+import AstroFont from "./Font.astro";
+import SEO from "./Seo.astro";
+import Nav from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
 
 const links = [
-  { label: 'Acceuil', href: '/' },
-  { label: 'Ateliers', href: '/Ateliers' },
-  { label: 'Compagnie', href: '/Compagnie' },
-  { label: 'Coulisses', href: '/Login' },
-  { label: 'Contact', href: '/Contact' },
-  { label: 'Blog', href: '/Blog' },
+  { label: "Acceuil", href: "/" },
+  { label: "Ateliers", href: "/Ateliers" },
+  { label: "Compagnie", href: "/Compagnie" },
+  { label: "Coulisses", href: "/Login" },
+  { label: "Contact", href: "/Contact" },
+  { label: "Blog", href: "/Blog" },
 ];
 
 // const authLinks = [
@@ -19,21 +19,21 @@ const links = [
 // ];
 
 const jsonLD = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: 'Act In Mad',
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Act In Mad",
   description:
-    'Cours de théâtre à Paris pour amateurs. Découvrez nos ateliers et spectacles créatifs.',
-  image: 'https://actinmad.art/images/actInMadRed.jpeg',
-  url: 'https://actinmad.art/',
-  email: 'mailto:act.in.mad@gmail.com',
-  priceRange: '€',
+    "Cours de théâtre à Paris pour amateurs. Découvrez nos ateliers et spectacles créatifs.",
+  image: "https://actinmad.art/images/actInMadRed.jpeg",
+  url: "https://actinmad.art/",
+  email: "mailto:act.in.mad@gmail.com",
+  priceRange: "€",
   address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Paris',
-    addressCountry: 'FR',
+    "@type": "PostalAddress",
+    addressLocality: "Paris",
+    addressCountry: "FR",
   },
-  openingHours: 'Mo-Su 09:00-21:00',
+  openingHours: "Mo-Su 09:00-21:00",
 };
 ---
 

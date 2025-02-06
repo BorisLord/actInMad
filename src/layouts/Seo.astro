@@ -1,60 +1,60 @@
 ---
-import { SEO, type Props } from 'astro-seo';
+import { SEO, type Props } from "astro-seo";
 
 // https://metatags.io/
 // https://search.google.com/test/rich-results
 // https://github.com/jonasmerlin/astro-seo#readme
 
-const isProduction = import.meta.env.MODE === 'production';
+const isProduction = import.meta.env.MODE === "production";
 
 export const defaultSeo: Props = {
-  title: 'Act In Mad',
+  title: "Act In Mad",
   titleTemplate:
-    'Act In Mad 🎭 Ateliers Spectacles Amateurs & Compagnie de Théâtre - Paris',
-  description: '🔥 Cours de théâtre à Paris • Oser le jeu Frôler la folie !',
-  canonical: 'https://actinmad.art/',
+    "Act In Mad 🎭 Ateliers Spectacles Amateurs & Compagnie de Théâtre - Paris",
+  description: "🔥 Cours de théâtre à Paris • Oser le jeu Frôler la folie !",
+  canonical: "https://actinmad.art/",
   languageAlternates: [
     {
-      href: 'https://actinmad.art/',
-      hrefLang: 'fr',
+      href: "https://actinmad.art/",
+      hrefLang: "fr",
     },
   ],
   openGraph: {
     basic: {
       title:
-        'Act In Mad 🎭 Compagnie de Théâtre & Ateliers Spectacles Amateurs à Paris',
-      type: 'website',
-      image: 'https://actinmad.art/images/actInMadRed.jpeg',
-      url: 'https://actinmad.art/',
+        "Act In Mad 🎭 Compagnie de Théâtre & Ateliers Spectacles Amateurs à Paris",
+      type: "website",
+      image: "https://actinmad.art/images/actInMadRed.jpeg",
+      url: "https://actinmad.art/",
     },
 
     image: {
-      type: 'image/jpeg',
+      type: "image/jpeg",
       width: 1080,
       height: 913,
       alt: "Logo de l'ecole de theatre Act In Mad à Paris",
     },
   },
   twitter: {
-    card: 'summary_large_image',
-    site: 'https://actinmad.art/',
-    creator: '@ActInMad',
-    title: 'Act In Mad 🎭 Compagnie de Théâtre & Ateliers Spectacles Amateurs',
+    card: "summary_large_image",
+    site: "https://actinmad.art/",
+    creator: "@ActInMad",
+    title: "Act In Mad 🎭 Compagnie de Théâtre & Ateliers Spectacles Amateurs",
     description:
-      '🔥 Cours de théâtre à Paris • Oser le jeu • Frôler la folie !',
-    image: 'https://actinmad.art/images/actInMadRed.jpeg',
-    imageAlt: 'Logo de la compagnie Act In Mad à Paris',
+      "🔥 Cours de théâtre à Paris • Oser le jeu • Frôler la folie !",
+    image: "https://actinmad.art/images/actInMadRed.jpeg",
+    imageAlt: "Logo de la compagnie Act In Mad à Paris",
   },
   extend: {
     meta: [
       {
-        name: 'keywords',
+        name: "keywords",
         content:
-          'cours de théâtre paris, école de théâtre paris, ateliers théâtre amateurs, compagnie de théâtre paris, spectacle amateur paris, théâtre improvisation paris, scène ouverte paris, cours de théâtre Île-de-France, école de théâtre Île-de-France',
+          "cours de théâtre paris, école de théâtre paris, ateliers théâtre amateurs, compagnie de théâtre paris, spectacle amateur paris, théâtre improvisation paris, scène ouverte paris, cours de théâtre Île-de-France, école de théâtre Île-de-France",
       },
       {
-        name: 'author',
-        content: 'Act In Mad',
+        name: "author",
+        content: "Act In Mad",
       },
     ],
   },

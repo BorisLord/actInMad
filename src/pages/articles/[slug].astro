@@ -1,14 +1,14 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import PocketBase from 'pocketbase';
-import { API_URL } from 'astro:env/client';
-import { DateTime } from 'luxon';
+import Layout from "../../layouts/Layout.astro";
+import PocketBase from "pocketbase";
+import { API_URL } from "astro:env/client";
+import { DateTime } from "luxon";
 
 export async function getStaticPaths() {
   const pb = new PocketBase(API_URL);
   const records = await pb
-    .collection('articles')
-    .getFullList({ filter: 'isActive=true' });
+    .collection("articles")
+    .getFullList({ filter: "isActive=true" });
 
   if (records.length === 0) {
     return [];
@@ -33,12 +33,12 @@ const { article } = Astro.props;
         <p>
           Publié le {
             DateTime.fromSQL(article.releaseDate)
-              .setLocale('fr')
-              .toFormat('dd MMMM yyyy')
+              .setLocale("fr")
+              .toFormat("dd MMMM yyyy")
           }
         </p>
         <p class="text-gray-500 italic mt-1">
-          Écrit par {article.writter || 'Auteur anonyme'}
+          Écrit par {article.writter || "Auteur anonyme"}
         </p>
       </div>
     </div>
