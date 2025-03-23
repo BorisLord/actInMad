@@ -1,0 +1,34 @@
+---
+const { hLevel = "h1", madStyle = "", content } = Astro.props;
+---
+
+{
+  hLevel === "h1" && (
+    <h1 class={`text-madRed font-bold ${madStyle}`}>{content}</h1>
+  )
+}
+{
+  hLevel === "h2" && (
+    <h2 class={`text-madRed font-bold ${madStyle}`}>{content}</h2>
+  )
+}
+{
+  hLevel === "h3" && (
+    <h3 class={`text-madRed font-bold ${madStyle}`}>{content}</h3>
+  )
+}
+{
+  hLevel === "h4" && (
+    <h4 class={`text-madRed font-bold ${madStyle}`}>{content}</h4>
+  )
+}
+{
+  hLevel === "h5" && (
+    <h5 class={`text-madRed font-bold ${madStyle}`}>{content}</h5>
+  )
+}
+{
+  hLevel === "h6" && (
+    <h6 class={`text-madRed font-bold ${madStyle}`}>{content}</h6>
+  )
+}

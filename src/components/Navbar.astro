@@ -53,7 +53,7 @@ const currentPath = Astro.url.pathname;
         {
           links.find(
             (link: any) =>
-              link.href.replace(/\/$/, "") === currentPath.replace(/\/$/, ""),
+              link.href.replace(/\/$/, "") === currentPath.replace(/\/$/, "")
           )?.label || ""
         }
       </span>
@@ -61,7 +61,7 @@ const currentPath = Astro.url.pathname;
 
     <nav
       id="menu"
-      class="absolute top-16 bg-madBack gap-4 p-4 shadow-md hidden rounded-xl z-10"
+      class="absolute top-16 gap-4 p-4 shadow-md hidden rounded-xl z-10"
     >
       <ul class="flex flex-col items-center gap-4">
         {
