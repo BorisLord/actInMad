@@ -1,5 +1,5 @@
 ---
-import archLogo from "../assets/archActInMad.svg";
+import beigeFullLogo from "../assets/actInMadBeigeFullLogo.svg";
 import { Icon } from "astro-icon/components";
 
 const { links = [] } = Astro.props;
@@ -7,12 +7,12 @@ const currentPath = Astro.url.pathname;
 ---
 
 <div class="mx-auto max-w-screen px-4 sm:px-6 lg:px-8">
-  <div class="flex h-20 items-center justify-center">
-    <div class="flex items-center mr-8">
+  <div class="flex h-24 items-center justify-center">
+    <div class="flex items-center mr-22">
       <img
-        src={archLogo.src}
+        src={beigeFullLogo.src}
         alt="L'arche d'Act In Mad"
-        class="h-10 w-auto -mt-1"
+        class="h-16 w-auto"
         loading="lazy"
       />
     </div>
@@ -28,8 +28,8 @@ const currentPath = Astro.url.pathname;
                   class={`${
                     currentPath.replace(/\/$/, "") ===
                     link.href.replace(/\/$/, "")
-                      ? "text-madRed"
-                      : "text-gray-500"
+                      ? "text-madEncart"
+                      : "text-madBack"
                   } hover:text-madEncart`}
                 >
                   {link.label}
@@ -45,11 +45,11 @@ const currentPath = Astro.url.pathname;
       <button
         aria-expanded="true"
         id="menu-toggle"
-        class="rounded p-2 text-gray-600 transition hover:text-madEncart"
+        class="rounded p-2 text-madBack transition hover:text-madEncart"
       >
         <Icon id="menu-icon" name="lucide:book-open-text" size="28" />
       </button>
-      <span class="text-madRed text-md">
+      <span class="text-madEncart text-md">
         {
           links.find(
             (link: any) =>
@@ -59,10 +59,7 @@ const currentPath = Astro.url.pathname;
       </span>
     </div>
 
-    <nav
-      id="menu"
-      class="absolute top-16 gap-4 p-4 shadow-md hidden rounded-xl z-10"
-    >
+    <nav id="menu" class="absolute top-20 p-4 z-10 mt-4 rounded-xl shadow-2xl">
       <ul class="flex flex-col items-center gap-4">
         {
           links.map((link: any) => (
@@ -72,8 +69,8 @@ const currentPath = Astro.url.pathname;
                 class={`${
                   currentPath.replace(/\/$/, "") ===
                   link.href.replace(/\/$/, "")
-                    ? "text-madRed"
-                    : "text-gray-500"
+                    ? "text-madEncart"
+                    : "text-madText"
                 } hover:text-madEncart`}
               >
                 {link.label}

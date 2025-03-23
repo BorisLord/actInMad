@@ -7,11 +7,13 @@ import Footer from "../components/Footer.astro";
 
 const links = [
   { label: "Acceuil", href: "/" },
-  { label: "Ateliers", href: "/Ateliers" },
-  { label: "Compagnie", href: "/Compagnie" },
-  { label: "Coulisses", href: "/Login" },
+  { label: "Les Ateliers", href: "/Ateliers" },
+  { label: "La Compagnie", href: "/Compagnie" },
+  { label: "L'equipe", href: "/Equipe" },
+  { label: "Nos Valeurs", href: "/Valeurs" },
+  { label: "Inscription", href: "/Inscription" },
   { label: "Contact", href: "/Contact" },
-  { label: "Blog", href: "/Blog" },
+  { label: "Le Mag'", href: "/LeMag" },
 ];
 
 // const authLinks = [
@@ -51,7 +53,7 @@ const jsonLD = {
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
   <body class="bg-madBack">
-    <header>
+    <header class="bg-madText">
       <Nav links={links} />
     </header>
     <main class="min-h-screen">
