@@ -1,26 +1,273 @@
 ---
 import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
+import paperText from "../assets/photos/paperText.jpg";
+import theaterRoomSideLeft from "../assets/photos/theaterRoomSideLeft.jpg";
+import redTheaterCurtain from "../assets/photos/redTheaterCurtain.jpg";
+import theaterRoom from "../assets/photos/theaterRoom.jpg";
+import lonelyChair from "../assets/photos/lonelyChair.jpg";
+
 // ! Ajouter le SEO des pages
 ---
 
 <Layout>
-  <div
-    class="flex flex-col items-center justify-center min-h-screen overflow-hidden text-center bg-madBack"
-  >
-    <h1 class="text-3xl font-bold">Bienvenue</h1>
-    <h2 class="mt-2 text-2xl font-medium">Nous sommes en répétition !</h2>
-    <h3 class="mt-2 text-xl font-medium">
-      En attendant la Première... <br />retrouvez-nous sur
-    </h3>
-    <a
-      href="https://www.instagram.com/act_in_mad/"
-      class="mt-4 p-3 text-white bg-madRed rounded-lg"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="instagram logo"
-    >
-      <Icon name="lucide:instagram" size="40" />
-    </a>
+  <div class="flex flex-col items-center gap-8 p-4">
+    <div class="w-full max-w-4xl md:w-2/3 flex justify-center md:justify-start">
+      <h1 class="px-4 py-2 text-2xl text-madBack bg-madRed rounded-xl">
+        Les Ateliers Spectacles
+      </h1>
+    </div>
+
+    <div class="flex flex-col md:flex-row w-full max-w-4xl p-4 md:p-6 gap-6">
+      <div
+        class="md:w-2/3 text-center md:text-left flex flex-col justify-center"
+      >
+        <p class="text-justify">
+          Chez Act In Mad, nous avons révolutionné la formule des Ateliers
+          Théâtre que nous avons d’ailleurs rebaptisés “Ateliers Spectacles”.<br
+          /><br />
+          Chaque année, les professeurs metteurs en scène se trouvent confrontés
+          au défi de sélectionner des pièces offrant un nombre équitable de répliques
+          et de temps de présence sur scène pour tous. Cette contrainte conduit souvent
+          à la répétition des mêmes œuvres ou à l'assemblage artificiel de plusieurs
+          pièces, nuisant à l'intégrité des textes originaux.<br /><br />
+          Pour remédier à cela, nous proposons des pièces originales où les rôles
+          ne sont pas modifiés. Les apprentis comédiens s'inscrivent pour un rôle
+          spécifique, et le tarif est ajusté en fonction de l'importance de ce rôle.
+          Une audition est ensuite organisée pour chaque apprenti comédien et la
+          distribution est effectuée par le metteur en scène. Nous valorisons en
+          priorité la passion et l'enthousiasme de chaque participant, indépendamment
+          de son niveau d’expérience.<br /><br />
+          Cette approche permet à chacun de vivre pleinement son expérience théâtrale,
+          tout en respectant l'œuvre des auteurs, et garantit la production d’un
+          spectacle de qualité dont tout le monde sera fier !
+        </p>
+      </div>
+      <div class="md:w-1/3 flex items-center justify-center md:justify-end">
+        <img
+          src={paperText.src}
+          alt="Support papier d'un texte de théâtre"
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row w-full max-w-4xl p-4 md:p-6 gap-6">
+      <div class="md:w-1/3 flex items-center justify-center md:justify-end">
+        <img
+          src={theaterRoomSideLeft.src}
+          alt="Support papier d'un texte de théâtre"
+          class="w-full h-full object-cover hidden md:block"
+          loading="lazy"
+        />
+      </div>
+      <div class="md:w-2/3 text-left md:text-left flex flex-col justify-center">
+        <p class="text-justify">
+          Ce nouveau concept d'Atelier “Pay as you play” prend ses racines au
+          cœur de la phrase de Constantin Stanislavski : "Il n'y a pas de petits
+          rôles, il n'y a que de petits acteurs."<br /><br />
+          Pleinement en accord avec nos valeurs que sont le jeu, la créativité et
+          l’esprit d’équipe, nous pensons également que la grandeur d'un personnage
+          ne dépend pas de sa taille mais de la manière dont l'acteur le fait vivre.
+          Chaque personnage, qu’il soit principal ou secondaire, joue un rôle essentiel
+          dans l’ensemble de l’histoire même s'il n'a qu'une réplique et chaque rôle
+          est, pour l’apprenti comédien, une opportunité unique de créativité artistique
+          autour du jeu.<br /><br />
+          En permettant aux apprentis comédiens de choisir un rôle spécifique et
+          en ajustant le tarif en fonction de l'importance de ce rôle, nous encourageons
+          chacun à donner le meilleur de lui-même, indépendamment de la taille du
+          rôle.<br /><br />
+          Chez Act In Mad, nous encourageons nos acteur.rice.s, amateur.e.s et professionnel.le.s
+          à donner le meilleur d'eux-mêmes, quel que soit le nombre de répliques
+          ou le temps passé sur scène.
+        </p>
+      </div>
+    </div>
+
+    <div class="mb-8 w-full flex justify-center">
+      <div class="text-center">
+        <h2 class="text-2xl md:text-4xl text-madRed">
+          « Il n'y a pas de petits rôles, il n'y a que des petits acteurs »
+        </h2>
+        <p class="text-xl text-madRed italic text-right">
+          Constantin Stanislavski
+        </p>
+      </div>
+    </div>
+
+    <div class="relative flex flex-col justify-center items-center w-full">
+      <img
+        src={redTheaterCurtain.src}
+        alt="rideau de théâtre fermé de couleur rouge"
+        class="w-full h-auto object-cover blur-sm md:absolute md:top-0 md:-translate-y-6 md:h-full"
+        loading="lazy"
+      />
+      <div
+        class="text-center p-4 md:p-6 mx-auto w-full max-w-2xl md:py-6 relative z-10 md:bg-transparent text-black md:text-madBack"
+      >
+        <h2 class="text-xl md:text-3xl font-bold">
+          Pourquoi choisir un Atelier Spectacle ?
+        </h2>
+        <ul class="text-base md:text-lg mt-4 list-disc list-inside">
+          <li class="text-left mb-4">
+            Vous connaissez la pièce à l’avance : Inscrivez-vous en toute
+            transparence !
+          </li>
+          <li class="text-left mb-4">
+            Des rôles adaptés à vos envies et à votre emploi du temps : Postulez
+            pour un ou plusieurs rôles selon vos disponibilités.
+          </li>
+          <li class="text-left mb-4">
+            Un investissement juste et proportionnel : Plus vous êtes présent
+            sur scène, plus vous avez de réplique, plus vous êtes impliqué !
+          </li>
+          <li class="text-left mb-4">
+            Un nombre de participants limité : Pas plus d’apprentis comédiens
+            que de personnages.
+          </li>
+          <li class="text-left mb-4">
+            Des pièces rares et originales : Osez interpréter des œuvres hors du
+            commun, rarement proposées en Atelier théâtre.
+          </li>
+          <li class="text-left mb-4">
+            Des metteurs en scène passionnés et bienveillants : Apprenez auprès
+            de professionnels qui vous guideront avec pédagogie.
+          </li>
+          <li class="text-left mb-4">
+            Une audition pour révéler votre potentiel : Rejoignez-nous après une
+            sélection bienveillante, basée sur votre énergie et votre envie de
+            jouer.
+          </li>
+          <li class="text-left mb-4">
+            Un vrai théâtre pour votre spectacle : Présentez votre pièce lors de
+            2 représentations.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="text-left w-full max-w-4xl md:w-2/3">
+      <h1
+        class="inline-block px-4 py-2 text-2xl text-madBack bg-madRed rounded-xl"
+      >
+        Les Cours de Théâtre
+      </h1>
+    </div>
+    <div class="flex flex-col md:flex-row w-full max-w-4xl p-4 md:p-6 gap-6">
+      <div class="md:w-2/3 text-left md:text-left flex flex-col justify-center">
+        <p class="text-justify">
+          Pour celles et ceux qui ne souhaitent pas rejoindre un Atelier
+          Spectacle, Act in Mad propose également des cours de théâtre plus
+          “classique” où seront abordées les techniques de base du jeu :
+        </p>
+        <ul class="text-base md:text-lg mt-4 list-disc list-inside">
+          <li class="text-left mb-4">Respiration et projection vocale.</li>
+          <li class="text-left mb-4">
+            Développement de la diction et de l'articulation
+          </li>
+          <li class="text-left mb-4">Mémorisation de texte</li>
+          <li class="text-left mb-4">Interprétation des émotions</li>
+          <li class="text-left mb-4">
+            Exercices de relaxation et de prise de conscience corporelle
+          </li>
+          <li class="text-left mb-4">
+            Techniques de respiration diaphragmatique pour soutenir la voix
+          </li>
+          <li class="text-left mb-4">
+            Travail sur la posture et le mouvement scénique
+          </li>
+          <li class="text-left mb-4">
+            Exercices d'improvisation pour développer la spontanéité et la
+            créativité
+          </li>
+          <li class="text-left mb-4">
+            Techniques pour réagir et interagir avec les partenaires de jeu de
+            manière naturelle
+          </li>
+          <li class="text-left mb-4">
+            Techniques pour accéder et exprimer une gamme d'émotions
+          </li>
+          <li class="text-left mb-4">
+            Travail sur la connexion émotionnelle avec le texte et les
+            personnages
+          </li>
+        </ul>
+      </div>
+      <div class="md:w-1/3 flex items-center justify-center md:justify-end">
+        <img
+          src={theaterRoom.src}
+          alt="Support papier d'un texte de théâtre"
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <div class="text-left w-full max-w-4xl md:w-2/3">
+      <h1
+        class="inline-block px-4 py-2 text-2xl text-madBack bg-madRed rounded-xl"
+      >
+        Les Ateliers Improvisation
+      </h1>
+    </div>
+    <div class="flex flex-col md:flex-row w-full max-w-4xl p-4 md:p-6 gap-6">
+      <div class="md:w-2/3 text-left md:text-left flex flex-col justify-center">
+        <p class="text-justify">
+          Découvrez l'Improvisation théâtrale avec Act In Mad !<br /><br />
+          Plongez dans l'univers captivant de l'improvisation théâtrale avec nos
+          cours spécialement conçus pour les amateurs passionnés !<br /><br />
+          Que vous soyez débutant ou que vous ayez déjà une expérience de la scène,
+          nos ateliers vous offrent un espace créatif et bienveillant pour développer
+          vos compétences et libérer votre potentiel artistique.<br /><br />
+        </p>
+        <h3 class="text-xl md:text-2xl text-madRed mb-4">
+          Ce que nous proposons :
+        </h3>
+        <ul class="text-base md:text-lg mt-4 list-disc list-inside">
+          <li class="text-left mb-4">
+            Cours d'improvisation dynamiques : Apprenez les techniques de base
+            et avancées de l'improvisation, pour stimuler votre spontanéité et
+            votre créativité.
+          </li>
+          <li class="text-left mb-4">
+            Ambiance ludique et collaborative : Travaillez en équipe pour créer
+            des scènes uniques et surprenantes à chaque session.
+          </li>
+          <li class="text-left mb-4">
+            Trois représentations par an : Mettez en pratique vos compétences
+            lors de trois spectacles annuels, offrant une véritable expérience
+            de la scène devant un public.
+          </li>
+          <li class="text-left mb-4">
+            Encadrement par des professionnels : Nos instructeurs passionnés et
+            expérimentés vous guideront avec pédagogie et enthousiasme.
+          </li>
+          <li class="text-left mb-4">
+            Développement personnel : Améliorez votre confiance en vous, votre
+            écoute active et votre capacité à réagir de manière spontanée dans
+            diverses situations !
+          </li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-4 md:w-1/3">
+        <div class="flex items-center justify-center">
+          <img
+            src={lonelyChair.src}
+            alt="Chaise seule sur scène"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+        <div class="flex items-center justify-center">
+          <img
+            src={theaterRoom.src}
+            alt="Salle de théâtre"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </Layout>
