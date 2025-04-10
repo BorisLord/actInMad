@@ -11,6 +11,7 @@ Oser le jeu • Frôler la folie !
 
 - [Astro](https://astro.build/)
 - [TailwindCSS](https://tailwindcss.com/)
+- [Pocketbase](https://pocketbase.io/)
 - [Docker](https://www.docker.com/)
 - Deploy on [Coolify](https://coolify.io/)
 - Served by [Apache](https://httpd.apache.org/)
