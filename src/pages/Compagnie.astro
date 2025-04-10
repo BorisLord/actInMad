@@ -1,27 +1,109 @@
 ---
 import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
+import defaultImg from "../assets/photos/defaultImg.jpg";
 
 // ! Ajouter le SEO des pages
 ---
 
 <Layout>
-  <div
-    class="flex flex-col items-center justify-center min-h-screen overflow-hidden text-center bg-madBack"
-  >
-    <h1 class="text-3xl font-bold">Bienvenue</h1>
-    <h2 class="mt-2 text-2xl font-medium">Nous sommes en répétition !</h2>
-    <h3 class="mt-2 text-xl font-medium">
-      En attendant la Première... <br />retrouvez-nous sur
-    </h3>
-    <a
-      href="https://www.instagram.com/act_in_mad/"
-      class="mt-4 p-3 text-white bg-madRed rounded-lg"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="instagram logo"
+  <div class="flex flex-col items-center gap-8 p-4">
+    <div class="w-full max-w-4xl md:w-2/3 flex justify-center md:justify-start">
+      <h1 class="px-4 py-2 text-2xl text-madBack bg-madRed rounded-xl">
+        Les Ateliers Spectacles
+      </h1>
+    </div>
+
+    <div
+      class="flex flex-col md:flex-row max-w-4xl p-4 md:p-6 gap-6 justify-center items-center"
     >
-      <Icon name="lucide:instagram" size="40" />
-    </a>
+      <div class="text-center md:text-left flex flex-col justify-center">
+        <p class="text-justify">
+          Act in Mad est une compagnie de théâtre détentrice d’une licence de
+          spectacle qui a notamment produit Un Air de Famille d’Agnès Jaoui et
+          Jean-Pierre Bacri, au Théâtre Le Guichet Montparnasse à Paris début
+          2025.<br /><br />
+          Fondée par Corinne Azzoug, Act in Mad propose également des versions originales
+          et novatrices de cours de théâtre, d’Ateliers Spectacles et d’Ateliers
+          Improvisation.<br /><br />
+          Que ce soit en étant apprenti.e comédien.ne ou comédien.ne de la compagnie,
+          Act in Mad permet à tous les fous amoureux du théâtre d’explorer leur créativité,
+          de renforcer leur esprit d'équipe et de s'épanouir à travers le jeu !
+        </p>
+      </div>
+    </div>
+
+    <div class="w-full max-w-4xl md:w-2/3 text-left">
+      <h2 class="px-4 py-2 text-2xl text-madRed">
+        Oser le jeu • Frôler la folie !
+      </h2>
+    </div>
+
+    <div class="w-full max-w-4xl md:w-2/3 flex justify-center md:justify-start">
+      <h2 class="px-4 py-2 text-2xl text-madBack bg-madRed rounded-xl">
+        Les projets de la Compagnie
+      </h2>
+    </div>
+
+    <div class="flex flex-col gap-4 w-full max-w-4xl">
+      <h3 class="text-madRed text-2xl font-bold underline text-left">
+        Un Air de Famille
+      </h3>
+      <div class="flex flex-col md:flex-row items-center gap-6 w-full">
+        <img
+          src={defaultImg.src}
+          alt="Affiche de la pièce 'Un Air de Famille' de Agnès Jaoui et Jean-Pierre Bacri"
+          class="w-full md:w-1/3 object-cover rounded"
+          loading="lazy"
+        />
+        <div class="md:w-2/3 text-justify">
+          <p>
+            UN AIR DE FAMILLE : une comédie acerbe et savoureuse sur les liens
+            familiaux qui nous unissent... et nous étouffent parfois !
+            <br /><br />
+            Chaque vendredi soir, la famille Mesnard se réunit au café familial avant
+            d'aller au restaurant. Mais ce soir, entre rancunes, règlements de comptes
+            et maladresses, l'ambiance vire au chaos, révélant les non-dits et les
+            frustrations enfouies. Cette soirée ordinaire devient inoubliable...
+            <br /><br />
+            Ne manquez pas cette pièce culte où chaque réplique fait mouche !
+            <br /><br />
+            Une pièce d’Agnès Jaoui et Jean-Pierre Bacri.<br /> Mise en scène : Corinne
+            Azzoug <br />Décors : Erwan Daubenfeld
+            <br /><br />
+            <strong>DISTRIBUTION :</strong>
+            <ul class="mt-2">
+              <li>Denis : Fred Eyangoh</li>
+              <li>Henri : Jean-Baptiste Bazin</li>
+              <li>Betty : Elaine Storck</li>
+              <li>Philippe : Christopher Caulier</li>
+              <li>La Mère : Corinne Azzoug</li>
+              <li>Yolande : Maud Plessis</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center gap-4 w-full max-w-4xl">
+      <img
+        src={defaultImg.src}
+        alt="Photo de Denis dans la pièce 'Un Air de Famille'"
+        class="hidden md:block w-full md:w-1/3 object-cover rounded"
+        loading="lazy"
+      />
+      <img
+        src={defaultImg.src}
+        alt="Photo de la troupe entière de 'Un Air de Famille'"
+        class="w-full md:w-1/3 object-cover rounded"
+        loading="lazy"
+      />
+      <img
+        src={defaultImg.src}
+        alt="Photo de Betty dans la pièce 'Un Air de Famille'"
+        class="hidden md:block w-full md:w-1/3 object-cover rounded"
+        loading="lazy"
+      />
+    </div>
   </div>
 </Layout>
