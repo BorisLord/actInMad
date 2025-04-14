@@ -28,7 +28,7 @@ import curtainLady from "../assets/photos/bank/curtainLady.jpg";
     />
     <div class="absolute top-[10%] w-full text-white text-center px-4">
       <h1
-        class="text-xl md:text-3xl text-left max-w-4xl mx-auto leading-snug text-madBack"
+        class="text-xl md:text-3xl text-left max-w-7xl mx-auto leading-snug text-madBack"
       >
         Découvrez <strong>Act In Mad</strong><br />
         Une expérience théâtrale unique<sup class="text-sm">*</sup> pour tous les
@@ -37,13 +37,15 @@ import curtainLady from "../assets/photos/bank/curtainLady.jpg";
         !
       </h1>
     </div>
-    <h2 class="absolute bottom-4 right-4 text-xs text-madBack md:text-xl">
+    <h2
+      class="absolute bottom-4 right-4 text-xs text-madBack md:text-xl italic"
+    >
       <sup>*</sup> Oser le jeu • Frôler la folie !
     </h2>
   </section>
 
   <div
-    class="bg-madRed flex flex-col md:flex-row justify-center items-center gap-6 md:gap-24 py-6 text-madBack text-2xl text-center"
+    class="bg-madRed flex flex-col md:flex-row justify-center items-center gap-4 md:gap-32 py-6 text-madBack text-2xl text-center"
   >
     <h3>Ateliers Spectacles</h3>
     <h3>Cours de Théâtre</h3>
@@ -113,17 +115,19 @@ import curtainLady from "../assets/photos/bank/curtainLady.jpg";
     </div>
   </div>
 
-  <div class="relative flex justify-center items-center w-full">
+  <div class="relative flex justify-center items-center w-full py-6">
     <img
       src={clapClap.src}
       alt="Public dans une salle de théâtre qui applaudit"
       class="hidden md:block w-full h-auto object-cover blur-xs"
       loading="lazy"
     />
-    <div class="text-center p-4 md:p-6 md:absolute text-madRed md:text-black">
-      <h5 class="text-xl md:text-3xl font-bold">
-        Quel que soit votre choix,<br /> vous jouerez dans un théâtre devant votre
-        public !
+    <div class="text-center p-4 md:p-6 md:absolute">
+      <h5 class="text-xl md:text-4xl font-bold">
+        Quel que soit votre choix,<br /> vous <span
+          class="text-madRed md:text-black">jouerez</span
+        > dans un <span class="text-madRed md:text-black">théâtre</span>
+        devant votre <span class="text-madRed md:text-black">public !</span>
       </h5>
       <p class="text-base md:text-lg mt-2">
         2 dates pour l’Atelier Spectacle, 1 date pour le Cours de Théâtre et 3
@@ -133,9 +137,9 @@ import curtainLady from "../assets/photos/bank/curtainLady.jpg";
   </div>
 
   <div class="flex flex-col items-center justify-center min-h-screen p-4">
-    <div class="w-full max-w-4xl p-4 md:p-8 text-center">
-      <h6 class="text-madRed text-2xl md:text-3xl">
-        La pédagogie, la “method”
+    <div class="w-full max-w-6xl p-4 md:p-8 text-center">
+      <h6 class="text-madRed text-2xl md:text-3xl underline">
+        La pédagogie, la “Method”
       </h6>
       <p class="mt-4 text-justify">
         La pédagogie chez Act in Mad repose à la fois sur la bienveillance,
@@ -152,21 +156,26 @@ import curtainLady from "../assets/photos/bank/curtainLady.jpg";
       </p>
     </div>
 
-    <div class="flex flex-col md:flex-row w-full max-w-4xl p-4 md:p-6 gap-6">
-      <div
-        class="md:w-2/3 text-center md:text-left flex flex-col justify-center"
-      >
-        <h6 class="text-madRed text-2xl md:text-3xl">Pour qui ?</h6>
-        <p class="mt-4">
+    <div class="flex flex-col md:flex-row w-full max-w-6xl p-4 md:p-6 gap-6 mt-5">
+      <div class="md:w-2/3 text-left md:text-left flex flex-col justify-center">
+        <h6
+          class="text-madRed text-2xl md:text-3xl text-center md:text-left underline"
+        >
+          Pour qui ?
+        </h6>
+        <p class="mt-4 text-justify">
           Chez Act In Mad, c'est avant tout l'envie de jouer qui rassemble.
           D’expérience, nous savons que la passion, l’envie d’apprendre, de
           progresser, de développer sa créativité et son sens artistique sont
           les atouts essentiels qui permettent à tout apprenti comédien de
           donner le meilleur de lui-même.<br /><br />
           Ces puissants éléments moteurs, combinés aux savoir-faire et à la pédagogie
-          avancée de nos professeurs metteurs en scène, offrent la garantie de spectacles
-          uniques et exigeants où chaque comédien peut s'épanouir et contribuer pleinement
-          à la réussite du projet collectif.
+          avancée de nos professeurs metteurs en scène, offrent la garantie de<span
+            class="text-madRed"
+          >
+            spectacles uniques et exigeants où chaque comédien peut s'épanouir
+            et contribuer pleinement à la réussite du projet collectif.
+          </span>
         </p>
       </div>
       <div class="md:w-1/3 flex items-center justify-center md:justify-end">
@@ -179,7 +188,9 @@ import curtainLady from "../assets/photos/bank/curtainLady.jpg";
       </div>
     </div>
 
-    <div class="flex flex-col md:flex-row w-full max-w-4xl p-4 md:p-6 gap-6">
+    <div
+      class="flex flex-col md:flex-row w-full max-w-6xl p-4 md:p-6 gap-6 md:mt-5"
+    >
       <div class="md:w-1/3 flex items-center justify-center md:justify-end">
         <img
           src={curtainLady.src}
@@ -189,10 +200,12 @@ import curtainLady from "../assets/photos/bank/curtainLady.jpg";
         />
       </div>
       <div class="md:w-2/3 text-left md:text-left flex flex-col justify-center">
-        <h6 class="text-madRed text-2xl md:text-3xl">
+        <h6
+          class="text-madRed text-2xl md:text-3xl text-center md:text-left underline"
+        >
           Pourquoi choisir Act in Mad ?
         </h6>
-        <ul class="mt-4 list-disc list-outside">
+        <ul class="mt-4 list-disc list-inside">
           <li>Un nombre de participants strictement limité</li>
           <li>Des plannings précis établis en amont de chaque répétition</li>
           <li>
