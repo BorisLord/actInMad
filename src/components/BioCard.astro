@@ -1,20 +1,27 @@
 ---
 import { Icon } from "astro-icon/components";
 
-const { name, instaLink, photo, bio } = Astro.props;
+const { name, instaLink, linkedIn, photo, bio } = Astro.props;
+
+const socialLink = instaLink ?? linkedIn;
+const socialIcon = instaLink ? "lucide:instagram" : "lucide:linkedin";
 ---
 
-<div class="p-4 max-w-4xl mx-auto">
+<div class="p-4 max-w-5xl mx-auto">
   <div class="flex justify-between items-center w-full mb-4">
-    <h2 class="text-2xl font-bold text-madRed">{name}</h2>
-    <a
-      href={instaLink}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="text-madBack bg-madRed rounded-md p-1"
-    >
-      <Icon name="lucide:instagram" size="25" />
-    </a>
+    <h2 class="text-2xl font-bold text-madText">{name}</h2>
+    {
+      socialLink && (
+        <a
+          href={socialLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-madBack bg-madRed rounded-md p-1"
+        >
+          <Icon name={socialIcon} size="25" />
+        </a>
+      )
+    }
   </div>
 
   <div class="flex flex-col md:flex-row md:items-start gap-4 w-full">
@@ -24,6 +31,6 @@ const { name, instaLink, photo, bio } = Astro.props;
       class="w-1/2 md:w-1/5 object-cover rounded mx-auto md:mx-0"
     />
 
-    <p class="text-justify">{bio}</p>
+    <p class="text-justify" set:html={bio} />
   </div>
 </div>
