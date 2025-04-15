@@ -5,6 +5,8 @@ import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 import { loadEnv } from "vite";
 
+import preact from "@astrojs/preact";
+
 const env = loadEnv(process.env.MODE || "staging", process.cwd(), "");
 
 const mode = env.MODE || "staging";
@@ -32,12 +34,9 @@ export default defineConfig({
     },
   },
   // output: 'server',
-  integrations: [
-    icon(),
-    sitemap({
-      filter: (page) => mode === "prod" || !page.includes("staging"),
-      changefreq: "monthly",
-      lastmod: new Date(),
-    }),
-  ],
+  integrations: [icon(), sitemap({
+    filter: (page) => mode === "prod" || !page.includes("staging"),
+    changefreq: "monthly",
+    lastmod: new Date(),
+  }), preact()],
 });
