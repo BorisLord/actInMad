@@ -11,9 +11,11 @@ import lonelyChair from "../assets/photos/bank/lonelyChair.jpg";
 ---
 
 <Layout>
-  <div class="flex flex-col items-center gap-8 p-4">
-    <div class="w-full max-w-6xl md:w-2/3 flex justify-center md:justify-start">
-      <h1 class="px-4 py-2 text-2xl text-madBack bg-madRed rounded-xl">
+  <div class="flex flex-col items-center justify-center min-h-screen p-4">
+    <div class="flex flex-col md:flex-row w-full max-w-6xl p-4 md:p-6 mt-5">
+      <h1
+        class="text-madRed text-2xl md:text-3xl text-center md:text-left underline"
+      >
         Les Ateliers Spectacles
       </h1>
     </div>
@@ -24,8 +26,12 @@ import lonelyChair from "../assets/photos/bank/lonelyChair.jpg";
       >
         <p class="text-justify">
           Chez Act In Mad, nous avons révolutionné la formule des Ateliers
-          Théâtre que nous avons d’ailleurs rebaptisés “Ateliers Spectacles”.<br
-          /><br />
+          Théâtre que nous avons d’ailleurs rebaptisés <span
+            class="text-madRed font-bold"
+          >
+            “Ateliers Spectacles”
+          </span>
+          .<br /><br />
           Chaque année, les professeurs metteurs en scène se trouvent confrontés
           au défi de sélectionner des pièces offrant un nombre équitable de répliques
           et de temps de présence sur scène pour tous. Cette contrainte conduit souvent
@@ -65,15 +71,22 @@ import lonelyChair from "../assets/photos/bank/lonelyChair.jpg";
       <div class="md:w-2/3 text-left md:text-left flex flex-col justify-center">
         <p class="text-justify">
           Ce nouveau concept d'Atelier “Pay as you play” prend ses racines au
-          cœur de la phrase de Constantin Stanislavski : "Il n'y a pas de petits
-          rôles, il n'y a que de petits acteurs."<br /><br />
-          Pleinement en accord avec nos valeurs que sont le jeu, la créativité et
-          l’esprit d’équipe, nous pensons également que la grandeur d'un personnage
-          ne dépend pas de sa taille mais de la manière dont l'acteur le fait vivre.
-          Chaque personnage, qu’il soit principal ou secondaire, joue un rôle essentiel
-          dans l’ensemble de l’histoire même s'il n'a qu'une réplique et chaque rôle
-          est, pour l’apprenti comédien, une opportunité unique de créativité artistique
-          autour du jeu.<br /><br />
+          cœur de la phrase de Constantin Stanislavski : <span
+            class="text-madRed"
+            >"Il n'y a pas de petits rôles, il n'y a que de petits acteurs."</span
+          ><br /><br />
+          Pleinement en accord avec nos valeurs que sont le <span
+            class="text-madRed">jeu</span
+          >, la <span class="text-madRed">créativité</span> et l’<span
+            class="text-madRed">esprit d’équipe</span
+          >, nous pensons également que la grandeur d'un personnage ne dépend
+          pas de sa taille mais de la manière dont l'acteur le fait vivre.
+          Chaque personnage, qu’il soit principal ou secondaire, joue un rôle
+          essentiel dans l’ensemble de l’histoire même s'il n'a qu'une réplique
+          et chaque rôle est, pour l’apprenti comédien, une opportunité unique
+          de <span class="text-madRed"> créativité </span>
+          artistique autour du <span class="text-madRed"> jeu </span>
+          .<br /><br />
           En permettant aux apprentis comédiens de choisir un rôle spécifique et
           en ajustant le tarif en fonction de l'importance de ce rôle, nous encourageons
           chacun à donner le meilleur de lui-même, indépendamment de la taille du
@@ -85,7 +98,7 @@ import lonelyChair from "../assets/photos/bank/lonelyChair.jpg";
       </div>
     </div>
 
-    <div class="mb-8 w-full flex justify-center">
+    <div class="m-24 w-full flex justify-center">
       <div class="text-center">
         <h2 class="text-2xl md:text-4xl text-madRed">
           « Il n'y a pas de petits rôles, il n'y a que des petits acteurs »
@@ -104,42 +117,42 @@ import lonelyChair from "../assets/photos/bank/lonelyChair.jpg";
         loading="lazy"
       />
       <div
-        class="text-center p-4 md:p-6 mx-auto w-full max-w-2xl md:py-6 relative z-10 md:bg-transparent text-black md:text-madBack"
+        class="text-center p-4 md:p-6 mx-auto w-full max-w-6xl md:py-6 mb-10 relative z-10 md:bg-transparent text-black md:text-madBack"
       >
-        <h2 class="text-xl md:text-3xl font-bold">
+        <h2 class="text-xl md:text-3xl font-bold mb-10">
           Pourquoi choisir un Atelier Spectacle ?
         </h2>
         <ul class="text-base md:text-lg mt-4 list-disc list-inside">
-          <li class="text-left mb-4">
+          <li class="text-left mb-2">
             Vous connaissez la pièce à l’avance : Inscrivez-vous en toute
             transparence !
           </li>
-          <li class="text-left mb-4">
+          <li class="text-left mb-2">
             Des rôles adaptés à vos envies et à votre emploi du temps : Postulez
             pour un ou plusieurs rôles selon vos disponibilités.
           </li>
-          <li class="text-left mb-4">
+          <li class="text-left mb-2">
             Un investissement juste et proportionnel : Plus vous êtes présent
             sur scène, plus vous avez de réplique, plus vous êtes impliqué !
           </li>
-          <li class="text-left mb-4">
+          <li class="text-left mb-2">
             Un nombre de participants limité : Pas plus d’apprentis comédiens
             que de personnages.
           </li>
-          <li class="text-left mb-4">
+          <li class="text-left mb-2">
             Des pièces rares et originales : Osez interpréter des œuvres hors du
             commun, rarement proposées en Atelier théâtre.
           </li>
-          <li class="text-left mb-4">
+          <li class="text-left mb-2">
             Des metteurs en scène passionnés et bienveillants : Apprenez auprès
             de professionnels qui vous guideront avec pédagogie.
           </li>
-          <li class="text-left mb-4">
+          <li class="text-left mb-2">
             Une audition pour révéler votre potentiel : Rejoignez-nous après une
             sélection bienveillante, basée sur votre énergie et votre envie de
             jouer.
           </li>
-          <li class="text-left mb-4">
+          <li class="text-left mb-2">
             Un vrai théâtre pour votre spectacle : Présentez votre pièce lors de
             2 représentations.
           </li>
@@ -147,9 +160,9 @@ import lonelyChair from "../assets/photos/bank/lonelyChair.jpg";
       </div>
     </div>
 
-    <div class="text-left w-full max-w-6xl md:w-2/3">
+    <div class="flex flex-col md:flex-row w-full max-w-6xl p-4 md:p-6 mt-5">
       <h1
-        class="inline-block px-4 py-2 text-2xl text-madBack bg-madRed rounded-xl"
+        class="text-madRed text-2xl md:text-3xl text-center md:text-left underline"
       >
         Les Cours de Théâtre
       </h1>
@@ -161,34 +174,34 @@ import lonelyChair from "../assets/photos/bank/lonelyChair.jpg";
           Spectacle, Act in Mad propose également des cours de théâtre plus
           “classique” où seront abordées les techniques de base du jeu :
         </p>
-        <ul class="text-base md:text-lg mt-4 list-disc list-inside">
-          <li class="text-left mb-4">Respiration et projection vocale.</li>
-          <li class="text-left mb-4">
+        <ul class="mt-4 list-disc list-inside">
+          <li class="text-left mb-2">Respiration et projection vocale.</li>
+          <li class="text-left mb-2">
             Développement de la diction et de l'articulation
           </li>
-          <li class="text-left mb-4">Mémorisation de texte</li>
-          <li class="text-left mb-4">Interprétation des émotions</li>
-          <li class="text-left mb-4">
+          <li class="text-left mb-2">Mémorisation de texte</li>
+          <li class="text-left mb-2">Interprétation des émotions</li>
+          <li class="text-left mb-2">
             Exercices de relaxation et de prise de conscience corporelle
           </li>
-          <li class="text-left mb-4">
+          <li class="text-left mb-2">
             Techniques de respiration diaphragmatique pour soutenir la voix
           </li>
-          <li class="text-left mb-4">
+          <li class="text-left mb-2">
             Travail sur la posture et le mouvement scénique
           </li>
-          <li class="text-left mb-4">
+          <li class="text-left mb-2">
             Exercices d'improvisation pour développer la spontanéité et la
             créativité
           </li>
-          <li class="text-left mb-4">
+          <li class="text-left mb-2">
             Techniques pour réagir et interagir avec les partenaires de jeu de
             manière naturelle
           </li>
-          <li class="text-left mb-4">
+          <li class="text-left mb-2">
             Techniques pour accéder et exprimer une gamme d'émotions
           </li>
-          <li class="text-left mb-4">
+          <li class="text-left mb-2">
             Travail sur la connexion émotionnelle avec le texte et les
             personnages
           </li>
@@ -204,9 +217,9 @@ import lonelyChair from "../assets/photos/bank/lonelyChair.jpg";
       </div>
     </div>
 
-    <div class="text-left w-full max-w-6xl md:w-2/3">
+    <div class="flex flex-col md:flex-row w-full max-w-6xl p-4 md:p-6 mt-5">
       <h1
-        class="inline-block px-4 py-2 text-2xl text-madBack bg-madRed rounded-xl"
+        class="text-madRed text-2xl md:text-3xl text-center md:text-left underline"
       >
         Les Ateliers Improvisation
       </h1>
@@ -214,42 +227,56 @@ import lonelyChair from "../assets/photos/bank/lonelyChair.jpg";
     <div class="flex flex-col md:flex-row w-full max-w-6xl p-4 md:p-6 gap-6">
       <div class="md:w-2/3 text-left md:text-left flex flex-col justify-center">
         <p class="text-justify">
-          Découvrez l'Improvisation théâtrale avec Act In Mad !<br /><br />
+          <span class="text-madRed font-bold">
+            Découvrez l'Improvisation théâtrale avec Act In Mad !
+          </span>
+          <br /><br />
           Plongez dans l'univers captivant de l'improvisation théâtrale avec nos
           cours spécialement conçus pour les amateurs passionnés !<br /><br />
           Que vous soyez débutant ou que vous ayez déjà une expérience de la scène,
           nos ateliers vous offrent un espace créatif et bienveillant pour développer
           vos compétences et libérer votre potentiel artistique.<br /><br />
         </p>
-        <h3 class="text-xl md:text-2xl text-madRed mb-4">
-          Ce que nous proposons :
-        </h3>
-        <ul class="text-base md:text-lg mt-4 list-disc list-inside">
-          <li class="text-left mb-4">
-            Cours d'improvisation dynamiques : Apprenez les techniques de base
-            et avancées de l'improvisation, pour stimuler votre spontanéité et
-            votre créativité.
+        <p class="">Ce que nous proposons :</p>
+        <ul class="mt-4 list-disc list-inside">
+          <li class="text-left mb-2">
+            <span class="text-madRed font-bold">
+              Cours d'improvisation dynamiques
+            </span>
+            : Apprenez les techniques de base et avancées de l'improvisation, pour
+            stimuler votre spontanéité et votre créativité.
           </li>
-          <li class="text-left mb-4">
-            Ambiance ludique et collaborative : Travaillez en équipe pour créer
-            des scènes uniques et surprenantes à chaque session.
+          <li class="text-left mb-2">
+            <span class="text-madRed font-bold">
+              Ambiance ludique et collaborative
+            </span>
+            : Travaillez en équipe pour créer des scènes uniques et surprenantes
+            à chaque session.
           </li>
-          <li class="text-left mb-4">
-            Trois représentations par an : Mettez en pratique vos compétences
-            lors de trois spectacles annuels, offrant une véritable expérience
-            de la scène devant un public.
+          <li class="text-left mb-2">
+            <span class="text-madRed font-bold">
+              Trois représentations par an
+            </span>
+            : Mettez en pratique vos compétences lors de trois spectacles annuels,
+            offrant une véritable expérience de la scène devant un public.
           </li>
-          <li class="text-left mb-4">
-            Encadrement par des professionnels : Nos instructeurs passionnés et
-            expérimentés vous guideront avec pédagogie et enthousiasme.
+          <li class="text-left mb-2">
+            <span class="text-madRed font-bold">
+              Encadrement par des professionnels
+            </span>
+            : Nos instructeurs passionnés et expérimentés vous guideront avec pédagogie
+            et enthousiasme.
           </li>
-          <li class="text-left mb-4">
-            Développement personnel : Améliorez votre confiance en vous, votre
-            écoute active et votre capacité à réagir de manière spontanée dans
-            diverses situations !
+          <li class="text-left mb-2">
+            <span class="text-madRed font-bold">
+              Développement personnel :
+            </span>
+            Améliorez votre confiance en vous, votre écoute active et votre capacité
+            à réagir de manière spontanée dans diverses situations !
           </li>
         </ul>
       </div>
+
       <div class="flex flex-col gap-4 md:w-1/3">
         <div class="flex items-center justify-center">
           <img

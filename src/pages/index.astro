@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
+
 import theaterRoom from "../assets/photos/bank/theaterRoom.jpg";
 import theaterRoomZoom from "../assets/photos/bank/theaterRoomZoom.jpg";
 import clapClap from "../assets/photos/bank/clapClap.jpg";
@@ -19,14 +20,14 @@ import curtainLady from "../assets/photos/bank/curtainLady.jpg";
 
 <!-- <SEO {...seo} /> -->
 <Layout>
-  <section class="relative h-[80vh] md:h-screen overflow-hidden">
+  <div class="relative h-[80vh] md:h-screen overflow-hidden">
     <img
       src={theaterRoom.src}
       alt="Cours de théâtre sur scène"
       class="absolute w-full h-full object-cover object-top"
       loading="lazy"
     />
-    <div class="absolute top-[10%] w-full text-white text-center px-4">
+    <div class="absolute top-[10%] w-full text-white text-center px-4 ml-4">
       <h1
         class="text-xl md:text-3xl text-left max-w-7xl mx-auto leading-snug text-madBack"
       >
@@ -42,7 +43,7 @@ import curtainLady from "../assets/photos/bank/curtainLady.jpg";
     >
       <sup>*</sup> Oser le jeu • Frôler la folie !
     </h2>
-  </section>
+  </div>
 
   <div
     class="bg-madRed flex flex-col md:flex-row justify-center items-center gap-4 md:gap-32 py-6 text-madBack text-2xl text-center"

@@ -1,22 +1,22 @@
 ---
 import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
+import BioCard from "../components/BioCard.astro";
+
+import maud from "../assets/photos/equipe/Maud.jpg";
 import defaultImg from "../assets/defaultImg.jpg";
 import christopher from "../assets/photos/equipe/Christopher.jpg";
 import corinne from "../assets/photos/equipe/Corinne.jpg";
 import elaine from "../assets/photos/equipe/Elaine.jpg";
 import fred from "../assets/photos/equipe/Fred.jpg";
 import jeanBaptiste from "../assets/photos/equipe/JeanBaptiste.jpg";
-import maud from "../assets/photos/equipe/Maud.jpg";
-
-import BioCard from "../components/BioCard.astro";
 
 const profs = [
   {
     name: "David Segroni",
     instaLink: "https://www.instagram.com/act_in_mad/",
     photo: defaultImg,
-    bio: `bla bla  bla bla Les professeur.e.s de Théâtre chez Act in Mad sont avant tout des
+    bio: `<strong>David Segroni</strong> bla bla  bla bla Les professeur.e.s de Théâtre chez Act in Mad sont avant tout des
           comédien.ne.s et des metteur.e.s en scène rigoureusement
           sélectionné.e.s qui vivent de leur métier, et ont à cœur de
           transmettre leur passion à des amateurs, eux-mêmes passionnés par les
@@ -49,7 +49,7 @@ const comediens = [
     name: "Jean-Baptiste Bazin",
     instaLink: "https://www.instagram.com/act_in_mad/",
     photo: jeanBaptiste,
-    bio: `Franco-chilien, originaire de Paris, Jean-Baptiste Bazin débute enfant au cinéma dans Messieurs les enfants de Pierre Boutron, puis fait ses études à Angoulême à l’École Européenne Supérieure de l'Image (EESI), à l'UFR Lettres et Langues de Poitiers. 
+    bio: `Franco-chilien, originaire de Paris, <strong>Jean-Baptiste Bazin</strong> débute enfant au cinéma dans Messieurs les enfants de Pierre Boutron, puis fait ses études à Angoulême à l’École Européenne Supérieure de l'Image (EESI), à l'UFR Lettres et Langues de Poitiers. 
 Il se consacre très vite au théâtre dans Riquet de Laurent Brethome, dans La Peau d’Élisa de Julie Macqueron, La Mouette de Francine Walter, Le Modérateur de Sarah Soilihi, Les Fourberies de Scapin de Camille Taquoy Ghalem, et George Dandin d’Adèle Potel. 
 En parallèle de son activité d'auteur, Jean-Baptiste est également metteur en scène. De plus, il a fait une nouvelle traduction de Glengarry Glen Ross de David Mamet, qui s’est jouée pour la première fois en Mars 2025.`,
   },
@@ -57,7 +57,7 @@ En parallèle de son activité d'auteur, Jean-Baptiste est également metteur en
     name: "Elaine Storck",
     instaLink: "https://www.instagram.com/act_in_mad/",
     photo: elaine,
-    bio: `Comédienne et danseuse, Elaine Storck découvre la scène à 6 ans par le biais de la danse puis à travers le théâtre. Formée aux Cours Florent, Elaine suit - en parallèle de sa formation de comédienne - un Master d’Histoire et Esthétique du Cinéma à l’Université Paris VII. 
+    bio: `Comédienne et danseuse, <strong>Elaine Storck</strong> découvre la scène à 6 ans par le biais de la danse puis à travers le théâtre. Formée aux Cours Florent, Elaine suit - en parallèle de sa formation de comédienne - un Master d’Histoire et Esthétique du Cinéma à l’Université Paris VII. 
 En acting, elle a notamment travaillé avec Yoshi Oïda, Chad Chenouga, Danielle Fichaud, Sébastien Bonnabel et Philippe Calvario. 
 Forte de deux ans d’expérience à Toronto au Canada et d’une formation d’Acting in English, Elaine joue aussi bien en français qu’en anglais, tant au théâtre et à la caméra qu’en voix-off et doublage. 
 A la télévision, elle joue le rôle principal dans Un Amour Immortel de Luc Chalifour, et dans Trop Beau Pour Moi de Thierry Deschamp. Au théâtre, elle incarne Claudine, servante espiègle dans George Dandin de Molière, mis en scène par Adèle Potel et la Compagnie Castigat Ridendo Mores. Elle est également assistante mise en scène sur Glengarry Glen Ross de David Mamet, mis en scène par Jean-Baptiste Bazin.`,
@@ -66,7 +66,7 @@ A la télévision, elle joue le rôle principal dans Un Amour Immortel de Luc Ch
     name: "Fred Eyangoh",
     instaLink: "https://www.instagram.com/act_in_mad/",
     photo: fred,
-    bio: `Fred Eyangoh est né et a grandi au Cameroun avant d’arriver en France à l’âge de 19 ans pour poursuivre ses études à HEC Paris. 
+    bio: `<strong>Fred Eyangoh</strong> est né et a grandi au Cameroun avant d’arriver en France à l’âge de 19 ans pour poursuivre ses études à HEC Paris. 
 Après avoir obtenu un diplôme en marketing, il se lance dans le stand-up en anglais et en français en 2014. 
 Il s’est produit sur de nombreuses scènes parisiennes comme le Paname Art Café, La Nouvelle Eve, Le Petit Palais des Glaces… ainsi qu’en Allemagne et au Luxembourg lui ouvrant un passage pour France Télévisions en 2024. 
 Il a également travaillé du côté de la production et de l’administration dans le domaine du spectacle vivant et du cinéma.`,
@@ -75,13 +75,13 @@ Il a également travaillé du côté de la production et de l’administration d
     name: "Maud Plessis",
     instaLink: "https://www.instagram.com/act_in_mad/",
     photo: maud,
-    bio: `Diplômée en management et entrepreneuriat, Maud Plessis commence le jeu en 2016, en parallèle de sa vie professionnelle. Elle effectue 2 ans de théâtre d’improvisation et une année à l’Ecole du Jeu avant de partir à Madrid où elle continue à faire du théâtre en espagnol. Elle joue 5 personnages dans une adaptation libre de plusieurs œuvres de Brecht, au Teatro Luchana et le rôle d'Ann Deever dans Todos eran mis hijos d'Arthur Muller. De retour à Paris, elle s’inscrit aux cours Acquaviva dont elle est diplômée. En février et mars 2024, Maud joue plusieurs rôles dont La Femme Juive dans Grand Peur et Misère du IIIème Reich de Brecht, mise en scène Xavier Lemaire au théâtre des Béliers Parisiens. En juillet 2024, elle joue Suzanne dans Tailleur pour Dames de Feydeau mise en scène Corinne Azzoug. Et enfin en septembre, elle joue deux créations collectives au Lavoir Moderne Parisien : Celui qui se cherche mise en scène Eugène Casalis et Nanarbuster mise en scène Eléonore Allard.`,
+    bio: `Diplômée en management et entrepreneuriat, <strong>Maud Plessis</strong> commence le jeu en 2016, en parallèle de sa vie professionnelle. Elle effectue 2 ans de théâtre d’improvisation et une année à l’Ecole du Jeu avant de partir à Madrid où elle continue à faire du théâtre en espagnol. Elle joue 5 personnages dans une adaptation libre de plusieurs œuvres de Brecht, au Teatro Luchana et le rôle d'Ann Deever dans Todos eran mis hijos d'Arthur Muller. De retour à Paris, elle s’inscrit aux cours Acquaviva dont elle est diplômée. En février et mars 2024, Maud joue plusieurs rôles dont La Femme Juive dans Grand Peur et Misère du IIIème Reich de Brecht, mise en scène Xavier Lemaire au théâtre des Béliers Parisiens. En juillet 2024, elle joue Suzanne dans Tailleur pour Dames de Feydeau mise en scène Corinne Azzoug. Et enfin en septembre, elle joue deux créations collectives au Lavoir Moderne Parisien : Celui qui se cherche mise en scène Eugène Casalis et Nanarbuster mise en scène Eléonore Allard.`,
   },
   {
     name: "Christopher Caulier",
     instaLink: "https://www.instagram.com/act_in_mad/",
     photo: christopher,
-    bio: `Christopher Caulier se forme au conservatoire de Nîmes et au Cours Florent. Dans les entrailles de la terre, une création de Daniela Morina lui offre sa première expérience professionnelle pour deux saisons en Avignon. Pour la compagnie Pastel à Reims, il joue dans Les Coulisses de la liberté de Florent Lenice, alternant les rôles d’un serveur comique, d’un citoyen révolutionnaire et d’une statue mobile. Il part en tournée en Italie avec la compagnie Lingue Senza Frontiere pour jouer dans Le Petit Prince et Belle et Sébastien. Il est également Dionysos dans Supernovae de Kevin Storck, Dorante dans Le Jeu de l’Amour et du Hasard de la Cie L’ombre du Masque. A l’image, il participe à plusieurs courts-métrages et webséries, notamment Sagesse2rue plusieurs fois primée dans le monde. Il passe de l’autre côté de la caméra et vient de réaliser son premier court-métrage Saint-Honoré produit par AnnéeZéro et financé par France TV. Il gagne deux prix au Festival International de Saint-Jean-de-Luz pour ce film. Christopher est en ce moment à l’affiche d’une comédie musicale Un voyage au bout du monde mis en scène par Tim Frion.`,
+    bio: `<strong>Christopher Caulier</strong> se forme au conservatoire de Nîmes et au Cours Florent. Dans les entrailles de la terre, une création de Daniela Morina lui offre sa première expérience professionnelle pour deux saisons en Avignon. Pour la compagnie Pastel à Reims, il joue dans Les Coulisses de la liberté de Florent Lenice, alternant les rôles d’un serveur comique, d’un citoyen révolutionnaire et d’une statue mobile. Il part en tournée en Italie avec la compagnie Lingue Senza Frontiere pour jouer dans Le Petit Prince et Belle et Sébastien. Il est également Dionysos dans Supernovae de Kevin Storck, Dorante dans Le Jeu de l’Amour et du Hasard de la Cie L’ombre du Masque. A l’image, il participe à plusieurs courts-métrages et webséries, notamment Sagesse2rue plusieurs fois primée dans le monde. Il passe de l’autre côté de la caméra et vient de réaliser son premier court-métrage Saint-Honoré produit par AnnéeZéro et financé par France TV. Il gagne deux prix au Festival International de Saint-Jean-de-Luz pour ce film. Christopher est en ce moment à l’affiche d’une comédie musicale Un voyage au bout du monde mis en scène par Tim Frion.`,
   },
 ];
 
@@ -90,7 +90,7 @@ const founder = [
     name: "Corinne Azzoug",
     instaLink: "https://www.instagram.com/corinne_azzoug_comedienne/",
     photo: corinne,
-    bio: `A la suite de sa formation au conservatoire d’art dramatique d’Aulnay-sous-Bois, Corinne Azzoug part vivre en Suède pendant sept ans où, entre autres, elle donne des cours de théâtre à des amateurs. De retour à Paris, elle complète sa formation de comédienne en suivant les cours de Jean-Laurent Cochet.
+    bio: `A la suite de sa formation au conservatoire d’art dramatique d’Aulnay-sous-Bois, <strong>Corinne Azzoug</strong> part vivre en Suède pendant sept ans où, entre autres, elle donne des cours de théâtre à des amateurs. De retour à Paris, elle complète sa formation de comédienne en suivant les cours de Jean-Laurent Cochet.
 
 Quelques années plus tard elle se forme à la méthode Meisner. Bilingue anglais, elle est également formée à la méthode de Robert Castle et Alejandra Orozco, tous les deux fondateurs de l’IT New York. 
 
@@ -100,18 +100,26 @@ Chez Act In Mad, Corinne Azzoug est donc professeur, metteure en scène, et com�
 
 Corinne prône une approche ludique et dédramatisée du théâtre qu’elle souhaite rendre possible au plus grand nombre, en tous cas à ceux qui le souhaitent ou qui le rêvent. L’accès à cette “couleur” du théâtre se fait tant par le biais des Ateliers spectacle qu’en devenant comédien.ne.s de la compagnie. C’est animée par cette volonté de “décloisonner” que Corinne a fondé Act In Mad qui lui permet également de véhiculer fortement ses valeurs que sont la créativité, l’esprit d’équipe et le jeu.`,
   },
+  {
+    name: "Boris Delord",
+    linkedIn: "https://www.linkedin.com/in/boris-d/",
+    photo: defaultImg,
+    bio: `Growth & Tech Developer <strong>Boris Delord</strong>`,
+  },
 ];
 ---
 
 <Layout>
-  <div class="flex flex-col items-center gap-8 p-4">
-    <div class="w-full max-w-4xl md:w-2/3 flex justify-center md:justify-start">
-      <h1 class="px-4 py-2 text-2xl text-madBack bg-madRed rounded-xl">
+  <div class="flex flex-col items-center p-4">
+    <div class="flex flex-col md:flex-row w-full max-w-6xl p-4 md:p-6 mt-5">
+      <h1
+        class="text-madRed text-2xl md:text-3xl text-center md:text-left underline"
+      >
         Les Professeurs metteurs en scène
       </h1>
     </div>
     <div
-      class="flex flex-col md:flex-row max-w-4xl p-4 md:p-6 gap-6 justify-center items-center"
+      class="flex flex-col md:flex-row max-w-6xl p-4 md:p-6 gap-6 justify-center items-center"
     >
       <div class="text-center md:text-left flex flex-col justify-center">
         <p class="text-justify">
@@ -140,13 +148,15 @@ Corinne prône une approche ludique et dédramatisée du théâtre qu’elle sou
         ))
       }
     </div>
-    <div class="w-full max-w-4xl md:w-2/3 flex justify-center md:justify-start">
-      <h1 class="px-4 py-2 text-2xl text-madBack bg-madRed rounded-xl">
+    <div class="flex flex-col md:flex-row w-full max-w-6xl p-4 md:p-6 mt-5">
+      <h1
+        class="text-madRed text-2xl md:text-3xl text-center md:text-left underline"
+      >
         Les Comédien.ne.s de la Compagnie
       </h1>
     </div>
     <div
-      class="flex flex-col md:flex-row max-w-4xl p-4 md:p-6 gap-6 justify-center items-center"
+      class="flex flex-col md:flex-row max-w-6xl p-4 md:p-6 gap-6 justify-center items-center"
     >
       <div class="text-center md:text-left flex flex-col justify-center">
         <p class="text-justify">
@@ -170,9 +180,11 @@ Corinne prône une approche ludique et dédramatisée du théâtre qu’elle sou
         ))
       }
     </div>
-    <div class="w-full max-w-4xl md:w-2/3 flex justify-center md:justify-start">
-      <h1 class="px-4 py-2 text-2xl text-madBack bg-madRed rounded-xl">
-        La Fondatrice et Directrice
+    <div class="flex flex-col md:flex-row w-full max-w-6xl p-4 md:p-6 mt-5">
+      <h1
+        class="text-madRed text-2xl md:text-3xl text-center md:text-left underline"
+      >
+        Fondateurs-trices
       </h1>
     </div>
     <div class="space-y-8">
@@ -181,6 +193,7 @@ Corinne prône une approche ludique et dédramatisée du théâtre qu’elle sou
           <BioCard
             name={found.name}
             instaLink={found.instaLink}
+            linkedIn={found.linkedIn}
             photo={found.photo}
             bio={found.bio}
           />
