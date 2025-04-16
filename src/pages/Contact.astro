@@ -1,89 +1,11 @@
 ---
 import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
+import ContactForm from "../components/ContactForm";
 
 // ! Ajouter le SEO des pages
 ---
 
 <Layout>
-  <div class="flex flex-col items-center p-4">
-    <div class="flex flex-col md:flex-row w-full max-w-6xl p-4 md:p-6 mt-5">
-      <h1
-        class="text-madRed text-2xl md:text-3xl text-center md:text-left underline"
-      >
-        Posez-nous vos questions !
-      </h1>
-    </div>
-
-    <form
-      action="mailto:contact@actinmad.art"
-      method="POST"
-      enctype="text/plain"
-      class="w-full max-w-3xl p-4 flex flex-col gap-4 text-sm md:text-base"
-    >
-      <div class="flex flex-col md:flex-row gap-4">
-        <div class="flex-1">
-          <label for="nom" class="block font-semibold mb-1">Nom *</label>
-          <input
-            type="text"
-            id="nom"
-            name="Nom"
-            required
-            class="w-full p-2 rounded-xl border border-gray-300"
-          />
-        </div>
-        <div class="flex-1">
-          <label for="prenom" class="block font-semibold mb-1">Prénom *</label>
-          <input
-            type="text"
-            id="prenom"
-            name="Prénom"
-            required
-            class="w-full p-2 rounded-xl border border-gray-300"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label for="email" class="block font-semibold mb-1">Email *</label>
-        <input
-          type="email"
-          id="email"
-          name="Email"
-          required
-          class="w-full p-2 rounded-xl border border-gray-300"
-        />
-      </div>
-
-      <div class="flex items-center gap-2">
-        <input
-          type="checkbox"
-          id="inscription"
-          name="Souhaite être inscrit"
-          class="w-4 h-4 rounded-md border-gray-400"
-        />
-        <label for="inscription" class="text-gray-700">
-          Je souhaite m’inscrire à Act in Mag (la lettre d’information Act in
-          Mad)
-        </label>
-      </div>
-
-      <div>
-        <label for="message" class="block font-semibold mb-1">Message *</label>
-        <textarea
-          id="message"
-          name="Message"
-          rows="5"
-          required
-          class="w-full p-2 rounded-xl border border-gray-300"></textarea>
-      </div>
-
-      <button
-        type="submit"
-        class="bg-madRed text-madBack px-6 py-2 rounded-xl font-bold hover:opacity-90 transition self-start"
-      >
-        Envoyer
-      </button>
-    </form>
-  </div>
+  <ContactForm client:load />
 </Layout>
