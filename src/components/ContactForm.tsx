@@ -10,19 +10,35 @@ export default function ContactForm() {
     message: "",
   });
   const [sent, setSent] = useState(false);
+  const [emailError, setEmailError] = useState("");
 
   const handleChange = (e: Event) => {
     const target = e.target as HTMLInputElement | HTMLTextAreaElement;
     const { name, value, type } = target;
-    const checked =
+    const newValue =
       type === "checkbox" && target instanceof HTMLInputElement
         ? target.checked
-        : undefined;
-    setForm({ ...form, [name]: type === "checkbox" ? checked : value });
+        : value;
+    setForm({ ...form, [name]: newValue });
+  };
+
+  const validateEmail = () => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(form.email)) {
+      setEmailError("Veuillez entrer une adresse email valide.");
+      return false;
+    } else {
+      setEmailError("");
+      return true;
+    }
   };
 
   const handleSubmit = async (e: Event) => {
     e.preventDefault();
+
+    if (!validateEmail()) {
+      return;
+    }
 
     const payload = {
       nom: form.nom,
@@ -40,7 +56,6 @@ export default function ContactForm() {
       });
 
       if (!response.ok) {
-        console.log(response);
         throw new Error("Échec de l'envoi du message");
       }
 
@@ -116,9 +131,11 @@ export default function ContactForm() {
             name="email"
             value={form.email}
             onInput={handleChange}
+            onBlur={validateEmail}
             required
             class="w-full p-2 rounded-xl border border-gray-300"
           />
+          {emailError && <p class="text-madEncart text-sm">{emailError}</p>}
         </div>
 
         <div>
