@@ -1,8 +1,10 @@
 ---
 import beigeFullLogo from "../assets/logo/actInMadBeigeFullLogo.svg";
+import actInMadRed from "../assets/logo/actInMadRedFullLogo.svg";
+
 import { Icon } from "astro-icon/components";
 
-const { links = [] } = Astro.props;
+const { links = [], isAtelierPage } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
@@ -10,7 +12,7 @@ const currentPath = Astro.url.pathname;
   <div class="flex h-24 items-center justify-center">
     <div class="flex items-center mr-22">
       <img
-        src={beigeFullLogo.src}
+        src={isAtelierPage ? actInMadRed.src : beigeFullLogo.src}
         alt="L'arche d'Act In Mad"
         class="h-16 w-auto"
         loading="lazy"
@@ -26,10 +28,12 @@ const currentPath = Astro.url.pathname;
                 <a
                   href={link.href}
                   class={`${
-                    currentPath.replace(/\/$/, "") ===
-                    link.href.replace(/\/$/, "")
-                      ? "text-madEncart"
-                      : "text-madBack"
+                    isAtelierPage
+                      ? "text-madRed"
+                      : currentPath.replace(/\/$/, "") ===
+                          link.href.replace(/\/$/, "")
+                        ? "text-madEncart"
+                        : "text-madBack"
                   } hover:text-madEncart`}
                 >
                   {link.label}

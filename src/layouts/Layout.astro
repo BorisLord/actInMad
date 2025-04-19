@@ -9,12 +9,15 @@ const links = [
   { label: "Acceuil", href: "/" },
   { label: "Les Ateliers", href: "/Ateliers" },
   { label: "La Compagnie", href: "/Compagnie" },
-  { label: "L'equipe", href: "/Equipe" },
+  { label: "L'Equipe", href: "/Equipe" },
   { label: "Nos Valeurs", href: "/Valeurs" },
   { label: "Inscription", href: "/Inscription" },
   { label: "Contact", href: "/Contact" },
   { label: "Le Mag'", href: "/LeMag" },
 ];
+
+const isHomePage = Astro.url.pathname === "/";
+const isAtelierPage = Astro.url.pathname === "/Ateliers";
 
 // const authLinks = [
 // { label: 'Coulisses', href: '/login', type: 'primary' },
@@ -53,8 +56,14 @@ const jsonLD = {
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
   <body class="bg-madBack">
-    <header class="bg-madText">
-      <Nav links={links} />
+    <header
+      class={isAtelierPage
+        ? "bg-madBack"
+        : isHomePage
+          ? "bg-black"
+          : "bg-madRed"}
+    >
+      <Nav links={links} isAtelierPage={isAtelierPage} />
     </header>
     <main class="min-h-screen">
       <slot />
