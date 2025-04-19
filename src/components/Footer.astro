@@ -4,52 +4,68 @@ import madBeigeName from "../assets/logo/madBeigeName.svg";
 import { Icon } from "astro-icon/components";
 ---
 
-<footer class="bg-madRed pb-2 pt-4">
+<footer class="bg-madRed pb-2 pt-4 mt-20">
   <div
-    class="flex flex-col justify-between px-2 py-6 sm:flex-row sm:px-6 lg:px-8"
+    class="flex flex-col justify-between px-2 py-2 sm:flex-row sm:px-6 lg:px-8"
   >
     <div class="flex flex-1 justify-center mb-4 sm:mb-0">
       <ul class="flex items-center gap-6 md:gap-8">
-        <li>
-          <a
-            title="Envoyez-nous un email"
-            aria-label="Envoyez-nous un email"
-            rel="noopener noreferrer"
-            href="mailto:contact@actinmad.art"
-            target="_blank"
-            class="text-madBack"
-          >
-            <Icon name="lucide:mail" size="24" />
-          </a>
-        </li>
-        <li>
-          <a
-            title="Consultez notre page Facebook"
-            aria-label="Suivez-nous sur Facebook"
-            rel="noopener noreferrer"
-            href="https://www.facebook.com/share/1F9fBbu8Ux/"
-            target="_blank"
-            class="text-madBack"
-          >
-            <Icon name="lucide:facebook" size="24" />
-          </a>
-        </li>
-        <li>
-          <a
-            title="Consultez notre page Instagram"
-            aria-label="Suivez-nous sur Instagram"
-            rel="noopener noreferrer"
-            href="https://www.instagram.com/act_in_mad/"
-            target="_blank"
-            class="text-madBack"
-          >
-            <Icon name="lucide:instagram" size="24" />
-          </a>
-        </li>
+        <div class="space-y-5">
+          <li>
+            <a
+              title="Envoyez-nous un email"
+              aria-label="Envoyez-nous un email"
+              rel="noopener noreferrer"
+              href="mailto:contact@actinmad.art"
+              target="_blank"
+              class="text-madBack"
+            >
+              <Icon name="lucide:mail" size="24" />
+            </a>
+          </li>
+          <li>
+            <a
+              title="Consultez notre page Facebook"
+              aria-label="Suivez-nous sur Facebook"
+              rel="noopener noreferrer"
+              href="https://www.facebook.com/share/1F9fBbu8Ux/"
+              target="_blank"
+              class="text-madBack"
+            >
+              <Icon name="lucide:facebook" size="24" />
+            </a>
+          </li>
+        </div>
+        <div class="space-y-5">
+          <li>
+            <a
+              title="Consultez notre page Instagram"
+              aria-label="Suivez-nous sur Instagram"
+              rel="noopener noreferrer"
+              href="https://www.instagram.com/act_in_mad/"
+              target="_blank"
+              class="text-madBack"
+            >
+              <Icon name="lucide:instagram" size="24" />
+            </a>
+          </li>
+          <li>
+            <a
+              title="Consultez notre page LinkedIn"
+              aria-label="Suivez-nous sur LinkedIn"
+              rel="noopener noreferrer"
+              href="https://www.linkedin.com/company/act-in-mad/"
+              target="_blank"
+              class="text-madBack"
+            >
+              <Icon name="lucide:linkedin" size="24" />
+            </a>
+          </li>
+        </div>
       </ul>
     </div>
 
-    <div class="flex flex-col items-center text-center">
+    <div class="flex flex-col items-center text-center leading-tight">
       <div class="flex items-center">
         <img
           src={madArchLogo.src}
@@ -64,7 +80,7 @@ import { Icon } from "astro-icon/components";
           loading="lazy"
         />
       </div>
-      <p class="mt-1 max-w-md text-madBack">
+      <p class="max-w-md text-madBack ">
         Compagnie de Théâtre <br />Ateliers Spectacles Amateurs <br />Oser le
         jeu • Frôler la folie !
       </p>
@@ -76,7 +92,7 @@ import { Icon } from "astro-icon/components";
           <a class="text-madBack" href="/Mentions">Mentions légales</a>
         </li>
         <li>
-          <a class="text-madBack" href="/Blog">Blog</a>
+          <a class="text-madBack" href="/LeMag">Blog</a>
         </li>
         <li>
           <a class="text-madBack" href="/Faq">FAQ</a>
@@ -85,7 +101,7 @@ import { Icon } from "astro-icon/components";
     </div>
   </div>
 
-  <div class="text-center -mt-2">
+  <div class="text-center">
     <p class="text-xs text-madBack">
       Made with &hearts; using
       <a
