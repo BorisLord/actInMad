@@ -75,7 +75,7 @@ export default function ContactForm() {
   return (
     <div class="flex flex-col items-center p-4">
       <div class="max-w-6xl p-4 md:p-6 mt-5">
-        <h1 class="text-madRed text-2xl md:text-3xl text-center md:text-left underline">
+        <h1 class="text-madRed text-2xl md:text-3xl text-center md:text-left">
           Posez-nous vos questions !
         </h1>
       </div>
