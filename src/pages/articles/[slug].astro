@@ -1,8 +1,11 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import PocketBase from "pocketbase";
 import { API_URL } from "astro:env/client";
+import { Image } from "astro:assets";
+
+import PocketBase from "pocketbase";
 import { DateTime } from "luxon";
+
+import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
   const pb = new PocketBase(API_URL);
@@ -24,36 +27,44 @@ const { article } = Astro.props;
 ---
 
 <Layout>
-  <div class="max-w-3xl mx-auto p-4 pt-12">
-    <div class="flex flex-col sm:flex-row justify-between">
-      <div>
-        <h1 class="text-3xl font-bold">{article.title}</h1>
-      </div>
-      <div class="text-left sm:text-right text-xs text-gray-500 mt-2 sm:mt-0">
-        <p>
+  <div class="max-w-5xl mx-auto p-6 pt-12">
+    <div class="flex flex-col">
+      <div
+        class="flex flex-col sm:flex-row justify-between items-center sm:items-start"
+      >
+        <h1 class="text-3xl font-bold text-center sm:text-left w-full">
+          {article.title}
+        </h1>
+        <p
+          class="text-center sm:text-right text-xs text-gray-500 mt-2 sm:mt-0 w-full sm:w-auto whitespace-nowrap"
+        >
           Publié le {
             DateTime.fromSQL(article.releaseDate)
               .setLocale("fr")
               .toFormat("dd MMMM yyyy")
           }
         </p>
-        <p class="text-gray-500 italic mt-1">
-          Écrit par {article.writter || "Auteur anonyme"}
-        </p>
+      </div>
+
+      <div class="mt-6">
+        {
+          article.images.length > 0 && (
+            <img
+              src={`${API_URL}/api/files/articles/${article.id}/${article.images[0]}`}
+              alt={article.title}
+              class="w-full sm:w-1/3 float-left mr-6 mb-6 rounded-sm"
+              loading="lazy"
+            />
+          )
+        }
+        <article
+          class="prose max-w-none text-justify"
+          set:html={article.content}
+        />
       </div>
     </div>
-    {
-      article.images.length > 0 && (
-        <img
-          src={`${API_URL}/api/files/articles/${article.id}/${article.images[0]}`}
-          alt={article.Title}
-          class="w-full h-72 object-cover mt-4 rounded-md"
-        />
-      )
-    }
-    <article
-      class="prose max-w-none mt-8 mb-20 text-justify"
-      set:html={article.content}
-    />
+    <div class="bg-madRed text-madBack p-4 mt-10 md:mt-22 rounded-xl">
+      <article set:html={article.extra} />
+    </div>
   </div>
 </Layout>
