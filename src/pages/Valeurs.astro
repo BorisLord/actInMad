@@ -1,10 +1,10 @@
 ---
 import { Image } from "astro:assets";
 
-import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
 
 import defaultImg from "../assets/defaultImg.jpg";
+
 // ! Ajouter le SEO des pages
 ---
 
@@ -83,15 +83,20 @@ import defaultImg from "../assets/defaultImg.jpg";
     </div>
 
     <div class="flex flex-col w-full max-w-6xl p-4 md:p-6 mt-6 justify-end">
-      <h1 id="jeu" class="text-madRed text-2xl md:text-3xl text-justify md:text-right">
+      <h1
+        id="jeu"
+        class="text-madRed text-2xl md:text-3xl text-center md:text-right"
+      >
         Jeu
       </h1>
       <div class="flex flex-col md:flex-row gap-6 mt-4">
-        <div class="md:w-1/3 flex items-center justify-center md:justify-end">
+        <div
+          class="md:w-1/3 items-center justify-center md:justify-end hidden md:block"
+        >
           <Image
             src={defaultImg}
             alt="Support papier d'un texte de théâtre"
-            class="w-full h-full object-cover"
+            class="hidden md:block w-full h-full object-cover"
           />
         </div>
         <div
@@ -120,7 +125,7 @@ import defaultImg from "../assets/defaultImg.jpg";
       </div>
     </div>
 
-    <div class="flex flex-col w-full max-w-6xl p-4 md:p-6 mt-6 justify-end">
+    <div class="flex flex-col w-full max-w-6xl p-4 md:p-6 mt-4 justify-end">
       <h1
         id="esprit"
         class="text-madRed text-2xl md:text-3xl text-center md:text-left"

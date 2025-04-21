@@ -1,8 +1,8 @@
 ---
 import { Image } from "astro:assets";
 
-import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
+
 import paperText from "../assets/photos/bank/paperText.jpg";
 import theaterRoomSideLeft from "../assets/photos/bank/theaterRoomSideLeft.jpg";
 import redTheaterCurtain from "../assets/photos/bank/redTheaterCurtain.jpg";
@@ -15,10 +15,7 @@ import lonelyChair from "../assets/photos/bank/lonelyChair.jpg";
 <Layout>
   <div class="flex flex-col items-center justify-center min-h-screen">
     <h1 class="text-xl md:text-2xl font-bold text-center max-w-7xl mt-5 p-2">
-      <!-- En plus de stages ponctuels animés par des intervenants exclusifs,<br />
-      choisissez parmi 3 formules innovantes et inédites pour vos prochains cours
-      de théâtre et d’improvisation !<br /> -->
-      Oser le jeu • Frôler la folie avec Act In Mad
+      Oser le jeu • Frôler la folie<br /> avec Act In Mad
     </h1>
     <div
       class="flex flex-wrap justify-center items-center space-y-4 p-4 rounded-3xl"
@@ -383,7 +380,7 @@ import lonelyChair from "../assets/photos/bank/lonelyChair.jpg";
         <Image
           src={theaterRoom}
           alt="Support papier d'un texte de théâtre"
-          class="w-full h-full object-cover"
+          class="hidden md:block w-full h-full object-cover"
         />
       </div>
     </div>
