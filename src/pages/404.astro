@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 import Layout from "../layouts/Layout.astro";
 import lostClown from "../../src/assets/photos/bank/lostClown.jpeg";
 
@@ -11,12 +13,10 @@ import lostClown from "../../src/assets/photos/bank/lostClown.jpeg";
       <h1 class="text-2xl font-semibold mb-8">
         Oups ! Cette page n'existe pas.
       </h1>
-      <img
-        src={lostClown.src}
+      <Image
+        src={lostClown}
         alt="Clown perdu, page 404"
-        class="mx-auto rounded-lg"
-        style="width: 300px; margin-top: 30px;"
-        loading="lazy"
+        class="mx-auto rounded-lg w-100"
       />
     </div>
   </div>

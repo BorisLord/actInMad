@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 import beigeFullLogo from "../assets/logo/actInMadBeigeFullLogo.svg";
 import actInMadRed from "../assets/logo/actInMadRedFullLogo.svg";
 
@@ -6,17 +8,16 @@ import { Icon } from "astro-icon/components";
 
 const { links = [] } = Astro.props;
 const currentPath = Astro.url.pathname;
-const isAtelierPage = Astro.url.pathname === "/Ateliers";
+const isHomePage = Astro.url.pathname === "/";
 ---
 
 <div class="mx-auto max-w-screen px-4 sm:px-6 lg:px-8">
   <div class="flex h-24 items-center justify-center">
     <div class="flex items-center sm:mr-8">
-      <img
-        src={isAtelierPage ? actInMadRed.src : beigeFullLogo.src}
+      <Image
+        src={isHomePage ? beigeFullLogo : actInMadRed}
         alt="L'arche d'Act In Mad"
         class="h-16 w-auto"
-        loading="lazy"
       />
     </div>
 
@@ -29,13 +30,13 @@ const isAtelierPage = Astro.url.pathname === "/Ateliers";
                 <a
                   href={link.href}
                   class={`${
-                    isAtelierPage
-                      ? "text-madRed"
+                    isHomePage
+                      ? "text-madBack"
                       : currentPath.replace(/\/$/, "") ===
                           link.href.replace(/\/$/, "")
-                        ? "text-madEncart"
-                        : "text-madBack"
-                  } hover:text-madEncart`}
+                        ? "text-madRed"
+                        : "text-black"
+                  } hover:text-madRed`}
                 >
                   {link.label}
                 </a>
@@ -50,11 +51,11 @@ const isAtelierPage = Astro.url.pathname === "/Ateliers";
       <button
         aria-expanded="true"
         id="menu-toggle"
-        class="rounded p-2 text-madBack transition hover:text-madEncart"
+        class=`rounded ml-20 ${isHomePage? "text-madBack" : "text-black"} transition`
       >
         <Icon id="menu-icon" name="lucide:book-open-text" size="28" />
       </button>
-      <span class="text-madEncart text-md">
+      <span class=`${isHomePage? "text-madBack" : "text-madRed"} text-md`>
         {
           links.find(
             (link: any) =>
@@ -64,7 +65,10 @@ const isAtelierPage = Astro.url.pathname === "/Ateliers";
       </span>
     </div>
 
-    <nav id="menu" class="absolute top-20 p-4 z-10 mt-4 rounded-xl shadow-2xl">
+    <nav
+      id="menu"
+      class=`absolute top-20 p-4 z-100 mt-4 rounded-xl shadow-2xl ${isHomePage ? 'bg-black' : "bg-madBack"} `
+    >
       <ul class="flex flex-col items-center gap-4">
         {
           links.map((link: any) => (
@@ -72,10 +76,12 @@ const isAtelierPage = Astro.url.pathname === "/Ateliers";
               <a
                 href={link.href}
                 class={`${
-                  currentPath.replace(/\/$/, "") ===
-                  link.href.replace(/\/$/, "")
-                    ? "text-madEncart"
-                    : "text-madText"
+                  isHomePage
+                    ? "text-madBack"
+                    : currentPath.replace(/\/$/, "") ===
+                        link.href.replace(/\/$/, "")
+                      ? "text-madEncart"
+                      : "text-madText"
                 } hover:text-madEncart`}
               >
                 {link.label}

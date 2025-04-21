@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 import madArchLogo from "../assets/logo/archActInMad.svg";
 import madBeigeName from "../assets/logo/madBeigeName.svg";
 import { Icon } from "astro-icon/components";
@@ -9,8 +11,8 @@ import { Icon } from "astro-icon/components";
     class="flex flex-col justify-between px-2 py-2 sm:flex-row sm:px-6 lg:px-8"
   >
     <div class="flex flex-1 justify-center mb-4 sm:mb-0">
-      <ul class="flex items-center gap-6 md:gap-8">
-        <div class="space-y-5">
+      <ul class="flex items-center gap-4 md:gap-4">
+        <div class="flex md:space-y-5 space-x-4">
           <li>
             <a
               title="Envoyez-nous un email"
@@ -36,7 +38,7 @@ import { Icon } from "astro-icon/components";
             </a>
           </li>
         </div>
-        <div class="space-y-5">
+        <div class="flex md:space-y-5 space-x-4">
           <li>
             <a
               title="Consultez notre page Instagram"
@@ -67,34 +69,37 @@ import { Icon } from "astro-icon/components";
 
     <div class="flex flex-col items-center text-center leading-tight">
       <div class="flex items-center">
-        <img
-          src={madArchLogo.src}
+        <Image
+          src={madArchLogo}
           alt="L'arche d'Act In Mad"
           class="h-8 w-auto mb-2"
-          loading="lazy"
         />
-        <img
-          src={madBeigeName.src}
+        <Image
+          src={madBeigeName}
           alt="Le nom Act In Mad"
           class="h-6 w-auto ml-3"
-          loading="lazy"
         />
       </div>
-      <p class="max-w-md text-madBack ">
+      <p class="max-w-md text-madBack">
         Compagnie de Théâtre <br />Ateliers Spectacles Amateurs <br />Oser le
         jeu • Frôler la folie !
       </p>
     </div>
 
     <div class="flex flex-1 justify-center mt-3">
-      <ul class="flex flex-col items-center gap-2 md:gap-5">
+      <ul class="flex flex-col items-center gap-2 md:gap-3">
         <li>
           <a class="text-madBack" href="/Mentions">Mentions légales</a>
         </li>
-        <li>
+        <li class="flex md:hidden flex-row gap-2">
+          <a class="text-madBack" href="/LeMag">Blog</a>
+          <div class="text-madBack">/</div>
+          <a class="text-madBack" href="/Faq">FAQ</a>
+        </li>
+        <li class="hidden md:flex">
           <a class="text-madBack" href="/LeMag">Blog</a>
         </li>
-        <li>
+        <li class="hidden md:flex">
           <a class="text-madBack" href="/Faq">FAQ</a>
         </li>
       </ul>

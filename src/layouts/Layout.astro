@@ -17,7 +17,6 @@ const links = [
 ];
 
 const isHomePage = Astro.url.pathname === "/";
-const isAtelierPage = Astro.url.pathname === "/Ateliers";
 
 // const authLinks = [
 // { label: 'Coulisses', href: '/login', type: 'primary' },
@@ -56,14 +55,8 @@ const jsonLD = {
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
   <body class="bg-madBack">
-    <header
-      class={isAtelierPage
-        ? "bg-madBack"
-        : isHomePage
-          ? "bg-black"
-          : "bg-madRed"}
-    >
-      <Nav links={links} isAtelierPage={isAtelierPage} />
+    <header class={isHomePage ? "bg-black" : "bg-madBack"}>
+      <Nav links={links} />
     </header>
     <main class="min-h-screen">
       <slot />

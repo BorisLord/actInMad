@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 import { Icon } from "astro-icon/components";
 
 const { name, instaLink, linkedIn, photo, bio } = Astro.props;
@@ -25,12 +27,12 @@ const socialIcon = instaLink ? "lucide:instagram" : "lucide:linkedin";
   </div>
 
   <div class="flex flex-col md:flex-row md:items-start gap-4 w-full">
-    <img
-      src={photo.src}
+    <Image
+      src={photo}
       alt={`Photo de ${name}`}
       class="w-1/2 md:w-1/5 object-cover rounded mx-auto md:mx-0"
     />
 
-    <p class="text-justify" set:html={bio} />
+    <p class="text-justify leading-snug" set:html={bio} />
   </div>
 </div>
