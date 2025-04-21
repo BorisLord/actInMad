@@ -27,12 +27,16 @@ const socialIcon = instaLink ? "lucide:instagram" : "lucide:linkedin";
   </div>
 
   <div class="flex flex-col md:flex-row md:items-start gap-4 w-full">
-    <Image
-      src={photo}
-      alt={`Photo de ${name}`}
-      class="w-1/2 md:w-1/5 object-cover rounded mx-auto md:mx-0"
-    />
+    <div class="w-full md:w-1/5 flex justify-center md:justify-start">
+      <div class="w-40 h-56 overflow-hidden rounded">
+        <Image
+          src={photo}
+          alt={`Photo de ${name}`}
+          class="w-full h-full object-cover rounded"
+        />
+      </div>
+    </div>
 
-    <p class="text-justify leading-snug" set:html={bio} />
+    <p class="text-justify leading-snug flex-grow" set:html={bio} />
   </div>
 </div>
