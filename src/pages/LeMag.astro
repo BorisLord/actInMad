@@ -24,42 +24,42 @@ const records = await pb
     >
       {
         records.length === 0 ? (
-          <div class="w-full text-center text-gray-500 py-8">
+          <div class="w-full text-center py-8">
             Les articles arrivent bientôt
           </div>
         ) : (
           records.map((article) => (
             <a
               href={`/articles/${article.slug}`}
-              class="bg-madRed shadow-lg rounded-xl p-6 text-center hover:shadow-xl transition transform hover:scale-105 flex flex-col h-full"
+              class="shadow-2xl rounded-xl p-3 text-center transition transform hover:scale-105 flex flex-col h-[450px]"
             >
-              {article.images.length > 0 ? (
-                <img
-                  src={`${API_URL}/api/files/articles/${article.id}/${article.images[0]}`}
-                  alt={article.title}
-                  class="w-full h-72 object-cover mt-2 rounded-xl"
-                  loading="lazy"
-                />
-              ) : (
-                <div class="w-full h-72 flex items-center justify-center bg-gray-200 text-gray-500 rounded-md">
-                  <Image
-                    src={defImg}
+              <div class="flex-grow mb-4 overflow-hidden rounded-xl">
+                {article.images.length > 0 ? (
+                  <img
+                    src={`${API_URL}/api/files/articles/${article.id}/${article.images[0]}`}
                     alt={article.title}
-                    class="w-full h-72 object-cover mt-2 rounded-md"
+                    class="w-full h-64 object-cover rounded-xl"
+                    loading="lazy"
                   />
-                </div>
-              )}
+                ) : (
+                  <div class="w-full h-64 flex items-center justify-center rounded-xl">
+                    <Image
+                      src={defImg}
+                      alt={article.title}
+                      class="w-full h-full object-cover rounded-xl"
+                    />
+                  </div>
+                )}
+              </div>
 
-              <div class="flex flex-col justify-between h-full mt-4">
-                <h2 class="text-xl font-bold text-madBack mt-4">
-                  {article.title}
-                </h2>
+              <div class="flex flex-col justify-between flex-grow">
+                <h2 class="text-xl font-bold ">{article.title}</h2>
 
-                <div class="flex justify-between mt-4">
-                  <p class="text-sm text-madBack">
-                    <Icon name="lucide:circle-plus" size="24" />
+                <div class="flex justify-between items-center mt-2">
+                  <p class="text-sm  flex items-center">
+                    <Icon name="lucide:circle-plus" size="24" class="mr-1" />
                   </p>
-                  <p class="text-sm text-madBack">
+                  <p class="text-sm ">
                     Le
                     {DateTime.fromSQL(article.releaseDate)
                       .setLocale("fr")
