@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 import Layout from "../layouts/Layout.astro";
 
 import m4 from "../assets/metro/m4.svg";
@@ -33,10 +35,10 @@ import m14 from "../assets/metro/m14.svg";
           Paris 15<sup>e</sup>
         </a>
         <div class="flex flex-row flex-wrap justify-center gap-2 mb-2">
-          <img src={m4.src} alt="M4" class="w-6 h-auto" />
-          <img src={m6.src} alt="M6" class="w-6 h-auto" />
-          <img src={m12.src} alt="M12" class="w-6 h-auto" />
-          <img src={m13.src} alt="M13" class="w-6 h-auto" />
+          <Image src={m4} alt="M4" class="w-6 h-auto" />
+          <Image src={m6} alt="M6" class="w-6 h-auto" />
+          <Image src={m12} alt="M12" class="w-6 h-auto" />
+          <Image src={m13} alt="M13" class="w-6 h-auto" />
         </div>
         <address class="text-center text-gray-700 leading-tight">
           Arrêt : Montparnasse / Pasteur
@@ -57,12 +59,12 @@ import m14 from "../assets/metro/m14.svg";
           Paris 17<sup>e</sup>
         </a>
         <div class="flex flex-row flex-wrap justify-center gap-2 mb-2">
-          <img src={m13.src} alt="M13" class="w-6 h-auto" />
+          <Image src={m13} alt="M13" class="w-6 h-auto" />
         </div>
         <address class="text-center text-gray-700 leading-tight">
           Arrêt : La Fourche
           <br />
-          Place Saint Jean<br />75017 Paris
+          Rue Saint Jean<br />75017 Paris
         </address>
       </div>
 
@@ -78,8 +80,8 @@ import m14 from "../assets/metro/m14.svg";
           Saint-Ouen
         </a>
         <div class="flex flex-row flex-wrap justify-center gap-2 mb-2">
-          <img src={m13.src} alt="M13" class="w-6 h-auto" />
-          <img src={m14.src} alt="M14" class="w-6 h-auto" />
+          <Image src={m13} alt="M13" class="w-6 h-auto" />
+          <Image src={m14} alt="M14" class="w-6 h-auto" />
         </div>
         <address class="text-center text-gray-700 leading-tight">
           Arrêt : Mairie de Saint-Ouen
