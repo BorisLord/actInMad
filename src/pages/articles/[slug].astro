@@ -61,15 +61,12 @@ const { article } = Astro.props;
         />
       </div>
     </div>
-    <div class="bg-madRed text-madBack p-4 mt-10 md:mt-22 rounded-xl">
-      <article set:html={article.extra} />
-    </div>
+    {
+      article.extra && (
+        <div class="bg-madRed text-madBack p-4 mt-10 md:mt-22 rounded-xl">
+          <article set:html={article.extra} />
+        </div>
+      )
+    }
   </div>
 </Layout>
-
-<style>
-  .custom-links a {
-    color: blue;
-    text-decoration: underline;
-  }
-</style>
