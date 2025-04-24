@@ -16,7 +16,7 @@ RUN npm install
 
 RUN npm run build
 
-FROM httpd:lts-alpine AS runtime
+FROM httpd:latest-alpine AS runtime
 
 RUN sed -i 's/#ErrorDocument 404 \/missing.html/ErrorDocument 404 \/404.html/' /usr/local/apache2/conf/httpd.conf
 
