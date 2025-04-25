@@ -49,6 +49,7 @@ const isHomePage = Astro.url.pathname === "/";
 
     <div class="block md:hidden">
       <button
+        aria-label="Ouvrir/fermer le menu"
         aria-expanded="true"
         id="menu-toggle"
         class=`rounded ml-20 ${isHomePage? "text-madBack" : "text-black"} transition`
