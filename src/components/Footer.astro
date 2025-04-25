@@ -11,62 +11,66 @@ import { Icon } from "astro-icon/components";
     class="flex flex-col justify-between px-2 py-2 sm:flex-row sm:px-6 lg:px-8"
   >
     <div class="flex flex-1 justify-center mb-4 sm:mb-0">
-      <ul class="flex items-center gap-4 md:gap-4">
-        <div class="flex md:flex-col md:space-y-5 space-x-4">
-          <li>
-            <a
-              title="Envoyez-nous un email"
-              aria-label="Envoyez-nous un email"
-              rel="noopener noreferrer"
-              href="mailto:contact@actinmad.art"
-              target="_blank"
-              class="text-madBack"
-            >
-              <Icon name="lucide:mail" size="24" />
-            </a>
-          </li>
-          <li>
-            <a
-              title="Consultez notre page Facebook"
-              aria-label="Suivez-nous sur Facebook"
-              rel="noopener noreferrer"
-              href="https://www.facebook.com/share/1F9fBbu8Ux/"
-              target="_blank"
-              class="text-madBack"
-            >
-              <Icon name="lucide:facebook" size="24" />
-            </a>
-          </li>
+      <div class="flex items-center gap-4">
+        <div class="flex md:flex-col">
+          <ul class="flex space-x-4 md:flex-col md:space-y-4">
+            <li>
+              <a
+                title="Envoyez-nous un email"
+                aria-label="Envoyez-nous un email"
+                rel="noopener noreferrer"
+                href="mailto:contact@actinmad.art"
+                target="_blank"
+                class="text-madBack"
+              >
+                <Icon name="lucide:mail" size="24" />
+              </a>
+            </li>
+            <li>
+              <a
+                title="Consultez notre page Facebook"
+                aria-label="Suivez-nous sur Facebook"
+                rel="noopener noreferrer"
+                href="https://www.facebook.com/share/1F9fBbu8Ux/"
+                target="_blank"
+                class="text-madBack"
+              >
+                <Icon name="lucide:facebook" size="24" />
+              </a>
+            </li>
+          </ul>
         </div>
-        <div class="flex md:flex-col md:space-y-5 space-x-4">
-          <li>
-            <a
-              title="Consultez notre page Instagram"
-              aria-label="Suivez-nous sur Instagram"
-              rel="noopener noreferrer"
-              href="https://www.instagram.com/act_in_mad/"
-              target="_blank"
-              class="text-madBack"
-            >
-              <Icon name="lucide:instagram" size="24" />
-            </a>
-          </li>
-          <li>
-            <a
-              title="Consultez notre page LinkedIn"
-              aria-label="Suivez-nous sur LinkedIn"
-              rel="noopener noreferrer"
-              href="https://www.linkedin.com/company/act-in-mad/"
-              target="_blank"
-              class="text-madBack"
-            >
-              <Icon name="lucide:linkedin" size="24" />
-            </a>
-          </li>
-        </div>
-      </ul>
-    </div>
 
+        <div class="flex md:flex-col">
+          <ul class="flex space-x-4 md:flex-col md:space-y-4">
+            <li>
+              <a
+                title="Consultez notre page Instagram"
+                aria-label="Suivez-nous sur Instagram"
+                rel="noopener noreferrer"
+                href="https://www.instagram.com/act_in_mad/"
+                target="_blank"
+                class="text-madBack"
+              >
+                <Icon name="lucide:instagram" size="24" />
+              </a>
+            </li>
+            <li>
+              <a
+                title="Consultez notre page LinkedIn"
+                aria-label="Suivez-nous sur LinkedIn"
+                rel="noopener noreferrer"
+                href="https://www.linkedin.com/company/act-in-mad/"
+                target="_blank"
+                class="text-madBack"
+              >
+                <Icon name="lucide:linkedin" size="24" />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <div class="flex flex-col items-center text-center leading-tight">
       <div class="flex items-center">
         <Image
