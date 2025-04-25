@@ -54,13 +54,11 @@ const records = await pb
               <div class="flex flex-col justify-between flex-grow">
                 <h2 class="text-xl font-bold ">{article.title}</h2>
                 <p class="text-sm text-justify">{article.subTitle} ...</p>
-
                 <div class="flex justify-between items-center mt-2">
                   <p class="text-sm  flex items-center">
                     <Icon name="lucide:circle-plus" size="24" class="mr-1" />
                   </p>
                   <p class="text-sm italic">
-                    Le
                     {DateTime.fromSQL(article.releaseDate)
                       .setLocale("fr")
                       .toFormat("dd MMMM yyyy")}
