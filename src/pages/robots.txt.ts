@@ -5,7 +5,7 @@ const envMode = import.meta.env.MODE || "staging";
 const getRobotsTxt = (sitemapURL: URL, isStaging: boolean) => `
 User-agent: *
 ${isStaging ? "Disallow: /" : "Allow: /"}
-
+Disallow: /cdn-cgi/
 ${isStaging ? "" : `Sitemap: ${sitemapURL.href}`}
 `;
 
