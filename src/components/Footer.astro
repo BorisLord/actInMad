@@ -1,109 +1,121 @@
 ---
-import madArchLogo from '../assets/archActInMad.svg';
-import madBeigeName from '../assets/madBeigeName.svg';
-import { Icon } from 'astro-icon/components';
+import { Image } from "astro:assets";
+
+import madArchLogo from "../assets/logo/archActInMad.svg";
+import madBeigeName from "../assets/logo/madBeigeName.svg";
+import { Icon } from "astro-icon/components";
 ---
 
-<footer class="bg-madRed pb-2">
+<footer class="bg-madRed pb-2 pt-4 mt-8 md:mt-20">
   <div
-    class="flex flex-col justify-between px-2 py-6 sm:flex-row sm:px-6 lg:px-8"
+    class="flex flex-col justify-between px-2 py-2 sm:flex-row sm:px-6 lg:px-8"
   >
     <div class="flex flex-1 justify-center mb-4 sm:mb-0">
-      <ul class="flex items-center gap-6 md:gap-8">
-        <li>
-          <a
-            title="Envoyez-nous un email"
-            aria-label="Envoyez-nous un email"
-            rel="noopener noreferrer"
-            href="mailto:act.in.mad@gmail.com"
-            target="_blank"
-            class="text-madBack"
-          >
-            <Icon name="lucide:mail" size="24" />
-          </a>
-        </li>
-        <li>
-          <a
-            title="Consultez notre page Facebook"
-            aria-label="Suivez-nous sur Facebook"
-            rel="noopener noreferrer"
-            href="https://www.facebook.com/share/1F9fBbu8Ux/"
-            target="_blank"
-            class="text-madBack"
-          >
-            <Icon name="lucide:facebook" size="24" />
-          </a>
-        </li>
-        <li>
-          <a
-            title="Consultez notre page Instagram"
-            aria-label="Suivez-nous sur Instagram"
-            rel="noopener noreferrer"
-            href="https://www.instagram.com/act_in_mad/"
-            target="_blank"
-            class="text-madBack"
-          >
-            <Icon name="lucide:instagram" size="24" />
-          </a>
-        </li>
+      <ul class="flex items-center gap-4 md:gap-4">
+        <div class="flex md:flex-col md:space-y-5 space-x-4">
+          <li>
+            <a
+              title="Envoyez-nous un email"
+              aria-label="Envoyez-nous un email"
+              rel="noopener noreferrer"
+              href="mailto:contact@actinmad.art"
+              target="_blank"
+              class="text-madBack"
+            >
+              <Icon name="lucide:mail" size="24" />
+            </a>
+          </li>
+          <li>
+            <a
+              title="Consultez notre page Facebook"
+              aria-label="Suivez-nous sur Facebook"
+              rel="noopener noreferrer"
+              href="https://www.facebook.com/share/1F9fBbu8Ux/"
+              target="_blank"
+              class="text-madBack"
+            >
+              <Icon name="lucide:facebook" size="24" />
+            </a>
+          </li>
+        </div>
+        <div class="flex md:flex-col md:space-y-5 space-x-4">
+          <li>
+            <a
+              title="Consultez notre page Instagram"
+              aria-label="Suivez-nous sur Instagram"
+              rel="noopener noreferrer"
+              href="https://www.instagram.com/act_in_mad/"
+              target="_blank"
+              class="text-madBack"
+            >
+              <Icon name="lucide:instagram" size="24" />
+            </a>
+          </li>
+          <li>
+            <a
+              title="Consultez notre page LinkedIn"
+              aria-label="Suivez-nous sur LinkedIn"
+              rel="noopener noreferrer"
+              href="https://www.linkedin.com/company/act-in-mad/"
+              target="_blank"
+              class="text-madBack"
+            >
+              <Icon name="lucide:linkedin" size="24" />
+            </a>
+          </li>
+        </div>
       </ul>
     </div>
 
-    <div class="flex flex-col items-center text-center">
+    <div class="flex flex-col items-center text-center leading-tight">
       <div class="flex items-center">
-        <img
-          src={madArchLogo.src}
+        <Image
+          src={madArchLogo}
           alt="L'arche d'Act In Mad"
           class="h-8 w-auto mb-2"
-          loading="lazy"
         />
-        <img
-          src={madBeigeName.src}
+        <Image
+          src={madBeigeName}
           alt="Le nom Act In Mad"
           class="h-6 w-auto ml-3"
-          loading="lazy"
         />
       </div>
-      <p class="mt-1 max-w-md text-madBack">
+      <p class="max-w-md text-madBack">
         Compagnie de Théâtre <br />Ateliers Spectacles Amateurs <br />Oser le
         jeu • Frôler la folie !
       </p>
     </div>
 
     <div class="flex flex-1 justify-center mt-3">
-      <ul class="flex flex-col items-center gap-2 md:gap-5">
+      <ul class="flex flex-col items-center gap-2 md:gap-3">
         <li>
-          <a class="text-madBack" href="/">Mentions légales</a>
+          <a class="text-madBack" href="/Mentions">Mentions légales</a>
         </li>
-        <li>
-          <a class="text-madBack" href="/">Blog/Articles</a>
+        <li class="flex md:hidden flex-row gap-2">
+          <a class="text-madBack" href="/LeMag">Blog</a>
+          <div class="text-madBack">/</div>
+          <a class="text-madBack" href="/Faq">FAQ</a>
         </li>
-        <li>
-          <a class="text-madBack" href="/">FAQ</a>
+        <li class="hidden md:flex">
+          <a class="text-madBack" href="/LeMag">Le Mag'</a>
+        </li>
+        <li class="hidden md:flex">
+          <a class="text-madBack" href="/Faq">FAQ</a>
         </li>
       </ul>
     </div>
   </div>
 
-  <div class="text-center -mt-2">
-    <p class="text-sm text-madBack">
-      Made with &hearts; by
-      <a
-        href="https://github.com/BorisLord"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="underline"
-      >
-        Boris
-      </a> using
+  <div class="text-center">
+    <p class="text-xs text-madBack">
+      Made with &hearts; using
       <a
         href="https://astro.build/"
         target="_blank"
         rel="noopener noreferrer"
-        class="underline"
+        class="underline">Astro</a
       >
-        Astro
-      </a>
+
       for Act In Mad &copy; 2025
     </p>
   </div>

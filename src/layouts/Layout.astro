@@ -1,40 +1,64 @@
 ---
-import AstroFont from './Font.astro';
-import SEO from './Seo.astro';
-// import Nav from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
+import "../styles/global.css";
+import AstroFont from "./Font.astro";
+import SEO from "./Seo.astro";
+import Nav from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
 
 const links = [
-  { label: 'Acceuil', href: '/' },
-  { label: 'Ateliers', href: '/Ateliers' },
-  { label: 'Compagnie', href: '/Compagnie' },
-  { label: 'Coulisses', href: '/Login' },
-  { label: 'Contact', href: '/Contact' },
-  // { label: 'Blog', href: '/blog' },
+  { label: "Acceuil", href: "/" },
+  { label: "Les Ateliers", href: "/Ateliers" },
+  { label: "La Compagnie", href: "/Compagnie" },
+  { label: "L'Equipe", href: "/Equipe" },
+  { label: "Nos Valeurs", href: "/Valeurs" },
+  { label: "Inscription", href: "/Inscription" },
+  { label: "Contact", href: "/Contact" },
+  { label: "Le Mag'", href: "/LeMag" },
 ];
+
+const isHomePage = Astro.url.pathname === "/";
 
 // const authLinks = [
 // { label: 'Coulisses', href: '/login', type: 'primary' },
 // { label: 'Register', href: '/register', type: 'secondary' },
 // ];
+
+const jsonLD = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Act In Mad",
+  description:
+    "Cours de théâtre à Paris pour amateurs. Découvrez nos ateliers et spectacles créatifs.",
+  image: "https://actinmad.art/images/actInMadRed.jpeg",
+  url: "https://actinmad.art/",
+  email: "mailto:act.in.mad@gmail.com",
+  priceRange: "€",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Paris",
+    addressCountry: "FR",
+  },
+  openingHours: "Mo-Su 09:00-21:00",
+};
 ---
 
 <!doctype html>
 <html lang="fr">
   <head>
     <AstroFont />
-    <SEO {...Astro.props.seo} />
-    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <SEO {...Astro.props.seo} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLD)} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <title>Act In Mad</title>
   </head>
   <body class="bg-madBack">
-    <!-- <header>
+    <header class={isHomePage ? "bg-black" : "bg-madBack"}>
       <Nav links={links} />
-    </header> -->
-    <main>
+    </header>
+    <main class="min-h-screen">
       <slot />
     </main>
     <Footer />

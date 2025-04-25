@@ -1,0 +1,42 @@
+---
+import { Image } from "astro:assets";
+
+import { Icon } from "astro-icon/components";
+
+const { name, instaLink, linkedIn, photo, bio } = Astro.props;
+
+const socialLink = instaLink ?? linkedIn;
+const socialIcon = instaLink ? "lucide:instagram" : "lucide:linkedin";
+---
+
+<div class="p-4 max-w-5xl mx-auto">
+  <div class="flex justify-between items-center w-full mb-4">
+    <h2 class="text-2xl font-bold text-madText">{name}</h2>
+    {
+      socialLink && (
+        <a
+          href={socialLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-madBack bg-madRed rounded-md p-1"
+        >
+          <Icon name={socialIcon} size="25" />
+        </a>
+      )
+    }
+  </div>
+
+  <div class="flex flex-col md:flex-row md:items-start gap-4 w-full">
+    <div class="w-full md:w-1/5 flex justify-center md:justify-start">
+      <div class="w-40 h-56 overflow-hidden rounded">
+        <Image
+          src={photo}
+          alt={`Photo de ${name}`}
+          class="w-full h-full object-cover rounded"
+        />
+      </div>
+    </div>
+
+    <p class="text-justify leading-snug flex-grow" set:html={bio} />
+  </div>
+</div>

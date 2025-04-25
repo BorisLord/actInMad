@@ -1,0 +1,74 @@
+---
+import { Image } from "astro:assets";
+import { API_URL } from "astro:env/client";
+import { Icon } from "astro-icon/components";
+
+import PocketBase from "pocketbase";
+import { DateTime } from "luxon";
+
+import Layout from "../layouts/Layout.astro";
+
+import defImg from "../assets/defaultImg.jpg";
+
+const pb = new PocketBase(API_URL);
+const records = await pb
+  .collection("articles")
+  .getFullList({ filter: "isActive=true", sort: "-releaseDate" });
+---
+
+<Layout>
+  <div class="flex flex-col items-center justify-center bg-madBack p-4">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full"
+    >
+      {
+        records.length === 0 ? (
+          <div class="w-full text-center items-center py-8">
+            Les articles arrivent bientôt ...
+          </div>
+        ) : (
+          records.map((article) => (
+            <a
+              href={`/articles/${article.slug}`}
+              class="shadow-2xl rounded-xl p-3 text-center transition transform hover:scale-105 flex flex-col h-[600px]"
+            >
+              <div class="flex-grow overflow-hidden rounded-xl">
+                {article.images.length > 0 ? (
+                  <img
+                    src={`${API_URL}/api/files/articles/${article.id}/${article.images[0]}`}
+                    alt={article.imgDescription}
+                    class="w-full h-92 object-cover rounded-xl"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="w-full h-92 flex items-center justify-center rounded-xl">
+                    <Image
+                      src={defImg}
+                      alt={article.imgDescription}
+                      class="w-full h-full object-cover rounded-xl"
+                    />
+                  </div>
+                )}
+              </div>
+
+              <div class="flex flex-col justify-between flex-grow">
+                <h2 class="text-xl font-bold ">{article.title}</h2>
+                <p class="text-sm text-justify">{article.subTitle} ...</p>
+                <div class="flex justify-between items-center mt-2">
+                  <p class="text-sm  flex items-center">
+                    <Icon name="lucide:circle-plus" size="24" class="mr-1" />
+                  </p>
+                  <p class="text-sm italic">
+                    {DateTime.fromSQL(article.releaseDate)
+                      .setLocale("fr")
+                      .toFormat("dd MMMM yyyy")}
+                  </p>
+                </div>
+              </div>
+            </a>
+          ))
+        )
+      }
+    </div>
+  </div>
+</Layout>

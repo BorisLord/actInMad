@@ -1,36 +1,224 @@
 ---
-import { Icon } from 'astro-icon/components';
-import Layout from '../layouts/Layout.astro';
-import { Props } from 'astro';
-import SEO from '../layouts/Seo.astro';
+import { Image } from "astro:assets";
+
+import Layout from "../layouts/Layout.astro";
+
+import theaterRoom from "../assets/photos/bank/theaterRoom.jpg";
+import theaterRoomZoom from "../assets/photos/bank/theaterRoomZoom.jpg";
+import clapClap from "../assets/photos/bank/clapClap.jpg";
+import curtainLady from "../assets/photos/bank/curtainLady.jpg";
+import groupFest from "../assets/photos/bank/groupFest.jpg";
+
+// import { Props } from 'astro';
+// import SEO from '../layouts/Seo.astro';
 // import Footer from '../components/Footer.astro';
 
-const seo: Props = {
-  title: 'Bienvenue - Act In Mad',
-  description: 'Découvrez nos cours de théâtre et spectacles amateurs à Paris.',
-  canonical: 'https://actinmad.art/',
-};
+// const seo: Props = {
+//   title: 'Bienvenue - Act In Mad',
+//   description: 'Découvrez nos cours de théâtre et spectacles amateurs à Paris.',
+//   canonical: 'https://actinmad.art/',
+// };
 ---
 
-<SEO {...seo} />
-
+<!-- <SEO {...seo} /> -->
 <Layout>
+  <div class="relative h-[80vh] md:h-screen overflow-hidden">
+    <Image
+      src={theaterRoom}
+      alt="Cours de théâtre sur scène"
+      class="absolute w-full h-full object-cover object-top"
+    />
+
+    <div class="absolute mt-10 w-full text-white p-4 ml-4 mr-4">
+      <div class="max-w-7xl mx-auto text-madBack p-4">
+        <h1 class="text-xl md:text-3xl text-left">
+          Découvrez <strong>Act In Mad</strong><br />
+          Une expérience théâtrale unique<sup class="text-sm">*</sup> pour tous les
+          amateurs,<br />
+          des rôles sur mesure et des pièces originales, encadrée par des professionnel·le·s
+          !
+          <br />
+        </h1>
+        <div class="flex md:justify-end mt-2 max-w-7xl mr-3">
+          <p class="text-xs md:text-sm">
+            <sup>*</sup>Oser le jeu • Frôler la folie !
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
   <div
-    class="flex flex-col items-center justify-center h-screen overflow-hidden text-center bg-madBack"
+    class="bg-madRed flex flex-col md:flex-row justify-center items-center gap-4 md:gap-32 py-6 text-madBack text-2xl text-center"
   >
-    <h1 class="text-3xl font-bold">Bienvenue</h1>
-    <h2 class="mt-2 text-2xl font-medium">Nous sommes en répétition !</h2>
-    <h3 class="mt-2 text-xl font-medium">
-      En attendant la Première... <br />retrouvez-nous sur
-    </h3>
-    <a
-      href="https://www.instagram.com/act_in_mad/"
-      class="mt-4 p-3 text-white bg-madRed rounded-lg"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="instagram logo"
+    <h3>Ateliers Spectacles</h3>
+    <h3>Cours de Théâtre</h3>
+    <h3>Act'Impro</h3>
+  </div>
+
+  <div class="overflow-hidden w-full h-[300px] md:h-[500px]">
+    <Image
+      src={theaterRoomZoom}
+      alt="Cours de théâtre sur scène, interaction entre élèves"
+      class="w-full h-full object-cover object-center"
+    />
+  </div>
+
+  <div
+    class="flex flex-col md:flex-row justify-center items-stretch gap-8 py-8 px-4 md:px-0"
+  >
+    <div
+      class="bg-madRed rounded-lg shadow-lg p-6 w-full md:w-[30%] flex flex-col min-h-[230px]"
     >
-      <Icon name="lucide:instagram" size="40" />
-    </a>
+      <h4 class="text-2xl font-semibold text-madBack mb-4 text-center">
+        Ateliers Spectacles
+      </h4>
+      <p class="text-madBack text-justify flex-grow leading-snug">
+        Act In Mad réinvente les ateliers théâtre avec ses 'Ateliers
+        Spectacles'. <span class="block mt-3"></span>
+        Selon votre temps et/ou votre budget, c’est vous qui choisissez un rôle spécifique
+        dans une pièce originale rarement montée en atelier classique. <span
+          class="block mt-3"></span>
+        Une expérience théâtrale unique, respectueuse des œuvres et accessible à
+        tous les niveaux, où chaque rôle est une perspective de créativité.
+      </p>
+    </div>
+    <div
+      class="bg-madRed rounded-lg shadow-lg p-6 w-full md:w-[30%] flex flex-col min-h-[300px]"
+    >
+      <h4 class="text-2xl font-semibold text-madBack mb-4 text-center">
+        Cours de Théâtre
+      </h4>
+      <p class="text-madBack text-justify flex-grow leading-snug">
+        Pour les personnes qui préfèrent une approche traditionnelle, Act In Mad
+        propose des cours de théâtre classiques. <span class="block mt-3"
+        ></span>
+        Découvrez les techniques de base du jeu : respiration, mémorisation, interprétation
+        des émotions, diction, relaxation, improvisation. <span
+          class="block mt-3"></span>
+        Développez votre spontanéité et votre connexion émotionnelle avec le texte
+        et les personnages.
+      </p>
+    </div>
+    <div
+      class="bg-madRed rounded-lg shadow-lg p-6 w-full md:w-[30%] flex flex-col min-h-[300px]"
+    >
+      <h4 class="text-2xl font-semibold text-madBack mb-4 text-center">
+        Act'Impro<sup class="text-sm">*</sup>
+      </h4>
+      <p class="text-madBack text-justify flex-grow leading-snug">
+        Osez le cours inédit de l’improvisation théâtrale chez Act In Mad ! <span
+          class="block mt-3"></span>
+        C’est un programme unique spécialement conçu pour libérer votre créativité
+        et développer vos compétences scéniques en un temps record.
+        <span class="block mt-3"></span>
+        Ce qui rend Act'Impro unique ?<br /> Un spectacle après 5 cours seulement
+        !
+        <p class="text-sm text-madBack text-right relative top-5">
+          <sup>*</sup>Inscription possible par session de 5 cours
+        </p>
+      </p>
+    </div>
+  </div>
+
+  <div class="relative flex justify-center items-center w-full py-6">
+    <Image
+      src={clapClap}
+      alt="Public dans une salle de théâtre qui applaudit"
+      class="hidden md:block w-full h-auto object-cover blur"
+    />
+    <div class="text-center p-4 md:p-6 md:absolute bg-madBack rounded-3xl">
+      <h5 class="text-xl md:text-2xl font-bold">
+        Quel que soit votre choix,<br /> vous <span
+          class="text-madRed md:text-black">jouerez</span
+        > dans un <span class="text-madRed">théâtre</span>
+        devant votre <span class="text-madRed">public </span>!
+      </h5>
+      <p class="text-base mt-2">
+        2 dates pour l’Atelier Spectacle, 1 date pour le Cours de Théâtre et 4
+        dates pour Act’Impro !
+      </p>
+    </div>
+  </div>
+
+  <div class="flex flex-col items-center justify-center p-4">
+    <div class="w-full max-w-6xl p-4 md:p-8">
+      <h6 class="text-madRed text-2xl md:text-3xl text-center md:text-left">
+        La pédagogie, la “Method”
+      </h6>
+      <p class="mt-4 text-justify leading-snug">
+        La pédagogie chez Act In Mad repose à la fois sur la bienveillance,
+        l’écoute et le plaisir d’apprendre.<span class="block mt-3"></span> Elle
+        est ensuite une combinaison des méthodes utilisées par vos professeur·e·s
+        eux·elles-mêmes dans le cadre de l’exercice de leur métier et qu’iels modulent
+        en fonction du groupe de comédien·ne·s que vous êtes.<span
+          class="block mt-3"></span>
+        En tant qu’apprenti·e·s comédien·ne·s, vous aurez donc la chance de travailler
+        avec plusieurs « méthodes ». L’objectif de cette pédagogie ultra personnalisée
+        étant de monter un vrai spectacle, dans des conditions qui se rapprochent
+        au plus près des conditions réelles du métier. C’est-à-dire avec rigueur
+        et exigences de travail, tout en vous amusant bien sûr et en développant
+        vos talents de comédien·ne·s !
+      </p>
+    </div>
+
+    <div
+      class="flex flex-col md:flex-row w-full max-w-6xl p-4 md:p-6 gap-6 mt-5"
+    >
+      <div class="md:w-2/3 text-left md:text-left flex flex-col justify-center">
+        <h6 class="text-madRed text-2xl md:text-3xl text-center md:text-left">
+          Pour qui ?
+        </h6>
+        <p class="mt-4 text-justify leading-snug">
+          Chez Act In Mad, c'est avant tout l'envie de jouer qui rassemble.
+          D’expérience, nous savons que la passion, l’envie d’apprendre, de
+          progresser, de développer sa créativité et son sens artistique sont
+          les atouts essentiels qui permettent à tout·e apprenti·e comédien·ne
+          de donner le meilleur de lui·elle-même.<span class="block mt-3"
+          ></span>
+          Ces puissants éléments moteurs, combinés aux savoir-faire et à la pédagogie
+          avancée de nos professeur·e·s metteur·e·s en scène, offrent la garantie
+          de <span class="text-madRed">
+            spectacles uniques et exigeants où chaque comédien·ne peut
+            s'épanouir et contribuer pleinement à la réussite du projet
+            collectif.
+          </span>
+        </p>
+      </div>
+      <div class="md:w-1/3 flex items-center justify-center md:justify-end">
+        <Image
+          src={curtainLady}
+          alt="Comédienne en jeu d'une pièce de théâtre ouvrant un rideau"
+          class="hidden md:block w-full h-full object-cover"
+        />
+      </div>
+    </div>
+
+    <div
+      class="flex flex-col md:flex-row w-full max-w-6xl p-4 md:p-6 gap-6 md:mt-5"
+    >
+      <div class="md:w-1/3 flex items-center justify-center md:justify-end">
+        <Image
+          src={groupFest}
+          alt="Cours de theatre entrain de renforcer les liens"
+          class="hidden md:block w-full h-full object-cover"
+        />
+      </div>
+      <div class="md:w-2/3 text-left md:text-left flex flex-col justify-center">
+        <h6 class="text-madRed text-2xl md:text-3xl text-center md:text-left">
+          Pourquoi choisir Act In Mad ?
+        </h6>
+        <ul class="ml-4 mt-4 list-disc list-outside leading-snug space-y-2">
+          <li>Un nombre de participant·e·s strictement limité</li>
+          <li>Des plannings précis établis en amont de chaque répétition</li>
+          <li>
+            Des metteur·e·s en scène passionné·e·s et bienveillant·e·s qui vous
+            guideront avec pédagogie
+          </li>
+          <li>Un vrai théâtre, et un vrai public, pour votre spectacle</li>
+          <li>Un possible tremplin vers Act In Mad la Compagnie</li>
+          <li>Des frais d’inscription calculés au plus juste</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </Layout>

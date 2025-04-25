@@ -1,35 +1,42 @@
 ---
-import archLogo from '../assets/archActInMad.svg';
-import { Icon } from 'astro-icon/components';
+import { Image } from "astro:assets";
+
+import beigeFullLogo from "../assets/logo/actInMadBeigeFullLogo.svg";
+import actInMadRed from "../assets/logo/actInMadRedFullLogo.svg";
+
+import { Icon } from "astro-icon/components";
 
 const { links = [] } = Astro.props;
 const currentPath = Astro.url.pathname;
+const isHomePage = Astro.url.pathname === "/";
 ---
 
 <div class="mx-auto max-w-screen px-4 sm:px-6 lg:px-8">
-  <div class="flex h-20 items-center justify-center">
-    <div class="flex items-center mr-8">
-      <img
-        src={archLogo.src}
+  <div class="flex h-24 items-center justify-center">
+    <div class="flex items-center sm:mr-8">
+      <Image
+        src={isHomePage ? beigeFullLogo : actInMadRed}
         alt="L'arche d'Act In Mad"
-        class="h-10 w-auto -mt-1"
+        class="h-16 w-auto"
       />
     </div>
 
     <div class="hidden md:block">
       <nav aria-label="Global">
-        <ul class="flex items-center gap-6">
+        <ul class="flex items-center gap-5">
           {
             links.map((link: any) => (
               <li>
                 <a
                   href={link.href}
                   class={`${
-                    currentPath.replace(/\/$/, '') ===
-                    link.href.replace(/\/$/, '')
-                      ? 'text-madRed'
-                      : 'text-gray-500'
-                  } hover:text-madEncart`}
+                    isHomePage
+                      ? "text-madBack"
+                      : currentPath.replace(/\/$/, "") ===
+                          link.href.replace(/\/$/, "")
+                        ? "text-madRed"
+                        : "text-black"
+                  } hover:text-madRed`}
                 >
                   {link.label}
                 </a>
@@ -44,23 +51,23 @@ const currentPath = Astro.url.pathname;
       <button
         aria-expanded="true"
         id="menu-toggle"
-        class="rounded p-2 text-gray-600 transition hover:text-madEncart"
+        class=`rounded ml-20 ${isHomePage? "text-madBack" : "text-black"} transition`
       >
         <Icon id="menu-icon" name="lucide:book-open-text" size="28" />
       </button>
-      <span class="text-madRed text-md">
+      <span class=`${isHomePage? "text-madBack" : "text-madRed"} text-md`>
         {
           links.find(
             (link: any) =>
-              link.href.replace(/\/$/, '') === currentPath.replace(/\/$/, '')
-          )?.label || ''
+              link.href.replace(/\/$/, "") === currentPath.replace(/\/$/, "")
+          )?.label || ""
         }
       </span>
     </div>
 
     <nav
       id="menu"
-      class="absolute top-16 bg-gray-100 gap-4 p-4 shadow-md hidden"
+      class=`absolute top-20 p-4 z-100 mt-4 rounded-xl shadow-2xl ${isHomePage ? 'bg-black' : "bg-madBack"} `
     >
       <ul class="flex flex-col items-center gap-4">
         {
@@ -69,10 +76,12 @@ const currentPath = Astro.url.pathname;
               <a
                 href={link.href}
                 class={`${
-                  currentPath.replace(/\/$/, '') ===
-                  link.href.replace(/\/$/, '')
-                    ? 'text-madRed'
-                    : 'text-gray-500'
+                  isHomePage
+                    ? "text-madBack"
+                    : currentPath.replace(/\/$/, "") ===
+                        link.href.replace(/\/$/, "")
+                      ? "text-madEncart"
+                      : "text-madText"
                 } hover:text-madEncart`}
               >
                 {link.label}
@@ -82,40 +91,30 @@ const currentPath = Astro.url.pathname;
         }
       </ul>
     </nav>
-
-    <script>
-      const toggleButton = document.getElementById('menu-toggle');
-      const menu = document.getElementById('menu');
-
-      if (toggleButton) {
-        toggleButton.addEventListener('click', () => {
-          // Basculer la visibilité du menu
-          menu?.classList.toggle('hidden');
-        });
-      }
-
-      window.addEventListener('DOMContentLoaded', () => {
-        menu?.classList.add('hidden');
-      });
-    </script>
   </div>
-
-  <!-- Auth Links -->
-  <!-- <div class="flex items-center gap-4">
-  <div class="sm:flex sm:gap-4">
-    {
-          authLinks.map((authLink: any) => (
-            <a
-              href={authLink.href}
-              class={`rounded-md px-5 py-2.5 text-sm font-medium shadow ${
-                authLink.type === 'primary'
-                  ? 'bg-madEncart text-white'
-                  : 'bg-gray-100 text-madEncart'
-              }`}
-            >
-              {authLink.label}
-            </a>
-          ))
-        }
-      </div> -->
 </div>
+
+<script>
+  const toggleButton = document.getElementById("menu-toggle");
+  const menu = document.getElementById("menu");
+
+  if (toggleButton) {
+    toggleButton.addEventListener("click", () => {
+      menu?.classList.toggle("hidden");
+    });
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    menu?.classList.add("hidden");
+  });
+
+  document.addEventListener("click", (event) => {
+    if (
+      menu &&
+      !menu.contains(event.target as Node) &&
+      !toggleButton?.contains(event.target as Node)
+    ) {
+      menu.classList.add("hidden");
+    }
+  });
+</script>

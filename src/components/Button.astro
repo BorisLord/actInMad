@@ -1,0 +1,11 @@
+---
+const { type, content, madStyle, ...rest } = Astro.props;
+---
+
+<button
+  {...rest}
+  type={type}
+  class={`${madStyle || ""} px-4 py-2 bg-madRed text-white rounded hover:bg-madEncart transition`}
+>
+  {content}
+</button>

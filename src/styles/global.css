@@ -1,0 +1,13 @@
+@import "tailwindcss";
+/* @config "../../tailwind.config.mjs"; */
+@plugin '@tailwindcss/forms';
+
+@theme {
+  --color-madBack: #f5ece1;
+  --color-madRed: #8c1c13;
+  --color-madText: #252525;
+  --color-madEncart: #bf4342;
+
+  --font-madTitleFont: "Arbutus Slab", serif;
+  --font-madBodyFont: "Inter", sans-serif;
+}
