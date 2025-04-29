@@ -78,6 +78,7 @@ export default function ContactForm() {
         <h1 class="text-madRed text-2xl md:text-3xl text-center md:text-left">
           Posez-nous vos questions !
         </h1>
+        <h2 class="text-center text-lg">ou inscrivez-vous à Act in Mag' !</h2>
       </div>
 
       <form
@@ -140,7 +141,7 @@ export default function ContactForm() {
 
         <div>
           <label for="message" class="block font-semibold mb-1">
-            Message *
+            Message
           </label>
           <textarea
             id="message"
@@ -148,7 +149,6 @@ export default function ContactForm() {
             rows={5}
             value={form.message}
             onInput={handleChange}
-            required
             class="w-full p-2 rounded-xl border border-gray-300"
           />
         </div>
@@ -163,7 +163,7 @@ export default function ContactForm() {
             class="w-4 h-4 rounded-md border-gray-400"
           />
           <label for="inscription" class="text-gray-700">
-            Je souhaite m’inscrire à Act in Mag (la lettre d’information Act in
+            Je souhaite m’inscrire à Act in Mag' (la lettre d’information Act in
             Mad)
           </label>
         </div>
