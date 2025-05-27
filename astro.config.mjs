@@ -34,9 +34,13 @@ export default defineConfig({
     },
   },
   // output: 'server',
-  integrations: [icon(), sitemap({
-    filter: (page) => mode === "prod" || !page.includes("staging"),
-    changefreq: "monthly",
-    lastmod: new Date(),
-  }), preact()],
+  integrations: [
+    icon(),
+    sitemap({
+      filter: (page) => mode === "prod" || !page.includes("staging"),
+      changefreq: "monthly",
+      lastmod: new Date(),
+    }),
+    preact({ compat: true }),
+  ],
 });
