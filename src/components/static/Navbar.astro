@@ -4,6 +4,8 @@ import { Image } from "astro:assets";
 import beigeFullLogo from "../../assets/logo/actInMadBeigeFullLogo.svg";
 import actInMadRed from "../../assets/logo/actInMadRedFullLogo.svg";
 
+import NavbarExtended from "../NavbarExtended";
+
 import { Icon } from "astro-icon/components";
 
 const { links = [] } = Astro.props;
@@ -23,27 +25,35 @@ const isHomePage = Astro.url.pathname === "/";
 
     <div class="hidden md:block">
       <nav aria-label="Global">
-        <ul class="flex items-center gap-5">
-          {
-            links.map((link: any) => (
-              <li>
-                <a
-                  href={link.href}
-                  class={`${
-                    isHomePage
-                      ? "text-madBack"
-                      : currentPath.replace(/\/$/, "") ===
-                          link.href.replace(/\/$/, "")
-                        ? "text-madRed"
-                        : "text-black"
-                  } hover:text-madRed`}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
+        <div class="flex">
+          <ul class="flex items-center gap-5">
+            {
+              links.slice(0, -1).map((link: any) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class={`${
+                      isHomePage
+                        ? "text-madBack"
+                        : currentPath.replace(/\/$/, "") ===
+                            link.href.replace(/\/$/, "")
+                          ? "text-madRed"
+                          : "text-black"
+                    } hover:text-madRed`}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+          <NavbarExtended
+            links={links}
+            currentPath={currentPath}
+            isHomePage={isHomePage}
+            client:load
+          />
+        </div>
       </nav>
     </div>
 
@@ -93,29 +103,29 @@ const isHomePage = Astro.url.pathname === "/";
       </ul>
     </nav>
   </div>
-</div>
 
-<script>
-  const toggleButton = document.getElementById("menu-toggle");
-  const menu = document.getElementById("menu");
+  <script>
+    const toggleButton = document.getElementById("menu-toggle");
+    const menu = document.getElementById("menu");
 
-  if (toggleButton) {
-    toggleButton.addEventListener("click", () => {
-      menu?.classList.toggle("hidden");
-    });
-  }
-
-  window.addEventListener("DOMContentLoaded", () => {
-    menu?.classList.add("hidden");
-  });
-
-  document.addEventListener("click", (event) => {
-    if (
-      menu &&
-      !menu.contains(event.target as Node) &&
-      !toggleButton?.contains(event.target as Node)
-    ) {
-      menu.classList.add("hidden");
+    if (toggleButton) {
+      toggleButton.addEventListener("click", () => {
+        menu?.classList.toggle("hidden");
+      });
     }
-  });
-</script>
+
+    window.addEventListener("DOMContentLoaded", () => {
+      menu?.classList.add("hidden");
+    });
+
+    document.addEventListener("click", (event) => {
+      if (
+        menu &&
+        !menu.contains(event.target as Node) &&
+        !toggleButton?.contains(event.target as Node)
+      ) {
+        menu.classList.add("hidden");
+      }
+    });
+  </script>
+</div>
