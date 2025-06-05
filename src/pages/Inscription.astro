@@ -7,7 +7,9 @@ import m4 from "../assets/metro/m4.svg";
 import m6 from "../assets/metro/m6.svg";
 import m12 from "../assets/metro/m12.svg";
 import m13 from "../assets/metro/m13.svg";
-import m14 from "../assets/metro/m14.svg";
+import m7 from "../assets/metro/m7.svg";
+import m10 from "../assets/metro/m10.svg";
+import m11 from "../assets/metro/m11.svg";
 ---
 
 <Layout>
@@ -54,9 +56,31 @@ import m14 from "../assets/metro/m14.svg";
         >
           <div class="flex flex-col items-center">
             <a
+              href="https://maps.app.goo.gl/oNcULCeDcWqmDopC9"
+              title="Lien Google Maps - Rue du Gril, Paris"
+              aria-label="Lien Google Maps - Rue du Gril, Paris"
+              rel="noopener noreferrer"
+              target="_blank"
+              class="bg-madRed text-madBack font-bold px-12 py-2 rounded-xl mb-3 text-2xl hover:underline transition"
+            >
+              Paris 5<sup>e</sup>
+            </a>
+            <div class="flex flex-row flex-wrap justify-center gap-2 mb-2">
+              <Image src={m7} alt="M7" class="w-6 h-auto" />
+              <Image src={m10} alt="M10" class="w-6 h-auto" />
+            </div>
+            <address class="text-center text-gray-700 leading-tight">
+              Arrêt : Censier-Daubenton / Jussieu
+              <br />
+              Rue du Gril<br />75005 Paris
+            </address>
+          </div>
+
+          <div class="flex flex-col items-center">
+            <a
               href="https://maps.app.goo.gl/7HqgW3i7SLm7Dk6e6"
-              title="Lien Google Maps - Rue Falguière"
-              aria-label="Lien Google Maps - Rue Falguière"
+              title="Lien Google Maps - Rue Falguière, Paris"
+              aria-label="Lien Google Maps - Rue Falguière, Paris"
               rel="noopener noreferrer"
               target="_blank"
               class="bg-madRed text-madBack font-bold px-12 py-2 rounded-xl mb-3 text-2xl hover:underline transition"
@@ -79,8 +103,8 @@ import m14 from "../assets/metro/m14.svg";
           <div class="flex flex-col items-center">
             <a
               href="https://maps.app.goo.gl/ne9xrknVtV1wsHsU6"
-              title="Lien Google Maps - Place Saint Jean"
-              aria-label="Lien Google Maps - Place Saint Jean"
+              title="Lien Google Maps - Place Saint Jean, Paris"
+              aria-label="Lien Google Maps - Place Saint Jean, Paris"
               rel="noopener noreferrer"
               target="_blank"
               class="bg-madRed text-madBack font-bold px-12 py-2 rounded-xl mb-3 text-2xl hover:underline transition"
@@ -99,23 +123,23 @@ import m14 from "../assets/metro/m14.svg";
 
           <div class="flex flex-col items-center">
             <a
-              href="https://maps.app.goo.gl/AYTQZiJq5XCe9oWF7"
-              title="Lien Google Maps - Rue Jean Saint-Ouen"
-              aria-label="Lien Google Maps - Rue Jean Saint-Ouen"
+              href="https://maps.app.goo.gl/toQcw7vtTUC81MYB9"
+              title="Lien Google Maps - Rue Haxo, Paris"
+              aria-label="Lien Google Maps - Rue Haxo, Paris"
               rel="noopener noreferrer"
               target="_blank"
               class="bg-madRed text-madBack font-bold px-12 py-2 rounded-xl mb-3 text-2xl hover:underline transition"
             >
-              Saint-Ouen
+              Paris 19<sup>e</sup>
             </a>
             <div class="flex flex-row flex-wrap justify-center gap-2 mb-2">
+              <Image src={m11} alt="M11" class="w-6 h-auto" />
               <Image src={m13} alt="M13" class="w-6 h-auto" />
-              <Image src={m14} alt="M14" class="w-6 h-auto" />
             </div>
             <address class="text-center text-gray-700 leading-tight">
-              Arrêt : Mairie de Saint-Ouen
+              Arrêt : Télégraphe / St Fargeau
               <br />
-              Rue Jean<br />93400 Saint-Ouen
+              Rue Haxo<br />75019 Paris
             </address>
           </div>
         </div>
