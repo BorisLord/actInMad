@@ -15,7 +15,7 @@ const isHomePage = Astro.url.pathname === "/";
 
 <div class="mx-auto max-w-screen px-4 sm:px-6 lg:px-8">
   <div class="flex h-24 items-center justify-center">
-    <div class="flex items-center sm:mr-8">
+    <div class="hidden md:flex items-center sm:mr-8">
       <Image
         src={isHomePage ? beigeFullLogo : actInMadRed}
         alt="L'arche d'Act In Mad"
@@ -26,7 +26,7 @@ const isHomePage = Astro.url.pathname === "/";
     <div class="hidden md:block">
       <nav aria-label="Global">
         <div class="flex">
-          <ul class="flex items-center gap-5">
+          <ul class="flex items-center gap-5 sm:gap-3">
             {
               links.slice(0, -1).map((link: any) => (
                 <li>
@@ -39,7 +39,7 @@ const isHomePage = Astro.url.pathname === "/";
                             link.href.replace(/\/$/, "")
                           ? "text-madRed"
                           : "text-black"
-                    } hover:text-madRed`}
+                    } hover:text-madRed whitespace-nowrap`}
                   >
                     {link.label}
                   </a>
@@ -47,42 +47,40 @@ const isHomePage = Astro.url.pathname === "/";
               ))
             }
           </ul>
-          <NavbarExtended
-            links={links}
-            currentPath={currentPath}
-            isHomePage={isHomePage}
-            client:load
-          />
         </div>
       </nav>
     </div>
 
-    <div class="block md:hidden">
+    <div class="flex md:hidden">
       <button
         aria-label="Ouvrir/fermer le menu"
         aria-expanded="true"
         id="menu-toggle"
-        class=`rounded ml-20 ${isHomePage? "text-madBack" : "text-black"} transition`
+        class=`rounded ${isHomePage? "text-madBack" : "text-black"} transition `
       >
         <Icon id="menu-icon" name="lucide:book-open-text" size="28" />
       </button>
-      <span class=`${isHomePage? "text-madBack" : "text-madRed"} text-md`>
+      <span
+        class=`${isHomePage? "text-madBack" : "text-madRed"} text-md ml-2 mt-5`
+      >
         {
-          links.find(
-            (link: any) =>
-              link.href.replace(/\/$/, "") === currentPath.replace(/\/$/, "")
-          )?.label || ""
+          links
+            .slice(0, -1)
+            .find(
+              (link: any) =>
+                link.href.replace(/\/$/, "") === currentPath.replace(/\/$/, "")
+            )?.label || ""
         }
       </span>
     </div>
 
     <nav
       id="menu"
-      class=`absolute top-20 p-4 z-100 mt-4 rounded-xl shadow-2xl ${isHomePage ? 'bg-black' : "bg-madBack"} `
+      class=`absolute top-20 p-4 z-100 mt-4 rounded-xl shadow-2xl ${isHomePage ? 'bg-black' : "bg-madBack"}`
     >
       <ul class="flex flex-col items-center gap-4">
         {
-          links.map((link: any) => (
+          links.slice(0, -1).map((link: any) => (
             <li>
               <a
                 href={link.href}
@@ -102,6 +100,9 @@ const isHomePage = Astro.url.pathname === "/";
         }
       </ul>
     </nav>
+    <div>
+      <NavbarExtended links={links} client:load />
+    </div>
   </div>
 
   <script>
