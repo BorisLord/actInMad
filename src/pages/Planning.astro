@@ -1,0 +1,81 @@
+---
+import Layout from "../layouts/Layout.astro";
+import planningAteliers from "../assets/planningAteliers2025-2026.jpg";
+import { Image } from "astro:assets";
+---
+
+<Layout>
+  <div class="flex justify-center p-4">
+    <div class="w-full max-w-5xl">
+      <a
+        href={planningAteliers.src}
+        target="_blank"
+        title="Afficher le planning en grand"
+      >
+        <Image
+          src={planningAteliers}
+          alt="Planning des ateliers, cliquez pour agrandir."
+          loading="lazy"
+          class="w-full h-auto cursor-zoom-in"
+        />
+      </a>
+      <p class="text-center text-sm text-gray-500 mt-2 md:hidden">
+        Touchez l'image pour zoomer.
+      </p>
+
+      <div class="w-full my-8">
+        <h2 class="text-xl md:text-2xl font-bold text-center mb-6">
+          Prêt à monter sur scène ? <br />Inscrivez-vous ci-dessous et rejoignez
+          Act In Mad !
+        </h2>
+
+        <div class="flex flex-wrap justify-center items-center gap-4 px-2">
+          <a
+            href="https://forms.gle/4jMAJzpo9nPrCVd38"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="md:text-lg font-semibold text-madBack bg-madRed px-5 py-3 rounded-xl hover:bg-madEncart w-full sm:w-auto flex justify-center items-center text-center"
+          >
+            Atelier Spectacle
+          </a>
+
+          <a
+            href="https://forms.gle/iprcEPfgnNwxkkTh9"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="md:text-lg font-semibold text-madBack bg-madRed px-5 py-3 rounded-xl hover:bg-madEncart w-full sm:w-auto flex justify-center items-center text-center"
+          >
+            Act'Impro
+          </a>
+
+          <a
+            href="https://forms.gle/hFATCZHDXYrZa18s5"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="md:text-lg font-semibold text-madBack bg-madRed px-5 py-3 rounded-xl hover:bg-madEncart w-full sm:w-auto flex justify-center items-center text-center"
+          >
+            Théâtre Adulte
+          </a>
+
+          <a
+            href="https://forms.gle/P7tvYbDVs7E5AzUW7"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="md:text-lg font-semibold text-madBack bg-madRed px-5 py-3 rounded-xl hover:bg-madEncart w-full sm:w-auto flex justify-center items-center text-center"
+          >
+            Cours d'essai Théâtre Adulte
+          </a>
+
+          <a
+            href="https://forms.gle/ggvTghRqNiNnLnp19"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="md:text-lg font-semibold text-madBack bg-madRed px-5 py-3 rounded-xl hover:bg-madEncart w-full sm:w-auto flex justify-center items-center text-center"
+          >
+            Théâtre Enfant
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
