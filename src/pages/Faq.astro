@@ -1,92 +1,11 @@
 ---
-import { Image } from "astro:assets";
-
 import Layout from "../layouts/Layout.astro";
 
-import m4 from "../assets/metro/m4.svg";
-import m6 from "../assets/metro/m6.svg";
-import m12 from "../assets/metro/m12.svg";
-import m13 from "../assets/metro/m13.svg";
-import m14 from "../assets/metro/m14.svg";
+import LieuCours from "../components/LieuCours.astro";
 ---
 
 <Layout>
   <div class="flex flex-col items-center p-4">
-    <div class="w-full max-w-6xl p-4 md:p-6 mt-5">
-      <h1 class="text-madRed text-2xl md:text-3xl text-center md:text-left">
-        Lieu des cours
-      </h1>
-    </div>
-
-    <div
-      class="flex flex-row flex-wrap gap-4 md:gap-24 w-full max-w-6xl justify-center text-xs md:text-sm"
-    >
-      <div class="flex flex-col items-center">
-        <a
-          href="https://maps.app.goo.gl/7HqgW3i7SLm7Dk6e6"
-          title="Lien Google Maps - Rue Falguière"
-          aria-label="Lien Google Maps - Rue Falguière"
-          rel="noopener noreferrer"
-          target="_blank"
-          class="bg-madRed text-madBack font-bold px-12 py-2 rounded-xl mb-3 text-2xl hover:underline transition"
-        >
-          Paris 15<sup>e</sup>
-        </a>
-        <div class="flex flex-row flex-wrap justify-center gap-2 mb-2">
-          <Image src={m4} alt="logo metro 4" class="w-6 h-auto" />
-          <Image src={m6} alt="logo metro 6" class="w-6 h-auto" />
-          <Image src={m12} alt="logo metro 12" class="w-6 h-auto" />
-          <Image src={m13} alt="logo metro 13" class="w-6 h-auto" />
-        </div>
-        <address class="text-center text-gray-700 leading-tight">
-          Arrêt : Montparnasse / Pasteur
-          <br />
-          Rue Falguière<br />75015 Paris
-        </address>
-      </div>
-
-      <div class="flex flex-col items-center">
-        <a
-          href="https://maps.app.goo.gl/ne9xrknVtV1wsHsU6"
-          title="Lien Google Maps - Place Saint Jean"
-          aria-label="Lien Google Maps - Place Saint Jean"
-          rel="noopener noreferrer"
-          target="_blank"
-          class="bg-madRed text-madBack font-bold px-12 py-2 rounded-xl mb-3 text-2xl hover:underline transition"
-        >
-          Paris 17<sup>e</sup>
-        </a>
-        <div class="flex flex-row flex-wrap justify-center gap-2 mb-2">
-          <Image src={m13} alt="logo metro 13" class="w-6 h-auto" />
-        </div>
-        <address class="text-center text-gray-700 leading-tight">
-          Arrêt : La Fourche
-          <br />
-          Rue Saint Jean<br />75017 Paris
-        </address>
-      </div>
-
-      <div class="flex flex-col items-center">
-        <a
-          href="https://maps.app.goo.gl/AYTQZiJq5XCe9oWF7"
-          title="Lien Google Maps - Rue Jean Saint-Ouen"
-          aria-label="Lien Google Maps - Rue Jean Saint-Ouen"
-          rel="noopener noreferrer"
-          target="_blank"
-          class="bg-madRed text-madBack font-bold px-12 py-2 rounded-xl mb-3 text-2xl hover:underline transition"
-        >
-          Saint-Ouen
-        </a>
-        <div class="flex flex-row flex-wrap justify-center gap-2 mb-2">
-          <Image src={m13} alt="logo metro 13" class="w-6 h-auto" />
-          <Image src={m14} alt="logo metro 14" class="w-6 h-auto" />
-        </div>
-        <address class="text-center text-gray-700 leading-tight">
-          Arrêt : Mairie de Saint-Ouen
-          <br />
-          Rue Jean<br />93400 Saint-Ouen
-        </address>
-      </div>
-    </div>
+    <LieuCours />
   </div>
 </Layout>

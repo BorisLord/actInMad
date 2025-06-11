@@ -1,15 +1,7 @@
 ---
-import { Image } from "astro:assets";
-
 import Layout from "../layouts/Layout.astro";
 
-import m4 from "../assets/metro/m4.svg";
-import m6 from "../assets/metro/m6.svg";
-import m12 from "../assets/metro/m12.svg";
-import m13 from "../assets/metro/m13.svg";
-import m7 from "../assets/metro/m7.svg";
-import m10 from "../assets/metro/m10.svg";
-import m11 from "../assets/metro/m11.svg";
+import LieuCours from "../components/LieuCours.astro";
 ---
 
 <Layout>
@@ -18,7 +10,6 @@ import m11 from "../assets/metro/m11.svg";
       class="flex flex-col justify-center md:flex-row max-w-6xl p-4 md:p-6 mt-5"
     >
       <a
-        href=""
         class="text-xl text-center md:text-3xl font-semibold text-madBack bg-gray-600 px-5 py-2 rounded-xl"
       >
         Inscription
@@ -29,120 +20,19 @@ import m11 from "../assets/metro/m11.svg";
         <p class="text-left">
           Notre parcours d'inscription arrive bientôt sur scène ! <br />
           <br />
-          En attendant, faite votre demande d'inscription via le
-          <a class="text-madRed font-bold" href="/Contact"
-            >formulaire de contact</a
-          >.<br />
-          Ou directement par mail à cette adresse :
-          <a class="text-madRed font-bold" href="mailto:contact@actinmad.art"
-            >contact@actinmad.art</a
+          En attendant, vous pouvez vous inscrire via la page du
+          <a class="text-madRed font-bold underline" href="/Planning"
+            >planning</a
           >.
           <br />
           Retrouvez toutes les informations sur nos lieux de cours ainsi que les
           réponses à vos questions dans notre <a
-            class="text-madRed font-bold"
+            class="text-madRed font-bold underline"
             href="/Faq">FAQ</a
           >.
         </p>
 
-        <div class="w-full max-w-6xl p-4 md:p-6 mt-5">
-          <h1 class="text-madRed text-2xl md:text-3xl text-center">
-            Lieu des cours
-          </h1>
-        </div>
-
-        <div
-          class="flex flex-row flex-wrap gap-4 md:gap-24 w-full max-w-6xl justify-center text-xs md:text-sm"
-        >
-          <div class="flex flex-col items-center">
-            <a
-              href="https://maps.app.goo.gl/oNcULCeDcWqmDopC9"
-              title="Lien Google Maps - Rue du Gril, Paris"
-              aria-label="Lien Google Maps - Rue du Gril, Paris"
-              rel="noopener noreferrer"
-              target="_blank"
-              class="bg-madRed text-madBack font-bold px-12 py-2 rounded-xl mb-3 text-2xl hover:underline transition"
-            >
-              Paris 5<sup>e</sup>
-            </a>
-            <div class="flex flex-row flex-wrap justify-center gap-2 mb-2">
-              <Image src={m7} alt="M7" class="w-6 h-auto" />
-              <Image src={m10} alt="M10" class="w-6 h-auto" />
-            </div>
-            <address class="text-center text-gray-700 leading-tight">
-              Arrêt : Censier-Daubenton / Jussieu
-              <br />
-              Rue du Gril<br />75005 Paris
-            </address>
-          </div>
-
-          <div class="flex flex-col items-center">
-            <a
-              href="https://maps.app.goo.gl/7HqgW3i7SLm7Dk6e6"
-              title="Lien Google Maps - Rue Falguière, Paris"
-              aria-label="Lien Google Maps - Rue Falguière, Paris"
-              rel="noopener noreferrer"
-              target="_blank"
-              class="bg-madRed text-madBack font-bold px-12 py-2 rounded-xl mb-3 text-2xl hover:underline transition"
-            >
-              Paris 15<sup>e</sup>
-            </a>
-            <div class="flex flex-row flex-wrap justify-center gap-2 mb-2">
-              <Image src={m4} alt="M4" class="w-6 h-auto" />
-              <Image src={m6} alt="M6" class="w-6 h-auto" />
-              <Image src={m12} alt="M12" class="w-6 h-auto" />
-              <Image src={m13} alt="M13" class="w-6 h-auto" />
-            </div>
-            <address class="text-center text-gray-700 leading-tight">
-              Arrêt : Montparnasse / Pasteur
-              <br />
-              Rue Falguière<br />75015 Paris
-            </address>
-          </div>
-
-          <div class="flex flex-col items-center">
-            <a
-              href="https://maps.app.goo.gl/ne9xrknVtV1wsHsU6"
-              title="Lien Google Maps - Place Saint Jean, Paris"
-              aria-label="Lien Google Maps - Place Saint Jean, Paris"
-              rel="noopener noreferrer"
-              target="_blank"
-              class="bg-madRed text-madBack font-bold px-12 py-2 rounded-xl mb-3 text-2xl hover:underline transition"
-            >
-              Paris 17<sup>e</sup>
-            </a>
-            <div class="flex flex-row flex-wrap justify-center gap-2 mb-2">
-              <Image src={m13} alt="M13" class="w-6 h-auto" />
-            </div>
-            <address class="text-center text-gray-700 leading-tight">
-              Arrêt : La Fourche
-              <br />
-              Rue Saint Jean<br />75017 Paris
-            </address>
-          </div>
-
-          <div class="flex flex-col items-center">
-            <a
-              href="https://maps.app.goo.gl/toQcw7vtTUC81MYB9"
-              title="Lien Google Maps - Rue Haxo, Paris"
-              aria-label="Lien Google Maps - Rue Haxo, Paris"
-              rel="noopener noreferrer"
-              target="_blank"
-              class="bg-madRed text-madBack font-bold px-12 py-2 rounded-xl mb-3 text-2xl hover:underline transition"
-            >
-              Paris 19<sup>e</sup>
-            </a>
-            <div class="flex flex-row flex-wrap justify-center gap-2 mb-2">
-              <Image src={m11} alt="M11" class="w-6 h-auto" />
-              <Image src={m13} alt="M13" class="w-6 h-auto" />
-            </div>
-            <address class="text-center text-gray-700 leading-tight">
-              Arrêt : Télégraphe / St Fargeau
-              <br />
-              Rue Haxo<br />75019 Paris
-            </address>
-          </div>
-        </div>
+        <LieuCours />
       </div>
     </div>
   </div>
