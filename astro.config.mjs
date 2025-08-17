@@ -1,9 +1,11 @@
 // @ts-check
 import { defineConfig, envField } from "astro/config";
+import { loadEnv } from "vite";
+
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
-import { loadEnv } from "vite";
+import astroLLMsGenerator from "astro-llms-generate";
 
 import preact from "@astrojs/preact";
 
@@ -35,6 +37,7 @@ export default defineConfig({
   },
   // output: 'server',
   integrations: [
+    mode === "production" ? astroLLMsGenerator() : [],
     icon(),
     sitemap({
       filter: (page) => mode === "prod" || !page.includes("staging"),
