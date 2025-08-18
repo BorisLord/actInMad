@@ -1,13 +1,12 @@
 ---
 import { API_URL } from "astro:env/client";
 
-import PocketBase from "pocketbase";
+import { pb } from "../../lib/pocketbase";
 import { DateTime } from "luxon";
 
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  const pb = new PocketBase(API_URL);
   const records = await pb
     .collection("articles")
     .getFullList({ filter: "isActive=true" });
