@@ -1,6 +1,10 @@
-import { useState } from "preact/hooks";
-import { API_URL } from "astro:env/client"; // Si vous avez une API pour la connexion
 import type { ChangeEvent, FormEvent } from "preact/compat";
+
+import { useState } from "preact/hooks";
+import { navigate } from "astro:transitions/client";
+
+import { pb } from "../../lib/pocketbase";
+import { $user, setUser, clearUser } from "../../lib/stores/userStore";
 import SignUpButton from "../google/GoogleSignButton";
 
 interface FormState {
@@ -38,7 +42,7 @@ const ConnexionForm = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoginError(""); // Réinitialiser les erreurs précédentes
+    setLoginError("");
 
     if (!validateEmail()) {
       return;
@@ -50,83 +54,93 @@ const ConnexionForm = () => {
     };
 
     try {
-      const response = await fetch(`${API_URL}/api/login`, {
-        // Adaptez l'endpoint
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        setLoginError(errorData.message || "Identifiants incorrects.");
-        return;
-      }
-
+      const res = await pb
+        .collection("users")
+        .authWithPassword(payload.email, payload.password);
       setLoggedIn(true);
-      setForm({ email: "", password: "" });
-      // Rediriger l'utilisateur ou effectuer d'autres actions après la connexion
-      console.log("Connecté !");
+      setUser(res);
+      console.log(res);
+      navigate("private/Dashboard");
     } catch (error) {
-      console.error("Erreur lors de la connexion :", error);
       setLoginError("Une erreur s'est produite lors de la connexion.");
+    } finally {
+      setForm({ email: "", password: "" });
+    }
+  };
+
+  const handleGoogleAuth = async () => {
+    try {
+      const res = await pb
+        .collection("users")
+        .authWithOAuth2({ provider: "google" });
+      setLoggedIn(true);
+      setUser(res);
+
+      // navigate("private/Dashboard");
+    } catch (error) {
+      setLoginError("Une erreur s'est produite lors de la connexion.");
+    } finally {
+      setForm({ email: "", password: "" });
     }
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      class="w-full max-w-sm p-4 flex flex-col gap-4 text-sm md:text-base"
-    >
-      {loggedIn && (
-        <p class="text-green-600 font-semibold">Connecté avec succès !</p>
-      )}
-      {loginError && <p class="text-madEncart text-sm">{loginError}</p>}
-
+    <>
       <div
-        class="flex justify-center items-center"
-        // onClick={handleGoogleAuth}
+        class="flex justify-center items-center mt-4"
+        onClick={handleGoogleAuth}
       >
         <SignUpButton content="Se connecter avec Google" />
       </div>
-      <div>
-        <label htmlFor="email" class="block font-semibold mb-1">
-          Email *
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={form.email}
-          onInput={handleChange}
-          onBlur={validateEmail}
-          required
-          class="w-full p-2 rounded-xl border border-gray-300"
-        />
-        {emailError && <p class="text-madEncart text-sm">{emailError}</p>}
-      </div>
-      <div>
-        <label htmlFor="password" class="block font-semibold mb-1">
-          Mot de passe *
-        </label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={form.password}
-          onInput={handleChange}
-          required
-          class="w-full p-2 rounded-xl border border-gray-300"
-        />
-      </div>
-
-      <button
-        type="submit"
-        class="bg-madRed text-white px-6 py-2 rounded-xl font-bold hover:bg-madEncart transition self-start"
+      <form
+        onSubmit={handleSubmit}
+        class="w-full max-w-sm p-4 flex flex-col gap-4 text-sm md:text-base"
       >
-        Se connecter
-      </button>
-    </form>
+        {loggedIn && (
+          <p class="text-green-600 font-semibold">Connecté avec succès !</p>
+        )}
+        {loginError && <p class="text-madEncart text-sm">{loginError}</p>}
+
+        <div>
+          <label htmlFor="email" class="block font-semibold mb-1">
+            Email *
+          </label>
+          <input
+            autocomplete="email"
+            type="email"
+            id="email"
+            name="email"
+            value={form.email}
+            onInput={handleChange}
+            onBlur={validateEmail}
+            required
+            class="w-full p-2 rounded-xl border border-gray-300"
+          />
+          {emailError && <p class="text-madEncart text-sm">{emailError}</p>}
+        </div>
+        <div>
+          <label htmlFor="password" class="block font-semibold mb-1">
+            Mot de passe *
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={form.password}
+            onInput={handleChange}
+            required
+            class="w-full p-2 rounded-xl border border-gray-300"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="bg-madRed text-white px-6 py-2 rounded-xl font-bold hover:bg-madEncart transition cursor-pointer"
+        >
+          Se connecter
+        </button>
+      </form>
+    </>
   );
 };
 

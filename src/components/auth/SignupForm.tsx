@@ -1,9 +1,11 @@
-import { useState } from "preact/hooks";
 import type { ChangeEvent, FormEvent } from "preact/compat";
+
+import { useState } from "preact/hooks";
 import { navigate } from "astro:transitions/client";
-import SignUpButton from "../google/GoogleSignButton";
-import { pb } from "../../lib/pocketbase";
 import { Icon } from "@iconify/react";
+
+import { pb } from "../../lib/pocketbase";
+import SignUpButton from "../google/GoogleSignButton";
 
 interface FormState {
   email: string;
