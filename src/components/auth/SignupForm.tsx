@@ -1,31 +1,31 @@
 import { useState } from "preact/hooks";
-import { API_URL } from "astro:env/client";
 import type { ChangeEvent, FormEvent } from "preact/compat";
-import PocketBase from "pocketbase";
 import { navigate } from "astro:transitions/client";
 import SignUpButton from "../google/GoogleSignButton";
-// import SignUp from "../static/google/signUp.astro";
-
-const pb = new PocketBase(API_URL);
+import { pb } from "../../lib/pocketbase";
+import { Icon } from "@iconify/react";
 
 interface FormState {
-  nom: string;
-  prenom: string;
   email: string;
   password: string;
+  passwordConfirm: string;
 }
 
 const InscriptionForm = () => {
   const [form, setForm] = useState<FormState>({
-    nom: "",
-    prenom: "",
     email: "",
     password: "",
+    passwordConfirm: "",
   });
   const [emailError, setEmailError] = useState<string>("");
   const [passwordError, setPasswordError] = useState<string>("");
   const [registrationError, setRegistrationError] = useState<string>("");
   const [registered, setRegistered] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
@@ -48,76 +48,69 @@ const InscriptionForm = () => {
   };
 
   const validatePassword = () => {
-    if (form.password.length < 6) {
-      setPasswordError("Le mot de passe doit contenir au moins 6 caractères.");
+    if (form.password.length < 8) {
+      setPasswordError("Le mot de passe doit contenir au moins 8 caractères.");
       return false;
-    } else {
-      setPasswordError("");
-      return true;
     }
+    if (form.password !== form.passwordConfirm) {
+      setPasswordError("Les mots de passe doivent etre identique");
+      return false;
+    }
+    setPasswordError("");
+    return true;
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setRegistrationError("");
-
     if (!validateEmail() || !validatePassword()) {
       return;
     }
 
     const payload = {
-      nom: form.nom,
-      prenom: form.prenom,
       email: form.email,
       password: form.password,
+      passwordConfirm: form.passwordConfirm,
     };
 
     try {
-      const response = await fetch(`${API_URL}/api/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        setRegistrationError(errorData.message || "Échec de l'inscription.");
-        return;
-      }
-
+      await pb.collection("users").create(payload);
       setRegistered(true);
+      setTimeout(() => {
+        navigate("/ConnexionInscription");
+      }, 2000);
+    } catch (error) {
+      setRegistrationError("Une erreur s'est produite lors de l'inscription.");
+    } finally {
       setForm({
-        nom: "",
-        prenom: "",
         email: "",
         password: "",
+        passwordConfirm: "",
       });
-    } catch (error) {
-      console.error("Erreur lors de l'inscription :", error);
-      setRegistrationError("Une erreur s'est produite lors de l'inscription.");
     }
   };
 
   const handleGoogleAuth = async () => {
     try {
       await pb.collection("users").authWithOAuth2({ provider: "google" });
-
-      console.log("Authentification Google réussie !");
-
-      console.log(pb.authStore);
-
-      // if (pb.authStore.isValid) {
-      //   navigate("/private/Dashboard");
-      // }
+      setRegistered(true);
+      setTimeout(() => {
+        navigate("/ConnexionInscription");
+      }, 2000);
     } catch (error) {
-      console.error("Erreur lors de l'authentification Google :", error);
-      // Gérer l'erreur d'authentification
+      console.log(error);
+      setRegistrationError("Une erreur s'est produite lors de l'inscription.");
+    } finally {
+      setForm({
+        email: "",
+        password: "",
+        passwordConfirm: "",
+      });
     }
   };
 
   return (
     <div class="w-full max-w-sm p-4 flex flex-col gap-4 text-sm md:text-base">
-      {/* <h2 class="text-xl font-semibold mb-4 text-center">Inscription</h2> */}
       {registered && (
         <p class="text-green-600 font-semibold">Inscription réussie !</p>
       )}
@@ -129,38 +122,11 @@ const InscriptionForm = () => {
       </div>
       <form onSubmit={handleSubmit} class="flex flex-col gap-4">
         <div>
-          <label htmlFor="nom" class="block font-semibold mb-1">
-            Nom *
-          </label>
-          <input
-            type="text"
-            id="nom"
-            name="nom"
-            value={form.nom}
-            onInput={handleChange}
-            required
-            class="w-full p-2 rounded-xl border border-gray-300"
-          />
-        </div>
-        <div>
-          <label htmlFor="prenom" class="block font-semibold mb-1">
-            Prénom *
-          </label>
-          <input
-            type="text"
-            id="prenom"
-            name="prenom"
-            value={form.prenom}
-            onInput={handleChange}
-            required
-            class="w-full p-2 rounded-xl border border-gray-300"
-          />
-        </div>
-        <div>
           <label htmlFor="email" class="block font-semibold mb-1">
             Email *
           </label>
           <input
+            autocomplete="email"
             type="email"
             id="email"
             name="email"
@@ -172,20 +138,66 @@ const InscriptionForm = () => {
           />
           {emailError && <p class="text-madEncart text-sm">{emailError}</p>}
         </div>
+
         <div>
           <label htmlFor="password" class="block font-semibold mb-1">
             Mot de passe *
           </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={form.password}
-            onInput={handleChange}
-            onBlur={validatePassword}
-            required
-            class="w-full p-2 rounded-xl border border-gray-300"
-          />
+          <div class="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              name="password"
+              value={form.password}
+              onInput={handleChange}
+              onBlur={validatePassword}
+              required
+              class="w-full p-2 rounded-xl border border-gray-300 pr-10"
+            />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400"
+            >
+              {showPassword ? (
+                <Icon icon="lucide:eye" />
+              ) : (
+                <Icon icon="lucide:eye-closed" />
+              )}
+            </button>
+          </div>
+          {passwordError && (
+            <p class="text-madEncart text-sm">{passwordError}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="passwordConfirm" class="block font-semibold mb-1">
+            Confirmation du mot de passe *
+          </label>
+          <div class="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              id="passwordConfirm"
+              name="passwordConfirm"
+              value={form.passwordConfirm}
+              onInput={handleChange}
+              onBlur={validatePassword}
+              required
+              class="w-full p-2 rounded-xl border border-gray-300 pr-10"
+            />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400"
+            >
+              {showPassword ? (
+                <Icon icon="lucide:eye" />
+              ) : (
+                <Icon icon="lucide:eye-closed" />
+              )}
+            </button>
+          </div>
           {passwordError && (
             <p class="text-madEncart text-sm">{passwordError}</p>
           )}
@@ -193,7 +205,7 @@ const InscriptionForm = () => {
 
         <button
           type="submit"
-          class="bg-madRed text-white px-6 py-2 rounded-xl font-bold hover:bg-madEncart transition self-start cursor-pointer"
+          class="bg-madRed text-white px-6 py-2 rounded-xl font-bold hover:bg-madEncart transition cursor-pointer"
         >
           S'inscrire
         </button>
