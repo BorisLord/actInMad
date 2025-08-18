@@ -12,13 +12,13 @@
   },
   "dependencies": {
     "@astrojs/preact": "^4.1.0",
-    "@astrojs/sitemap": "^3.4.2",
+    "@astrojs/sitemap": "^3.5.0",
     "@iconify-json/lucide": "^1.2.62",
     "@nanostores/preact": "^1.0.0",
     "@preact/preset-vite": "^2.10.2",
     "@tailwindcss/forms": "^0.5.10",
-    "@tailwindcss/vite": "^4.1.11",
-    "astro": "^5.12.9",
+    "@tailwindcss/vite": "^4.1.12",
+    "astro": "^5.13.2",
     "astro-font": "^1.1.0",
     "astro-llms-generate": "^1.3.3",
     "astro-seo": "^0.8.4",
@@ -31,7 +31,7 @@
     "react": "npm:@preact/compat",
     "react-dom": "npm:@preact/compat",
     "schema-dts": "^1.1.5",
-    "tailwindcss": "^4.1.11"
+    "tailwindcss": "^4.1.12"
   },
   "devDependencies": {
     "@astrojs/ts-plugin": "^1.10.4",
