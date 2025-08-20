@@ -1,16 +1,10 @@
 ---
 import UserDashboard from "../../components/dashboard/UserDashboard";
 import Layout from "../../layouts/Layout.astro";
-
-// ! Ajouter le SEO des pages
 ---
 
 <Layout>
-  <div class="flex items-center justify-center">
-    <div class="mt-36 mb-72 text-center">
-      <h1 class="text-2xl font-semibold mb-8">Welcome Daddy Uppy Dashboard</h1>
-
-      <UserDashboard client:load />
-    </div>
+  <div class="">
+    <UserDashboard client:load />
   </div>
 </Layout>
