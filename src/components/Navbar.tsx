@@ -45,30 +45,23 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
   const handleLogout = () => {
     pb.authStore.clear();
     clearUser();
-    setProfileMenuOpen(false); // Ferme le menu au cas où
+    setProfileMenuOpen(false);
     setMobileMenuOpen(false);
-    navigate("/"); // Redirige vers l'accueil
+    navigate("/");
   };
 
+  // Hook pour l'effet "sticky" via IntersectionObserver (performant)
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Met l'état à `true` si on a défilé de plus de 10 pixels, sinon `false`
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    // Ajoute l'écouteur d'événement
-    window.addEventListener("scroll", handleScroll);
-
-    // Nettoie l'écouteur quand le composant est démonté
-    return () => window.removeEventListener("scroll", handleScroll);
+    const watcher = document.querySelector("#scroll-watcher");
+    if (!watcher) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsScrolled(!entry.isIntersecting);
+      },
+      { rootMargin: "1px 0px 0px 0px" },
+    );
+    observer.observe(watcher);
+    return () => observer.disconnect();
   }, []);
 
   // Hook pour fermer les menus en cliquant à l'extérieur
@@ -95,12 +88,9 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // --- Fonctions utilitaires et préparation des données ---
-  const getLinkClass = (linkHref: string, base: string, active: string) => {
-    const normPath = currentPath.replace(/\/$/, "");
-    const normHref = linkHref.replace(/\/$/, "");
-    return normPath === normHref ? active : base;
-  };
+  // --- Préparation des données pour le rendu ---
+  const mainLinks = links.slice(0, -1);
+  const lastLink = links.length > 0 ? links[links.length - 1] : null;
 
   const desktopLinkClass = (linkHref: string) =>
     isHomePage
@@ -110,9 +100,11 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
     isHomePage
       ? "text-madBack"
       : getLinkClass(linkHref, "text-madText", "text-madEncart");
-
-  const mainLinks = links.slice(0, -1);
-  const lastLink = links.length > 0 ? links[links.length - 1] : null;
+  const getLinkClass = (linkHref: string, base: string, active: string) => {
+    const normPath = currentPath.replace(/\/$/, "");
+    const normHref = linkHref.replace(/\/$/, "");
+    return normPath === normHref ? active : base;
+  };
 
   const currentPageLabel =
     links.find(
@@ -121,8 +113,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
 
   return (
     <div
-      className={`mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 w-full transition-all duration-300
-        ${isScrolled ? "shadow-lg backdrop-blur-md rounded-b-xl" : ""}`}
+      className={`mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 w-full transition-all duration-300 ${isScrolled ? "shadow-lg backdrop-blur-md rounded-b-xl" : ""}`}
     >
       <div className="flex h-24 items-center justify-between gap-8">
         <div className="flex items-center gap-4">
@@ -130,7 +121,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
             <button
               ref={dashboardToggleRef}
               onClick={onDashboardToggle}
-              className="p-2 rounded-md transition text-black hover:bg-black/10"
+              className="p-2 rounded-md transition text-black hover:bg-black/10 cursor-pointer"
               aria-label="Tableau de bord"
             >
               <Icon icon="lucide:layout-dashboard" width="28" />
@@ -168,7 +159,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
                 <button
                   ref={profileToggleRef}
                   onClick={() => setProfileMenuOpen(!isProfileMenuOpen)}
-                  className="flex flex-col items-center gap-1 group"
+                  className="flex flex-col items-center gap-1 group cursor-pointer"
                 >
                   {user.avatarUrl ? (
                     <img
@@ -187,8 +178,6 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
                     {user.firstName}
                   </span>
                 </button>
-
-                {/* === MODIFICATION ICI === */}
                 {isProfileMenuOpen && (
                   <div
                     ref={profileMenuRef}
@@ -198,17 +187,17 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
                       <li>
                         <a
                           href="/private/Dashboard"
-                          className={`block px-3 rounded-md transition ${mobileLinkClass("")} hover:text-madEncart hover:bg-white/10 w-full text-left`}
+                          className={`block px-3 py-2 rounded-md transition ${mobileLinkClass("")} hover:text-madEncart hover:bg-white/10 w-full text-left`}
                           onClick={() => setProfileMenuOpen(false)}
                         >
                           Mon Espace
                         </a>
                       </li>
-                      <li className="border-gray-500/50"></li>
+                      <li className="my-1 border-t border-gray-500/50"></li>
                       <li>
                         <button
                           onClick={handleLogout}
-                          className="w-full text-left block px-3 py-1 rounded-md font-medium text-madRed hover:text-madEncart transition hover:bg-white/10"
+                          className="w-full text-left block px-3 py-2 rounded-md font-medium text-madRed hover:text-madEncart transition hover:bg-white/10 cursor-pointer"
                         >
                           Déconnexion
                         </button>
@@ -220,7 +209,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
             ) : (
               lastLink && (
                 <button
-                  className="rounded-md bg-madRed px-4 py-1 text-white shadow transition hover:bg-madEncart"
+                  className="rounded-md bg-madRed px-4 py-1 text-white shadow transition hover:bg-madEncart cursor-pointer"
                   onClick={() => navigate(lastLink.href)}
                 >
                   {lastLink.label.split("/").map((part, index) => (
@@ -233,7 +222,6 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
             )}
           </div>
         </div>
-
         <div className="flex items-center gap-3 md:hidden">
           {user && user.id ? (
             <a href="/private/Dashboard" className="flex items-center gap-2">
@@ -266,7 +254,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
             onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Ouvrir/fermer le menu"
             aria-expanded={isMobileMenuOpen}
-            className={`rounded p-2 ${isHomePage ? "text-madBack" : "text-black"} transition`}
+            className={`rounded p-2 ${isHomePage ? "text-madBack" : "text-black"} transition cursor-pointer`}
           >
             <Icon icon="lucide:book-open-text" width="28" />
           </button>
@@ -276,7 +264,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
         ref={mobileMenuRef}
         className={`absolute top-24 right-4 z-50 rounded-xl shadow-2xl p-4 ${isHomePage ? "bg-black" : "bg-madBack"} ${isMobileMenuOpen ? "block" : "hidden"}`}
       >
-        <ul className="flex flex-col items-center gap-4 w-40 cursor-pointer">
+        <ul className="flex flex-col items-center gap-4 w-40">
           {mainLinks.map((link) => (
             <li key={link.href}>
               <a
@@ -288,7 +276,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
               </a>
             </li>
           ))}
-          <li className="border-gray-600 w-full text-center">
+          <li className="pt-3 mt-3 border-t border-gray-600 w-full text-center">
             {user && user.id ? (
               <button
                 onClick={handleLogout}

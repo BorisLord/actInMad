@@ -5,8 +5,8 @@ import SEO from "./Seo.astro";
 
 import Footer from "../components/static/Footer.astro";
 import { ClientRouter } from "astro:transitions";
-import RealtimeManager from "../components/RealTimeManager";
-import Navbar from "../components/Navbar";
+import RealtimeManager from "../components/RealTimeManager.tsx";
+import Navbar from "../components/Navbar.tsx";
 import LogoSrc from "../assets/logo/actInMadRedFullLogo.svg";
 
 const links = [
@@ -42,7 +42,7 @@ const jsonLD = {
 };
 ---
 
-<!-- Layout.astro --><!doctype html>
+<!doctype html>
 <html lang="fr">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -68,6 +68,9 @@ const jsonLD = {
         client:only
       />
     </header>
+
+    <div id="scroll-watcher"></div>
+
     <main class="min-h-screen">
       <slot />
     </main>
