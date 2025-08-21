@@ -1,32 +1,48 @@
-import { map } from "nanostores";
+import { persistentMap } from "@nanostores/persistent";
+
+import {
+  subscribeToUserChanges,
+  unsubscribeFromUserChanges,
+} from "../services/realTimeUserServices";
 
 export type User = {
-  token: string;
   id: string;
   email: string;
-  verified: string;
   firstName?: string;
   lastName?: string;
   phone?: string;
+  birthdate?: string;
   theaterLevel?: "Debutant" | "Intermediaire" | "Confirme" | undefined;
-  profileCompleted?: string;
+  verified: boolean;
+  profileCompleted?: boolean;
 };
 
-export const $user = map<User>({
-  token: "",
-  id: "",
-  email: "",
-  verified: "",
-  firstName: undefined,
-  lastName: undefined,
-  phone: undefined,
-  theaterLevel: undefined,
-  profileCompleted: undefined,
-});
+export const $user = persistentMap<User>(
+  "user:",
+  {
+    id: "",
+    email: "",
+    firstName: undefined,
+    lastName: undefined,
+    phone: undefined,
+    birthdate: undefined,
+    theaterLevel: undefined,
+    verified: false,
+    profileCompleted: false,
+  },
+  {
+    encode: JSON.stringify,
+    decode: JSON.parse,
+  },
+);
+
+export function updateUser(updatedRecord: Partial<User>) {
+  const currentUser = $user.get();
+  $user.set({ ...currentUser, ...updatedRecord });
+}
 
 export function setUser(authData: any) {
-  $user.set({
-    token: authData.token,
+  const userData = {
     id: authData.record.id,
     email: authData.record.email,
     verified: authData.record.verified,
@@ -35,9 +51,29 @@ export function setUser(authData: any) {
     phone: authData.record.phone,
     theaterLevel: authData.record.theaterLevel,
     profileCompleted: authData.record.profileCompleted,
-  });
+    birthdate: authData.record.birthdate,
+  };
+  $user.set(userData);
+
+  subscribeToUserChanges(userData.id);
 }
 
 export function clearUser() {
-  $user.set({ token: "", id: "", email: "", verified: "" });
+  const userId = $user.get().id;
+
+  if (userId) {
+    unsubscribeFromUserChanges(userId);
+  }
+
+  $user.set({
+    id: "",
+    email: "",
+    verified: false,
+    firstName: undefined,
+    lastName: undefined,
+    phone: undefined,
+    theaterLevel: undefined,
+    profileCompleted: false,
+    birthdate: undefined,
+  });
 }
