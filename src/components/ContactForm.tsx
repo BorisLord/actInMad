@@ -1,7 +1,12 @@
-import { useState } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 import { API_URL } from "astro:env/client";
+import { useStore } from "@nanostores/preact";
+import { $user, updateUser } from "../lib/stores/userStore";
+import { pb } from "../lib/pocketbase";
 
 export default function ContactForm() {
+  const user = useStore($user);
+
   const [form, setForm] = useState({
     nom: "",
     prenom: "",
@@ -11,6 +16,17 @@ export default function ContactForm() {
   });
   const [sent, setSent] = useState(false);
   const [emailError, setEmailError] = useState("");
+
+  useEffect(() => {
+    if (pb.authStore.isValid && $user) {
+      setForm((prevForm) => ({
+        ...prevForm,
+        nom: user.firstName || "",
+        prenom: user.lastName || "",
+        email: user.email || "",
+      }));
+    }
+  }, [$user]);
 
   const handleChange = (e: Event) => {
     const target = e.target as HTMLInputElement | HTMLTextAreaElement;
@@ -60,13 +76,21 @@ export default function ContactForm() {
       }
 
       setSent(true);
-      setForm({
-        nom: "",
-        prenom: "",
-        email: "",
-        inscription: false,
-        message: "",
-      });
+      if (!pb.authStore.isValid) {
+        setForm({
+          nom: "",
+          prenom: "",
+          email: "",
+          inscription: false,
+          message: "",
+        });
+      } else {
+        setForm((prevForm) => ({
+          ...prevForm,
+          inscription: false,
+          message: "",
+        }));
+      }
     } catch (error) {
       console.error("Erreur lors de l'envoi :", error);
     }
@@ -102,6 +126,7 @@ export default function ContactForm() {
               name="nom"
               value={form.nom}
               onInput={handleChange}
+              autoComplete="on"
               required
               class="w-full p-2 rounded-xl border border-gray-300"
             />
@@ -116,6 +141,7 @@ export default function ContactForm() {
               name="prenom"
               value={form.prenom}
               onInput={handleChange}
+              autoComplete="on"
               required
               class="w-full p-2 rounded-xl border border-gray-300"
             />
@@ -133,6 +159,7 @@ export default function ContactForm() {
             value={form.email}
             onInput={handleChange}
             onBlur={validateEmail}
+            autoComplete="on"
             required
             class="w-full p-2 rounded-xl border border-gray-300"
           />
