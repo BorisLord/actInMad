@@ -100,7 +100,6 @@ const InscriptionForm = () => {
         navigate("/ConnexionInscription");
       }, 2000);
     } catch (error) {
-      console.log(error);
       setRegistrationError("Une erreur s'est produite lors de l'inscription.");
     } finally {
       setForm({

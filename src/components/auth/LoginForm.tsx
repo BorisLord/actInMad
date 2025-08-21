@@ -4,7 +4,7 @@ import { useState } from "preact/hooks";
 import { navigate } from "astro:transitions/client";
 
 import { pb } from "../../lib/pocketbase";
-import { $user, setUser, clearUser } from "../../lib/stores/userStore";
+import { setUser } from "../../lib/stores/userStore";
 import SignUpButton from "../google/GoogleSignButton";
 
 interface FormState {
@@ -59,7 +59,6 @@ const ConnexionForm = () => {
         .authWithPassword(payload.email, payload.password);
       setLoggedIn(true);
       setUser(res);
-      console.log(res);
       navigate("private/Dashboard");
     } catch (error) {
       setLoginError("Une erreur s'est produite lors de la connexion.");
@@ -75,8 +74,7 @@ const ConnexionForm = () => {
         .authWithOAuth2({ provider: "google" });
       setLoggedIn(true);
       setUser(res);
-
-      // navigate("private/Dashboard");
+      navigate("private/Dashboard");
     } catch (error) {
       setLoginError("Une erreur s'est produite lors de la connexion.");
     } finally {
