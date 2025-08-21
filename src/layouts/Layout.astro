@@ -2,13 +2,12 @@
 import "../styles/global.css";
 import AstroFont from "./Font.astro";
 import SEO from "./Seo.astro";
-import Nav from "../components/static/Navbar.astro";
-// import Navbar from "../components/NavbarExtended";
-// import { Navbar } from "flowbite-react";
 
 import Footer from "../components/static/Footer.astro";
 import { ClientRouter } from "astro:transitions";
 import RealtimeManager from "../components/RealTimeManager";
+import Navbar from "../components/Navbar";
+import LogoSrc from "../assets/logo/actInMadRedFullLogo.svg";
 
 const links = [
   { label: "Accueil", href: "/" },
@@ -23,11 +22,6 @@ const links = [
 
 const isHomePage = Astro.url.pathname === "/";
 const currentPath = Astro.url.pathname;
-
-// const authLinks = [
-// { label: 'Coulisses', href: '/login', type: 'primary' },
-// { label: 'Register', href: '/register', type: 'secondary' },
-// ];
 
 const jsonLD = {
   "@context": "https://schema.org",
@@ -48,7 +42,7 @@ const jsonLD = {
 };
 ---
 
-<!doctype html>
+<!-- Layout.astro --><!doctype html>
 <html lang="fr">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -63,9 +57,16 @@ const jsonLD = {
   </head>
   <body class="bg-madBack">
     <RealtimeManager client:load />
-    <header class={isHomePage ? "bg-black" : "bg-madBack"}>
-      <Nav links={links} />
-      <!-- <Navbar links={links} client:only /> -->
+    <header
+      class={`sticky top-0 z-50 ${isHomePage ? "bg-black/100" : "bg-madBack/90"}`}
+    >
+      <Navbar
+        links={links}
+        currentPath={currentPath}
+        isHomePage={isHomePage}
+        logoSrc={LogoSrc.src}
+        client:only
+      />
     </header>
     <main class="min-h-screen">
       <slot />
