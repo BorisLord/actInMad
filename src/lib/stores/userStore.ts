@@ -4,6 +4,7 @@ import {
   subscribeToUserChanges,
   unsubscribeFromUserChanges,
 } from "../services/realTimeUserServices";
+import { getAvatarUrl } from "../pocketbase";
 
 export type User = {
   id: string;
@@ -15,6 +16,7 @@ export type User = {
   theaterLevel?: "Debutant" | "Intermediaire" | "Confirme" | undefined;
   verified: boolean;
   profileCompleted?: boolean;
+  avatarUrl?: string;
 };
 
 export const $user = persistentMap<User>(
@@ -29,6 +31,7 @@ export const $user = persistentMap<User>(
     theaterLevel: undefined,
     verified: false,
     profileCompleted: false,
+    avatarUrl: undefined,
   },
   {
     encode: JSON.stringify,
@@ -41,7 +44,9 @@ export function updateUser(updatedRecord: Partial<User>) {
   $user.set({ ...currentUser, ...updatedRecord });
 }
 
-export function setUser(authData: any) {
+export async function setUser(authData: any) {
+  const avatar = await getAvatarUrl(authData.record.id, authData.record.avatar);
+
   const userData = {
     id: authData.record.id,
     email: authData.record.email,
@@ -52,7 +57,9 @@ export function setUser(authData: any) {
     theaterLevel: authData.record.theaterLevel,
     profileCompleted: authData.record.profileCompleted,
     birthdate: authData.record.birthdate,
+    avatarUrl: avatar ?? undefined,
   };
+
   $user.set(userData);
 
   subscribeToUserChanges(userData.id);
@@ -75,5 +82,6 @@ export function clearUser() {
     theaterLevel: undefined,
     profileCompleted: false,
     birthdate: undefined,
+    avatarUrl: undefined,
   });
 }
