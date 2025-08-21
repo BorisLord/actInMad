@@ -11,3 +11,7 @@
   --font-madTitleFont: "Arbutus Slab", serif;
   --font-madBodyFont: "Inter", sans-serif;
 }
+
+.rdp-root {
+  --rdp-accent-color: #bf4342; /* Change the accent color to indigo. */
+}
