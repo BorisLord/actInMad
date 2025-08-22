@@ -70,12 +70,6 @@ export default function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      
-      console.log(response);
-
-      // if (!response.ok) {
-      //   throw new Error("Échec de l'envoi du message");
-      // }
 
       setSent(true);
       if (!pb.authStore.isValid) {
@@ -94,6 +88,7 @@ export default function ContactForm() {
         }));
       }
     } catch (error) {
+      alert("Échec de l'envoi du message");
       console.error("Erreur lors de l'envoi :", error);
     }
   };
