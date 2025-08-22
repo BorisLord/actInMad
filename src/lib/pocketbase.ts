@@ -1,8 +1,8 @@
-import { API_URL } from "astro:env/client";
+import { PUBLIC_PB_URL } from "astro:env/client";
 import PocketBase from "pocketbase";
 import type { User } from "./stores/userStore";
 
-export const pb = new PocketBase(API_URL);
+export const pb = new PocketBase(PUBLIC_PB_URL);
 
 export const getAvatarUrl = async (
   userId: string,

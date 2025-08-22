@@ -1,5 +1,5 @@
 import { useState, useEffect } from "preact/hooks";
-import { API_URL } from "astro:env/client";
+import { PUBLIC_PB_URL } from "astro:env/client";
 import { useStore } from "@nanostores/preact";
 import { $user, updateUser } from "../lib/stores/userStore";
 import { pb } from "../lib/pocketbase";
@@ -65,15 +65,17 @@ export default function ContactForm() {
     };
 
     try {
-      const response = await fetch(`${API_URL}/api/contact`, {
+      const response = await fetch(`${PUBLIC_PB_URL}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      
+      console.log(response);
 
-      if (!response.ok) {
-        throw new Error("Échec de l'envoi du message");
-      }
+      // if (!response.ok) {
+      //   throw new Error("Échec de l'envoi du message");
+      // }
 
       setSent(true);
       if (!pb.authStore.isValid) {

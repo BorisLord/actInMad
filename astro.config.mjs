@@ -61,7 +61,7 @@ export default defineConfig({
       : "https://staging.actinmad.art",
   env: {
     schema: {
-      API_URL: envField.string({ context: "client", access: "public" }),
+      PUBLIC_PB_URL: envField.string({ context: "client", access: "public" }),
       MODE: envField.enum({
         context: "server",
         access: "public",

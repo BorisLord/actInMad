@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import { API_URL } from "astro:env/client";
+import { PUBLIC_PB_URL } from "astro:env/client";
 import { Icon } from "astro-icon/components";
 
 import { pb } from "../lib/pocketbase";
@@ -9,6 +9,7 @@ import { DateTime } from "luxon";
 import Layout from "../layouts/Layout.astro";
 
 import defImg from "../assets/defaultImg.jpg";
+
 
 const records = await pb
   .collection("articles")
@@ -34,7 +35,7 @@ const records = await pb
               <div class="flex-grow overflow-hidden rounded-xl">
                 {article.images.length > 0 ? (
                   <img
-                    src={`${API_URL}/api/files/articles/${article.id}/${article.images[0]}`}
+                    src={`${PUBLIC_PB_URL}/api/files/articles/${article.id}/${article.images[0]}`}
                     alt={article.imgDescription}
                     class="w-full h-92 object-cover rounded-xl"
                     loading="lazy"

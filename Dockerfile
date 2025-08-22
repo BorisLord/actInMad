@@ -1,10 +1,10 @@
 FROM node:lts-alpine AS build
 
 ARG MODE
-ARG API_URL
+ARG PUBLIC_PB_URL
 
 ENV MODE=${MODE}
-ENV API_URL=${API_URL}
+ENV PUBLIC_PB_URL=${PUBLIC_PB_URL}
 
 # Create docker-compose to have acces to the docker network during build to fetch articles from db
 
