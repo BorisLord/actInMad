@@ -7,14 +7,14 @@ import {
 import { getAvatarUrl } from "../pocketbase";
 
 export type User = {
-  id: string;
-  email: string;
+  id?: string;
+  email?: string;
   firstName?: string;
   lastName?: string;
   phone?: string;
   birthdate?: string;
   theaterLevel?: "Debutant" | "Intermediaire" | "Confirme" | undefined;
-  verified: boolean;
+  verified?: boolean;
   profileCompleted?: boolean;
   avatarUrl?: string;
 };
@@ -22,15 +22,15 @@ export type User = {
 export const $user = persistentMap<User>(
   "user:",
   {
-    id: "",
-    email: "",
+    id: undefined,
+    email: undefined,
+    profileCompleted: undefined,
+    verified: undefined,
     firstName: undefined,
     lastName: undefined,
     phone: undefined,
     birthdate: undefined,
     theaterLevel: undefined,
-    verified: false,
-    profileCompleted: false,
     avatarUrl: undefined,
   },
   {
@@ -73,14 +73,14 @@ export function clearUser() {
   }
 
   $user.set({
-    id: "",
-    email: "",
-    verified: false,
+    id: undefined,
+    email: undefined,
+    verified: undefined,
+    profileCompleted: undefined,
     firstName: undefined,
     lastName: undefined,
     phone: undefined,
     theaterLevel: undefined,
-    profileCompleted: false,
     birthdate: undefined,
     avatarUrl: undefined,
   });
