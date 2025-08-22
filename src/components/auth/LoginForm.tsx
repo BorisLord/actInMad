@@ -59,7 +59,7 @@ const ConnexionForm = () => {
         .authWithPassword(payload.email, payload.password);
       setLoggedIn(true);
       setUser(res);
-      navigate("private/Dashboard");
+      navigate("/private/Dashboard");
     } catch (error) {
       setLoginError("Une erreur s'est produite lors de la connexion.");
     } finally {
@@ -74,7 +74,7 @@ const ConnexionForm = () => {
         .authWithOAuth2({ provider: "google" });
       setLoggedIn(true);
       setUser(res);
-      navigate("private/Dashboard");
+      navigate("/private/Dashboard");
     } catch (error) {
       setLoginError("Une erreur s'est produite lors de la connexion.");
     } finally {
