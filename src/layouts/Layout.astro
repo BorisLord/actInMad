@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import AstroFont from "./Font.astro";
+import { Font } from "astro:assets";
 import SEO from "./Seo.astro";
 
 import Footer from "../components/static/Footer.astro";
@@ -47,7 +47,8 @@ const jsonLD = {
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8" />
-    <AstroFont />
+    <Font cssVariable="--font-madTitleFont" preload />
+    <Font cssVariable="--font-madBodyFont" preload />
     <SEO {...Astro.props.seo} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLD)} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -56,7 +57,7 @@ const jsonLD = {
     <ClientRouter />
   </head>
   <body class="bg-madBack">
-    <RealtimeManager client:load />
+    <RealtimeManager client:only="preact" />
     <header
       class={`sticky top-0 z-50 ${isHomePage ? "bg-black/100" : "bg-madBack/90"}`}
     >
