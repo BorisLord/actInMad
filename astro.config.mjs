@@ -17,7 +17,6 @@ if (!["production", "staging"].includes(mode)) {
 }
 
 export default defineConfig({
-  trailingSlash: "ignore",
   experimental: {
     fonts: [
       {
