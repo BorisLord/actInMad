@@ -1,5 +1,6 @@
-@import "tailwindcss";
 /* @config "../../tailwind.config.mjs"; */
+@import "tailwindcss";
+
 @plugin '@tailwindcss/forms';
 
 @theme {
@@ -8,15 +9,28 @@
   --color-madText: #252525;
   --color-madEncart: #bf4342;
 
-  --font-madTitleFont: "Arbutus Slab", serif;
-  --font-madBodyFont: "Inter", sans-serif;
+  --font-family-title: var(--font-madTitleFont);
+  --font-family-body: var(--font-madBodyFont);
 }
 
 .rdp-root {
-  --rdp-accent-color: #bf4342; /* Change the accent color to indigo. */
+  --rdp-accent-color: #bf4342;
 }
 
 @layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-family-title;
+  }
+
+  body {
+    @apply font-family-body;
+  }
+
   button:not([disabled]),
   [role="button"]:not([disabled]) {
     cursor: pointer;

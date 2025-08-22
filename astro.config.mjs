@@ -17,6 +17,41 @@ if (!["production", "staging"].includes(mode)) {
 }
 
 export default defineConfig({
+  experimental: {
+    fonts: [
+      {
+        name: "Arbutus Slab",
+        provider: "local",
+        cssVariable: "--font-madTitleFont",
+        variants: [
+          {
+            src: ["./src/fonts/arbutus-slab-v16-latin-regular.woff2"],
+            weight: 400,
+            style: "normal",
+          },
+        ],
+        fallbacks: ["serif"],
+      },
+      {
+        name: "Inter",
+        provider: "local",
+        cssVariable: "--font-madBodyFont",
+        variants: [
+          {
+            weight: 400,
+            style: "normal",
+            src: ["./src/fonts/inter-v19-latin-regular.woff2"],
+          },
+          {
+            weight: 700,
+            style: "normal",
+            src: ["./src/fonts/inter-v19-latin-700.woff2"],
+          },
+        ],
+        fallbacks: ["sans-serif"],
+      },
+    ],
+  },
   vite: {
     plugins: [tailwindcss()],
   },
