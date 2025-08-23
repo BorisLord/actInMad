@@ -1,6 +1,6 @@
 // src/components/preact/DashboardNav.tsx
-import type { FunctionalComponent } from "preact";
 import { Icon } from "@iconify/react";
+import type { FunctionalComponent } from "preact";
 
 type NavItem = {
   id: string;
@@ -15,7 +15,7 @@ type NavProps = {
 
 const navItems: NavItem[] = [
   { id: "UserAccount", label: "Mon Compte", icon: "lucide:person-standing" },
-  { id: "UserSubscription", label: "Abonnements", icon: "lucide:notebook-pen" },
+  { id: "UserSubscription", label: "Inscription", icon: "lucide:notebook-pen" },
   { id: "UserCourse", label: "Mes Cours", icon: "lucide:theater" },
   { id: "UserDocument", label: "Documents", icon: "lucide:file-spreadsheet" },
   { id: "UserSetting", label: "Paramètres", icon: "lucide:settings" },

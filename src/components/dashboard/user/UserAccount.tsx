@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "preact/hooks";
 
 import { pb } from "../../../lib/pocketbase";
-import { updateUser, type User } from "../../../lib/stores/userStore";
-
+import { type User, updateUser } from "../../../lib/stores/userStore";
 import Calendar from "../../Calendar";
 
 export default function UserAccount({ user }: { user: User }) {

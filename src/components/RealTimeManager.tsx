@@ -1,10 +1,11 @@
-import { useEffect } from "preact/hooks";
 import { useStore } from "@nanostores/preact";
-import { $user } from "../lib/stores/userStore";
+import { useEffect } from "preact/hooks";
+
 import {
   subscribeToUserChanges,
   unsubscribeFromUserChanges,
 } from "../lib/services/realTimeUserServices";
+import { $user } from "../lib/stores/userStore";
 
 export default function RealtimeManager() {
   const user = useStore($user);

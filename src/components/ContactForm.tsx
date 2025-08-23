@@ -1,8 +1,9 @@
-import { useState, useEffect } from "preact/hooks";
-import { PUBLIC_PB_URL } from "astro:env/client";
 import { useStore } from "@nanostores/preact";
-import { $user, updateUser } from "../lib/stores/userStore";
+import { PUBLIC_PB_URL } from "astro:env/client";
+import { useEffect, useState } from "preact/hooks";
+
 import { pb } from "../lib/pocketbase";
+import { $user, updateUser } from "../lib/stores/userStore";
 
 export default function ContactForm() {
   const user = useStore($user);
@@ -95,12 +96,12 @@ export default function ContactForm() {
 
   return (
     <div class="flex flex-col items-center p-4">
-      <div class="max-w-6xl p-4 md:p-6 mt-5">
-        <h1 class="text-madRed text-2xl md:text-3xl text-center md:text-left">
+      <div class="max-w-6xl mx-auto p-4 md:p-6 mt-5 text-center">
+        <h1 class="text-madRed text-2xl md:text-3xl">
           Posez-nous vos questions !
         </h1>
-        <h2 class="text-center text-xl">Inscrivez-vous à Act in Mag' !</h2>
-        <p class="text-center text-sm text-gray-500">
+        <h2 class="text-lg md:text-xl">Inscrivez-vous à Act in Mag' !</h2>
+        <p class="text-xs md:text-sm text-gray-500">
           Bug, suggestion ou simple message : nous sommes à l’écoute !
         </p>
       </div>

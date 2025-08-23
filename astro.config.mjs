@@ -1,13 +1,11 @@
 // @ts-check
-import { defineConfig, envField } from "astro/config";
-import { loadEnv } from "vite";
-
-import tailwindcss from "@tailwindcss/vite";
+import preact from "@astrojs/preact";
 import sitemap from "@astrojs/sitemap";
+import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 import astroLLMsGenerator from "astro-llms-generate";
-
-import preact from "@astrojs/preact";
+import { defineConfig, envField } from "astro/config";
+import { loadEnv } from "vite";
 
 const env = loadEnv(process.env.MODE || "staging", process.cwd(), "");
 

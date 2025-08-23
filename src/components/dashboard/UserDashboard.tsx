@@ -1,16 +1,15 @@
-import { useEffect, useState } from "preact/hooks";
-import { navigate } from "astro:transitions/client";
 import { useStore } from "@nanostores/preact";
+import { navigate } from "astro:transitions/client";
+import { useEffect, useState } from "preact/hooks";
 
 import { pb } from "../../lib/pocketbase";
 import { $user, updateUser } from "../../lib/stores/userStore";
-
 import DashboardNav from "./DashboardNav";
 import UserAccount from "./user/UserAccount";
-import UserSubscription from "./user/UserSubscription";
-import UserSetting from "./user/UserSetting";
-import UserDocument from "./user/UserDocument";
 import UserCourse from "./user/UserCourse";
+import UserDocument from "./user/UserDocument";
+import UserSetting from "./user/UserSetting";
+import UserSubscription from "./user/UserSubscription";
 
 export default function UserDashboard() {
   const [currentPage, setCurrentPage] = useState<string>("UserAccount");

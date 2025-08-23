@@ -1,7 +1,6 @@
-import type { ChangeEvent, FormEvent } from "preact/compat";
-
-import { useState } from "preact/hooks";
 import { navigate } from "astro:transitions/client";
+import type { ChangeEvent, FormEvent } from "preact/compat";
+import { useState } from "preact/hooks";
 
 import { pb } from "../../lib/pocketbase";
 import { setUser } from "../../lib/stores/userStore";

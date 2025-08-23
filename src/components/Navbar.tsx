@@ -1,12 +1,11 @@
-// src/components/preact/Navbar.tsx
-import { useState, useEffect, useRef } from "preact/hooks";
-import type { FunctionalComponent, Ref } from "preact";
 import { Icon } from "@iconify/react";
-import { navigate } from "astro:transitions/client";
 import { useStore } from "@nanostores/preact";
+import { navigate } from "astro:transitions/client";
+import type { FunctionalComponent, Ref } from "preact";
+import { useEffect, useRef, useState } from "preact/hooks";
 
-import { $user, clearUser } from "../lib/stores/userStore";
 import { pb } from "../lib/pocketbase";
+import { $user, clearUser } from "../lib/stores/userStore";
 
 // Interface de props unifiée et nettoyée
 interface Link {

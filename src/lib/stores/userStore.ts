@@ -1,10 +1,10 @@
 import { persistentMap } from "@nanostores/persistent";
 
+import { getAvatarUrl } from "../pocketbase";
 import {
   subscribeToUserChanges,
   unsubscribeFromUserChanges,
 } from "../services/realTimeUserServices";
-import { getAvatarUrl } from "../pocketbase";
 
 export type User = {
   id?: string;
