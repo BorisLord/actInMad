@@ -62,9 +62,17 @@ export default defineConfig({
   env: {
     schema: {
       PUBLIC_PB_URL: envField.string({ context: "client", access: "public" }),
+      PB_BUILDER_EMAIL: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      PB_BUILDER_PASSWORD: envField.string({
+        context: "server",
+        access: "secret",
+      }),
       MODE: envField.enum({
         context: "server",
-        access: "public",
+        access: "secret",
         values: ["production", "staging"],
         default: "staging",
       }),
