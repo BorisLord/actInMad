@@ -99,7 +99,10 @@ export default function ContactForm() {
         <h1 class="text-madRed text-2xl md:text-3xl text-center md:text-left">
           Posez-nous vos questions !
         </h1>
-        <h2 class="text-center text-lg">ou inscrivez-vous à Act in Mag' !</h2>
+        <h2 class="text-center text-xl">Inscrivez-vous à Act in Mag' !</h2>
+        <p class="text-center text-sm text-gray-500">
+          Bug, suggestion ou simple message : nous sommes à l’écoute !
+        </p>
       </div>
 
       <form

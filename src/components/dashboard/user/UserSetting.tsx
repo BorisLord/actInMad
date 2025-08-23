@@ -17,6 +17,17 @@ export default function UserSetting() {
       <p class="mt-6 text-sm text-gray-500">
         (En attendant, répétez vos répliques !)
       </p>
+      <p class="mt-4 text-gray-700">
+        Une idée, un bug à signaler ou une fonctionnalité que vous rêvez d’avoir
+        ?
+        <br />
+        <a
+          href="/Contact"
+          class="text-madRed hover:underline font-medium cursor-pointer"
+        >
+          Envoyez-nous un mot via le formulaire de contact
+        </a>
+      </p>
     </div>
   );
 }
