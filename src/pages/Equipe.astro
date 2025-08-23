@@ -1,203 +1,108 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import BioCard from "../components/static/BioCard.astro";
+import { pb } from "../lib/pocketbase";
+import { PB_BUILDER_EMAIL, PB_BUILDER_PASSWORD } from "astro:env/server";
 
-import maud from "../assets/photos/equipe/Maud.jpg";
-import christopher from "../assets/photos/equipe/Christopher.jpg";
-import corinne from "../assets/photos/equipe/Corinne.jpg";
-import elaine from "../assets/photos/equipe/Elaine.jpg";
-import fred from "../assets/photos/equipe/Fred.jpg";
-import jeanBaptiste from "../assets/photos/equipe/JeanBaptiste.jpg";
-import charlene from "../assets/photos/equipe/Charlene.jpg";
-import alexandre from "../assets/photos/equipe/Alexandre.png";
-import david from "../assets/photos/equipe/David.jpg";
-import boris from "../assets/photos/equipe/Boris.jpeg";
+await pb
+  .collection("users")
+  .authWithPassword(PB_BUILDER_EMAIL, PB_BUILDER_PASSWORD);
 
-const profs = [
-  {
-    name: "Charlène Ségouin",
-    instaLink: "https://www.instagram.com/chaaseg/",
-    photo: charlene,
-    bio: `<strong>Charlène</strong> est metteure en scène, comédienne et marionnettiste. Après une licence d’études théâtrales à la Sorbonne Nouvelle et un Cycle d’Orientation Professionnelle au Conservatoire de Clamart, Charlène fonde la compagnie Artère Brûle. Son travail à la mise en scène s’articule autour d’images oniriques et cinématographiques, mêlant le corps en jeu, l’exploration de matériaux et la danse-théâtre.
-Avec la Cie Artère Brûle, elle met en scène deux spectacles, « Le 20 novembre » de Lars Norén et en 2024, « Rouge Cousue », une création originale.
-En 2020, elle est danseuse et assistante dramaturge dans la pièce chorégraphique "Traces de Murs - Temps de chien". En 2023, elle est nommée lauréate de « Création en cours » des Ateliers Médicis.
-Charlène travaille depuis plusieurs années avec la compagnie Art & Acte en tant que marionnettiste et assistante à la mise en scène sur les spectacles de marionnettes « Héroïnes » (2021) et « Selkie - Ce que l’on porte » (2023).
-Charlène s’associe à différentes compagnies (Cie Espace Blanc, Cie Art&Acte, Cie Artère Brûle…) pour mener de nombreux ateliers artistiques auprès de différents publics (enfants et ado, MNA, EHPAD, handicap…).`,
-  },
-  {
-    name: "David Negroni",
-    instaLink: "https://www.instagram.com/act_in_mad/",
-    photo: david,
-    bio: `Comédien et metteur en scène, <strong>David</strong> est formé à l'École Nationale du Cirque ainsi qu’au conservatoire de Paris. Il a travaillé en tant qu'acteur notamment avec Marcel Maréchal, Jean Claude Sachaud, Christophe Lidon, Jean Negroni, Eric Sanjou, Alain Béhar dont il fut aussi l'assistant. Appréciant à la fois le théâtre intimiste et les fresques épiques, il a mis en scène des textes de Cocteau, Ramon del Valle Inclan, Robert Merle (Flamineo), Ariel O, W.Gombrowicz et plusieurs textes qu'il a lui même écrits. Il a tourné pour la télévision et le cinéma ainsi que dans de nombreux courts métrages.
-David est également auteur et enseignant depuis une trentaine d'années aussi bien pour des comédiens professionnels que pour des professionnalisant et des amateurs.`,
-  },
-  {
-    name: "Alexandre Marquette",
-    instaLink: "https://www.instagram.com/alexandre.marquette/",
-    photo: alexandre,
-    bio: `Comédien, réalisateur et dramaturge, <strong>Alexandre</strong> se produit aussi bien sur scène que pour une caméra.
-Formé au Conservatoire de Musique et Théâtre de Genève, il a adapté et mis en scène le roman éponyme “La vie et les opinions de Tristram Shandy”  avec le collectif Tranx qu’il a fondé.
-Bilingue espagnol, il s’est produit sur scène en Colombie et a écrit puis réalisé un court métrage.
-Formé aux différents métiers de la voix, Alexandre travaille à la création d’un spectacle théâtrale audio qu’il met en scène. Depuis plusieurs années, il anime régulièrement des ateliers d’improvisation pour des entreprises et propose également des matchs d’improvisation.`,
-  },
-];
+const records = await pb
+  .collection("equipes")
+  .getFullList({ filter: "isActive=true", sort: "+created" });
 
-const comediens = [
-  {
-    name: "Jean-Baptiste Bazin",
-    instaLink: "https://www.instagram.com/jbbazin/",
-    photo: jeanBaptiste,
-    bio: `Franco-chilien, originaire de Paris, <strong>Jean-Baptiste Bazin</strong> débute enfant au cinéma dans Messieurs les enfants de Pierre Boutron, puis fait ses études à Angoulême à l’École Européenne Supérieure de l'Image (EESI), à l'UFR Lettres et Langues de Poitiers. 
-Il se consacre très vite au théâtre dans Riquet de Laurent Brethome, dans La Peau d’Élisa de Julie Macqueron, La Mouette de Francine Walter, Le Modérateur de Sarah Soilihi, Les Fourberies de Scapin de Camille Taquoy Ghalem, et George Dandin d’Adèle Potel. 
-En parallèle de son activité d'auteur, Jean-Baptiste est également metteur en scène. De plus, il a fait une nouvelle traduction de Glengarry Glen Ross de David Mamet, qui s’est jouée pour la première fois en Mars 2025.`,
-  },
-  {
-    name: "Elaine Storck",
-    instaLink: "https://www.instagram.com/elaine.storck/",
-    photo: elaine,
-    bio: `Comédienne et danseuse, <strong>Elaine Storck</strong> découvre la scène à 6 ans par le biais de la danse puis à travers le théâtre. Formée aux Cours Florent, Elaine suit - en parallèle de sa formation de comédienne - un Master d’Histoire et Esthétique du Cinéma à l’Université Paris VII. 
-En acting, elle a notamment travaillé avec Yoshi Oïda, Chad Chenouga, Danielle Fichaud, Sébastien Bonnabel et Philippe Calvario. 
-Forte de deux ans d’expérience à Toronto au Canada et d’une formation d’Acting in English, Elaine joue aussi bien en français qu’en anglais, tant au théâtre et à la caméra qu’en voix-off et doublage. 
-A la télévision, elle joue le rôle principal dans Un Amour Immortel de Luc Chalifour, et dans Trop Beau Pour Moi de Thierry Deschamp. Au théâtre, elle incarne Claudine, servante espiègle dans George Dandin de Molière, mis en scène par Adèle Potel et la Compagnie Castigat Ridendo Mores. Elle est également assistante mise en scène sur Glengarry Glen Ross de David Mamet, mis en scène par Jean-Baptiste Bazin.`,
-  },
-  {
-    name: "Fred Eyangoh",
-    instaLink: "https://www.instagram.com/fredmeup/",
-    photo: fred,
-    bio: `<strong>Fred Eyangoh</strong> est né et a grandi au Cameroun avant d’arriver en France à l’âge de 19 ans pour poursuivre ses études à HEC Paris. 
-Après avoir obtenu un diplôme en marketing, il se lance dans le stand-up en anglais et en français en 2014. 
-Il s’est produit sur de nombreuses scènes parisiennes comme le Paname Art Café, La Nouvelle Eve, Le Petit Palais des Glaces… ainsi qu’en Allemagne et au Luxembourg lui ouvrant un passage pour France Télévisions en 2024. 
-Il a également travaillé du côté de la production et de l’administration dans le domaine du spectacle vivant et du cinéma.`,
-  },
-  {
-    name: "Maud Plessis",
-    instaLink: "https://www.instagram.com/maudpless/",
-    photo: maud,
-    bio: `Diplômée en management et entrepreneuriat, <strong>Maud Plessis</strong> commence le jeu en 2016, en parallèle de sa vie professionnelle. Elle effectue 2 ans de théâtre d’improvisation et une année à l’Ecole du Jeu avant de partir à Madrid où elle continue à faire du théâtre en espagnol. Elle joue 5 personnages dans une adaptation libre de plusieurs œuvres de Brecht, au Teatro Luchana et le rôle d'Ann Deever dans Todos eran mis hijos d'Arthur Muller. De retour à Paris, elle s’inscrit aux cours Acquaviva dont elle est diplômée. En février et mars 2024, Maud joue plusieurs rôles dont La Femme Juive dans Grand Peur et Misère du IIIème Reich de Brecht, mise en scène Xavier Lemaire au théâtre des Béliers Parisiens. En juillet 2024, elle joue Suzanne dans Tailleur pour Dames de Feydeau mise en scène Corinne Azzoug. Et enfin en septembre, elle joue deux créations collectives au Lavoir Moderne Parisien : Celui qui se cherche mise en scène Eugène Casalis et Nanarbuster mise en scène Eléonore Allard.`,
-  },
-  {
-    name: "Christopher Caulier",
-    instaLink: "https://www.instagram.com/chriscaulier/",
-    photo: christopher,
-    bio: `<strong>Christopher Caulier</strong> se forme au conservatoire de Nîmes et au Cours Florent. Dans les entrailles de la terre, une création de Daniela Morina lui offre sa première expérience professionnelle pour deux saisons en Avignon. Pour la compagnie Pastel à Reims, il joue dans Les Coulisses de la liberté de Florent Lenice, alternant les rôles d’un serveur comique, d’un citoyen révolutionnaire et d’une statue mobile. Il part en tournée en Italie avec la compagnie Lingue Senza Frontiere pour jouer dans Le Petit Prince et Belle et Sébastien. Il est également Dionysos dans Supernovae de Kevin Storck, Dorante dans Le Jeu de l’Amour et du Hasard de la Cie L’ombre du Masque. A l’image, il participe à plusieurs courts-métrages et webséries, notamment Sagesse2rue plusieurs fois primée dans le monde. Il passe de l’autre côté de la caméra et vient de réaliser son premier court-métrage Saint-Honoré produit par AnnéeZéro et financé par France TV. Il gagne deux prix au Festival International de Saint-Jean-de-Luz pour ce film. Christopher est en ce moment à l’affiche d’une comédie musicale Un voyage au bout du monde mis en scène par Tim Frion.`,
-  },
-];
-
-const founder = [
-  {
-    name: "Corinne Azzoug",
-    instaLink: "https://www.instagram.com/corinne_azzoug_comedienne/",
-    photo: corinne,
-    bio: `A la suite de sa formation au conservatoire d’art dramatique d’Aulnay-sous-Bois, <strong>Corinne Azzoug</strong> part vivre en Suède pendant sept ans où, entre autres, elle donne des cours de théâtre à des amateurs. De retour à Paris, elle complète sa formation de comédienne en suivant les cours de Jean-Laurent Cochet.
-
-Quelques années plus tard elle se forme à la méthode Meisner. Bilingue anglais, elle est également formée à la méthode de Robert Castle et Alejandra Orozco, tous les deux fondateurs de l’IT New York. 
-
-Elle met en scène et joue dans plusieurs pièces dont Un air de famille, Cuisine et dépendances d’Agnès Jaoui et Jean-Pierre Bacri, Les femmes savantes et George Dandin de Molière, Tailleur pour dames et Le dindon de Georges Feydeau. 
-
-Chez Act In Mad, Corinne Azzoug est donc professeur, metteure en scène, et comédienne.
-
-Corinne prône une approche ludique et dédramatisée du théâtre qu’elle souhaite rendre possible au plus grand nombre, en tous cas à ceux qui le souhaitent ou qui le rêvent. L’accès à cette “couleur” du théâtre se fait tant par le biais des Ateliers spectacle qu’en devenant comédien.ne.s de la compagnie. C’est animée par cette volonté de “décloisonner” que Corinne a fondé Act In Mad qui lui permet également de véhiculer fortement ses valeurs que sont la créativité, l’esprit d’équipe et le jeu.`,
-  },
-  {
-    name: "Boris Delord",
-    linkedIn: "https://www.linkedin.com/in/boris-d/",
-    photo: boris,
-    bio: `Polyvalent et prêt à relever les défis, <strong>Boris</strong> est le couteau suisse d'Act In Mad. Il gère les aspects opérationnels et digitaux pour s'assurer que tout fonctionne et que le parcours des élèves soit le plus fluide possible, du premier contact jusqu'à la scène.
-
-Cette polyvalence, il l'a forgée au fil d'un parcours intense et varié. D'abord dans l'univers des cuisines, où il a aiguisé son sens de l'organisation et sa capacité à jongler sous pression. Puis, en opérant un changement de cap pour se consacrer au développement informatique. Après quelques années passées en tant que développeur, il a acquis rigueur, capacité en gestion de projets ainsi qu'un sens affûté du travail en équipe.
-
-Doté d'une belle énergie communicative et d'un sacré sens de l'humour, il est particulièrement heureux quand il perçoit les progrès des élèves et voit naître de belles dynamiques de groupe. Act In Mad, c'est avant tout une aventure humaine et créative qu'il est ravi de construire.`,
-  },
-];
+const fondateurs = records.filter((record) => record.type.includes("founders"));
+const profs = records.filter((record) => record.type.includes("profs"));
+const comediens = records.filter((record) => record.type.includes("comediens"));
 ---
 
 <Layout>
   <div class="flex flex-col items-center p-4">
-    <div class="flex flex-col md:flex-row w-full max-w-6xl p-4 md:p-6 mt-5">
-      <h1 class="text-madRed text-2xl md:text-3xl text-center md:text-left">
-        Les Professeur·e·s Metteur·e·s en scène
-      </h1>
-    </div>
-    <div
-      class="flex flex-col md:flex-row max-w-6xl p-4 md:p-6 gap-6 justify-center items-center -mt-6 md:-mt-8"
-    >
-      <div
-        class="text-center md:text-left flex flex-col justify-center leading-snug"
-      >
-        <p class="text-justify">
+    <div class="w-full max-w-6xl mt-5">
+      <div class="p-4 md:p-6">
+        <h1 class="text-madRed text-2xl md:text-3xl text-center md:text-left">
+          Les Professeur·e·s Metteur·e·s en scène
+        </h1>
+      </div>
+      <div class="p-4 md:p-6 -mt-6 md:-mt-8">
+        <p class="text-justify leading-snug">
           Les professeur·e·s de théâtre chez Act In Mad sont avant tout des
           comédien·ne·s et des metteur·e·s en scène rigoureusement
           sélectionné·e·s qui vivent de leur métier, et ont à cœur de
           transmettre leur passion à des amateur·e·s, eux·elles-mêmes
           passionné·e·s par les arts de la scène.<span class="block mt-3"
-          ></span>Iels sont comédien·ne·s, metteur·e·s en scène, voix off ou
-          bien encore iels doublent vos séries préférées ou les dessins animés
-          de vos enfants !<span class="block mt-3"></span>Tou·te·s ont suivi une
-          formation professionnelle au métier de comédien·ne·s. Iels sont
-          expérimenté·e·s, pédagogues et dispensent un enseignement de qualité
-          dans le respect et le plaisir de la personnalité de chacun·e.
+          ></span>
+          Iels sont comédien·ne·s, metteur·e·s en scène, voix off ou bien encore
+          iels doublent vos séries préférées ou les dessins animés de vos enfants
+          !<span class="block mt-3"></span>
+          Tou·te·s ont suivi une formation professionnelle au métier de comédien·ne·s.
+          Iels sont expérimenté·e·s, pédagogues et dispensent un enseignement de
+          qualité dans le respect et le plaisir de la personnalité de chacun·e.
         </p>
       </div>
     </div>
-    <div class="space-y-8 leading-snug">
+    <div class="space-y-8 leading-snug w-full max-w-6xl">
       {
         profs.map((prof) => (
           <BioCard
-            name={prof.name}
-            instaLink={prof.instaLink}
-            photo={prof.photo}
-            bio={prof.bio}
+            name={`${prof.prenom} ${prof.nom}`}
+            instaLink={prof.instagram}
+            photo={pb.files.getURL(prof, prof.photo)}
+            bio={prof.description}
           />
         ))
       }
     </div>
-    <div class="flex flex-col md:flex-row w-full max-w-6xl p-4 md:p-6 mt-5">
-      <h1 class="text-madRed text-2xl md:text-3xl text-center md:text-left">
-        Les Comédien.ne.s de la Compagnie
-      </h1>
-    </div>
-    <div
-      class="flex flex-col md:flex-row max-w-6xl p-4 md:p-6 gap-6 justify-center items-center -mt-6 md:-mt-8"
-    >
-      <div class="text-center md:text-left flex flex-col justify-center">
+
+    <div class="w-full max-w-6xl mt-5">
+      <div class="p-4 md:p-6">
+        <h1 class="text-madRed text-2xl md:text-3xl text-center md:text-left">
+          Les Comédien·ne·s de la Compagnie
+        </h1>
+      </div>
+      <div class="p-4 md:p-6 -mt-6 md:-mt-8">
         <p class="text-justify leading-snug">
-          Issu.e.s d’horizons différents, les comédiennes et comédiens de la
+          Issu·e·s d’horizons différents, les comédiennes et comédiens de la
           Compagnie sont talentueux, pluri-disciplinaires, audacieux et ouverts
           de cœur et d’esprit ! Toute l’équipe travaille ensemble et forme la
           Famille Mesnard dans Un Air de Famille, mise en scène par Corinne
           Azzoug.
         </p>
       </div>
-    </div>
-    <div class="space-y-8 leading-snug">
-      {
-        comediens.map((com) => (
-          <BioCard
-            name={com.name}
-            instaLink={com.instaLink}
-            photo={com.photo}
-            bio={com.bio}
-          />
-        ))
-      }
-    </div>
-    <div class="flex flex-col md:flex-row w-full max-w-6xl p-4 md:p-6 mt-5">
-      <h1 class="text-madRed text-2xl md:text-3xl text-center md:text-left">
-        Fondateurs-trices
-      </h1>
-    </div>
-    <div class="space-y-8 leading-snug">
-      {
-        founder.map((found) => (
-          <BioCard
-            name={found.name}
-            instaLink={found.instaLink}
-            linkedIn={found.linkedIn}
-            photo={found.photo}
-            bio={found.bio}
-          />
-        ))
-      }
+      <div class="space-y-8 leading-snug w-full max-w-6xl">
+        {
+          comediens.map((comedien) => (
+            <BioCard
+              name={`${comedien.prenom} ${comedien.nom}`}
+              instaLink={comedien.instagram}
+              photo={pb.files.getURL(comedien, comedien.photo)}
+              bio={comedien.description}
+            />
+          ))
+        }
+      </div>
+
+      <div class="w-full max-w-6xl mt-5">
+        <div class="p-4 md:p-6">
+          <h1 class="text-madRed text-2xl md:text-3xl text-center md:text-left">
+            Les Fondateurs-trices
+          </h1>
+        </div>
+      </div>
+      <div class="space-y-8 leading-snug w-full max-w-6xl">
+        {
+          fondateurs.map((fondateur) => (
+            <BioCard
+              name={`${fondateur.prenom} ${fondateur.nom}`}
+              instaLink={fondateur.instagram}
+              linkedIn={fondateur.linkedIn}
+              photo={pb.files.getURL(fondateur, fondateur.photo)}
+              bio={fondateur.description}
+            />
+          ))
+        }
+      </div>
     </div>
   </div>
 </Layout>
