@@ -1,42 +1,72 @@
 ---
 import { Image } from "astro:assets";
-
 import { Icon } from "astro-icon/components";
 
 const { name, instaLink, linkedIn, photo, bio } = Astro.props;
-
-const socialLink = instaLink ?? linkedIn;
-const socialIcon = instaLink ? "lucide:instagram" : "lucide:linkedin";
 ---
 
 <div class="p-4 max-w-5xl mx-auto">
-  <div class="flex justify-between items-center w-full mb-4">
+  <div class="flex justify-between items-center w-full mb-4 gap-4">
     <h2 class="text-2xl font-bold text-madText">{name}</h2>
-    {
-      socialLink && (
-        <a
-          href={socialLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-madBack bg-madRed rounded-md p-1"
-        >
-          <Icon name={socialIcon} size="25" />
-        </a>
-      )
-    }
+
+    <div class="flex items-center gap-2">
+      {
+        instaLink && (
+          <a
+            href={instaLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-madBack bg-madRed rounded-md p-1 transition-transform hover:scale-110"
+            aria-label={`Instagram de ${name}`}
+          >
+            <Icon name="lucide:instagram" class="w-6 h-6" />
+          </a>
+        )
+      }
+      {
+        linkedIn && (
+          <a
+            href={linkedIn}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-madBack bg-madRed rounded-md p-1 transition-transform hover:scale-110"
+            aria-label={`LinkedIn de ${name}`}
+          >
+            <Icon name="lucide:linkedin" class="w-6 h-6" />
+          </a>
+        )
+      }
+    </div>
   </div>
 
-  <div class="flex flex-col md:flex-row md:items-start gap-4 w-full">
-    <div class="w-full md:w-1/5 flex justify-center md:justify-start">
-      <div class="w-40 h-56 overflow-hidden rounded">
-        <Image
-          src={photo}
-          alt={`Photo de ${name}`}
-          class="w-full h-full object-cover rounded"
-        />
+  <div class="flex flex-col md:flex-row md:items-start gap-6 w-full">
+    <div
+      class="w-full md:w-1/5 flex justify-center md:justify-start flex-shrink-0"
+    >
+      <div
+        class="w-40 h-56 overflow-hidden rounded shadow-md border border-gray-200"
+      >
+        {
+          photo ? (
+            <Image
+              src={photo}
+              alt={`Photo de ${name}`}
+              inferSize={true}
+              loading="lazy"
+              class="w-full h-full object-cover"
+            />
+          ) : (
+            <div class="w-full h-full bg-gray-100 flex items-center justify-center">
+              <Icon name="lucide:image-off" class="w-12 h-12 text-gray-400" />
+            </div>
+          )
+        }
       </div>
     </div>
 
-    <p class="text-justify leading-snug flex-grow" set:html={bio} />
+    <div
+      class="text-justify leading-snug flex-grow prose prose-sm"
+      set:html={bio}
+    />
   </div>
 </div>
