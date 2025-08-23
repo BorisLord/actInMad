@@ -1,19 +1,30 @@
 ---
 import { Image } from "astro:assets";
-import { PUBLIC_PB_URL } from "astro:env/client";
 import { Icon } from "astro-icon/components";
-
-import { pb } from "../lib/pocketbase";
 import { DateTime } from "luxon";
-
 import Layout from "../layouts/Layout.astro";
-
+import NewArticles from "../components/NewArticles.tsx";
+import { PUBLIC_PB_URL } from "astro:env/client";
 import defImg from "../assets/defaultImg.jpg";
 
+import { pb } from "../lib/pocketbase";
 
-const records = await pb
+type Article = {
+  id: string;
+  collectionId: string;
+  title: string;
+  subTitle: string;
+  slug: string;
+  images: string[];
+  imgDescription: string;
+  releaseDate: string;
+};
+
+const records: Article[] = await pb
   .collection("articles")
   .getFullList({ filter: "isActive=true", sort: "-releaseDate" });
+
+const staticArticleSlugs = records.map((article) => article.slug);
 ---
 
 <Layout>
@@ -21,6 +32,7 @@ const records = await pb
     <div
       class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full"
     >
+      <NewArticles client:load staticArticleSlugs={staticArticleSlugs} />
       {
         records.length === 0 ? (
           <div class="w-full text-center items-center py-8">
@@ -35,7 +47,7 @@ const records = await pb
               <div class="flex-grow overflow-hidden rounded-xl">
                 {article.images.length > 0 ? (
                   <img
-                    src={`${PUBLIC_PB_URL}/api/files/articles/${article.id}/${article.images[0]}`}
+                    src={`${PUBLIC_PB_URL}api/files/${article.collectionId}/${article.id}/${article.images[0]}`}
                     alt={article.imgDescription}
                     class="w-full h-92 object-cover rounded-xl"
                     loading="lazy"
@@ -52,10 +64,10 @@ const records = await pb
               </div>
 
               <div class="flex flex-col justify-between flex-grow">
-                <h2 class="text-xl font-bold ">{article.title}</h2>
+                <h2 class="text-xl font-bold">{article.title}</h2>
                 <p class="text-sm text-justify">{article.subTitle} ...</p>
                 <div class="flex justify-between items-center mt-2">
-                  <p class="text-sm  flex items-center">
+                  <p class="text-sm flex items-center">
                     <Icon name="lucide:circle-plus" size="24" class="mr-1" />
                   </p>
                   <p class="text-sm italic">
