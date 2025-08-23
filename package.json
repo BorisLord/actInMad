@@ -1,7 +1,7 @@
 {
   "name": "actinmad",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.5.0",
   "scripts": {
     "dev:astro": "astro dev",
     "dev:pb": "cd pocketbase && ./pocketbase serve",

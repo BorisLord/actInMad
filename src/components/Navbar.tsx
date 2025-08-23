@@ -275,7 +275,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
               </a>
             </li>
           ))}
-          <li className="pt-3 mt-3 border-t border-gray-600 w-full text-center">
+          <li className="pt-3 border-t border-gray-600 w-full text-center">
             {user && user.id ? (
               <button
                 onClick={handleLogout}
@@ -287,7 +287,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
               lastLink && (
                 <a
                   href={lastLink.href}
-                  className="rounded-md bg-madRed px-5 py-2.5 text-sm font-medium text-white shadow"
+                  className="rounded-md bg-madRed px-2 py-2 text-sm font-medium text-white shadow"
                 >
                   {lastLink.label}
                 </a>

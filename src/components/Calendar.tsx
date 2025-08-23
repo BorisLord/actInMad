@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import { useState } from "preact/hooks";
 import { DayPicker } from "react-day-picker";
-import "react-day-picker/dist/style.css";
+import "react-day-picker/style.css";
 
 interface CalendarProps {
   value?: string;

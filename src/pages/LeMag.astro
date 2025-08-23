@@ -47,7 +47,7 @@ const staticArticleSlugs = records.map((article) => article.slug);
               <div class="flex-grow overflow-hidden rounded-xl">
                 {article.images.length > 0 ? (
                   <img
-                    src={`${PUBLIC_PB_URL}api/files/${article.collectionId}/${article.id}/${article.images[0]}`}
+                    src={`${PUBLIC_PB_URL}/api/files/${article.collectionId}/${article.id}/${article.images[0]}`}
                     alt={article.imgDescription}
                     class="w-full h-92 object-cover rounded-xl"
                     loading="lazy"
