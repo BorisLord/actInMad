@@ -84,22 +84,22 @@ const ConnexionForm = () => {
   return (
     <>
       <div
-        class="flex justify-center items-center mt-4"
+        class="mt-4 flex items-center justify-center"
         onClick={handleGoogleAuth}
       >
         <SignUpButton content="Se connecter avec Google" />
       </div>
       <form
         onSubmit={handleSubmit}
-        class="w-full max-w-sm p-4 flex flex-col gap-4 text-sm md:text-base"
+        class="flex w-full max-w-sm flex-col gap-4 p-4 text-sm md:text-base"
       >
         {loggedIn && (
-          <p class="text-green-600 font-semibold">Connecté avec succès !</p>
+          <p class="font-semibold text-green-600">Connecté avec succès !</p>
         )}
         {loginError && <p class="text-madEncart text-sm">{loginError}</p>}
 
         <div>
-          <label htmlFor="email" class="block font-semibold mb-1">
+          <label htmlFor="email" class="mb-1 block font-semibold">
             Email *
           </label>
           <input
@@ -111,12 +111,12 @@ const ConnexionForm = () => {
             onInput={handleChange}
             onBlur={validateEmail}
             required
-            class="w-full p-2 rounded-xl border border-gray-300"
+            class="w-full rounded-xl border border-gray-300 p-2"
           />
           {emailError && <p class="text-madEncart text-sm">{emailError}</p>}
         </div>
         <div>
-          <label htmlFor="password" class="block font-semibold mb-1">
+          <label htmlFor="password" class="mb-1 block font-semibold">
             Mot de passe *
           </label>
           <input
@@ -126,13 +126,13 @@ const ConnexionForm = () => {
             value={form.password}
             onInput={handleChange}
             required
-            class="w-full p-2 rounded-xl border border-gray-300"
+            class="w-full rounded-xl border border-gray-300 p-2"
           />
         </div>
 
         <button
           type="submit"
-          class="bg-madRed text-white px-6 py-2 rounded-xl font-bold hover:bg-madEncart transition cursor-pointer"
+          class="bg-madRed hover:bg-madEncart cursor-pointer rounded-xl px-6 py-2 font-bold text-white transition"
         >
           Se connecter
         </button>

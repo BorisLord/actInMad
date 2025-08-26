@@ -16,7 +16,7 @@ export default function ConnexionInscription() {
 
   return (
     <div className="w-full md:w-96">
-      <div className="flex justify-center items-center">
+      <div className="flex items-center justify-center">
         {isConnexion ? (
           <h4 className="mb-5">Pour selectionner un cours, connectez vous !</h4>
         ) : (
@@ -25,7 +25,7 @@ export default function ConnexionInscription() {
       </div>
       <nav className="flex rounded-2xl">
         <button
-          className={`flex-grow py-2 px-4 text-center rounded-2xl cursor-pointer ${
+          className={`flex-grow cursor-pointer rounded-2xl px-4 py-2 text-center ${
             isConnexion ? "bg-madEncart text-white" : "hover:bg-gray-200"
           } focus:outline-none`}
           onClick={handleConnexionClick}
@@ -33,7 +33,7 @@ export default function ConnexionInscription() {
           Connexion
         </button>
         <button
-          className={`flex-grow py-2 px-4 text-center rounded-2xl cursor-pointer ${
+          className={`flex-grow cursor-pointer rounded-2xl px-4 py-2 text-center ${
             !isConnexion ? "bg-madEncart text-white" : "hover:bg-gray-200"
           } focus:outline-none`}
           onClick={handleInscriptionClick}
@@ -41,7 +41,7 @@ export default function ConnexionInscription() {
           Inscription
         </button>
       </nav>
-      <div className="py-4 px-4">
+      <div className="px-4 py-4">
         {isConnexion ? <LoginForm /> : <SignupForm />}
       </div>
     </div>

@@ -108,9 +108,9 @@ export default function UserAccount({ user }: { user: User }) {
   }
 
   return (
-    <div class="w-full max-w-sm md:max-w-md lg:max-w-xl mx-auto p-4 mt-4">
+    <div class="mx-auto mt-4 w-full max-w-sm p-4 md:max-w-md lg:max-w-xl">
       {!user.profileCompleted && (
-        <p class="text-justify m-4">
+        <p class="m-4 text-justify">
           Avant de commencer cette aventure théâtrale ensemble, nous aimerions
           en savoir un peu plus sur vous !{" "}
         </p>
@@ -121,7 +121,7 @@ export default function UserAccount({ user }: { user: User }) {
           class="flex flex-col gap-4 text-sm md:text-base"
         >
           <div>
-            <label htmlFor="firstName" class="block font-semibold mb-1">
+            <label htmlFor="firstName" class="mb-1 block font-semibold">
               Prénom *
             </label>
             <input
@@ -131,11 +131,11 @@ export default function UserAccount({ user }: { user: User }) {
               value={formData.firstName}
               onChange={handleChange}
               required
-              class="w-full p-2 rounded-xl border border-gray-300"
+              class="w-full rounded-xl border border-gray-300 p-2"
             />
           </div>
           <div>
-            <label htmlFor="lastName" class="block font-semibold mb-1">
+            <label htmlFor="lastName" class="mb-1 block font-semibold">
               Nom *
             </label>
             <input
@@ -145,17 +145,17 @@ export default function UserAccount({ user }: { user: User }) {
               value={formData.lastName}
               onChange={handleChange}
               required
-              class="w-full p-2 rounded-xl border border-gray-300"
+              class="w-full rounded-xl border border-gray-300 p-2"
             />
           </div>
           <div>
-            <label htmlFor="birthdate" class="block font-semibold mb-1">
+            <label htmlFor="birthdate" class="mb-1 block font-semibold">
               Date de naissance *
             </label>
             <Calendar value={formData.birthdate} onChange={handleChange} />
           </div>
           <div>
-            <label htmlFor="phone" class="block font-semibold mb-1">
+            <label htmlFor="phone" class="mb-1 block font-semibold">
               Téléphone *
             </label>
             <input
@@ -166,11 +166,11 @@ export default function UserAccount({ user }: { user: User }) {
               onChange={handleChange}
               autoComplete="on"
               required
-              class="w-full p-2 rounded-xl border border-gray-300"
+              class="w-full rounded-xl border border-gray-300 p-2"
             />
           </div>
           <div>
-            <label htmlFor="theaterLevel" class="block font-semibold mb-1">
+            <label htmlFor="theaterLevel" class="mb-1 block font-semibold">
               Niveau de théâtre *
             </label>
             <select
@@ -179,7 +179,7 @@ export default function UserAccount({ user }: { user: User }) {
               value={formData.theaterLevel}
               onChange={handleChange}
               required
-              class="w-full p-2 rounded-xl border border-gray-300"
+              class="w-full rounded-xl border border-gray-300 p-2"
             >
               <option value="">Sélectionnez un niveau</option>
               <option value="Débutant">Débutant</option>
@@ -188,7 +188,7 @@ export default function UserAccount({ user }: { user: User }) {
             </select>
           </div>
           <div>
-            <label htmlFor="avatarUrl" className="block font-semibold mb-1">
+            <label htmlFor="avatarUrl" className="mb-1 block font-semibold">
               Photo de profil
             </label>
             <div className="flex items-center gap-4">
@@ -196,7 +196,7 @@ export default function UserAccount({ user }: { user: User }) {
                 <img
                   src={user.avatarUrl}
                   alt="Avatar actuel"
-                  className="w-16 h-16 rounded-full object-cover"
+                  className="h-16 w-16 rounded-full object-cover"
                 />
               )}
               <input
@@ -206,31 +206,31 @@ export default function UserAccount({ user }: { user: User }) {
                 ref={avatarInputRef}
                 onChange={handleFileChange}
                 accept="image/png, image/jpeg, image/webp"
-                className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-madRed/10 file:text-madRed hover:file:bg-madRed/20 cursor-pointer"
+                className="file:bg-madRed/10 file:text-madRed hover:file:bg-madRed/20 block w-full cursor-pointer text-sm text-gray-500 file:mr-4 file:rounded-full file:border-0 file:px-4 file:py-2 file:text-sm file:font-semibold"
               />
             </div>
           </div>
           <button
             type="submit"
-            class="bg-madRed text-white px-6 py-2 rounded-xl font-bold hover:bg-madEncart transition cursor-pointer"
+            class="bg-madRed hover:bg-madEncart cursor-pointer rounded-xl px-6 py-2 font-bold text-white transition"
           >
             Enregistrer les modifications
           </button>
           <button
             type="button"
             onClick={() => setIsEditing(false)}
-            class="bg-gray-300 text-gray-800 px-6 py-2 rounded-xl font-bold hover:bg-gray-400 transition cursor-pointer"
+            class="cursor-pointer rounded-xl bg-gray-300 px-6 py-2 font-bold text-gray-800 transition hover:bg-gray-400"
           >
             Annuler
           </button>
         </form>
       ) : (
         <div class="flex flex-col gap-4 text-sm md:text-base">
-          <div class="bg-white rounded-xl shadow-sm border border-gray-200">
+          <div class="rounded-xl border border-gray-200 bg-white shadow-sm">
             <dl class="divide-y divide-gray-200">
               <div class="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4">
                 <dt class="font-medium text-gray-600">Nom complet</dt>
-                <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
+                <dd class="mt-1 text-gray-900 sm:col-span-2 sm:mt-0">
                   {[formData.firstName, formData.lastName]
                     .filter(Boolean)
                     .join(" ") || "Non renseigné"}{" "}
@@ -239,40 +239,40 @@ export default function UserAccount({ user }: { user: User }) {
 
               <div class="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4">
                 <dt class="font-medium text-gray-600">Date de naissance</dt>
-                <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
+                <dd class="mt-1 text-gray-900 sm:col-span-2 sm:mt-0">
                   {formData.birthdate || "Non renseignée"}
                 </dd>
               </div>
 
               <div class="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4">
                 <dt class="font-medium text-gray-600">Téléphone</dt>
-                <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
+                <dd class="mt-1 text-gray-900 sm:col-span-2 sm:mt-0">
                   {formData.phone || "Non renseigné"}
                 </dd>
               </div>
 
               <div class="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4">
                 <dt class="font-medium text-gray-600">Email</dt>
-                <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
+                <dd class="mt-1 text-gray-900 sm:col-span-2 sm:mt-0">
                   {formData.email}
                 </dd>
               </div>
 
               <div class="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4">
                 <dt class="font-medium text-gray-600">Niveau de théâtre</dt>
-                <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
+                <dd class="mt-1 text-gray-900 sm:col-span-2 sm:mt-0">
                   {formData.theaterLevel || "Non renseigné"}
                 </dd>
               </div>
 
               <div className="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4">
                 <dt className="font-medium text-gray-600">Photo de profil</dt>
-                <dd className="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
+                <dd className="mt-1 text-gray-900 sm:col-span-2 sm:mt-0">
                   {user.avatarUrl ? (
                     <img
                       src={user.avatarUrl}
                       alt="Avatar"
-                      className="w-16 h-16 rounded-full object-cover"
+                      className="h-16 w-16 rounded-full object-cover"
                     />
                   ) : (
                     "Aucune photo"
@@ -282,14 +282,14 @@ export default function UserAccount({ user }: { user: User }) {
 
               <div class="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4">
                 <dt class="font-medium text-gray-600">Statut du compte</dt>
-                <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
+                <dd class="mt-1 text-gray-900 sm:col-span-2 sm:mt-0">
                   {formData.verified ? (
-                    <span class="px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">
+                    <span class="rounded-full bg-green-100 px-2 py-1 text-xs font-semibold text-green-800">
                       Vérifié
                     </span>
                   ) : (
                     <div class="flex items-center gap-4">
-                      <span class="px-2 py-1 text-xs font-semibold text-yellow-800 bg-yellow-100 rounded-full">
+                      <span class="rounded-full bg-yellow-100 px-2 py-1 text-xs font-semibold text-yellow-800">
                         Non vérifié
                       </span>
                       <button
@@ -307,7 +307,7 @@ export default function UserAccount({ user }: { user: User }) {
 
           <button
             onClick={() => setIsEditing(true)}
-            class="bg-madRed text-white px-6 py-2 rounded-xl font-bold hover:bg-madEncart transition cursor-pointer"
+            class="bg-madRed hover:bg-madEncart cursor-pointer rounded-xl px-6 py-2 font-bold text-white transition"
           >
             Modifier mon profil
           </button>

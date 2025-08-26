@@ -25,16 +25,16 @@ const { article } = Astro.props;
 ---
 
 <Layout>
-  <div class="max-w-5xl mx-auto p-6 pt-12">
+  <div class="mx-auto max-w-5xl p-6 pt-12">
     <div class="flex flex-col">
       <div
-        class="flex flex-col sm:flex-row justify-between items-center sm:items-start"
+        class="flex flex-col items-center justify-between sm:flex-row sm:items-start"
       >
-        <h1 class="text-3xl font-bold text-center sm:text-left w-full">
+        <h1 class="w-full text-center text-3xl font-bold sm:text-left">
           {article.title}
         </h1>
         <p
-          class="text-center sm:text-right text-xs text-gray-500 mt-2 sm:mt-0 w-full sm:w-auto whitespace-nowrap"
+          class="mt-2 w-full whitespace-nowrap text-center text-xs text-gray-500 sm:mt-0 sm:w-auto sm:text-right"
         >
           Publié le {
             DateTime.fromSQL(article.releaseDate)
@@ -49,7 +49,7 @@ const { article } = Astro.props;
             <img
               src={`${PUBLIC_PB_URL}/api/files/articles/${article.id}/${article.images[0]}`}
               alt={article.imgDescription}
-              class="w-full sm:w-1/3 float-left mr-6 mb-6 rounded-sm"
+              class="float-left mb-6 mr-6 w-full rounded-sm sm:w-1/3"
               loading="lazy"
             />
           )
@@ -62,7 +62,7 @@ const { article } = Astro.props;
     </div>
     {
       article.extra && (
-        <div class="bg-madRed text-madBack p-4 mt-10 md:mt-22 rounded-xl">
+        <div class="bg-madRed text-madBack md:mt-22 mt-10 rounded-xl p-4">
           <article set:html={article.extra} />
         </div>
       )

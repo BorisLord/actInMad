@@ -96,29 +96,29 @@ export default function ContactForm() {
 
   return (
     <div class="flex flex-col items-center p-4">
-      <div class="max-w-6xl mx-auto p-4 md:p-6 mt-5 text-center">
+      <div class="mx-auto mt-5 max-w-6xl p-4 text-center md:p-6">
         <h1 class="text-madRed text-2xl md:text-3xl">
           Posez-nous vos questions !
         </h1>
         <h2 class="text-lg md:text-xl">Inscrivez-vous à Act in Mag' !</h2>
-        <p class="text-xs md:text-sm text-gray-500">
+        <p class="text-xs text-gray-500 md:text-sm">
           Bug, suggestion ou simple message : nous sommes à l’écoute !
         </p>
       </div>
 
       <form
         onSubmit={handleSubmit}
-        class="w-full max-w-4xl p-4 flex flex-col gap-4 text-sm md:text-base"
+        class="flex w-full max-w-4xl flex-col gap-4 p-4 text-sm md:text-base"
       >
         {sent && (
-          <p class="text-green-600 font-semibold">
+          <p class="font-semibold text-green-600">
             Message envoyé avec succès !
           </p>
         )}
 
-        <div class="flex flex-col md:flex-row gap-4">
+        <div class="flex flex-col gap-4 md:flex-row">
           <div class="flex-1">
-            <label for="nom" class="block font-semibold mb-1">
+            <label for="nom" class="mb-1 block font-semibold">
               Nom *
             </label>
             <input
@@ -129,11 +129,11 @@ export default function ContactForm() {
               onInput={handleChange}
               autoComplete="on"
               required
-              class="w-full p-2 rounded-xl border border-gray-300"
+              class="w-full rounded-xl border border-gray-300 p-2"
             />
           </div>
           <div class="flex-1">
-            <label for="prenom" class="block font-semibold mb-1">
+            <label for="prenom" class="mb-1 block font-semibold">
               Prénom *
             </label>
             <input
@@ -144,13 +144,13 @@ export default function ContactForm() {
               onInput={handleChange}
               autoComplete="on"
               required
-              class="w-full p-2 rounded-xl border border-gray-300"
+              class="w-full rounded-xl border border-gray-300 p-2"
             />
           </div>
         </div>
 
         <div>
-          <label for="email" class="block font-semibold mb-1">
+          <label for="email" class="mb-1 block font-semibold">
             Email *
           </label>
           <input
@@ -162,13 +162,13 @@ export default function ContactForm() {
             onBlur={validateEmail}
             autoComplete="on"
             required
-            class="w-full p-2 rounded-xl border border-gray-300"
+            class="w-full rounded-xl border border-gray-300 p-2"
           />
           {emailError && <p class="text-madEncart text-sm">{emailError}</p>}
         </div>
 
         <div>
-          <label for="message" class="block font-semibold mb-1">
+          <label for="message" class="mb-1 block font-semibold">
             Message
           </label>
           <textarea
@@ -177,7 +177,7 @@ export default function ContactForm() {
             rows={5}
             value={form.message}
             onInput={handleChange}
-            class="w-full p-2 rounded-xl border border-gray-300"
+            class="w-full rounded-xl border border-gray-300 p-2"
           />
         </div>
 
@@ -188,7 +188,7 @@ export default function ContactForm() {
             name="inscription"
             checked={form.inscription}
             onInput={handleChange}
-            class="w-4 h-4 rounded-md border-gray-400"
+            class="h-4 w-4 rounded-md border-gray-400"
           />
           <label for="inscription" class="text-gray-700">
             Je souhaite m’inscrire à Act in Mag' (la lettre d’information Act in
@@ -198,7 +198,7 @@ export default function ContactForm() {
 
         <button
           type="submit"
-          class="bg-madRed text-madBack px-6 py-2 rounded-xl font-bold hover:opacity-90 transition self-start"
+          class="bg-madRed text-madBack self-start rounded-xl px-6 py-2 font-bold transition hover:opacity-90"
         >
           Envoyer
         </button>

@@ -112,7 +112,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
 
   return (
     <div
-      className={`mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 w-full transition-all duration-300 ${isScrolled ? "shadow-lg backdrop-blur-md rounded-b-xl" : ""}`}
+      className={`mx-auto w-full max-w-screen-xl px-4 transition-all duration-300 sm:px-6 lg:px-8 ${isScrolled ? "rounded-b-xl shadow-lg backdrop-blur-md" : ""}`}
     >
       <div className="flex h-24 items-center justify-between gap-8">
         <div className="flex items-center gap-4">
@@ -120,7 +120,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
             <button
               ref={dashboardToggleRef}
               onClick={onDashboardToggle}
-              className="p-2 rounded-md transition text-black hover:bg-black/10 cursor-pointer"
+              className="cursor-pointer rounded-md p-2 text-black transition hover:bg-black/10"
               aria-label="Tableau de bord"
             >
               <Icon icon="lucide:layout-dashboard" width="28" />
@@ -137,14 +137,14 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
             </a>
           )}
         </div>
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden items-center gap-4 md:flex">
           <nav aria-label="Global">
             <ul className="flex items-center gap-6 text-sm">
               {mainLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className={`${desktopLinkClass(link.href)} transition hover:text-madRed/75 whitespace-nowrap`}
+                    className={`${desktopLinkClass(link.href)} hover:text-madRed/75 whitespace-nowrap transition`}
                   >
                     {link.label}
                   </a>
@@ -158,21 +158,21 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
                 <button
                   ref={profileToggleRef}
                   onClick={() => setProfileMenuOpen(!isProfileMenuOpen)}
-                  className="flex flex-col items-center gap-1 group cursor-pointer"
+                  className="group flex cursor-pointer flex-col items-center gap-1"
                 >
                   {user.avatarUrl ? (
                     <img
                       src={user.avatarUrl}
                       alt="Avatar"
-                      className="h-8 w-8 rounded-full object-cover border-2 border-transparent group-hover:border-madRed transition"
+                      className="group-hover:border-madRed h-8 w-8 rounded-full border-2 border-transparent object-cover transition"
                     />
                   ) : (
-                    <div className="h-8 w-8 rounded-full bg-madRed flex items-center justify-center text-white font-bold text-base border-2 border-transparent group-hover:border-madEncart transition">
+                    <div className="bg-madRed group-hover:border-madEncart flex h-8 w-8 items-center justify-center rounded-full border-2 border-transparent text-base font-bold text-white transition">
                       {user.firstName?.charAt(0).toUpperCase()}
                     </div>
                   )}
                   <span
-                    className={`text-xs font-medium group-hover:text-madRed transition ${isHomePage ? "text-madBack" : "text-black"}`}
+                    className={`group-hover:text-madRed text-xs font-medium transition ${isHomePage ? "text-madBack" : "text-black"}`}
                   >
                     {user.firstName}
                   </span>
@@ -180,13 +180,13 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
                 {isProfileMenuOpen && (
                   <div
                     ref={profileMenuRef}
-                    className={`absolute top-full right-0 mt-2 w-48 z-50 rounded-xl shadow-2xl p-2 ${isHomePage ? "bg-black" : "bg-madBack"}`}
+                    className={`absolute right-0 top-full z-50 mt-2 w-48 rounded-xl p-2 shadow-2xl ${isHomePage ? "bg-black" : "bg-madBack"}`}
                   >
                     <ul className="flex flex-col gap-1">
                       <li>
                         <a
                           href="/private/Dashboard"
-                          className={`block px-3 py-2 rounded-md transition ${mobileLinkClass("")} hover:text-madEncart hover:bg-white/10 w-full text-left`}
+                          className={`block rounded-md px-3 py-2 transition ${mobileLinkClass("")} hover:text-madEncart w-full text-left hover:bg-white/10`}
                           onClick={() => setProfileMenuOpen(false)}
                         >
                           Mon Espace
@@ -196,7 +196,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
                       <li>
                         <button
                           onClick={handleLogout}
-                          className="w-full text-left block px-3 py-2 rounded-md font-medium text-madRed hover:text-madEncart transition hover:bg-white/10 cursor-pointer"
+                          className="text-madRed hover:text-madEncart block w-full cursor-pointer rounded-md px-3 py-2 text-left font-medium transition hover:bg-white/10"
                         >
                           Déconnexion
                         </button>
@@ -208,11 +208,11 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
             ) : (
               lastLink && (
                 <button
-                  className="rounded-md bg-madRed px-4 py-1 text-white shadow transition hover:bg-madEncart cursor-pointer"
+                  className="bg-madRed hover:bg-madEncart cursor-pointer rounded-md px-4 py-1 text-white shadow transition"
                   onClick={() => navigate(lastLink.href)}
                 >
                   {lastLink.label.split("/").map((part, index) => (
-                    <div key={index} className="leading-5 text-sm">
+                    <div key={index} className="text-sm leading-5">
                       {part}
                     </div>
                   ))}
@@ -231,7 +231,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
                   className="h-8 w-8 rounded-full object-cover"
                 />
               ) : (
-                <div className="h-8 w-8 rounded-full bg-madRed flex items-center justify-center text-white text-sm font-bold">
+                <div className="bg-madRed flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold text-white">
                   {user.firstName?.charAt(0).toUpperCase()}
                 </div>
               )}
@@ -243,7 +243,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
             </a>
           ) : (
             <span
-              className={`font-medium whitespace-nowrap ${isHomePage ? "text-madBack" : "text-madRed"}`}
+              className={`whitespace-nowrap font-medium ${isHomePage ? "text-madBack" : "text-madRed"}`}
             >
               {currentPageLabel}
             </span>
@@ -253,7 +253,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
             onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Ouvrir/fermer le menu"
             aria-expanded={isMobileMenuOpen}
-            className={`rounded p-2 ${isHomePage ? "text-madBack" : "text-black"} transition cursor-pointer`}
+            className={`rounded p-2 ${isHomePage ? "text-madBack" : "text-black"} cursor-pointer transition`}
           >
             <Icon icon="lucide:book-open-text" width="28" />
           </button>
@@ -261,9 +261,9 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
       </div>
       <nav
         ref={mobileMenuRef}
-        className={`absolute top-24 right-4 z-50 rounded-xl shadow-2xl p-4 ${isHomePage ? "bg-black" : "bg-madBack"} ${isMobileMenuOpen ? "block" : "hidden"}`}
+        className={`absolute right-4 top-24 z-50 rounded-xl p-4 shadow-2xl ${isHomePage ? "bg-black" : "bg-madBack"} ${isMobileMenuOpen ? "block" : "hidden"}`}
       >
-        <ul className="flex flex-col items-center gap-4 w-40">
+        <ul className="flex w-40 flex-col items-center gap-4">
           {mainLinks.map((link) => (
             <li key={link.href}>
               <a
@@ -275,11 +275,11 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
               </a>
             </li>
           ))}
-          <li className="pt-3 border-t border-gray-600 w-full text-center">
+          <li className="w-full border-t border-gray-600 pt-3 text-center">
             {user && user.id ? (
               <button
                 onClick={handleLogout}
-                className="font-medium text-madRed hover:text-madEncart cursor-pointer"
+                className="text-madRed hover:text-madEncart cursor-pointer font-medium"
               >
                 Déconnexion
               </button>
@@ -287,7 +287,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
               lastLink && (
                 <a
                   href={lastLink.href}
-                  className="rounded-md bg-madRed px-2 py-2 text-sm font-medium text-white shadow"
+                  className="bg-madRed rounded-md px-2 py-2 text-sm font-medium text-white shadow"
                 >
                   {lastLink.label}
                 </a>

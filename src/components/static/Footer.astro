@@ -6,11 +6,11 @@ import madBeigeName from "../../assets/logo/madBeigeName.svg";
 import { Icon } from "astro-icon/components";
 ---
 
-<footer class="bg-madRed pb-2 pt-4 mt-8 md:mt-20">
+<footer class="bg-madRed mt-8 pb-2 pt-4 md:mt-20">
   <div
     class="flex flex-col justify-between px-2 py-2 sm:flex-row sm:px-6 lg:px-8"
   >
-    <div class="flex flex-1 justify-center mb-4 sm:mb-0">
+    <div class="mb-4 flex flex-1 justify-center sm:mb-0">
       <div class="flex items-center gap-4">
         <div class="flex md:flex-col">
           <ul class="flex space-x-4 md:flex-col md:space-y-4">
@@ -76,26 +76,26 @@ import { Icon } from "astro-icon/components";
         <Image
           src={madArchLogo}
           alt="L'arche d'Act In Mad"
-          class="h-8 w-auto mb-2"
+          class="mb-2 h-8 w-auto"
         />
         <Image
           src={madBeigeName}
           alt="Le nom Act In Mad"
-          class="h-6 w-auto ml-3"
+          class="ml-3 h-6 w-auto"
         />
       </div>
-      <p class="max-w-md text-madBack">
+      <p class="text-madBack max-w-md">
         Compagnie de Théâtre <br />Ateliers Spectacles Amateurs <br />Oser le
         jeu • Frôler la folie !
       </p>
     </div>
 
-    <div class="flex flex-1 justify-center mt-3">
+    <div class="mt-3 flex flex-1 justify-center">
       <ul class="flex flex-col items-center gap-2 md:gap-3">
         <li>
           <a class="text-madBack" href="/Mentions">Mentions légales</a>
         </li>
-        <li class="flex md:hidden flex-row gap-2">
+        <li class="flex flex-row gap-2 md:hidden">
           <a class="text-madBack" href="/LeMag">Blog</a>
           <div class="text-madBack">/</div>
           <a class="text-madBack" href="/Faq">FAQ</a>
@@ -111,7 +111,7 @@ import { Icon } from "astro-icon/components";
   </div>
 
   <div class="text-center">
-    <p class="text-xs text-madBack">
+    <p class="text-madBack text-xs">
       Made with &hearts; using
       <a
         href="https://astro.build/"

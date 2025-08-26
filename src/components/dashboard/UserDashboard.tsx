@@ -72,7 +72,7 @@ export default function UserDashboard() {
 
   if (!isClientReady || !user.id) {
     return (
-      <div class="flex justify-center items-center h-screen font-bold text-xl">
+      <div class="flex h-screen items-center justify-center text-xl font-bold">
         Chargement...
       </div>
     );

@@ -26,7 +26,7 @@ export default function Calendar({ value, onChange }: CalendarProps) {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        class="w-full p-2 text-left rounded-xl border border-gray-300 bg-white"
+        class="w-full rounded-xl border border-gray-300 bg-white p-2 text-left"
       >
         {selectedDate ? (
           DateTime.fromJSDate(selectedDate)
@@ -38,7 +38,7 @@ export default function Calendar({ value, onChange }: CalendarProps) {
       </button>
 
       {isOpen && (
-        <div class="absolute z-10 mt-2 px-4 py-2 bg-white border border-gray-300 rounded-xl shadow-lg">
+        <div class="absolute z-10 mt-2 rounded-xl border border-gray-300 bg-white px-4 py-2 shadow-lg">
           <DayPicker
             mode="single"
             selected={selectedDate}

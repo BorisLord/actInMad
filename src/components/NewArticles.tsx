@@ -54,27 +54,27 @@ const NewArticles = ({
         <a
           key={article.id}
           href={`/articles/${article.slug}`}
-          class="shadow-2xl rounded-xl p-3 text-center transition transform hover:scale-105 flex flex-col h-[600px]"
+          class="flex h-[600px] transform flex-col rounded-xl p-3 text-center shadow-2xl transition hover:scale-105"
         >
           <div class="flex-grow overflow-hidden rounded-xl">
             {article.images.length > 0 ? (
               <img
                 src={`${PUBLIC_PB_URL}/api/files/${article.collectionId}/${article.id}/${article.images[0]}`}
                 alt={article.imgDescription}
-                class="w-full h-92 object-cover rounded-xl"
+                class="h-92 w-full rounded-xl object-cover"
                 loading="lazy"
               />
             ) : (
-              <div class="w-full h-92 flex items-center justify-center rounded-xl bg-gray-200" />
+              <div class="h-92 flex w-full items-center justify-center rounded-xl bg-gray-200" />
             )}
           </div>
 
-          <div class="flex flex-col justify-between flex-grow">
+          <div class="flex flex-grow flex-col justify-between">
             <h2 class="text-xl font-bold">{article.title}</h2>
-            <p class="text-sm text-justify">{article.subTitle} ...</p>
-            <div class="flex justify-between items-center mt-2">
-              <p class="text-sm flex items-center">
-                <span class="text-yellow-500 mr-1 font-bold">NOUVEAU</span>
+            <p class="text-justify text-sm">{article.subTitle} ...</p>
+            <div class="mt-2 flex items-center justify-between">
+              <p class="flex items-center text-sm">
+                <span class="mr-1 font-bold text-yellow-500">NOUVEAU</span>
                 <Icon name="lucide:circle-plus" size="24" class="mr-1" />
               </p>
               <p class="text-sm italic">

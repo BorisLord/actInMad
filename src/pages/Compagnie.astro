@@ -13,24 +13,24 @@ import henri from "../assets/photos/unAireDeFamille/henri.jpg";
 
 <Layout>
   <div class="flex flex-col items-center p-4">
-    <div class="flex flex-col md:flex-row w-full max-w-6xl p-4 md:p-6 mt-5">
-      <h1 class="text-madRed text-2xl md:text-3xl text-center md:text-left">
+    <div class="mt-5 flex w-full max-w-6xl flex-col p-4 md:flex-row md:p-6">
+      <h1 class="text-madRed text-center text-2xl md:text-left md:text-3xl">
         Présentation
       </h1>
     </div>
 
     <div
-      class="flex flex-col md:flex-row max-w-6xl p-4 md:p-6 gap-6 justify-center items-center -mt-6 md:-mt-8"
+      class="-mt-6 flex max-w-6xl flex-col items-center justify-center gap-6 p-4 md:-mt-8 md:flex-row md:p-6"
     >
-      <div class="text-center md:text-left flex flex-col justify-center">
+      <div class="flex flex-col justify-center text-center md:text-left">
         <p class="text-justify leading-snug">
           Act In Mad est une compagnie de théâtre détentrice d’une licence de
           spectacle qui a notamment produit Un Air de Famille d’Agnès Jaoui et
           Jean-Pierre Bacri, au Théâtre Le Guichet Montparnasse à Paris début
-          2025.<span class="block mt-3"></span>
+          2025.<span class="mt-3 block"></span>
           Fondée par Corinne Azzoug, Act In Mad propose également des versions originales
           et novatrices de cours de théâtre, d’Ateliers Spectacles et des cours d’Improvisation
-          : Act’Impro<span class="block mt-3"></span>
+          : Act’Impro<span class="mt-3 block"></span>
           Que ce soit en étant apprenti.e comédien.ne ou comédien.ne de la compagnie,
           Act In Mad permet à tous les fous amoureux du théâtre d’explorer leur créativité,
           de renforcer leur esprit d'équipe et de s'épanouir à travers le jeu !
@@ -38,51 +38,51 @@ import henri from "../assets/photos/unAireDeFamille/henri.jpg";
       </div>
     </div>
 
-    <div class="w-full max-w-6xl text-right mb-20">
+    <div class="mb-20 w-full max-w-6xl text-right">
       <h2
-        class="px-2 py-2 text-2xl md:text-3xl text-madRed italic whitespace-nowrap"
+        class="text-madRed whitespace-nowrap px-2 py-2 text-2xl italic md:text-3xl"
       >
         Oser le jeu • Frôler la folie !
       </h2>
     </div>
 
     <div
-      class="flex flex-col md:flex-row w-full max-w-6xl p-4 md:p-6 -mt-6 md:-mb-8"
+      class="-mt-6 flex w-full max-w-6xl flex-col p-4 md:-mb-8 md:flex-row md:p-6"
     >
-      <h1 class="text-madRed text-xl md:text-3xl text-center md:text-left">
+      <h1 class="text-madRed text-center text-xl md:text-left md:text-3xl">
         Les projets de la Compagnie
       </h1>
     </div>
 
-    <div class="flex flex-col p-4 md:p-6 w-full max-w-6xl">
-      <div class="flex flex-col md:flex-row gap-6 w-full">
+    <div class="flex w-full max-w-6xl flex-col p-4 md:p-6">
+      <div class="flex w-full flex-col gap-6 md:flex-row">
         <div class="flex items-center justify-center md:w-1/3">
           <Image
             src={affiche}
             alt="Affiche de la pièce 'Un Air de Famille' de Agnès Jaoui et Jean-Pierre Bacri"
-            class="w-full object-cover rounded"
+            class="w-full rounded object-cover"
           />
         </div>
         <div class="flex flex-col md:flex-1">
-          <h3 class="text-2xl font-bold text-left md:mb-4">
+          <h3 class="text-left text-2xl font-bold md:mb-4">
             Un air de famille
           </h3>
-          <div class="text-justify flex-1 leading-snug">
+          <div class="flex-1 text-justify leading-snug">
             <p class="">
               Une comédie acerbe et savoureuse sur les liens familiaux qui nous
               unissent... et nous étouffent parfois !
-              <span class="block mt-3"></span>
+              <span class="mt-3 block"></span>
               Chaque vendredi soir, la famille Mesnard se réunit au café familial
               avant d'aller au restaurant. Mais ce soir, entre rancunes, règlements
               de comptes et maladresses, l'ambiance vire au chaos, révélant les non-dits
               et les frustrations enfouies. Cette soirée ordinaire devient inoubliable...
-              <span class="block mt-3"></span>
+              <span class="mt-3 block"></span>
               Ne manquez pas cette pièce culte où chaque réplique fait mouche !
-              <span class="block mt-3"></span>
+              <span class="mt-3 block"></span>
               Une pièce d’Agnès Jaoui et Jean-Pierre Bacri.<br />
               Mise en scène : Corinne Azzoug <br />
               Décors : Erwan Daubenfeld
-              <span class="block mt-3"></span>
+              <span class="mt-3 block"></span>
               <strong>DISTRIBUTION</strong>
               <ul class="">
                 <li>Denis : Fred Eyangoh</li>
@@ -99,22 +99,22 @@ import henri from "../assets/photos/unAireDeFamille/henri.jpg";
     </div>
 
     <div
-      class="flex flex-col md:flex-row items-center gap-4 w-full max-w-6xl p-6"
+      class="flex w-full max-w-6xl flex-col items-center gap-4 p-6 md:flex-row"
     >
       <Image
         src={henri}
         alt="Photo de Denis dans la pièce 'Un Air de Famille'"
-        class="hidden md:block w-full md:w-1/3 object-cover rounded"
+        class="hidden w-full rounded object-cover md:block md:w-1/3"
       />
       <Image
         src={famille}
         alt="Photo de la troupe entière de 'Un Air de Famille'"
-        class="w-full md:w-1/3 object-cover rounded"
+        class="w-full rounded object-cover md:w-1/3"
       />
       <Image
         src={betty}
         alt="Photo de Betty dans la pièce 'Un Air de Famille'"
-        class="hidden md:block w-full md:w-1/3 object-cover rounded"
+        class="hidden w-full rounded object-cover md:block md:w-1/3"
       />
     </div>
   </div>

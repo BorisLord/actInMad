@@ -27,10 +27,10 @@ const DashboardNav: FunctionalComponent<NavProps> = ({
 }) => {
   return (
     // === MODIFICATIONS ICI ===
-    <nav className="sticky top-24 z-40 bg-madBack shadow-md">
+    <nav className="bg-madBack sticky top-24 z-40 shadow-md">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <ul
-          className="flex justify-center -mb-px gap-6"
+          className="-mb-px flex justify-center gap-6"
           role="tablist"
           aria-label="Navigation du tableau de bord"
         >
@@ -38,13 +38,11 @@ const DashboardNav: FunctionalComponent<NavProps> = ({
             <li key={item.id} role="presentation">
               <button
                 onClick={() => onPageChange(item.id)}
-                className={`flex shrink-0 items-center gap-2 rounded-t-lg p-3 text-sm font-medium transition
-                  ${
-                    currentPage === item.id
-                      ? "border-b-2 border-madRed bg-madRed/5 text-madRed font-bold"
-                      : "border-b-2 border-transparent text-gray-600 hover:bg-black/5 hover:text-madRed"
-                  }
-                `}
+                className={`flex shrink-0 items-center gap-2 rounded-t-lg p-3 text-sm font-medium transition ${
+                  currentPage === item.id
+                    ? "border-madRed bg-madRed/5 text-madRed border-b-2 font-bold"
+                    : "hover:text-madRed border-b-2 border-transparent text-gray-600 hover:bg-black/5"
+                } `}
                 role="tab"
                 aria-selected={currentPage === item.id}
                 title={item.label}

@@ -110,19 +110,19 @@ const InscriptionForm = () => {
   };
 
   return (
-    <div class="w-full max-w-sm p-4 flex flex-col gap-4 text-sm md:text-base">
+    <div class="flex w-full max-w-sm flex-col gap-4 p-4 text-sm md:text-base">
       {registered && (
-        <p class="text-green-600 font-semibold">Inscription réussie !</p>
+        <p class="font-semibold text-green-600">Inscription réussie !</p>
       )}
       {registrationError && (
         <p class="text-madEncart text-sm">{registrationError}</p>
       )}
-      <div class="flex justify-center items-center" onClick={handleGoogleAuth}>
+      <div class="flex items-center justify-center" onClick={handleGoogleAuth}>
         <SignUpButton content="S'enregistrer avec Google" />
       </div>
       <form onSubmit={handleSubmit} class="flex flex-col gap-4">
         <div>
-          <label htmlFor="email" class="block font-semibold mb-1">
+          <label htmlFor="email" class="mb-1 block font-semibold">
             Email *
           </label>
           <input
@@ -134,13 +134,13 @@ const InscriptionForm = () => {
             onInput={handleChange}
             onBlur={validateEmail}
             required
-            class="w-full p-2 rounded-xl border border-gray-300"
+            class="w-full rounded-xl border border-gray-300 p-2"
           />
           {emailError && <p class="text-madEncart text-sm">{emailError}</p>}
         </div>
 
         <div>
-          <label htmlFor="password" class="block font-semibold mb-1">
+          <label htmlFor="password" class="mb-1 block font-semibold">
             Mot de passe *
           </label>
           <div class="relative">
@@ -152,12 +152,12 @@ const InscriptionForm = () => {
               onInput={handleChange}
               onBlur={validatePassword}
               required
-              class="w-full p-2 rounded-xl border border-gray-300 pr-10"
+              class="w-full rounded-xl border border-gray-300 p-2 pr-10"
             />
             <button
               type="button"
               onClick={togglePasswordVisibility}
-              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400"
+              class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400"
             >
               {showPassword ? (
                 <Icon icon="lucide:eye" />
@@ -172,7 +172,7 @@ const InscriptionForm = () => {
         </div>
 
         <div>
-          <label htmlFor="passwordConfirm" class="block font-semibold mb-1">
+          <label htmlFor="passwordConfirm" class="mb-1 block font-semibold">
             Confirmation du mot de passe *
           </label>
           <div class="relative">
@@ -184,12 +184,12 @@ const InscriptionForm = () => {
               onInput={handleChange}
               onBlur={validatePassword}
               required
-              class="w-full p-2 rounded-xl border border-gray-300 pr-10"
+              class="w-full rounded-xl border border-gray-300 p-2 pr-10"
             />
             <button
               type="button"
               onClick={togglePasswordVisibility}
-              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400"
+              class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400"
             >
               {showPassword ? (
                 <Icon icon="lucide:eye" />
@@ -205,7 +205,7 @@ const InscriptionForm = () => {
 
         <button
           type="submit"
-          class="bg-madRed text-white px-6 py-2 rounded-xl font-bold hover:bg-madEncart transition cursor-pointer"
+          class="bg-madRed hover:bg-madEncart cursor-pointer rounded-xl px-6 py-2 font-bold text-white transition"
         >
           S'inscrire
         </button>

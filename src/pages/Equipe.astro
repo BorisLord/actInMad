@@ -19,30 +19,30 @@ const comediens = records.filter((record) => record.type.includes("comediens"));
 
 <Layout>
   <div class="flex flex-col items-center p-4">
-    <div class="w-full max-w-6xl mt-5">
+    <div class="mt-5 w-full max-w-6xl">
       <div class="p-4 md:p-6">
-        <h1 class="text-madRed text-2xl md:text-3xl text-center md:text-left">
+        <h1 class="text-madRed text-center text-2xl md:text-left md:text-3xl">
           Les Professeur·e·s Metteur·e·s en scène
         </h1>
       </div>
-      <div class="p-4 md:p-6 -mt-6 md:-mt-8">
+      <div class="-mt-6 p-4 md:-mt-8 md:p-6">
         <p class="text-justify leading-snug">
           Les professeur·e·s de théâtre chez Act In Mad sont avant tout des
           comédien·ne·s et des metteur·e·s en scène rigoureusement
           sélectionné·e·s qui vivent de leur métier, et ont à cœur de
           transmettre leur passion à des amateur·e·s, eux·elles-mêmes
-          passionné·e·s par les arts de la scène.<span class="block mt-3"
+          passionné·e·s par les arts de la scène.<span class="mt-3 block"
           ></span>
           Iels sont comédien·ne·s, metteur·e·s en scène, voix off ou bien encore
           iels doublent vos séries préférées ou les dessins animés de vos enfants
-          !<span class="block mt-3"></span>
+          !<span class="mt-3 block"></span>
           Tou·te·s ont suivi une formation professionnelle au métier de comédien·ne·s.
           Iels sont expérimenté·e·s, pédagogues et dispensent un enseignement de
           qualité dans le respect et le plaisir de la personnalité de chacun·e.
         </p>
       </div>
     </div>
-    <div class="space-y-8 leading-snug w-full max-w-6xl">
+    <div class="w-full max-w-6xl space-y-8 leading-snug">
       {
         profs.map((prof) => (
           <BioCard
@@ -55,13 +55,13 @@ const comediens = records.filter((record) => record.type.includes("comediens"));
       }
     </div>
 
-    <div class="w-full max-w-6xl mt-5">
+    <div class="mt-5 w-full max-w-6xl">
       <div class="p-4 md:p-6">
-        <h1 class="text-madRed text-2xl md:text-3xl text-center md:text-left">
+        <h1 class="text-madRed text-center text-2xl md:text-left md:text-3xl">
           Les Comédien·ne·s de la Compagnie
         </h1>
       </div>
-      <div class="p-4 md:p-6 -mt-6 md:-mt-8">
+      <div class="-mt-6 p-4 md:-mt-8 md:p-6">
         <p class="text-justify leading-snug">
           Issu·e·s d’horizons différents, les comédiennes et comédiens de la
           Compagnie sont talentueux, pluri-disciplinaires, audacieux et ouverts
@@ -70,7 +70,7 @@ const comediens = records.filter((record) => record.type.includes("comediens"));
           Azzoug.
         </p>
       </div>
-      <div class="space-y-8 leading-snug w-full max-w-6xl">
+      <div class="w-full max-w-6xl space-y-8 leading-snug">
         {
           comediens.map((comedien) => (
             <BioCard
@@ -83,14 +83,14 @@ const comediens = records.filter((record) => record.type.includes("comediens"));
         }
       </div>
 
-      <div class="w-full max-w-6xl mt-5">
+      <div class="mt-5 w-full max-w-6xl">
         <div class="p-4 md:p-6">
-          <h1 class="text-madRed text-2xl md:text-3xl text-center md:text-left">
+          <h1 class="text-madRed text-center text-2xl md:text-left md:text-3xl">
             Les Fondateurs-trices
           </h1>
         </div>
       </div>
-      <div class="space-y-8 leading-snug w-full max-w-6xl">
+      <div class="w-full max-w-6xl space-y-8 leading-snug">
         {
           fondateurs.map((fondateur) => (
             <BioCard

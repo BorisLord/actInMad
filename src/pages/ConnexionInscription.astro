@@ -13,10 +13,10 @@ import m14 from "../assets/metro/m14.svg";
 
 <Layout>
   <div class="flex flex-col items-center p-4">
-    <div class="max-w-md w-full rounded-xl p-6 mt-5">
+    <div class="mt-5 w-full max-w-md rounded-xl p-6">
       <LoginSignup client:load />
     </div>
-    <div class="flex flex-col md:flex-row max-w-6xl p-4 md:p-6 gap-6">
+    <div class="flex max-w-6xl flex-col gap-6 p-4 md:flex-row md:p-6">
       <div class="flex flex-col">
         <p class="text-left">
           Notre parcours d'inscription arrive bientôt sur scène ! <br />
@@ -37,14 +37,14 @@ import m14 from "../assets/metro/m14.svg";
           >.
         </p>
 
-        <div class="w-full max-w-6xl p-4 md:p-6 mt-5">
-          <h1 class="text-madRed text-2xl md:text-3xl text-center">
+        <div class="mt-5 w-full max-w-6xl p-4 md:p-6">
+          <h1 class="text-madRed text-center text-2xl md:text-3xl">
             Lieu des cours
           </h1>
         </div>
 
         <div
-          class="flex flex-row flex-wrap gap-4 md:gap-24 w-full max-w-6xl justify-center text-xs md:text-sm"
+          class="flex w-full max-w-6xl flex-row flex-wrap justify-center gap-4 text-xs md:gap-24 md:text-sm"
         >
           <div class="flex flex-col items-center">
             <a
@@ -53,17 +53,17 @@ import m14 from "../assets/metro/m14.svg";
               aria-label="Lien Google Maps - Rue Falguière"
               rel="noopener noreferrer"
               target="_blank"
-              class="bg-madRed text-madBack font-bold px-12 py-2 rounded-xl mb-3 text-2xl hover:underline transition"
+              class="bg-madRed text-madBack mb-3 rounded-xl px-12 py-2 text-2xl font-bold transition hover:underline"
             >
               Paris 15<sup>e</sup>
             </a>
-            <div class="flex flex-row flex-wrap justify-center gap-2 mb-2">
-              <Image src={m4} alt="M4" class="w-6 h-auto" />
-              <Image src={m6} alt="M6" class="w-6 h-auto" />
-              <Image src={m12} alt="M12" class="w-6 h-auto" />
-              <Image src={m13} alt="M13" class="w-6 h-auto" />
+            <div class="mb-2 flex flex-row flex-wrap justify-center gap-2">
+              <Image src={m4} alt="M4" class="h-auto w-6" />
+              <Image src={m6} alt="M6" class="h-auto w-6" />
+              <Image src={m12} alt="M12" class="h-auto w-6" />
+              <Image src={m13} alt="M13" class="h-auto w-6" />
             </div>
-            <address class="text-center text-gray-700 leading-tight">
+            <address class="text-center leading-tight text-gray-700">
               Arrêt : Montparnasse / Pasteur
               <br />
               Rue Falguière<br />75015 Paris
@@ -77,14 +77,14 @@ import m14 from "../assets/metro/m14.svg";
               aria-label="Lien Google Maps - Place Saint Jean"
               rel="noopener noreferrer"
               target="_blank"
-              class="bg-madRed text-madBack font-bold px-12 py-2 rounded-xl mb-3 text-2xl hover:underline transition"
+              class="bg-madRed text-madBack mb-3 rounded-xl px-12 py-2 text-2xl font-bold transition hover:underline"
             >
               Paris 17<sup>e</sup>
             </a>
-            <div class="flex flex-row flex-wrap justify-center gap-2 mb-2">
-              <Image src={m13} alt="M13" class="w-6 h-auto" />
+            <div class="mb-2 flex flex-row flex-wrap justify-center gap-2">
+              <Image src={m13} alt="M13" class="h-auto w-6" />
             </div>
-            <address class="text-center text-gray-700 leading-tight">
+            <address class="text-center leading-tight text-gray-700">
               Arrêt : La Fourche
               <br />
               Rue Saint Jean<br />75017 Paris
@@ -98,15 +98,15 @@ import m14 from "../assets/metro/m14.svg";
               aria-label="Lien Google Maps - Rue Jean Saint-Ouen"
               rel="noopener noreferrer"
               target="_blank"
-              class="bg-madRed text-madBack font-bold px-12 py-2 rounded-xl mb-3 text-2xl hover:underline transition"
+              class="bg-madRed text-madBack mb-3 rounded-xl px-12 py-2 text-2xl font-bold transition hover:underline"
             >
               Saint-Ouen
             </a>
-            <div class="flex flex-row flex-wrap justify-center gap-2 mb-2">
-              <Image src={m13} alt="M13" class="w-6 h-auto" />
-              <Image src={m14} alt="M14" class="w-6 h-auto" />
+            <div class="mb-2 flex flex-row flex-wrap justify-center gap-2">
+              <Image src={m13} alt="M13" class="h-auto w-6" />
+              <Image src={m14} alt="M14" class="h-auto w-6" />
             </div>
-            <address class="text-center text-gray-700 leading-tight">
+            <address class="text-center leading-tight text-gray-700">
               Arrêt : Mairie de Saint-Ouen
               <br />
               Rue Jean<br />93400 Saint-Ouen
