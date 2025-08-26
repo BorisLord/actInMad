@@ -15,12 +15,12 @@ export default function UserDashboard() {
   const [currentPage, setCurrentPage] = useState<string>("UserAccount");
   const [isClientReady, setIsClientReady] = useState(false);
   const user = useStore($user);
-  const isProfileCompleted = user.profileCompleted;
+
+  const isLocked = !user.profileCompleted || !user.verified;
 
   useEffect(() => {
     setIsClientReady(true);
-    const isValid = pb.authStore.isValid;
-    if (!isValid) {
+    if (!pb.authStore.isValid) {
       navigate("/ConnexionInscription");
     }
   }, []);
@@ -48,10 +48,10 @@ export default function UserDashboard() {
   }, []);
 
   useEffect(() => {
-    if (isClientReady && !isProfileCompleted) {
+    if (isClientReady && isLocked) {
       setCurrentPage("UserAccount");
     }
-  }, [isClientReady, isProfileCompleted]);
+  }, [isClientReady, isLocked]);
 
   const renderPage = () => {
     switch (currentPage) {
@@ -81,7 +81,14 @@ export default function UserDashboard() {
   return (
     <div>
       <header className="sticky top-0 z-20 border-b border-black/10">
-        <DashboardNav currentPage={currentPage} onPageChange={setCurrentPage} />
+        <DashboardNav
+          currentPage={currentPage}
+          onPageChange={(page) => {
+            if (!isLocked) {
+              setCurrentPage(page);
+            }
+          }}
+        />
       </header>
 
       <main className="mx-auto max-w-screen-xl p-4 sm:p-6 lg:p-8">
