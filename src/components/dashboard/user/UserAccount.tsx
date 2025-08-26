@@ -1,52 +1,36 @@
 import { useEffect, useRef, useState } from "preact/hooks";
 
-import { pb } from "../../../lib/pocketbase";
+import { getAvatarUrl, pb } from "../../../lib/pocketbase";
 import { type User, updateUser } from "../../../lib/stores/userStore";
 import Calendar from "../../Calendar";
 
 export default function UserAccount({ user }: { user: User }) {
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(!user.profileCompleted);
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
   const avatarInputRef = useRef<HTMLInputElement>(null);
 
-  const formatBirthdate = (date: string) => {
-    return date ? date.split(" ")[0] : "";
-  };
-
   const [formData, setFormData] = useState<User>({
-    id: user.id || "",
-    email: user.email || "",
-    firstName: user.firstName || "",
-    lastName: user.lastName || "",
-    birthdate: formatBirthdate(user.birthdate || ""),
-    phone: user.phone || "",
-    theaterLevel: user.theaterLevel || undefined,
-    verified: user.verified || false,
-    profileCompleted: user.profileCompleted || false,
-    avatarUrl: user.avatarUrl || "",
+    ...user,
+    birthdate: user.birthdate ? user.birthdate.split(" ")[0] : "",
   });
 
   useEffect(() => {
     if (user) {
       setFormData({
-        id: user.id || "",
-        email: user.email || "",
-        firstName: user.firstName || "",
-        lastName: user.lastName || "",
+        ...user,
         birthdate: user.birthdate ? user.birthdate.split(" ")[0] : "",
-        phone: user.phone || "",
-        theaterLevel: user.theaterLevel || undefined,
-        verified: user.verified || false,
-        profileCompleted: user.profileCompleted || false,
-        avatarUrl: user.avatarUrl || "",
       });
+      if (!user.profileCompleted) {
+        setIsEditing(true);
+      }
     }
   }, [user]);
 
   const handleSendVerification = async () => {
     try {
-      await pb.collection("users").requestVerification(formData.email);
-
+      await pb
+        .collection("users")
+        .requestVerification(formData.email as string);
       alert("Un email de vérification a été envoyé !");
     } catch (err) {
       alert("Une erreur s'est produite. Veuillez réessayer.");
@@ -55,12 +39,12 @@ export default function UserAccount({ user }: { user: User }) {
 
   const handleChange = (e: any) => {
     const { name, value } = e.target as HTMLInputElement | HTMLSelectElement;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleFileChange = (e: Event) => {
     const target = e.target as HTMLInputElement;
-    if (target.files && target.files.length > 0) {
+    if (target.files?.[0]) {
       setAvatarFile(target.files[0]);
     }
   };
@@ -77,10 +61,15 @@ export default function UserAccount({ user }: { user: User }) {
       );
 
       const data = new FormData();
-      Object.entries(formData).forEach(([key, value]) => {
-        if (key !== "id" && key !== "avatar" && key !== "profileCompleted") {
-          data.append(key, value as string);
-        }
+      const fieldsToUpdate: (keyof User)[] = [
+        "firstName",
+        "lastName",
+        "birthdate",
+        "phone",
+        "theaterLevel",
+      ];
+      fieldsToUpdate.forEach((key) => {
+        if (formData[key]) data.append(key, formData[key] as string);
       });
       data.append("profileCompleted", String(isProfileComplete));
 
@@ -90,9 +79,17 @@ export default function UserAccount({ user }: { user: User }) {
 
       const updatedRecord = await pb
         .collection("users")
-        .update(formData.id, data);
-
-      updateUser(updatedRecord);
+        .update(formData.id as string, data);
+      console.log("Updated r4ecord", updatedRecord);
+      const avatarUrl = await getAvatarUrl(
+        user.id as string,
+        updatedRecord.avatar,
+      );
+      const updatedRecordUrl = {
+        ...updatedRecord,
+        avatarUrl: avatarUrl ?? undefined,
+      };
+      updateUser(updatedRecordUrl);
 
       setIsEditing(false);
       setAvatarFile(null);
@@ -107,14 +104,35 @@ export default function UserAccount({ user }: { user: User }) {
     return <div>Chargement du profil...</div>;
   }
 
-  return (
-    <div class="mx-auto mt-4 w-full max-w-sm p-4 md:max-w-md lg:max-w-xl">
+  const ActionsRequis = () => (
+    <div class="mb-6 space-y-4 rounded-xl border border-yellow-300 bg-yellow-50 p-4">
+      <h3 class="font-bold text-yellow-800">Finalisez votre inscription</h3>
       {!user.profileCompleted && (
-        <p class="m-4 text-justify">
-          Avant de commencer cette aventure théâtrale ensemble, nous aimerions
-          en savoir un peu plus sur vous !{" "}
+        <p class="text-sm text-yellow-700">
+          Pour accéder à toutes les fonctionnalités, veuillez compléter les
+          champs obligatoires (*) de votre profil.
         </p>
       )}
+      {!user.verified && (
+        <div class="flex items-center gap-4 rounded-lg bg-yellow-100 p-3">
+          <p class="flex-1 text-sm text-yellow-800">
+            Votre adresse email n'est pas encore vérifiée.
+          </p>
+          <button
+            onClick={handleSendVerification}
+            class="bg-madEncart hover:bg-madRed whitespace-nowrap rounded-lg px-3 py-1.5 text-sm font-medium text-white transition"
+          >
+            Envoyer l'email
+          </button>
+        </div>
+      )}
+    </div>
+  );
+
+  return (
+    <div class="mx-auto mt-4 w-full max-w-sm p-4 md:max-w-md lg:max-w-xl">
+      {(!user.profileCompleted || !user.verified) && <ActionsRequis />}
+
       {isEditing ? (
         <form
           onSubmit={handleSubmit}
@@ -152,7 +170,11 @@ export default function UserAccount({ user }: { user: User }) {
             <label htmlFor="birthdate" class="mb-1 block font-semibold">
               Date de naissance *
             </label>
-            <Calendar value={formData.birthdate} onChange={handleChange} />
+            <Calendar
+              key="birthdate"
+              value={formData.birthdate}
+              onChange={handleChange}
+            />
           </div>
           <div>
             <label htmlFor="phone" class="mb-1 block font-semibold">
@@ -216,13 +238,15 @@ export default function UserAccount({ user }: { user: User }) {
           >
             Enregistrer les modifications
           </button>
-          <button
-            type="button"
-            onClick={() => setIsEditing(false)}
-            class="cursor-pointer rounded-xl bg-gray-300 px-6 py-2 font-bold text-gray-800 transition hover:bg-gray-400"
-          >
-            Annuler
-          </button>
+          {user.profileCompleted && (
+            <button
+              type="button"
+              onClick={() => setIsEditing(false)}
+              class="cursor-pointer rounded-xl bg-gray-300 px-6 py-2 font-bold text-gray-800 transition hover:bg-gray-400"
+            >
+              Annuler
+            </button>
+          )}
         </form>
       ) : (
         <div class="flex flex-col gap-4 text-sm md:text-base">
@@ -233,38 +257,33 @@ export default function UserAccount({ user }: { user: User }) {
                 <dd class="mt-1 text-gray-900 sm:col-span-2 sm:mt-0">
                   {[formData.firstName, formData.lastName]
                     .filter(Boolean)
-                    .join(" ") || "Non renseigné"}{" "}
+                    .join(" ") || "Non renseigné"}
                 </dd>
               </div>
-
               <div class="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4">
                 <dt class="font-medium text-gray-600">Date de naissance</dt>
                 <dd class="mt-1 text-gray-900 sm:col-span-2 sm:mt-0">
                   {formData.birthdate || "Non renseignée"}
                 </dd>
               </div>
-
               <div class="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4">
                 <dt class="font-medium text-gray-600">Téléphone</dt>
                 <dd class="mt-1 text-gray-900 sm:col-span-2 sm:mt-0">
                   {formData.phone || "Non renseigné"}
                 </dd>
               </div>
-
               <div class="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4">
                 <dt class="font-medium text-gray-600">Email</dt>
                 <dd class="mt-1 text-gray-900 sm:col-span-2 sm:mt-0">
                   {formData.email}
                 </dd>
               </div>
-
               <div class="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4">
                 <dt class="font-medium text-gray-600">Niveau de théâtre</dt>
                 <dd class="mt-1 text-gray-900 sm:col-span-2 sm:mt-0">
                   {formData.theaterLevel || "Non renseigné"}
                 </dd>
               </div>
-
               <div className="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4">
                 <dt className="font-medium text-gray-600">Photo de profil</dt>
                 <dd className="mt-1 text-gray-900 sm:col-span-2 sm:mt-0">
@@ -279,7 +298,6 @@ export default function UserAccount({ user }: { user: User }) {
                   )}
                 </dd>
               </div>
-
               <div class="px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4">
                 <dt class="font-medium text-gray-600">Statut du compte</dt>
                 <dd class="mt-1 text-gray-900 sm:col-span-2 sm:mt-0">
@@ -288,23 +306,14 @@ export default function UserAccount({ user }: { user: User }) {
                       Vérifié
                     </span>
                   ) : (
-                    <div class="flex items-center gap-4">
-                      <span class="rounded-full bg-yellow-100 px-2 py-1 text-xs font-semibold text-yellow-800">
-                        Non vérifié
-                      </span>
-                      <button
-                        onClick={handleSendVerification}
-                        class="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline"
-                      >
-                        Envoyer l'email de vérification
-                      </button>
-                    </div>
+                    <span class="rounded-full bg-yellow-100 px-2 py-1 text-xs font-semibold text-yellow-800">
+                      Non vérifié
+                    </span>
                   )}
                 </dd>
               </div>
             </dl>
           </div>
-
           <button
             onClick={() => setIsEditing(true)}
             class="bg-madRed hover:bg-madEncart cursor-pointer rounded-xl px-6 py-2 font-bold text-white transition"
