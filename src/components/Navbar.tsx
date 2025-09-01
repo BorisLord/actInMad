@@ -6,21 +6,7 @@ import { useEffect, useRef, useState } from "preact/hooks";
 
 import { pb } from "../lib/pocketbase";
 import { $user, clearUser } from "../lib/stores/userStore";
-
-// Interface de props unifiée et nettoyée
-interface Link {
-  href: string;
-  label: string;
-}
-
-interface NavbarProps {
-  links: Link[];
-  currentPath: string;
-  isHomePage: boolean;
-  logoSrc?: string;
-  onDashboardToggle?: () => void;
-  dashboardToggleRef?: Ref<HTMLButtonElement>;
-}
+import type { NavbarProps } from "../type";
 
 const Navbar: FunctionalComponent<NavbarProps> = ({
   links,

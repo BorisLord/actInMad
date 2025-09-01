@@ -4,15 +4,11 @@ import { useState } from "preact/hooks";
 
 import { pb } from "../../lib/pocketbase";
 import { setUser } from "../../lib/stores/userStore";
+import type { LoginForm } from "../../type";
 import SignUpButton from "../google/GoogleSignButton";
 
-interface FormState {
-  email: string;
-  password: string;
-}
-
 const ConnexionForm = () => {
-  const [form, setForm] = useState<FormState>({
+  const [form, setForm] = useState<LoginForm>({
     email: "",
     password: "",
   });

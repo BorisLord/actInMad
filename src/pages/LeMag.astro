@@ -8,17 +8,7 @@ import { PUBLIC_PB_URL } from "astro:env/client";
 import defImg from "../assets/defaultImg.jpg";
 
 import { pb } from "../lib/pocketbase";
-
-type Article = {
-  id: string;
-  collectionId: string;
-  title: string;
-  subTitle: string;
-  slug: string;
-  images: string[];
-  imgDescription: string;
-  releaseDate: string;
-};
+import type { Article } from "../type";
 
 const records: Article[] = await pb
   .collection("articles")

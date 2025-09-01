@@ -1,23 +1,11 @@
 import { persistentMap } from "@nanostores/persistent";
 
+import type { User } from "../../type";
 import { getAvatarUrl } from "../pocketbase";
 import {
   subscribeToUserChanges,
   unsubscribeFromUserChanges,
 } from "../services/realTimeUserServices";
-
-export type User = {
-  id?: string;
-  email?: string;
-  firstName?: string;
-  lastName?: string;
-  phone?: string;
-  birthdate?: string;
-  theaterLevel?: "Debutant" | "Intermediaire" | "Confirme" | undefined;
-  verified?: boolean;
-  profileCompleted?: boolean;
-  avatarUrl?: string;
-};
 
 export const $user = persistentMap<User>(
   "user:",

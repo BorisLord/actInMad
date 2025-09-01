@@ -4,16 +4,11 @@ import type { ChangeEvent, FormEvent } from "preact/compat";
 import { useState } from "preact/hooks";
 
 import { pb } from "../../lib/pocketbase";
+import type { SignupForm } from "../../type";
 import SignUpButton from "../google/GoogleSignButton";
 
-interface FormState {
-  email: string;
-  password: string;
-  passwordConfirm: string;
-}
-
 const InscriptionForm = () => {
-  const [form, setForm] = useState<FormState>({
+  const [form, setForm] = useState<SignupForm>({
     email: "",
     password: "",
     passwordConfirm: "",
