@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "preact/hooks";
 
 import { getAvatarUrl, pb } from "../../../lib/pocketbase";
-import { type $user, updateUser } from "../../../lib/stores/userStore";
-import Calendar from "../../Calendar";
+import { updateUser } from "../../../lib/stores/userStore";
 import type { User } from "../../../type";
+import Calendar from "../../Calendar";
 
 export default function UserAccount({ user }: { user: User }) {
   const [isEditing, setIsEditing] = useState(!user.profileCompleted);

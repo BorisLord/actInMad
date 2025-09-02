@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "buildPrev": "astro build && astro preview",
     "astro": "astro",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "check": "astro check"
   },
   "dependencies": {
     "@astrojs/preact": "^4.1.0",

@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import { useStore } from "@nanostores/preact";
 import { navigate } from "astro:transitions/client";
-import type { FunctionalComponent, Ref } from "preact";
+import type { FunctionalComponent } from "preact";
 import { useEffect, useRef, useState } from "preact/hooks";
 
 import { pb } from "../lib/pocketbase";

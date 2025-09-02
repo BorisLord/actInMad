@@ -1,10 +1,7 @@
-import { useStore } from "@nanostores/preact";
 import { useEffect, useState } from "preact/hooks";
 
 import { pb } from "../../../lib/pocketbase";
-import { $cart } from "../../../lib/stores/cartStore";
 import type { CoursRecord } from "../../../type";
-
 
 interface UserSubscriptionProps {
   onSelectCourse: (id: string) => void;
@@ -16,7 +13,6 @@ export default function UserSubscription({
   const [courses, setCourses] = useState<CoursRecord[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const cart = useStore($cart);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -25,8 +21,6 @@ export default function UserSubscription({
           filter: "isActive = true",
           sort: "-created",
         });
-
-
 
         setCourses(records as unknown as CoursRecord[]);
       } catch (err: any) {
@@ -64,7 +58,6 @@ export default function UserSubscription({
     const minPrice = Math.min(...tarif.filter((t) => t > 0));
     return `À partir de ${minPrice}€`;
   };
-
 
   return (
     <div>

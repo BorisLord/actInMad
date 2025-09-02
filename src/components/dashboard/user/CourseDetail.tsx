@@ -3,10 +3,7 @@ import { useStore } from "@nanostores/preact";
 import { useEffect, useMemo, useState } from "preact/hooks";
 
 import { pb } from "../../../lib/pocketbase";
-import {
-  $cart,
-  addCourseToCart,
-} from "../../../lib/stores/cartStore";
+import { $cart, addCourseToCart } from "../../../lib/stores/cartStore";
 import type { CartItem, CoursRecord, EquipeRecord } from "../../../type";
 
 interface CourseDetailProps {
@@ -102,7 +99,6 @@ export default function CourseDetail({ courseId, onBack }: CourseDetailProps) {
     fetchCourse();
   }, [courseId]);
 
-
   const displayTarifs = useMemo(() => {
     if (!course?.tarif || course.tarif.length === 0) {
       return [];
@@ -149,7 +145,6 @@ export default function CourseDetail({ courseId, onBack }: CourseDetailProps) {
     if (displayTarifs.length === 1) {
       setSelectedTarif(displayTarifs[0].value);
     }
-
   }, [displayTarifs]);
 
   const handleCartClick = () => {
@@ -255,7 +250,7 @@ export default function CourseDetail({ courseId, onBack }: CourseDetailProps) {
                 <div class="mt-2 flex-grow pl-9">
                   {displayTarifs.length > 0 ? (
                     <div class="space-y-1.5">
-                      {displayTarifs.map((tarifOption, index) => (
+                      {displayTarifs.map((tarifOption) => (
                         <label
                           key={tarifOption.value}
                           class="flex cursor-pointer items-center justify-between rounded-md border p-2 transition hover:bg-slate-100 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-50"

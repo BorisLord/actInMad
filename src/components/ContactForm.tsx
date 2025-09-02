@@ -3,7 +3,7 @@ import { PUBLIC_PB_URL } from "astro:env/client";
 import { useEffect, useState } from "preact/hooks";
 
 import { pb } from "../lib/pocketbase";
-import { $user, updateUser } from "../lib/stores/userStore";
+import { $user } from "../lib/stores/userStore";
 
 export default function ContactForm() {
   const user = useStore($user);
@@ -72,15 +72,17 @@ export default function ContactForm() {
         body: JSON.stringify(payload),
       });
 
-      setSent(true);
-      if (!pb.authStore.isValid) {
-        setForm({
-          nom: "",
-          prenom: "",
-          email: "",
-          inscription: false,
-          message: "",
-        });
+      if (response.ok) {
+        setSent(true);
+        if (!pb.authStore.isValid) {
+          setForm({
+            nom: "",
+            prenom: "",
+            email: "",
+            inscription: false,
+            message: "",
+          });
+        }
       } else {
         setForm((prevForm) => ({
           ...prevForm,
