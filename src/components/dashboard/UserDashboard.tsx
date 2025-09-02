@@ -5,14 +5,18 @@ import { useEffect, useState } from "preact/hooks";
 import { pb } from "../../lib/pocketbase";
 import { $user, updateUser } from "../../lib/stores/userStore";
 import DashboardNav from "./DashboardNav";
+import CourseDetail from "./user/CourseDetail";
 import UserAccount from "./user/UserAccount";
+import UserCart from "./user/UserCart";
 import UserCourse from "./user/UserCourse";
 import UserDocument from "./user/UserDocument";
 import UserSetting from "./user/UserSetting";
 import UserSubscription from "./user/UserSubscription";
 
+
 export default function UserDashboard() {
   const [currentPage, setCurrentPage] = useState<string>("UserAccount");
+  const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
   const [isClientReady, setIsClientReady] = useState(false);
   const user = useStore($user);
 
@@ -53,18 +57,34 @@ export default function UserDashboard() {
     }
   }, [isClientReady, isLocked]);
 
+  const handleSelectCourse = (id: string) => {
+    setSelectedCourseId(id);
+  };
+
+  const handleBackToList = () => {
+    setSelectedCourseId(null);
+  };
+
   const renderPage = () => {
+    if (selectedCourseId) {
+      return (
+        <CourseDetail courseId={selectedCourseId} onBack={handleBackToList} />
+      );
+    }
+
     switch (currentPage) {
       case "UserAccount":
         return <UserAccount user={user} />;
       case "UserSubscription":
-        return <UserSubscription />;
+        return <UserSubscription onSelectCourse={handleSelectCourse} />;
       case "UserDocument":
         return <UserDocument />;
       case "UserCourse":
         return <UserCourse />;
       case "UserSetting":
         return <UserSetting />;
+      case "UserCart":
+        return <UserCart />;
       default:
         return <UserAccount user={user} />;
     }
@@ -84,9 +104,12 @@ export default function UserDashboard() {
         <DashboardNav
           currentPage={currentPage}
           onPageChange={(page) => {
-            if (!isLocked) {
+            if (isLocked) {
+              setCurrentPage("UserAccount");
+            } else {
               setCurrentPage(page);
             }
+            setSelectedCourseId(null);
           }}
         />
       </header>
