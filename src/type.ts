@@ -34,7 +34,7 @@ export type CoursRecord = {
   description: string;
   isActive: boolean;
   coursType:
-    | `Act'impro`
+    | `Act'Impro`
     | "Atelier Spectacle"
     | "Cours De Theatre"
     | "Cours De Theatre Enfant";
@@ -50,6 +50,11 @@ export type CoursRecord = {
   expand?: {
     profID?: EquipeRecord;
   };
+};
+
+export type CartItem = CoursRecord & {
+  selectedTarif: number;
+  cartItemId: string;
 };
 
 export type NavItem = {

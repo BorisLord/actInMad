@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "preact/hooks";
 
 import { getAvatarUrl, pb } from "../../../lib/pocketbase";
-import { type User, updateUser } from "../../../lib/stores/userStore";
+import { type $user, updateUser } from "../../../lib/stores/userStore";
 import Calendar from "../../Calendar";
+import type { User } from "../../../type";
 
 export default function UserAccount({ user }: { user: User }) {
   const [isEditing, setIsEditing] = useState(!user.profileCompleted);
@@ -39,7 +40,7 @@ export default function UserAccount({ user }: { user: User }) {
 
   const handleChange = (e: any) => {
     const { name, value } = e.target as HTMLInputElement | HTMLSelectElement;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev: any) => ({ ...prev, [name]: value }));
   };
 
   const handleFileChange = (e: Event) => {
@@ -69,7 +70,7 @@ export default function UserAccount({ user }: { user: User }) {
         "theaterLevel",
       ];
       fieldsToUpdate.forEach((key) => {
-        if (formData[key]) data.append(key, formData[key] as string);
+        if (formData[key]) data.append(String(key), formData[key] as string);
       });
       data.append("profileCompleted", String(isProfileComplete));
 
