@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import LoginSignup from "../components/auth/LoginSignup";
 
-import LieuCours from "../components/LieuCours.astro";
+import LieuCours from "../components/static/LieuCours.astro";
 ---
 
 <Layout>
@@ -12,21 +12,6 @@ import LieuCours from "../components/LieuCours.astro";
     </div>
     <div class="flex max-w-6xl flex-col gap-6 p-4 md:flex-row md:p-6">
       <div class="flex flex-col">
-        <p class="text-left">
-          Notre parcours d'inscription arrive bientôt sur scène ! <br />
-          <br />
-          En attendant, vous pouvez vous inscrire via la page du
-          <a class="text-madRed font-bold underline" href="/Planning"
-            >planning</a
-          >.
-          <br />
-          Retrouvez toutes les informations sur nos lieux de cours ainsi que les
-          réponses à vos questions dans notre <a
-            class="text-madRed font-bold underline"
-            href="/Faq">FAQ</a
-          >.
-        </p>
-
         <LieuCours />
       </div>
     </div>

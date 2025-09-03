@@ -1,0 +1,108 @@
+---
+import { Image } from "astro:assets";
+
+import m4 from "../../assets/metro/m4.svg";
+import m6 from "../../assets/metro/m6.svg";
+import m7 from "../../assets/metro/m7.svg";
+import m10 from "../../assets/metro/m10.svg";
+import m11 from "../../assets/metro/m11.svg";
+import m12 from "../../assets/metro/m12.svg";
+import m13 from "../../assets/metro/m13.svg";
+---
+
+<div class="mt-5 w-full max-w-6xl p-4 md:p-6">
+  <h1 class="text-madRed text-center text-2xl md:text-3xl">Lieu des cours</h1>
+</div>
+
+<div
+  class="flex w-full max-w-6xl flex-row flex-wrap justify-center gap-4 text-xs md:gap-24 md:text-sm"
+>
+  <div class="flex flex-col items-center">
+    <a
+      href="https://maps.app.goo.gl/oNcULCeDcWqmDopC9"
+      title="Lien Google Maps - Rue du Gril, Paris"
+      aria-label="Lien Google Maps - Rue du Gril, Paris"
+      rel="noopener noreferrer"
+      target="_blank"
+      class="bg-madRed text-madBack mb-3 rounded-xl px-12 py-2 text-2xl font-bold transition hover:underline"
+    >
+      Paris 5<sup>e</sup>
+    </a>
+    <div class="mb-2 flex flex-row flex-wrap justify-center gap-2">
+      <Image src={m7} alt="M7" class="h-auto w-6" />
+      <Image src={m10} alt="M10" class="h-auto w-6" />
+    </div>
+    <address class="text-center leading-tight text-gray-700">
+      Arrêt : Censier-Daubenton / Jussieu
+      <br />
+      Rue du Gril<br />75005 Paris
+    </address>
+  </div>
+
+  <div class="flex flex-col items-center">
+    <a
+      href="https://maps.app.goo.gl/7HqgW3i7SLm7Dk6e6"
+      title="Lien Google Maps - Rue Falguière, Paris"
+      aria-label="Lien Google Maps - Rue Falguière, Paris"
+      rel="noopener noreferrer"
+      target="_blank"
+      class="bg-madRed text-madBack mb-3 rounded-xl px-12 py-2 text-2xl font-bold transition hover:underline"
+    >
+      Paris 15<sup>e</sup>
+    </a>
+    <div class="mb-2 flex flex-row flex-wrap justify-center gap-2">
+      <Image src={m4} alt="M4" class="h-auto w-6" />
+      <Image src={m6} alt="M6" class="h-auto w-6" />
+      <Image src={m12} alt="M12" class="h-auto w-6" />
+      <Image src={m13} alt="M13" class="h-auto w-6" />
+    </div>
+    <address class="text-center leading-tight text-gray-700">
+      Arrêt : Montparnasse / Pasteur
+      <br />
+      Rue Falguière<br />75015 Paris
+    </address>
+  </div>
+
+  <div class="flex flex-col items-center">
+    <a
+      href="https://maps.app.goo.gl/ne9xrknVtV1wsHsU6"
+      title="Lien Google Maps - Place Saint Jean, Paris"
+      aria-label="Lien Google Maps - Place Saint Jean, Paris"
+      rel="noopener noreferrer"
+      target="_blank"
+      class="bg-madRed text-madBack mb-3 rounded-xl px-12 py-2 text-2xl font-bold transition hover:underline"
+    >
+      Paris 17<sup>e</sup>
+    </a>
+    <div class="mb-2 flex flex-row flex-wrap justify-center gap-2">
+      <Image src={m13} alt="M13" class="h-auto w-6" />
+    </div>
+    <address class="text-center leading-tight text-gray-700">
+      Arrêt : La Fourche
+      <br />
+      Rue Saint Jean<br />75017 Paris
+    </address>
+  </div>
+
+  <div class="flex flex-col items-center">
+    <a
+      href="https://maps.app.goo.gl/toQcw7vtTUC81MYB9"
+      title="Lien Google Maps - Rue Haxo, Paris"
+      aria-label="Lien Google Maps - Rue Haxo, Paris"
+      rel="noopener noreferrer"
+      target="_blank"
+      class="bg-madRed text-madBack mb-3 rounded-xl px-12 py-2 text-2xl font-bold transition hover:underline"
+    >
+      Paris 19<sup>e</sup>
+    </a>
+    <div class="mb-2 flex flex-row flex-wrap justify-center gap-2">
+      <Image src={m11} alt="M11" class="h-auto w-6" />
+      <Image src={m13} alt="M13" class="h-auto w-6" />
+    </div>
+    <address class="text-center leading-tight text-gray-700">
+      Arrêt : Télégraphe / St Fargeau
+      <br />
+      Rue Haxo<br />75019 Paris
+    </address>
+  </div>
+</div>
