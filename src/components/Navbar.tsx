@@ -136,6 +136,12 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
                   </a>
                 </li>
               ))}
+              <a
+                href="/Planning"
+                class="bg-madRed hover:bg-madEncart mx-auto flex w-full max-w-xs items-center justify-center rounded px-3 py-1 text-center text-white"
+              >
+                Planning 2025/2026
+              </a>
             </ul>
           </nav>
           <div className="flex items-center">
