@@ -12,7 +12,7 @@ export default function ContactForm() {
     nom: "",
     prenom: "",
     email: "",
-    inscription: false,
+    isSubscribed: false,
     message: "",
   });
   const [sent, setSent] = useState(false);
@@ -61,7 +61,7 @@ export default function ContactForm() {
       nom: form.nom,
       prenom: form.prenom,
       email: form.email,
-      inscription: form.inscription,
+      inscription: form.isSubscribed,
       message: form.message,
     };
 
@@ -79,7 +79,7 @@ export default function ContactForm() {
             nom: "",
             prenom: "",
             email: "",
-            inscription: false,
+            isSubscribed: false,
             message: "",
           });
         }
@@ -188,7 +188,7 @@ export default function ContactForm() {
             type="checkbox"
             id="inscription"
             name="inscription"
-            checked={form.inscription}
+            checked={form.isSubscribed}
             onInput={handleChange}
             class="h-4 w-4 rounded-md border-gray-400"
           />
