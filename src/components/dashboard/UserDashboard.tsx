@@ -13,9 +13,8 @@ import UserDocument from "./user/UserDocument";
 import UserSetting from "./user/UserSetting";
 import UserSubscription from "./user/UserSubscription";
 
-
 export default function UserDashboard() {
-  const [currentPage, setCurrentPage] = useState<string>("UserAccount");
+  const [currentPage, setCurrentPage] = useState<string>("UserCourse");
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
   const [isClientReady, setIsClientReady] = useState(false);
   const user = useStore($user);
