@@ -77,6 +77,19 @@ const jsonLD = {
     <div id="scroll-watcher"></div>
 
     <main class="min-h-screen">
+      <div
+        class:list={[
+          "block md:hidden py-2",
+          isHomePage ? "bg-black" : "bg-madBack",
+        ]}
+      >
+        <a
+          href="/Planning"
+          class="text-lg font-semibold text-white bg-madRed hover:bg-madEncart px-5 py-2 rounded-xl flex justify-center items-center text-center w-full max-w-xs mx-auto"
+        >
+          Planning 2025/2026
+        </a>
+      </div>
       <slot />
     </main>
     <Footer />

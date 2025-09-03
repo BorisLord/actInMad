@@ -6,6 +6,7 @@ import icon from "astro-icon";
 import astroLLMsGenerator from "astro-llms-generate";
 import { defineConfig, envField } from "astro/config";
 import { loadEnv } from "vite";
+import devtoolsJson from "vite-plugin-devtools-json";
 
 const env = loadEnv(process.env.MODE || "staging", process.cwd(), "");
 
@@ -51,7 +52,7 @@ export default defineConfig({
     ],
   },
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss(), devtoolsJson()],
   },
   site:
     mode === "production"

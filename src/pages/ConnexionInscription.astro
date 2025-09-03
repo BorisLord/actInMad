@@ -1,14 +1,8 @@
 ---
-import { Image } from "astro:assets";
-
 import Layout from "../layouts/Layout.astro";
 import LoginSignup from "../components/auth/LoginSignup";
 
-import m4 from "../assets/metro/m4.svg";
-import m6 from "../assets/metro/m6.svg";
-import m12 from "../assets/metro/m12.svg";
-import m13 from "../assets/metro/m13.svg";
-import m14 from "../assets/metro/m14.svg";
+import LieuCours from "../components/LieuCours.astro";
 ---
 
 <Layout>
@@ -21,98 +15,19 @@ import m14 from "../assets/metro/m14.svg";
         <p class="text-left">
           Notre parcours d'inscription arrive bientôt sur scène ! <br />
           <br />
-          En attendant, faite votre demande d'inscription via le
-          <a class="text-madRed font-bold" href="/Contact"
-            >formulaire de contact</a
-          >.<br />
-          Ou directement par mail à cette adresse :
-          <a class="text-madRed font-bold" href="mailto:contact@actinmad.art"
-            >contact@actinmad.art</a
+          En attendant, vous pouvez vous inscrire via la page du
+          <a class="text-madRed font-bold underline" href="/Planning"
+            >planning</a
           >.
           <br />
           Retrouvez toutes les informations sur nos lieux de cours ainsi que les
           réponses à vos questions dans notre <a
-            class="text-madRed font-bold"
+            class="text-madRed font-bold underline"
             href="/Faq">FAQ</a
           >.
         </p>
 
-        <div class="mt-5 w-full max-w-6xl p-4 md:p-6">
-          <h1 class="text-madRed text-center text-2xl md:text-3xl">
-            Lieu des cours
-          </h1>
-        </div>
-
-        <div
-          class="flex w-full max-w-6xl flex-row flex-wrap justify-center gap-4 text-xs md:gap-24 md:text-sm"
-        >
-          <div class="flex flex-col items-center">
-            <a
-              href="https://maps.app.goo.gl/7HqgW3i7SLm7Dk6e6"
-              title="Lien Google Maps - Rue Falguière"
-              aria-label="Lien Google Maps - Rue Falguière"
-              rel="noopener noreferrer"
-              target="_blank"
-              class="bg-madRed text-madBack mb-3 rounded-xl px-12 py-2 text-2xl font-bold transition hover:underline"
-            >
-              Paris 15<sup>e</sup>
-            </a>
-            <div class="mb-2 flex flex-row flex-wrap justify-center gap-2">
-              <Image src={m4} alt="M4" class="h-auto w-6" />
-              <Image src={m6} alt="M6" class="h-auto w-6" />
-              <Image src={m12} alt="M12" class="h-auto w-6" />
-              <Image src={m13} alt="M13" class="h-auto w-6" />
-            </div>
-            <address class="text-center leading-tight text-gray-700">
-              Arrêt : Montparnasse / Pasteur
-              <br />
-              Rue Falguière<br />75015 Paris
-            </address>
-          </div>
-
-          <div class="flex flex-col items-center">
-            <a
-              href="https://maps.app.goo.gl/ne9xrknVtV1wsHsU6"
-              title="Lien Google Maps - Place Saint Jean"
-              aria-label="Lien Google Maps - Place Saint Jean"
-              rel="noopener noreferrer"
-              target="_blank"
-              class="bg-madRed text-madBack mb-3 rounded-xl px-12 py-2 text-2xl font-bold transition hover:underline"
-            >
-              Paris 17<sup>e</sup>
-            </a>
-            <div class="mb-2 flex flex-row flex-wrap justify-center gap-2">
-              <Image src={m13} alt="M13" class="h-auto w-6" />
-            </div>
-            <address class="text-center leading-tight text-gray-700">
-              Arrêt : La Fourche
-              <br />
-              Rue Saint Jean<br />75017 Paris
-            </address>
-          </div>
-
-          <div class="flex flex-col items-center">
-            <a
-              href="https://maps.app.goo.gl/AYTQZiJq5XCe9oWF7"
-              title="Lien Google Maps - Rue Jean Saint-Ouen"
-              aria-label="Lien Google Maps - Rue Jean Saint-Ouen"
-              rel="noopener noreferrer"
-              target="_blank"
-              class="bg-madRed text-madBack mb-3 rounded-xl px-12 py-2 text-2xl font-bold transition hover:underline"
-            >
-              Saint-Ouen
-            </a>
-            <div class="mb-2 flex flex-row flex-wrap justify-center gap-2">
-              <Image src={m13} alt="M13" class="h-auto w-6" />
-              <Image src={m14} alt="M14" class="h-auto w-6" />
-            </div>
-            <address class="text-center leading-tight text-gray-700">
-              Arrêt : Mairie de Saint-Ouen
-              <br />
-              Rue Jean<br />93400 Saint-Ouen
-            </address>
-          </div>
-        </div>
+        <LieuCours />
       </div>
     </div>
   </div>
