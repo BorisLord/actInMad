@@ -12,11 +12,13 @@ export default function ContactForm() {
     nom: "",
     prenom: "",
     email: "",
-    isSubscribed: false,
+    isSubscribed: true,
     message: "",
   });
   const [sent, setSent] = useState(false);
   const [emailError, setEmailError] = useState("");
+
+  console.log(form);
 
   useEffect(() => {
     if (pb.authStore.isValid && $user) {
@@ -61,7 +63,7 @@ export default function ContactForm() {
       nom: form.nom,
       prenom: form.prenom,
       email: form.email,
-      inscription: form.isSubscribed,
+      isSubscribed: form.isSubscribed,
       message: form.message,
     };
 
@@ -79,14 +81,14 @@ export default function ContactForm() {
             nom: "",
             prenom: "",
             email: "",
-            isSubscribed: false,
+            isSubscribed: true,
             message: "",
           });
         }
       } else {
         setForm((prevForm) => ({
           ...prevForm,
-          inscription: false,
+          isSubscribed: true,
           message: "",
         }));
       }
@@ -187,7 +189,7 @@ export default function ContactForm() {
           <input
             type="checkbox"
             id="inscription"
-            name="inscription"
+            name="isSubscribed"
             checked={form.isSubscribed}
             onInput={handleChange}
             class="h-4 w-4 rounded-md border-gray-400"

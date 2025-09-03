@@ -18,9 +18,9 @@ export default function ConnexionInscription() {
     <div className="w-full md:w-96">
       <div className="flex items-center justify-center">
         {isConnexion ? (
-          <h4 className="mb-5">Pour selectionner un cours, connectez vous !</h4>
+          <h4 className="mb-5">Pour selectionner un cours, connectez-vous !</h4>
         ) : (
-          <h4 className="mb-5">Pour selectionner un cours, inscrivez vous !</h4>
+          <h4 className="mb-5">Pour selectionner un cours, inscrivez-vous !</h4>
         )}
       </div>
       <nav className="flex rounded-2xl">

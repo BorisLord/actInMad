@@ -53,6 +53,7 @@ export type CoursRecord = {
 };
 
 export type CartItem = CoursRecord & {
+  coursId: string;
   selectedTarif: number;
   cartItemId: string;
 };

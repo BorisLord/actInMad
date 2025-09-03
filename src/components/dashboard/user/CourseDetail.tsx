@@ -153,6 +153,7 @@ export default function CourseDetail({ courseId, onBack }: CourseDetailProps) {
     const cartItem: CartItem = {
       ...course,
       selectedTarif,
+      coursId: course.id,
       cartItemId: crypto.randomUUID(),
     };
     addCourseToCart(cartItem);

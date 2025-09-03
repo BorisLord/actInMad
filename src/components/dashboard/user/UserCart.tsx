@@ -1,12 +1,9 @@
-// src/components/preact/UserCart.tsx
 import { Icon } from "@iconify/react";
 import { useStore } from "@nanostores/preact";
 import { PUBLIC_PB_URL } from "astro:env/client";
 import { useState } from "preact/hooks";
 
 import { pb } from "../../../lib/pocketbase";
-// Ajout de useState
-
 import { $cart, removeCourseFromCart } from "../../../lib/stores/cartStore";
 import { $user } from "../../../lib/stores/userStore";
 import type { CartItem } from "../../../type";
