@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 
+import m3bis from "../../assets/metro/m3bis.svg";
 import m4 from "../../assets/metro/m4.svg";
 import m6 from "../../assets/metro/m6.svg";
 import m7 from "../../assets/metro/m7.svg";
@@ -96,11 +97,11 @@ import m13 from "../../assets/metro/m13.svg";
       Paris 19<sup>e</sup>
     </a>
     <div class="mb-2 flex flex-row flex-wrap justify-center gap-2">
+      <Image src={m3bis} alt="M3bis" class="h-auto w-6" />
       <Image src={m11} alt="M11" class="h-auto w-6" />
-      <Image src={m13} alt="M13" class="h-auto w-6" />
     </div>
     <address class="text-center leading-tight text-gray-700">
-      Arrêt : Télégraphe / St Fargeau
+      Arrêt : St Fargeau / Télégraphe
       <br />
       Rue Haxo<br />75019 Paris
     </address>
