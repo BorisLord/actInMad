@@ -1,6 +1,8 @@
 import type { Ref } from "preact";
 
 export type Article = {
+  extra: string;
+  content: string;
   id: string;
   collectionId: string;
   title: string;

@@ -3,18 +3,9 @@ import { PUBLIC_PB_URL } from "astro:env/client";
 import { DateTime } from "luxon";
 import { useEffect, useState } from "preact/hooks";
 
-import { pb } from "../lib/pocketbase";
-
-type Article = {
-  id: string;
-  collectionId: string;
-  title: string;
-  subTitle: string;
-  slug: string;
-  images: string[];
-  imgDescription: string;
-  releaseDate: string;
-};
+import { pb } from "../../lib/pocketbase";
+import { $selectedArticle } from "../../lib/stores/articleStore";
+import type { Article } from "../../type";
 
 const NewArticles = ({
   staticArticleSlugs,
@@ -31,6 +22,7 @@ const NewArticles = ({
           sort: "-releaseDate",
         });
 
+        // FIX: La logique était inversée. On veut les articles qui NE SONT PAS dans la liste statique.
         const filteredArticles = records.filter(
           (article) => !staticArticleSlugs.includes(article.slug),
         );
@@ -44,6 +36,10 @@ const NewArticles = ({
     fetchNewArticles();
   }, [staticArticleSlugs]);
 
+  const handleArticleClick = (article: Article) => {
+    $selectedArticle.set(article);
+  };
+
   if (newArticles.length === 0) {
     return null;
   }
@@ -53,7 +49,8 @@ const NewArticles = ({
       {newArticles.map((article) => (
         <a
           key={article.id}
-          href={`/articles/${article.slug}`}
+          onClick={() => handleArticleClick(article)}
+          href={`/articles/view`}
           class="flex h-[600px] transform flex-col rounded-xl p-3 text-center shadow-2xl transition hover:scale-105"
         >
           <div class="flex-grow overflow-hidden rounded-xl">
@@ -68,7 +65,6 @@ const NewArticles = ({
               <div class="h-92 flex w-full items-center justify-center rounded-xl bg-gray-200" />
             )}
           </div>
-
           <div class="flex flex-grow flex-col justify-between">
             <h2 class="text-xl font-bold">{article.title}</h2>
             <p class="text-justify text-sm">{article.subTitle} ...</p>
@@ -78,7 +74,7 @@ const NewArticles = ({
                 <Icon name="lucide:circle-plus" size="24" class="mr-1" />
               </p>
               <p class="text-sm italic">
-                {DateTime.fromISO(article.releaseDate)
+                {DateTime.fromSQL(article.releaseDate)
                   .setLocale("fr")
                   .toFormat("dd MMMM yyyy")}
               </p>
