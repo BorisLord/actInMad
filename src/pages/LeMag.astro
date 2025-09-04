@@ -3,7 +3,6 @@ import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import { DateTime } from "luxon";
 import Layout from "../layouts/Layout.astro";
-import NewArticles from "../components/articles/NewArticles.tsx";
 import { PUBLIC_PB_URL } from "astro:env/client";
 import defImg from "../assets/defaultImg.jpg";
 
@@ -22,7 +21,7 @@ const staticArticleSlugs = records.map((article) => article.slug);
     <div
       class="grid w-full max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
     >
-      <NewArticles client:load staticArticleSlugs={staticArticleSlugs} />
+      <!-- <NewArticles client:load staticArticleSlugs={staticArticleSlugs} /> -->
       {
         records.length === 0 ? (
           <div class="w-full items-center py-8 text-center">
