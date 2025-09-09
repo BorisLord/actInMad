@@ -105,7 +105,7 @@ export default function CourseDetail({ courseId, onBack }: CourseDetailProps) {
     }
 
     if (course.coursType === `Act'Impro`) {
-      const sortedTarifs = [...course.tarif].sort((a, b) => a - b);
+      const sortedTarifs = [...course.tarif].sort((a, b) => b - a);
       let runningTotal = 0;
       return sortedTarifs.map((price, index) => {
         runningTotal += price;

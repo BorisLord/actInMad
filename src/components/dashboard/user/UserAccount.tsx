@@ -81,7 +81,6 @@ export default function UserAccount({ user }: { user: User }) {
       const updatedRecord = await pb
         .collection("users")
         .update(formData.id as string, data);
-      console.log("Updated r4ecord", updatedRecord);
       const avatarUrl = await getAvatarUrl(
         user.id as string,
         updatedRecord.avatar,

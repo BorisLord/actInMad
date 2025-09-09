@@ -96,3 +96,9 @@ export type NavbarProps = {
   onDashboardToggle?: () => void;
   dashboardToggleRef?: Ref<HTMLButtonElement>;
 };
+
+export type PromoData = {
+  discountAmount: number;
+  newTotal: number;
+  message: string;
+};
