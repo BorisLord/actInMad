@@ -1,18 +1,25 @@
 import { Icon } from "@iconify/react";
 import { useStore } from "@nanostores/preact";
 import { PUBLIC_PB_URL } from "astro:env/client";
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 
 import { pb } from "../../../lib/pocketbase";
 import { $cart, removeCourseFromCart } from "../../../lib/stores/cartStore";
 import { $user } from "../../../lib/stores/userStore";
-import type { CartItem } from "../../../type";
+import type { CartItem, PromoData } from "../../../type";
 
 export default function UserCart() {
   const cartItems = useStore($cart);
   const [promoCode, setPromoCode] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const [promoData, setPromoData] = useState<PromoData | null>(null);
+  const [promoError, setPromoError] = useState<string | null>(null);
+  const [isVerifyingPromo, setIsVerifyingPromo] = useState(false);
+  // Placez ceci avec vos autres déclarations useState
+  const [showPromoInput, setShowPromoInput] = useState(false);
+
   const user = useStore($user);
 
   const getCoursePrice = (course: CartItem): number => {
@@ -24,10 +31,46 @@ export default function UserCart() {
     0,
   );
 
-  const total = subTotal; // Le calcul de la réduction se fera côté serveur
+  const discount = promoData?.discountAmount || 0;
+  const total = subTotal - discount;
 
-  // Note : Ce code suppose que tu as accès à l'instance du SDK PocketBase
-  // via une variable `pb`, initialisée quelque part dans ton application.
+  useEffect(() => {
+    if (promoCode.trim() === "") {
+      setPromoData(null);
+      setPromoError(null);
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      setIsVerifyingPromo(true);
+      setPromoError(null);
+      setPromoData(null);
+
+      try {
+        const response = await pb.send("/api/promo/verify", {
+          method: "POST",
+          body: {
+            code: promoCode.toLowerCase(),
+            cartTotal: subTotal,
+          },
+        });
+
+        if (response.isValid) {
+          setPromoData(response);
+        }
+      } catch (err: any) {
+        setPromoError(err.data?.message || "Ce code est invalide.");
+        setPromoData(null);
+      } finally {
+        setIsVerifyingPromo(false);
+      }
+    }, 1700);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [promoCode, subTotal]);
+
   const handleProceedToPayment = async () => {
     setIsProcessing(true);
     setError(null);
@@ -38,7 +81,6 @@ export default function UserCart() {
       return;
     }
 
-    // La préparation du payload reste identique
     const checkoutItems = cartItems.map((item) => ({
       courseId: item.id,
       selectedTarif: item.selectedTarif,
@@ -52,27 +94,21 @@ export default function UserCart() {
       promoCode: promoCode.trim(),
       subTotal: subTotal,
     };
-    console.log(payload);
     try {
-      // --- CHANGEMENT ICI : On remplace fetch par pb.send ---
       const responseData = await pb.send("/api/checkout", {
         method: "POST",
-        // L'en-tête "Authorization" est ajouté automatiquement !
         headers: {
           "Content-Type": "application/json",
         },
-        // pb.send s'occupe de JSON.stringify() pour nous
         body: payload,
       });
 
-      // La réponse de pb.send est déjà le JSON parsé, pas besoin de .json()
       if (responseData.redirectUrl) {
         window.location.href = responseData.redirectUrl;
       } else {
         throw new Error("URL de paiement non reçue du serveur.");
       }
     } catch (err: any) {
-      // Le SDK PocketBase renvoie des erreurs structurées, c'est plus propre
       const errorMessage =
         err.data?.message || err.message || "Une erreur est survenue.";
       console.error("Erreur lors de la tentative de paiement:", err);
@@ -113,57 +149,93 @@ export default function UserCart() {
                         Avec {professor.prenom} {professor.nom}
                       </p>
                     )}
-                    <p class="mt-1 text-sm font-bold text-gray-800">
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <p class="text-sm font-semibold text-gray-900">
                       {getCoursePrice(item).toFixed(2)} €
                     </p>
+                    <button
+                      onClick={() => removeCourseFromCart(item.cartItemId)}
+                      class="rounded-full p-1.5 text-gray-400 transition-colors hover:bg-red-50 hover:text-red-600"
+                      title="Supprimer l'article"
+                    >
+                      <span class="sr-only">Supprimer</span>
+                      <Icon icon="lucide:trash-2" width="20" />
+                    </button>
                   </div>
-                  <button
-                    onClick={() => removeCourseFromCart(item.cartItemId)}
-                    class="hover:text-madRed text-gray-400 transition-colors"
-                    title="Supprimer l'article"
-                  >
-                    <Icon icon="lucide:trash-2" width="20" />
-                  </button>
                 </li>
               );
             })}
           </ul>
 
-          <div class="border-t border-gray-200 pt-4">
-            <div class="space-y-2">
+          <div class="space-y-4 border-t border-gray-200 pt-4">
+            <div class="space-y-1">
               <div class="flex justify-between text-sm text-gray-600">
                 <span>Sous-total</span>
                 <span>{subTotal.toFixed(2)} €</span>
               </div>
-              <div class="flex justify-between text-base font-medium text-gray-900">
-                <span>Total</span>
-                <span>{total.toFixed(2)} €</span>
-              </div>
+              {promoData && (
+                <div class="flex justify-between text-sm font-medium text-green-600">
+                  <span>Réduction ({promoCode})</span>
+                  <span>- {discount.toFixed(2)} €</span>
+                </div>
+              )}
             </div>
 
-            {/* --- CHAMP CODE PROMO AJOUTÉ --- */}
-            <div class="mt-6">
-              <label
-                for="promo-code"
-                class="block text-sm font-medium text-gray-700"
+            <div class="flex items-center justify-between border-t border-dashed pt-4">
+              <span class="text-base font-medium text-gray-900">Total</span>
+              <span class="text-xl font-bold text-gray-900">
+                {total.toFixed(2)} €
+              </span>
+            </div>
+
+            <div class="pt-2">
+              <button
+                type="button"
+                onClick={() => setShowPromoInput(!showPromoInput)}
+                class="text-sm font-medium text-indigo-600 hover:text-indigo-500"
               >
-                Ajouter un code promo
-              </label>
-              <div class="mt-1 flex rounded-md shadow-sm">
-                <input
-                  type="text"
-                  name="promo-code"
-                  id="promo-code"
-                  value={promoCode}
-                  onInput={(e) =>
-                    setPromoCode(
-                      (e.target as HTMLInputElement).value.toUpperCase(),
-                    )
-                  }
-                  class="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  placeholder="VOTRECODEPROMO"
-                />
-              </div>
+                {showPromoInput ? "Annuler" : "Ajouter un code promo"}
+              </button>
+
+              {showPromoInput && (
+                <div class="mt-2 md:max-w-xs">
+                  <div class="flex items-center">
+                    <div class="flex-1">
+                      <input
+                        type="text"
+                        name="promo-code"
+                        id="promo-code"
+                        value={promoCode}
+                        onInput={(e) =>
+                          setPromoCode(
+                            (e.target as HTMLInputElement).value.toUpperCase(),
+                          )
+                        }
+                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        placeholder="VOTRECODEPROMO"
+                      />
+                    </div>
+                    <div class="ml-2 w-5 flex-shrink-0">
+                      {isVerifyingPromo && (
+                        <Icon
+                          icon="lucide:loader-2"
+                          className="h-5 w-5 animate-spin text-gray-400"
+                        />
+                      )}
+                      {!isVerifyingPromo && promoData && (
+                        <Icon
+                          icon="lucide:check-circle-2"
+                          className="h-5 w-5 text-green-500"
+                        />
+                      )}
+                    </div>
+                  </div>
+                  {promoError && (
+                    <p class="mt-2 text-sm text-red-600">{promoError}</p>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 
@@ -187,7 +259,7 @@ export default function UserCart() {
                   Traitement...
                 </>
               ) : (
-                `Procéder au paiement (${total.toFixed(2)} €)`
+                `Procéder au paiement`
               )}
             </button>
           </div>
