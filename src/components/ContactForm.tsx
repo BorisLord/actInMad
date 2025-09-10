@@ -18,7 +18,6 @@ export default function ContactForm() {
   const [sent, setSent] = useState(false);
   const [emailError, setEmailError] = useState("");
 
-
   useEffect(() => {
     if (pb.authStore.isValid && $user) {
       setForm((prevForm) => ({

@@ -11,6 +11,7 @@ ENV PB_BUILDER_EMAIL=${PB_BUILDER_EMAIL}
 ENV PB_BUILDER_PASSWORD=${PB_BUILDER_PASSWORD}
 
 # Create docker-compose to have acces to the docker network during build to fetch articles from db
+# Cree un storage pour eviter de rebuild les images
 
 WORKDIR /app
 

@@ -98,6 +98,7 @@ export type NavbarProps = {
 };
 
 export type PromoData = {
+  originalTotal: number;
   discountAmount: number;
   newTotal: number;
   message: string;
