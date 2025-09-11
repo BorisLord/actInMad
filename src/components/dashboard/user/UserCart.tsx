@@ -58,13 +58,16 @@ export default function UserCart() {
         if (response.isValid) {
           setPromoData(response);
         }
+        if (!response.isValid) {
+          setPromoError(response.message);
+        }
       } catch (err: any) {
         setPromoError(err.data?.message || "Ce code est invalide.");
         setPromoData(null);
       } finally {
         setIsVerifyingPromo(false);
       }
-    }, 1700);
+    }, 1800);
 
     return () => {
       clearTimeout(timer);
@@ -91,7 +94,7 @@ export default function UserCart() {
     const payload = {
       userId: pb.authStore.record?.id,
       items: checkoutItems,
-      promoCode: promoCode.trim(),
+      promoCode: promoData !== null ? promoCode.trim().toLowerCase() : null,
       subTotal: subTotal,
     };
     try {
@@ -202,6 +205,9 @@ export default function UserCart() {
                 <div class="mt-2 md:max-w-xs">
                   <div class="flex items-center">
                     <div class="flex-1">
+                      <label for="promo-code" class="sr-only">
+                        Code Promo
+                      </label>
                       <input
                         type="text"
                         name="promo-code"
