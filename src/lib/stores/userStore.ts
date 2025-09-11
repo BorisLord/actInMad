@@ -32,9 +32,7 @@ export function updateUser(updatedRecord: Partial<User>) {
   $user.set({ ...currentUser, ...updatedRecord });
 }
 
-export async function setUser(authData: any) {
-  const avatar = await getAvatarUrl(authData.record.id, authData.record.avatar);
-
+export function setUser(authData: any) {
   const userData = {
     id: authData.record.id,
     email: authData.record.email,
@@ -45,12 +43,22 @@ export async function setUser(authData: any) {
     theaterLevel: authData.record.theaterLevel,
     profileCompleted: authData.record.profileCompleted,
     birthdate: authData.record.birthdate,
-    avatarUrl: avatar ?? undefined,
+    avatarUrl: undefined,
   };
 
   $user.set(userData);
 
   subscribeToUserChanges(userData.id);
+
+  (async () => {
+    const avatar = await getAvatarUrl(
+      authData.record.id,
+      authData.record.avatar,
+    );
+    if (avatar) {
+      $user.setKey("avatarUrl", avatar);
+    }
+  })();
 }
 
 export function clearUser() {

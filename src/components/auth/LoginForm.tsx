@@ -52,8 +52,8 @@ const ConnexionForm = () => {
       const res = await pb
         .collection("users")
         .authWithPassword(payload.email, payload.password);
-      setLoggedIn(true);
       setUser(res);
+      setLoggedIn(true);
       navigate("/private/Dashboard");
     } catch (error) {
       setLoginError("Une erreur s'est produite lors de la connexion.");
@@ -67,8 +67,8 @@ const ConnexionForm = () => {
       const res = await pb
         .collection("users")
         .authWithOAuth2({ provider: "google" });
-      setLoggedIn(true);
       setUser(res);
+      setLoggedIn(true);
       navigate("/private/Dashboard");
     } catch (error) {
       setLoginError("Une erreur s'est produite lors de la connexion.");
