@@ -6,8 +6,6 @@ export const subscribeToUserChanges = async (userId: string) => {
     await pb.collection("users").subscribe(userId, (e) => {
       if (e.action === "update") {
         updateUser(e.record);
-      } else {
-        console.log("ℹ️ [RealTime] Ignoring action:", e.action);
       }
     });
   } catch (error) {

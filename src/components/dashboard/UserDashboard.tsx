@@ -31,7 +31,6 @@ export default function UserDashboard() {
   // Récupérer l'avatar une fois que le dashboard est chargé
   useEffect(() => {
     if (isClientReady && user.id && !user.avatarUrl) {
-      console.log("🎯 [UserDashboard] Fetching user avatar...");
       fetchUserAvatar();
     }
   }, [isClientReady, user.id, user.avatarUrl]);
