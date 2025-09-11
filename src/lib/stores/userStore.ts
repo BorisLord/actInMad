@@ -54,7 +54,7 @@ export function setUser(authData: any) {
     theaterLevel: authData.record.theaterLevel,
     profileCompleted: authData.record.profileCompleted,
     birthdate: authData.record.birthdate,
-    avatarUrl: undefined,
+    avatarUrl: undefined, // Sera récupéré plus tard sur le dashboard
   };
 
   console.log("✅ [UserStore] Setting user data in store");
@@ -63,47 +63,40 @@ export function setUser(authData: any) {
   console.log("📡 [UserStore] Subscribing to user changes");
   subscribeToUserChanges(userData.id);
 
-  console.log("🖼️ [UserStore] Starting avatar fetch process...");
+  console.log(
+    "ℹ️ [UserStore] Avatar will be fetched later when dashboard loads",
+  );
+}
 
-  // Utiliser setTimeout pour s'assurer que la fonction s'exécute
-  setTimeout(async () => {
-    console.log("⏰ [UserStore] Avatar fetch timeout triggered");
-    try {
-      console.log("🔍 [UserStore] Attempting to fetch avatar for user:", {
-        userId: authData.record.id,
-        avatarFilename: authData.record.avatar,
-      });
+export async function fetchUserAvatar() {
+  console.log("🖼️ [UserStore] fetchUserAvatar called");
+  const user = $user.get();
 
-      if (!authData.record.avatar) {
-        console.log(
-          "⚠️ [UserStore] No avatar filename provided, skipping avatar fetch",
-        );
-        return;
-      }
+  if (!user.id) {
+    console.log("⚠️ [UserStore] No user ID, skipping avatar fetch");
+    return;
+  }
 
-      const avatarUrl = await getAvatarUrl(authData.record.id);
+  if (user.avatarUrl) {
+    console.log("ℹ️ [UserStore] Avatar already loaded, skipping fetch");
+    return;
+  }
 
-      console.log("✅ [UserStore] Avatar URL fetched successfully:", avatarUrl);
+  try {
+    console.log("🔍 [UserStore] Fetching avatar for user:", user.id);
+    const avatarUrl = await getAvatarUrl(user.id);
 
-      if (avatarUrl) {
-        $user.setKey("avatarUrl", avatarUrl);
-        console.log("🎯 [UserStore] Avatar URL has been set in the user store");
-      } else {
-        console.log(
-          "⚠️ [UserStore] No avatar URL returned, skipping store update",
-        );
-      }
-    } catch (error) {
-      console.error("❌ [UserStore] ERROR: Failed to fetch or set avatar");
-      console.error("👤 User ID:", authData.record.id);
-      console.error("📁 Avatar filename:", authData.record.avatar);
-      console.error("🔍 Error details:", error);
-      console.error(
-        "📊 Error stack:",
-        error instanceof Error ? error.stack : "No stack trace",
-      );
+    console.log("✅ [UserStore] Avatar URL fetched:", avatarUrl);
+
+    if (avatarUrl) {
+      $user.setKey("avatarUrl", avatarUrl);
+      console.log("🎯 [UserStore] Avatar URL set in store");
+    } else {
+      console.log("⚠️ [UserStore] No avatar URL returned");
     }
-  }, 2000); // Délai de 100ms pour s'assurer que l'exécution se fait
+  } catch (error) {
+    console.error("❌ [UserStore] Failed to fetch avatar:", error);
+  }
 }
 
 export function clearUser() {

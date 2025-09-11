@@ -3,7 +3,7 @@ import { navigate } from "astro:transitions/client";
 import { useEffect, useState } from "preact/hooks";
 
 import { pb } from "../../lib/pocketbase";
-import { $user, updateUser } from "../../lib/stores/userStore";
+import { $user, fetchUserAvatar, updateUser } from "../../lib/stores/userStore";
 import DashboardNav from "./DashboardNav";
 import CourseDetail from "./user/CourseDetail";
 import UserAccount from "./user/UserAccount";
@@ -27,6 +27,14 @@ export default function UserDashboard() {
       navigate("/ConnexionInscription");
     }
   }, []);
+
+  // Récupérer l'avatar une fois que le dashboard est chargé
+  useEffect(() => {
+    if (isClientReady && user.id && !user.avatarUrl) {
+      console.log("🎯 [UserDashboard] Fetching user avatar...");
+      fetchUserAvatar();
+    }
+  }, [isClientReady, user.id, user.avatarUrl]);
 
   useEffect(() => {
     const confirmEmailVerification = async () => {
