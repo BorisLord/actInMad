@@ -5,7 +5,7 @@ export const pb = new PocketBase(PUBLIC_PB_URL);
 
 export const getAvatarUrl = async (
   userId: string,
-  avatarFileName: string,
+  avatarFileName?: string,
 ): Promise<string | null> => {
   console.log("🖼️ [PocketBase] getAvatarUrl called with:", {
     userId,
@@ -14,8 +14,8 @@ export const getAvatarUrl = async (
     hasAvatarFileName: !!avatarFileName,
   });
 
-  if (!userId || !avatarFileName) {
-    console.log("⚠️ [PocketBase] Missing required parameters, returning null");
+  if (!userId) {
+    console.log("⚠️ [PocketBase] Missing userId, returning null");
     return null;
   }
 
@@ -26,10 +26,37 @@ export const getAvatarUrl = async (
       recordId: record.id,
       hasAvatar: !!record.avatar,
       avatarField: record.avatar,
+      avatarFieldType: Array.isArray(record.avatar)
+        ? "array"
+        : typeof record.avatar,
     });
 
-    console.log("🔗 [PocketBase] Generating file URL...");
-    const url = pb.files.getURL(record, avatarFileName);
+    if (!record.avatar) {
+      console.log("⚠️ [PocketBase] No avatar in record, returning null");
+      return null;
+    }
+
+    // Utiliser record.avatar directement (comme dans la documentation PocketBase)
+    let filename: string;
+    if (Array.isArray(record.avatar)) {
+      console.log(
+        "📁 [PocketBase] Avatar field is an array, taking first element",
+      );
+      filename = record.avatar[0];
+    } else {
+      console.log(
+        "📁 [PocketBase] Avatar field is a string, using it directly",
+      );
+      filename = record.avatar;
+    }
+
+    if (!filename) {
+      console.log("⚠️ [PocketBase] Empty filename, returning null");
+      return null;
+    }
+
+    console.log("🔗 [PocketBase] Generating file URL with filename:", filename);
+    const url = pb.files.getURL(record, filename);
     console.log("✅ [PocketBase] Avatar URL generated:", url);
 
     return url;

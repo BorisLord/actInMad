@@ -81,10 +81,7 @@ export function setUser(authData: any) {
         return;
       }
 
-      const avatarUrl = await getAvatarUrl(
-        authData.record.id,
-        authData.record.avatar,
-      );
+      const avatarUrl = await getAvatarUrl(authData.record.id);
 
       console.log("✅ [UserStore] Avatar URL fetched successfully:", avatarUrl);
 
@@ -106,7 +103,7 @@ export function setUser(authData: any) {
         error instanceof Error ? error.stack : "No stack trace",
       );
     }
-  }, 100); // Délai de 100ms pour s'assurer que l'exécution se fait
+  }, 2000); // Délai de 100ms pour s'assurer que l'exécution se fait
 }
 
 export function clearUser() {
