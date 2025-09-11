@@ -1,5 +1,5 @@
 import { useStore } from "@nanostores/preact";
-import { useEffect } from "preact/hooks";
+import { useEffect, useRef } from "preact/hooks";
 
 import {
   subscribeToUserChanges,
@@ -9,15 +9,31 @@ import { $user } from "../lib/stores/userStore";
 
 export default function RealtimeManager() {
   const user = useStore($user);
+  const subscribedUserId = useRef<string | null>(null);
 
   useEffect(() => {
-    if (user && user.id) {
-      subscribeToUserChanges(user.id);
+    const currentUserId = user?.id;
+
+    // Si l'utilisateur a changé ou s'est déconnecté
+    if (subscribedUserId.current !== currentUserId) {
+      // Désabonner de l'ancien utilisateur
+      if (subscribedUserId.current) {
+        unsubscribeFromUserChanges(subscribedUserId.current);
+      }
+
+      // S'abonner au nouvel utilisateur
+      if (currentUserId) {
+        subscribeToUserChanges(currentUserId);
+        subscribedUserId.current = currentUserId;
+      } else {
+        subscribedUserId.current = null;
+      }
     }
 
     return () => {
-      if (user && user.id) {
-        unsubscribeFromUserChanges(user.id);
+      if (subscribedUserId.current) {
+        unsubscribeFromUserChanges(subscribedUserId.current);
+        subscribedUserId.current = null;
       }
     };
   }, [user?.id]);
