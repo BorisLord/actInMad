@@ -51,12 +51,27 @@ export function setUser(authData: any) {
   subscribeToUserChanges(userData.id);
 
   (async () => {
-    const avatar = await getAvatarUrl(
-      authData.record.id,
-      authData.record.avatar,
-    );
-    if (avatar) {
-      $user.setKey("avatarUrl", avatar);
+    try {
+      console.log("Attempting to fetch avatar for user:", authData.record.id);
+
+      const avatarUrl = await getAvatarUrl(
+        authData.record.id,
+        authData.record.avatar,
+      );
+
+      console.log("Avatar URL fetched successfully:", avatarUrl);
+
+      if (avatarUrl) {
+        $user.setKey("avatarUrl", avatarUrl);
+        console.log("Avatar URL has been set in the user store.");
+      } else {
+        console.log("No avatar URL returned, skipping store update.");
+      }
+    } catch (error) {
+      console.error("--- ERROR: Failed to fetch or set avatar ---");
+      console.error("User ID:", authData.record.id);
+      console.error("Avatar filename:", authData.record.avatar);
+      console.error("Caught error object:", error);
     }
   })();
 }
