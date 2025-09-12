@@ -215,7 +215,11 @@ export default function CourseDetail({ courseId, onBack }: CourseDetailProps) {
                   value="Non spécifié"
                 />
               )}
-              <InfoItem icon="📍" label="Lieu" value={course.lieu} />
+              <InfoItem
+                icon="📍"
+                label="Lieu"
+                value={course.adressePreInscription}
+              />
               <InfoItem
                 icon="📅"
                 label="Jour de répétition"

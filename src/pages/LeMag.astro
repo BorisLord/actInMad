@@ -13,7 +13,7 @@ const records: Article[] = await pb
   .collection("articles")
   .getFullList({ filter: "isActive=true", sort: "-releaseDate" });
 
-const staticArticleSlugs = records.map((article) => article.slug);
+// const staticArticleSlugs = records.map((article) => article.slug);
 ---
 
 <Layout>

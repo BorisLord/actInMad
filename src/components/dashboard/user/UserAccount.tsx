@@ -83,7 +83,7 @@ export default function UserAccount({ user }: { user: User }) {
         .update(formData.id as string, data);
       const avatarUrl = await getAvatarUrl(
         user.id as string,
-        updatedRecord.avatar,
+        // updatedRecord.avatar,
       );
       const updatedRecordUrl = {
         ...updatedRecord,

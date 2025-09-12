@@ -1,6 +1,5 @@
 import { Icon } from "@iconify/react";
 import { useStore } from "@nanostores/preact";
-import { PUBLIC_PB_URL } from "astro:env/client";
 import { useEffect, useState } from "preact/hooks";
 
 import { pb } from "../../../lib/pocketbase";
@@ -9,7 +8,6 @@ import {
   clearCart,
   removeCourseFromCart,
 } from "../../../lib/stores/cartStore";
-import { $user } from "../../../lib/stores/userStore";
 import type { CartItem, PromoData } from "../../../type";
 
 export default function UserCart() {
@@ -22,8 +20,6 @@ export default function UserCart() {
   const [promoError, setPromoError] = useState<string | null>(null);
   const [isVerifyingPromo, setIsVerifyingPromo] = useState(false);
   const [showPromoInput, setShowPromoInput] = useState(false);
-
-  const user = useStore($user);
 
   const getCoursePrice = (course: CartItem): number => {
     return course.selectedTarif || 0;

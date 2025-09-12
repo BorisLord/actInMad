@@ -5,7 +5,7 @@ export const pb = new PocketBase(PUBLIC_PB_URL);
 
 export const getAvatarUrl = async (
   userId: string,
-  avatarFileName?: string,
+  // avatarFileName?: string,
 ): Promise<string | null> => {
   if (!userId) {
     return null;
