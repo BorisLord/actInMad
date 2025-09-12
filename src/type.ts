@@ -103,3 +103,12 @@ export type PromoData = {
   newTotal: number;
   message: string;
 };
+
+export type Commande = {
+  id: string;
+  userId: string;
+  status: "created" | "pending" | "authorized" | "completed" | "canceled";
+  amount: number;
+  items: any[];
+  created: string;
+};

@@ -4,7 +4,11 @@ import { PUBLIC_PB_URL } from "astro:env/client";
 import { useEffect, useState } from "preact/hooks";
 
 import { pb } from "../../../lib/pocketbase";
-import { $cart, removeCourseFromCart } from "../../../lib/stores/cartStore";
+import {
+  $cart,
+  clearCart,
+  removeCourseFromCart,
+} from "../../../lib/stores/cartStore";
 import { $user } from "../../../lib/stores/userStore";
 import type { CartItem, PromoData } from "../../../type";
 
@@ -17,7 +21,6 @@ export default function UserCart() {
   const [promoData, setPromoData] = useState<PromoData | null>(null);
   const [promoError, setPromoError] = useState<string | null>(null);
   const [isVerifyingPromo, setIsVerifyingPromo] = useState(false);
-  // Placez ceci avec vos autres déclarations useState
   const [showPromoInput, setShowPromoInput] = useState(false);
 
   const user = useStore($user);
@@ -118,6 +121,7 @@ export default function UserCart() {
       setError(errorMessage);
     } finally {
       setIsProcessing(false);
+      clearCart();
     }
   };
 

@@ -18,7 +18,6 @@ export const getAvatarUrl = async (
       return null;
     }
 
-    // Utiliser record.avatar directement (comme dans la documentation PocketBase)
     let filename: string;
     if (Array.isArray(record.avatar)) {
       filename = record.avatar[0];
@@ -31,7 +30,6 @@ export const getAvatarUrl = async (
     }
 
     const url = pb.files.getURL(record, filename);
-    console.log("✅ [PocketBase] Avatar URL generated for user:", userId);
 
     return url;
   } catch (error) {
