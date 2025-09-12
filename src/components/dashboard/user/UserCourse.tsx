@@ -73,7 +73,7 @@ function PurchasedCourseDetails({ item }: { item: EnrichedItem }) {
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           {/* Colonne de gauche: Infos principales */}
           <div class="space-y-4">
-            <InfoItem icon="📍" label="Lieu" value={cours.lieu} />
+            <InfoItem icon="📍" label="Lieu" value={cours.adresse} />
             <InfoItem
               icon="📅"
               label="Jour de répétition"

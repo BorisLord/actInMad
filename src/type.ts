@@ -42,7 +42,8 @@ export type CoursRecord = {
     | "Cours De Theatre Enfant";
   profsId: string;
   jourRepetition: string;
-  lieu: string;
+  adressePreInscription: string;
+  adresse: string;
   demarrage: string[];
   audition: string[] | null;
   courEssai: string[] | null;

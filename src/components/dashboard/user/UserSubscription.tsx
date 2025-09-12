@@ -13,6 +13,7 @@ export default function UserSubscription({
   const [courses, setCourses] = useState<CoursRecord[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  console.log(courses);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -87,7 +88,7 @@ export default function UserSubscription({
                 <div class="space-y-2 text-sm text-slate-700">
                   <div class="flex items-center">
                     <span class="w-6">📍</span>
-                    <span>{course.lieu}</span>
+                    <span>{course.adressePreInscription}</span>
                   </div>
                   <div class="flex items-center">
                     <span class="w-6">📅</span>
