@@ -9,7 +9,8 @@
     "buildPrev": "astro build && astro preview",
     "astro": "astro",
     "format": "prettier --write .",
-    "check": "astro check"
+    "check": "astro check",
+    "struct": "tree -I 'node_modules|dist|build|*.jpg|*.jpeg|*.pdf|*.svg|*.png|astro.config.ts' > structure.txt"
   },
   "dependencies": {
     "@astrojs/preact": "^4.1.1",
@@ -27,7 +28,7 @@
     "luxon": "^3.7.2",
     "nanostores": "^1.0.1",
     "pocketbase": "^0.26.2",
-    "preact": "^10.27.1",
+    "preact": "^10.27.2",
     "preact-iso": "^2.10.0",
     "react": "npm:@preact/compat",
     "react-day-picker": "^9.9.0",
