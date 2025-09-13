@@ -1,0 +1,91 @@
+.
+├── Dockerfile
+├── package.json
+├── package-lock.json
+├── prettier.config.mjs
+├── public
+│   ├── favicon.ico
+│   └── images
+├── README.md
+├── src
+│   ├── assets
+│   │   ├── logo
+│   │   ├── metro
+│   │   └── photos
+│   │       ├── bank
+│   │       ├── equipe
+│   │       └── unAireDeFamille
+│   ├── components
+│   │   ├── articles
+│   │   │   ├── NewArticles.tsx
+│   │   │   └── ViewNewArticle.tsx
+│   │   ├── auth
+│   │   │   ├── LoginForm.tsx
+│   │   │   ├── LoginSignup.tsx
+│   │   │   └── SignupForm.tsx
+│   │   ├── Calendar.tsx
+│   │   ├── ContactForm.tsx
+│   │   ├── dashboard
+│   │   │   ├── DashboardNav.tsx
+│   │   │   ├── user
+│   │   │   │   ├── CourseDetail.tsx
+│   │   │   │   ├── UserAccount.tsx
+│   │   │   │   ├── UserCart.tsx
+│   │   │   │   ├── UserCourse.tsx
+│   │   │   │   ├── UserDocument.tsx
+│   │   │   │   ├── UserSetting.tsx
+│   │   │   │   └── UserSubscription.tsx
+│   │   │   └── UserDashboard.tsx
+│   │   ├── google
+│   │   │   └── GoogleSignButton.jsx
+│   │   ├── Navbar.tsx
+│   │   ├── RealTimeManager.tsx
+│   │   └── static
+│   │       ├── BioCard.astro
+│   │       ├── Button.astro
+│   │       ├── Footer.astro
+│   │       └── LieuCours.astro
+│   ├── fonts
+│   │   ├── arbutus-slab-v16-latin-regular.woff2
+│   │   ├── inter-v19-latin-700.woff2
+│   │   └── inter-v19-latin-regular.woff2
+│   ├── layouts
+│   │   ├── Layout.astro
+│   │   └── Seo.astro
+│   ├── lib
+│   │   ├── pocketbase.ts
+│   │   ├── services
+│   │   │   └── realTimeUserServices.ts
+│   │   └── stores
+│   │       ├── articleStore.ts
+│   │       ├── cartStore.ts
+│   │       └── userStore.ts
+│   ├── pages
+│   │   ├── 404.astro
+│   │   ├── articles
+│   │   │   ├── [slug].astro
+│   │   │   └── view.astro
+│   │   ├── Ateliers.astro
+│   │   ├── Compagnie.astro
+│   │   ├── ConnexionInscription.astro
+│   │   ├── Contact.astro
+│   │   ├── Equipe.astro
+│   │   ├── Faq.astro
+│   │   ├── index.astro
+│   │   ├── LeMag.astro
+│   │   ├── Mentions.astro
+│   │   ├── Planning.astro
+│   │   ├── private
+│   │   │   └── Dashboard.astro
+│   │   ├── robots.txt.ts
+│   │   └── Valeurs.astro
+│   ├── styles
+│   │   └── global.css
+│   └── types
+│       ├── env.d.ts
+│       ├── typesF.ts
+│       └── typesPB.ts
+├── structure.txt
+└── tsconfig.json
+
+28 directories, 61 files

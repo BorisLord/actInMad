@@ -1,9 +1,13 @@
 ---
 import "../styles/global.css";
-import AstroFont from "./Font.astro";
+import { Font } from "astro:assets";
 import SEO from "./Seo.astro";
-import Nav from "../components/Navbar.astro";
-import Footer from "../components/Footer.astro";
+
+import Footer from "../components/static/Footer.astro";
+import { ClientRouter } from "astro:transitions";
+import RealtimeManager from "../components/RealTimeManager.tsx";
+import Navbar from "../components/Navbar.tsx";
+import LogoSrc from "../assets/logo/actInMadRedFullLogo.svg";
 
 const links = [
   { label: "Accueil", href: "/" },
@@ -11,17 +15,13 @@ const links = [
   { label: "La Compagnie", href: "/Compagnie" },
   { label: "L'Equipe", href: "/Equipe" },
   { label: "Nos Valeurs", href: "/Valeurs" },
-  { label: "Inscription", href: "/Inscription" },
   { label: "Contact", href: "/Contact" },
   { label: "Le Mag'", href: "/LeMag" },
+  { label: "Connexion/Inscription", href: "/ConnexionInscription" },
 ];
 
 const isHomePage = Astro.url.pathname === "/";
-
-// const authLinks = [
-// { label: 'Coulisses', href: '/login', type: 'primary' },
-// { label: 'Register', href: '/register', type: 'secondary' },
-// ];
+const currentPath = Astro.url.pathname;
 
 const jsonLD = {
   "@context": "https://schema.org",
@@ -31,7 +31,7 @@ const jsonLD = {
     "Cours de théâtre à Paris pour amateurs. Découvrez nos ateliers et spectacles créatifs.",
   image: "https://actinmad.art/images/actInMadRed.jpeg",
   url: "https://actinmad.art/",
-  email: "mailto:act.in.mad@gmail.com",
+  email: "mailto:contact@actinmad.art",
   priceRange: "€",
   address: {
     "@type": "PostalAddress",
@@ -47,27 +47,45 @@ const jsonLD = {
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8" />
-    <AstroFont />
+    <Font cssVariable="--font-madTitleFont" preload />
+    <Font cssVariable="--font-madBodyFont" preload />
     <SEO {...Astro.props.seo} />
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLD)} />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLD)}
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <ClientRouter />
   </head>
   <body class="bg-madBack">
-    <header class={isHomePage ? "bg-black" : "bg-madBack"}>
-      <Nav links={links} />
+    <RealtimeManager client:only="preact" />
+    <header
+      class={`sticky top-0 z-50 ${isHomePage ? "bg-black/100" : "bg-madBack/90"}`}
+    >
+      <Navbar
+        links={links}
+        currentPath={currentPath}
+        isHomePage={isHomePage}
+        logoSrc={LogoSrc.src}
+        client:only
+      />
     </header>
+
+    <div id="scroll-watcher"></div>
+
     <main class="min-h-screen">
       <div
         class:list={[
-          "block md:hidden py-2",
+          "block py-2 md:hidden",
           isHomePage ? "bg-black" : "bg-madBack",
         ]}
       >
         <a
           href="/Planning"
-          class="text-lg font-semibold text-white bg-madRed hover:bg-madEncart px-5 py-2 rounded-xl flex justify-center items-center text-center w-full max-w-xs mx-auto"
+          class="bg-madRed hover:bg-madEncart mx-auto flex w-full max-w-xs items-center justify-center rounded-xl px-5 py-2 text-center text-lg font-semibold text-white"
         >
           Planning 2025/2026
         </a>

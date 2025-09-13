@@ -1,0 +1,72 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+const { name, instaLink, linkedIn, photo, bio } = Astro.props;
+---
+
+<div class="mx-auto max-w-5xl p-4">
+  <div class="mb-4 flex w-full items-center justify-between gap-4">
+    <h2 class="text-madText text-2xl font-bold">{name}</h2>
+
+    <div class="flex items-center gap-2">
+      {
+        instaLink && (
+          <a
+            href={instaLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-madBack bg-madRed rounded-md p-1 transition-transform hover:scale-110"
+            aria-label={`Instagram de ${name}`}
+          >
+            <Icon name="lucide:instagram" class="h-6 w-6" />
+          </a>
+        )
+      }
+      {
+        linkedIn && (
+          <a
+            href={linkedIn}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-madBack bg-madRed rounded-md p-1 transition-transform hover:scale-110"
+            aria-label={`LinkedIn de ${name}`}
+          >
+            <Icon name="lucide:linkedin" class="h-6 w-6" />
+          </a>
+        )
+      }
+    </div>
+  </div>
+
+  <div class="flex w-full flex-col gap-6 md:flex-row md:items-start">
+    <div
+      class="flex w-full flex-shrink-0 justify-center md:w-1/5 md:justify-start"
+    >
+      <div
+        class="h-56 w-40 overflow-hidden rounded border border-gray-200 shadow-md"
+      >
+        {
+          photo ? (
+            <Image
+              src={photo}
+              alt={`Photo de ${name}`}
+              inferSize={true}
+              loading="lazy"
+              class="h-full w-full object-cover"
+            />
+          ) : (
+            <div class="flex h-full w-full items-center justify-center bg-gray-100">
+              <Icon name="lucide:image-off" class="h-12 w-12 text-gray-400" />
+            </div>
+          )
+        }
+      </div>
+    </div>
+
+    <div
+      class="prose prose-sm flex-grow text-justify leading-snug"
+      set:html={bio}
+    />
+  </div>
+</div>

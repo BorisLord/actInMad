@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import LoginSignup from "../components/auth/LoginSignup";
+
+import LieuCours from "../components/static/LieuCours.astro";
+---
+
+<Layout>
+  <div class="flex flex-col items-center p-4">
+    <div class="mt-5 w-full max-w-md rounded-xl p-6">
+      <LoginSignup client:load />
+    </div>
+    <div class="flex max-w-6xl flex-col gap-6 p-4 md:flex-row md:p-6">
+      <div class="flex flex-col">
+        <LieuCours />
+      </div>
+    </div>
+  </div>
+</Layout>
