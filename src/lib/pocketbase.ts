@@ -6,40 +6,24 @@ export const pb = new PocketBase(PUBLIC_PB_URL);
 export const getFileUrl = async (
   collectionName: string,
   recordId: string,
-  fieldName?: string,
 ): Promise<string | null> => {
-  if (!collectionName || !recordId || !fieldName) {
+  console.log("in getFilUrl");
+  if (!collectionName || !recordId) {
     return null;
   }
 
   try {
     const record = await pb.collection(collectionName).getOne(recordId);
 
-    const fileField = record[fieldName];
+    const { avatar, photo } = record;
 
-    if (!fileField) {
-      return null;
-    }
-
-    let filename: string;
-    if (Array.isArray(fileField)) {
-      filename = fileField[0];
+    if (collectionName === "users") {
+      return pb.files.getURL(record, avatar);
     } else {
-      filename = fileField;
+      return pb.files.getURL(record, photo);
     }
-
-    if (!filename) {
-      return null;
-    }
-
-    const url = pb.files.getURL(record, filename);
-    return url;
   } catch (error) {
-    // Le message d'erreur inclut maintenant le contexte pour un meilleur débogage
-    console.error(
-      `❌ [PocketBase] Erreur lors de la récupération du fichier du champ "${fieldName}" pour l'enregistrement "${recordId}" dans la collection "${collectionName}":`,
-      error,
-    );
+    console.error(`Erreur lors de la récupération du fichier FilUrl":`, error);
     return null;
   }
 };
