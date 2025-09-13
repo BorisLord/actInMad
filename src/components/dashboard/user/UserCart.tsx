@@ -85,17 +85,25 @@ export default function UserCart() {
 
     const checkoutItems = cartItems.map((item) => ({
       courseId: item.id,
+      profId: item?.expand?.profID?.id,
       selectedTarif: item.selectedTarif,
       cartItemId: item.cartItemId,
       titre: item.titre,
     }));
 
     const payload = {
+      total: total,
+      discount: discount,
       userId: pb.authStore.record?.id,
       items: checkoutItems,
       promoCode: promoData !== null ? promoCode.trim().toLowerCase() : null,
-      subTotal: subTotal,
     };
+
+    if (total === 0) {
+      alert("Pour ce rôle, contactez-nous via le formulaire.");
+      return;
+    }
+
     try {
       const responseData = await pb.send("/api/checkout", {
         method: "POST",
@@ -154,8 +162,8 @@ export default function UserCart() {
                     )}
                   </div>
                   <div class="flex items-center justify-between">
-                    <p class="text-sm font-semibold text-gray-900">
-                      {getCoursePrice(item).toFixed(2)} €
+                    <p class="whitespace-nowrap text-sm font-semibold text-gray-900">
+                      {getCoursePrice(item).toFixed()} €
                     </p>
                     <button
                       onClick={() => removeCourseFromCart(item.cartItemId)}

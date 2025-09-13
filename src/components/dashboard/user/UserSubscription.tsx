@@ -1,7 +1,7 @@
 import { useEffect, useState } from "preact/hooks";
 
 import { pb } from "../../../lib/pocketbase";
-import type { CoursRecord } from "../../../type";
+import type { CoursRecord } from "../../../types/typesF";
 
 interface UserSubscriptionProps {
   onSelectCourse: (id: string) => void;
@@ -13,7 +13,6 @@ export default function UserSubscription({
   const [courses, setCourses] = useState<CoursRecord[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  console.log(courses);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -101,7 +100,10 @@ export default function UserSubscription({
                   {course.courEssai && course.courEssai.length > 0 && (
                     <div class="flex items-center">
                       <span class="w-6">🧪</span>
-                      <span>Cours d'essai : {course.courEssai.join(", ")}</span>
+                      <span>
+                        Un cours d'essai au choix :{" "}
+                        {course.courEssai.join(", ")}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -109,7 +111,9 @@ export default function UserSubscription({
 
               <div class="mt-6 flex items-center justify-between">
                 <p class="text-xl font-bold text-slate-900">
-                  {formatTarif(course.tarif)}
+                  {course.coursType === "Act'Impro"
+                    ? "À partir de 220€"
+                    : formatTarif(course.tarif)}
                 </p>
                 <button
                   onClick={() => onSelectCourse(course.id)}
