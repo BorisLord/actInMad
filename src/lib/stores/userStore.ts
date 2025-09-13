@@ -1,7 +1,7 @@
 import { persistentMap } from "@nanostores/persistent";
 
 import type { User } from "../../types/typesF";
-import { getAvatarUrl } from "../pocketbase";
+import { getFileUrl } from "../pocketbase";
 import {
   subscribeToUserChanges,
   unsubscribeFromUserChanges,
@@ -58,7 +58,7 @@ export async function fetchUserAvatar() {
     return;
   }
   try {
-    const avatarUrl = await getAvatarUrl(user.id);
+    const avatarUrl = await getFileUrl("users", user.id);
     if (avatarUrl) {
       $user.setKey("avatarUrl", avatarUrl);
     }

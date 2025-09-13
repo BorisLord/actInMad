@@ -1,5 +1,7 @@
+import { navigate } from "astro:transitions/client";
 import { useState } from "preact/hooks";
 
+import { pb } from "../../lib/pocketbase";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 
@@ -13,6 +15,11 @@ export default function ConnexionInscription() {
   const handleInscriptionClick = () => {
     setIsConnexion(false);
   };
+
+  if (pb.authStore.isValid) {
+    navigate("/private/Dashboard");
+    return;
+  }
 
   return (
     <div className="w-full md:w-96">

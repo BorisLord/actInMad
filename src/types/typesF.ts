@@ -40,7 +40,7 @@ export type CoursRecord = {
     | "Atelier Spectacle"
     | "Cours De Theatre"
     | "Cours De Theatre Enfant";
-  profsId: string;
+  profID: string;
   jourRepetition: string;
   adressePreInscription: string;
   adresse: string;
@@ -105,11 +105,17 @@ export type PromoData = {
   message: string;
 };
 
+export type CommandeItem = {
+  courseId: string;
+  tarif: number;
+  quantity?: number;
+};
+
 export type Commande = {
   id: string;
   userId: string;
   status: "created" | "pending" | "authorized" | "completed" | "canceled";
   amount: number;
-  items: any[];
+  items: CommandeItem[] | null;
   created: string;
 };

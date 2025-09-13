@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "preact/hooks";
 
-import { getAvatarUrl, pb } from "../../../lib/pocketbase";
+import { getFileUrl, pb } from "../../../lib/pocketbase";
 import { updateUser } from "../../../lib/stores/userStore";
 import type { User } from "../../../types/typesF";
 import Calendar from "../../Calendar";
@@ -81,10 +81,7 @@ export default function UserAccount({ user }: { user: User }) {
       const updatedRecord = await pb
         .collection("users")
         .update(formData.id as string, data);
-      const avatarUrl = await getAvatarUrl(
-        user.id as string,
-        // updatedRecord.avatar,
-      );
+      const avatarUrl = await getFileUrl("users", user.id as string);
       const updatedRecordUrl = {
         ...updatedRecord,
         avatarUrl: avatarUrl ?? undefined,
