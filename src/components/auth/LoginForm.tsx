@@ -4,7 +4,7 @@ import { useState } from "preact/hooks";
 
 import { pb } from "../../lib/pocketbase";
 import { setUser } from "../../lib/stores/userStore";
-import type { LoginForm } from "../../type";
+import type { LoginForm } from "../../types/typesF";
 import SignUpButton from "../google/GoogleSignButton";
 
 const ConnexionForm = () => {

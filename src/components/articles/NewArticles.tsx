@@ -5,7 +5,7 @@ import { useEffect, useState } from "preact/hooks";
 
 import { pb } from "../../lib/pocketbase";
 import { $selectedArticle } from "../../lib/stores/articleStore";
-import type { Article } from "../../type";
+import type { Article } from "../../types/typesF";
 
 const NewArticles = ({
   staticArticleSlugs,

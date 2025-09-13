@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "preact/hooks";
 
 import { getAvatarUrl, pb } from "../../../lib/pocketbase";
 import { updateUser } from "../../../lib/stores/userStore";
-import type { User } from "../../../type";
+import type { User } from "../../../types/typesF";
 import Calendar from "../../Calendar";
 
 export default function UserAccount({ user }: { user: User }) {

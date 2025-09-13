@@ -4,7 +4,11 @@ import { useEffect, useMemo, useState } from "preact/hooks";
 
 import { pb } from "../../../lib/pocketbase";
 import { $cart, addCourseToCart } from "../../../lib/stores/cartStore";
-import type { CartItem, CoursRecord, EquipeRecord } from "../../../type";
+import type {
+  CartItem,
+  CoursRecord,
+  EquipeRecord,
+} from "../../../types/typesF";
 
 interface CourseDetailProps {
   courseId: string;
@@ -105,16 +109,12 @@ export default function CourseDetail({ courseId, onBack }: CourseDetailProps) {
     }
 
     if (course.coursType === `Act'Impro`) {
-      const sortedTarifs = [...course.tarif].sort((a, b) => b - a);
-      let runningTotal = 0;
-      return sortedTarifs.map((price, index) => {
-        runningTotal += price;
-        return {
-          label: `${index + 1} session`,
-          displayPrice: `${runningTotal}€`,
-          value: runningTotal,
-        };
-      });
+      const sortedTarifs = [...course.tarif].sort((a, b) => a - b);
+      return sortedTarifs.map((price, index) => ({
+        label: `${index + 1} session`,
+        displayPrice: `${price}€`,
+        value: price,
+      }));
     }
 
     if (course.coursType === "Atelier Spectacle") {
@@ -244,7 +244,7 @@ export default function CourseDetail({ courseId, onBack }: CourseDetailProps) {
               />
               <InfoItem
                 icon="🧪"
-                label="Cours d'essai"
+                label="Un cours d'essai au choix"
                 value={course.courEssai?.join(", ")}
               />
               <div class="flex flex-col pt-2">

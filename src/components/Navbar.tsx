@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "preact/hooks";
 
 import { pb } from "../lib/pocketbase";
 import { $user, clearUser } from "../lib/stores/userStore";
-import type { NavbarProps } from "../type";
+import type { NavbarProps } from "../types/typesF";
 
 const Navbar: FunctionalComponent<NavbarProps> = ({
   links,

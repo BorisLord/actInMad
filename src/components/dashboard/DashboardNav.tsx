@@ -4,7 +4,7 @@ import { useStore } from "@nanostores/preact";
 import type { FunctionalComponent } from "preact";
 
 import { $cart } from "../../lib/stores/cartStore";
-import type { NavItem } from "../../type";
+import type { NavItem } from "../../types/typesF";
 
 type NavProps = {
   currentPage: string;

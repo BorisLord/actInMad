@@ -1,6 +1,6 @@
 import { persistentMap } from "@nanostores/persistent";
 
-import type { User } from "../../type";
+import type { User } from "../../types/typesF";
 import { getAvatarUrl } from "../pocketbase";
 import {
   subscribeToUserChanges,
@@ -86,6 +86,4 @@ export function clearUser() {
     birthdate: undefined,
     avatarUrl: undefined,
   });
-
-  console.log("✅ [UserStore] User logged out");
 }

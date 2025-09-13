@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 import { useEffect, useState } from "preact/hooks";
 
 import { $selectedArticle } from "../../lib/stores/articleStore";
-import type { Article } from "../../type";
+import type { Article } from "../../types/typesF";
 
 const ViewNewArticle = () => {
   const [article, setArticle] = useState<Article | null>(null);

@@ -1,6 +1,6 @@
 import { persistentAtom } from "@nanostores/persistent";
 
-import type { CartItem } from "../../type";
+import type { CartItem } from "../../types/typesF";
 
 export const $cart = persistentAtom<CartItem[]>("userCart", [], {
   encode: JSON.stringify,

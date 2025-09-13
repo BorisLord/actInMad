@@ -8,7 +8,7 @@ import {
   clearCart,
   removeCourseFromCart,
 } from "../../../lib/stores/cartStore";
-import type { CartItem, PromoData } from "../../../type";
+import type { CartItem, PromoData } from "../../../types/typesF";
 
 export default function UserCart() {
   const cartItems = useStore($cart);

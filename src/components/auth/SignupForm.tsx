@@ -4,7 +4,7 @@ import type { ChangeEvent, FormEvent } from "preact/compat";
 import { useState } from "preact/hooks";
 
 import { pb } from "../../lib/pocketbase";
-import type { SignupForm } from "../../type";
+import type { SignupForm } from "../../types/typesF";
 import SignUpButton from "../google/GoogleSignButton";
 
 const InscriptionForm = () => {
