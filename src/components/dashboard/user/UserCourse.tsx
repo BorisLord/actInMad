@@ -1,10 +1,15 @@
 import { Icon } from "@iconify/react";
 import { useEffect, useState } from "preact/hooks";
 
-import { pb } from "../../../lib/pocketbase";
+import { getFileUrl, pb } from "../../../lib/pocketbase";
 import { $user } from "../../../lib/stores/userStore";
 // Assurez-vous que vos types sont corrects, surtout pour Commande et Tarif
-import type { Commande, CoursRecord } from "../../../type";
+import type {
+  Commande,
+  CoursRecord,
+  EquipeRecord,
+} from "../../../types/typesF";
+import UserSubscription from "./UserSubscription";
 
 // Sous-composant pour les items d'information (icône, label, valeur)
 function InfoItem({
@@ -17,7 +22,7 @@ function InfoItem({
   value?: string | string[] | null;
 }) {
   if (!value || (Array.isArray(value) && value.length === 0)) return null;
-  const displayValue = Array.isArray(value) ? value.join(" et ") : value;
+  const displayValue = Array.isArray(value) ? value.join(", ") : value;
 
   // Vérifier si c'est un emoji (caractère unique non-ASCII) ou une icône Lucide
   const isEmoji = icon.length <= 2 && icon.charCodeAt(0) > 127;
@@ -40,6 +45,76 @@ function InfoItem({
   );
 }
 
+// Composant pour afficher les informations du professeur
+// function ProfesseurInfo({ professeur }: { professeur: EquipeRecord }) {
+//   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
+
+//   useEffect(() => {
+//     const fetchPhotoUrl = async () => {
+//       if (professeur.photo) {
+//         const url = await getFileUrl("equipes", professeur.id);
+//         setPhotoUrl(url);
+//       }
+//     };
+//     fetchPhotoUrl();
+//   }, [professeur.id, professeur.photo]);
+
+//   return (
+//     <div class="flex items-start space-x-3">
+//       <span class="mr-3 mt-1 text-lg">👨‍🏫</span>
+//       <div class="flex-1">
+//         <span class="font-semibold text-slate-700">Professeur:</span>
+//         <div class="mt-2 flex items-center space-x-3">
+//           {photoUrl && (
+//             <img
+//               src={photoUrl}
+//               alt={`Photo de ${professeur.prenom} ${professeur.nom}`}
+//               class="h-12 w-12 rounded-full border-2 border-slate-300 object-cover"
+//             />
+//           )}
+//           <div>
+//             <p class="font-medium text-slate-800">
+//               {professeur.prenom} {professeur.nom}
+//             </p>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// Composant pour afficher le professeur dans l'en-tête
+function ProfesseurHeader({ professeur }: { professeur: EquipeRecord }) {
+  const [photoUrl, setPhotoUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchPhotoUrl = async () => {
+      if (professeur.photo) {
+        const url = await getFileUrl("equipes", professeur.id, "photo");
+        setPhotoUrl(url);
+      }
+    };
+    fetchPhotoUrl();
+  }, [professeur.id, professeur.photo]);
+
+  return (
+    <div class="flex items-center space-x-4">
+      <div class="text-sm">
+        <p class="font-bold text-slate-700">
+          {professeur.prenom} {professeur.nom}
+        </p>
+      </div>
+      {photoUrl && (
+        <img
+          src={photoUrl}
+          alt={`Photo de ${professeur.prenom} ${professeur.nom}`}
+          class="h-14 w-14 rounded-full border-2 border-white object-cover shadow-sm"
+        />
+      )}
+    </div>
+  );
+}
+
 // L'item enrichi qui combine le cours et le tarif payé
 type EnrichedItem = {
   cours: CoursRecord;
@@ -54,15 +129,25 @@ function PurchasedCourseDetails({ item }: { item: EnrichedItem }) {
     <li class="overflow-hidden rounded-lg bg-slate-50 shadow-md">
       {/* En-tête du cours */}
       <div class="bg-slate-100 p-4">
-        <span class="mb-2 inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-800">
-          {cours.coursType}
-        </span>
-        <h4 class="text-2xl font-bold text-slate-900">{cours.titre}</h4>
-        {cours.pieceTheatre && (
-          <p class="mt-1 text-base italic text-slate-600">
-            Pièce jouée : {cours.pieceTheatre}
-          </p>
-        )}
+        <div class="flex flex-wrap items-start justify-between gap-4">
+          <div class="flex-1">
+            <span class="mb-2 inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-800">
+              {cours.coursType}
+            </span>
+            <h4 class="text-2xl font-bold text-slate-900">{cours.titre}</h4>
+            {cours.pieceTheatre && (
+              <p class="mt-1 text-base italic text-slate-600">
+                Pièce jouée : {cours.pieceTheatre}
+              </p>
+            )}
+          </div>
+
+          {cours.expand?.profID && (
+            <div class="flex-shrink-0">
+              <ProfesseurHeader professeur={cours.expand.profID} />
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Corps avec les détails */}
@@ -93,7 +178,11 @@ function PurchasedCourseDetails({ item }: { item: EnrichedItem }) {
               value={cours.demarrage}
             />
             <InfoItem icon="🎤" label="Auditions" value={cours.audition} />
-            <InfoItem icon="🧪" label="Cours d'essai" value={cours.courEssai} />
+            <InfoItem
+              icon="🧪"
+              label="Un cours d'essai au choix"
+              value={cours.courEssai}
+            />
             {/* AFFICHE LE TARIF PAYÉ */}
             <div class="flex items-start">
               {/* <Icon
@@ -146,15 +235,20 @@ export default function CommandesList() {
             filter: `userId = "${user.id}"`,
             sort: "-created",
           });
-
         if (commandesRecords.length === 0) {
-          setLoading(false);
-          return;
+          return <UserSubscription onSelectCourse={() => ({})} />;
         }
 
         const courseIds = new Set<string>();
         commandesRecords.forEach((commande) => {
-          commande.items.forEach((item) => courseIds.add(item.courseId));
+          // Vérification de sécurité : s'assurer que items n'est pas null/undefined
+          if (commande.items && Array.isArray(commande.items)) {
+            commande.items.forEach((item) => {
+              if (item.courseId) {
+                courseIds.add(item.courseId);
+              }
+            });
+          }
         });
 
         if (courseIds.size === 0) {
@@ -168,24 +262,36 @@ export default function CommandesList() {
         const filterString = Array.from(courseIds)
           .map((id) => `id = "${id}"`)
           .join(" || ");
+
         const coursRecords = await pb
           .collection("cours")
-          .getFullList<CoursRecord>({ filter: filterString });
+          .getFullList<CoursRecord>({
+            filter: filterString,
+            expand: "profID",
+          });
 
         const coursMap = new Map<string, CoursRecord>();
         coursRecords.forEach((cours) => coursMap.set(cours.id, cours));
 
-        // **MODIFICATION PRINCIPALE ICI**
-        // On construit la liste d'items enrichis pour chaque commande
         const commandesEnrichies = commandesRecords.map((commande) => {
+          if (!commande.items || !Array.isArray(commande.items)) {
+            return { ...commande, enrichedItems: [] };
+          }
+
           const enrichedItems = commande.items
             .map((item) => {
+              if (!item || !item.courseId) {
+                return null;
+              }
+
               const cours = coursMap.get(item.courseId);
-              if (!cours) return null;
+              if (!cours) {
+                return null;
+              }
 
               return {
                 cours,
-                tarif: item.tarif, // On récupère le tarif de l'item de la commande
+                tarif: item.tarif || 0,
               };
             })
             .filter((item): item is EnrichedItem => item !== null);
@@ -195,8 +301,8 @@ export default function CommandesList() {
 
         setCommandes(commandesEnrichies);
       } catch (err: any) {
-        setError("Erreur lors de la récupération des données.");
-        console.error(err);
+        setError(`Erreur lors de la récupération des données: ${err.message}`);
+        console.error("Erreur lors de la récupération des commandes:", err);
       } finally {
         setLoading(false);
       }
@@ -241,7 +347,6 @@ export default function CommandesList() {
             <div class="p-4 sm:p-6">
               <ul class="space-y-6">
                 {commande.enrichedItems.length > 0 ? (
-                  // On itère sur les items enrichis
                   commande.enrichedItems.map((item, index) => (
                     <PurchasedCourseDetails
                       key={`${item.cours.id}-${index}`}
