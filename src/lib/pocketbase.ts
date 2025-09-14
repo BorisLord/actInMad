@@ -7,7 +7,6 @@ export const getFileUrl = async (
   collectionName: string,
   recordId: string,
 ): Promise<string | null> => {
-  console.log("in getFilUrl");
   if (!collectionName || !recordId) {
     return null;
   }

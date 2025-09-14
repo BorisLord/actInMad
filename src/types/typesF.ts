@@ -1,5 +1,28 @@
 import type { Ref } from "preact";
 
+
+// type pocketbase_auth => localstorage (replace user store)
+// {
+//   "token": "eyJhbI1NiIsInR5cCI6Ikp.0.0iAqF4IC0YLI8ijixSW8_eE35Mj
+//   "record": {
+//     "avatar": "",
+//     "birthdate": "",
+//     "collectionId": "_pb_users_auth_",
+//     "collectionName": "users",
+//     "created": "20855-90-1 20:1:37.834Z",
+//     "email": "email@email.co",
+//     "emailVisibility": false,
+//     "firstName": "",
+//     "id": "m76y28vq4h",
+//     "lastName": "",
+//     "phone": "",
+//     "profileCompleted": false,
+//     "theaterLevel": "",
+//     "updated": "2021-01-54 20:51:37.836Z",
+//     "verified": true
+//   }
+// }
+
 export type Article = {
   extra: string;
   content: string;

@@ -96,7 +96,7 @@ export default function UserDashboard() {
     }
   };
 
-  if (!isClientReady || !user.id) {
+  if (!isClientReady) {
     return (
       <div class="flex h-screen items-center justify-center text-xl font-bold">
         Chargement...

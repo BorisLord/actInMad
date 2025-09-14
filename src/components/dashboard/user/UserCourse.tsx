@@ -90,7 +90,7 @@ function ProfesseurHeader({ professeur }: { professeur: EquipeRecord }) {
   useEffect(() => {
     const fetchPhotoUrl = async () => {
       if (professeur.photo) {
-        const url = await getFileUrl("equipes", professeur.id, "photo");
+        const url = await getFileUrl("equipes", professeur.id);
         setPhotoUrl(url);
       }
     };
