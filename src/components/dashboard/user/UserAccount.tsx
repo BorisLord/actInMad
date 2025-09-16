@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "preact/hooks";
 
 import { getFileUrl, pb } from "../../../lib/pocketbase";
-import { updateUser } from "../../../lib/stores/userStore";
+import { setUser, updateUser } from "../../../lib/stores/userStore";
 import type { User } from "../../../types/typesF";
 import Calendar from "../../Calendar";
 
@@ -101,6 +101,22 @@ export default function UserAccount({ user }: { user: User }) {
   // if (!formData.id) {
   //   return <div>Chargement du profil...</div>;
   // }
+  useEffect(() => {
+    const fetchUser = async () => {
+      if (pb.authStore.isValid) {
+        try {
+          const res = await pb
+            .collection("users")
+            .getOne<User>(pb.authStore.record?.id as string);
+          setUser(res);
+        } catch (error) {
+          console.error("Erreur lors de la récupération de l'utilisateur :", error);
+        }
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   const ActionsRequis = () => (
     <div class="mb-6 space-y-4 rounded-xl border border-yellow-300 bg-yellow-50 p-4">
