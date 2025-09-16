@@ -3,12 +3,14 @@ import { useStore } from "@nanostores/preact";
 import { useEffect, useState } from "preact/hooks";
 
 import { pb } from "../../../lib/pocketbase";
+import { processInstallmentPayment } from "../../../lib/services/installmentPaymentService";
 import {
   $cart,
   clearCart,
   removeCourseFromCart,
 } from "../../../lib/stores/cartStore";
 import type { CartItem, PromoData } from "../../../types/typesF";
+import InstallmentPaymentForm from "./InstallmentPaymentForm";
 
 export default function UserCart() {
   const cartItems = useStore($cart);
@@ -20,6 +22,10 @@ export default function UserCart() {
   const [promoError, setPromoError] = useState<string | null>(null);
   const [isVerifyingPromo, setIsVerifyingPromo] = useState(false);
   const [showPromoInput, setShowPromoInput] = useState(false);
+
+  // États pour le paiement en plusieurs fois
+  const [showInstallmentForm, setShowInstallmentForm] = useState(false);
+  const [isProcessingInstallment, setIsProcessingInstallment] = useState(false);
 
   const getCoursePrice = (course: CartItem): number => {
     return course.selectedTarif || 0;
@@ -126,6 +132,73 @@ export default function UserCart() {
     } finally {
       setIsProcessing(false);
       clearCart();
+    }
+  };
+
+  const handleInstallmentPayment = async (
+    bankData: any,
+    installmentOptions: any,
+  ) => {
+    console.log("🟡 Début handleInstallmentPayment");
+    console.log("🟡 Données reçues:", { bankData, installmentOptions });
+    
+    setIsProcessingInstallment(true);
+    setError(null);
+
+    if (!pb.authStore.isValid) {
+      console.log("❌ Utilisateur non connecté");
+      setError("Vous devez être connecté pour procéder au paiement.");
+      setIsProcessingInstallment(false);
+      return;
+    }
+
+    console.log("✅ Utilisateur connecté");
+
+    const checkoutItems = cartItems.map((item) => ({
+      courseId: item.id,
+      profId: item?.expand?.profID?.id,
+      selectedTarif: item.selectedTarif,
+      cartItemId: item.cartItemId,
+      titre: item.titre,
+    }));
+
+    const orderData = {
+      total: total,
+      discount: discount,
+      items: checkoutItems,
+      promoCode: promoData !== null ? promoCode.trim().toLowerCase() : null,
+    };
+
+    console.log("🟡 Données de commande:", orderData);
+
+    try {
+      console.log("🟡 Appel de processInstallmentPayment...");
+      const result = await processInstallmentPayment(
+        orderData,
+        bankData,
+        installmentOptions,
+      );
+
+      console.log("✅ Résultat processInstallmentPayment:", result);
+
+      // Succès - afficher le résultat et rediriger
+      alert(
+        `✅ ${result.message}\nPremier paiement: immédiat\nSuivants: chaque mois`,
+      );
+      clearCart();
+      setShowInstallmentForm(false);
+
+      // Rediriger vers le dashboard ou la page de confirmation
+      window.location.href = `/dashboard`;
+    } catch (err: any) {
+      const errorMessage =
+        err.message ||
+        "Une erreur est survenue lors de la configuration du paiement échelonné.";
+      console.error("❌ Erreur paiement échelonné:", err);
+      setError(errorMessage);
+    } finally {
+      console.log("🟡 Fin handleInstallmentPayment");
+      setIsProcessingInstallment(false);
     }
   };
 
@@ -273,11 +346,42 @@ export default function UserCart() {
                   Traitement...
                 </>
               ) : (
-                `Procéder au paiement`
+                `Paiement en une fois`
+              )}
+            </button>
+            <button
+              onClick={() => setShowInstallmentForm(true)}
+              disabled={isProcessing || isProcessingInstallment}
+              class="bg-madRed mt-2 flex w-full items-center justify-center rounded-md px-4 py-3 text-base font-medium text-white shadow-sm transition hover:bg-red-700 disabled:cursor-not-allowed disabled:bg-opacity-50"
+            >
+              {isProcessingInstallment ? (
+                <>
+                  <Icon
+                    icon="lucide:loader-2"
+                    class="mr-2 h-5 w-5 animate-spin"
+                  />
+                  Configuration...
+                </>
+              ) : (
+                `Paiement en plusieurs fois`
               )}
             </button>
           </div>
         </div>
+      )}
+
+      {/* Formulaire de paiement en plusieurs fois */}
+      {showInstallmentForm && (
+        <InstallmentPaymentForm
+          orderTotal={total}
+          onSuccess={(result) => {
+            console.log("Paiement échelonné configuré:", result);
+            setShowInstallmentForm(false);
+          }}
+          onCancel={() => setShowInstallmentForm(false)}
+          isProcessing={isProcessingInstallment}
+          onSubmit={handleInstallmentPayment}
+        />
       )}
     </div>
   );
