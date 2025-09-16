@@ -97,9 +97,10 @@ export default function UserAccount({ user }: { user: User }) {
     }
   };
 
-  if (!formData.id) {
-    return <div>Chargement du profil...</div>;
-  }
+  // ! Revoir ce code et pb.auth.isvalid ?
+  // if (!formData.id) {
+  //   return <div>Chargement du profil...</div>;
+  // }
 
   const ActionsRequis = () => (
     <div class="mb-6 space-y-4 rounded-xl border border-yellow-300 bg-yellow-50 p-4">
