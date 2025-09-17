@@ -1,6 +1,5 @@
 import type { Ref } from "preact";
 
-
 // type pocketbase_auth => localstorage (replace user store)
 // {
 //   "token": "eyJhbI1NiIsInR5cCI6Ikp.0.0iAqF4IC0YLI8ijixSW8_eE35Mj
