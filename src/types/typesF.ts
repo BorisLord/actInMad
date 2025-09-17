@@ -134,11 +134,28 @@ export type CommandeItem = {
   quantity?: number;
 };
 
+export type InstallmentPlan = {
+  id: string;
+  commandeId: string;
+  installments: number;
+  frequency: string;
+  totalAmount: number;
+  status: string;
+  created: string;
+};
+
 export type Commande = {
   id: string;
   userId: string;
   status: "created" | "pending" | "authorized" | "completed" | "canceled";
-  amount: number;
-  items: CommandeItem[] | null;
+  amount: number | null;
+  courseIds: string[] | null; // Nouveau champ avec les IDs des cours
+  paymentType?: "single" | "installment";
+  originalTotal?: number | null;
+  discountAmount?: number | null;
+  promoCode?: string;
   created: string;
+  // Champs pour enrichissement côté frontend
+  installmentPlan?: InstallmentPlan;
+  enrichedItems?: any[];
 };
