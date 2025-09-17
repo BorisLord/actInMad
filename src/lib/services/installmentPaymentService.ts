@@ -222,7 +222,7 @@ export const createInstallmentPlanWithOrder = async (
     console.log("🔄 Tentative de création plan d'échéances avec commande...");
     console.log("📅 Données:", {
       mandateRecordId,
-      totalAmount: orderData.total,
+      finalAmount: orderData.total,
       installments,
       frequency,
       itemsCount: orderData.items.length,
@@ -234,7 +234,7 @@ export const createInstallmentPlanWithOrder = async (
       body: {
         // Données du plan d'échéances
         mandateRecordId: mandateRecordId,
-        totalAmount: orderData.total,
+        finalAmount: orderData.total,
         installments: installments,
         frequency: frequency,
 
@@ -271,7 +271,7 @@ export const createInstallmentPlanWithOrder = async (
 export const createInstallmentPlan = async (
   commandeId: string,
   mandateRecordId: string,
-  totalAmount: number,
+  finalAmount: number,
   installments: number,
   frequency: string = "monthly",
 ) => {
@@ -280,7 +280,7 @@ export const createInstallmentPlan = async (
     console.log("📅 Données plan:", {
       commandeId,
       mandateRecordId,
-      totalAmount,
+      finalAmount,
       installments,
       frequency,
     });
@@ -291,7 +291,7 @@ export const createInstallmentPlan = async (
       body: {
         commandeId: commandeId,
         mandateRecordId: mandateRecordId,
-        totalAmount: totalAmount,
+        finalAmount: finalAmount,
         installments: installments,
         frequency: frequency,
       },
