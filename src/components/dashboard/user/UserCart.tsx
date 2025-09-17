@@ -141,7 +141,7 @@ export default function UserCart() {
   ) => {
     console.log("🟡 Début handleInstallmentPayment");
     console.log("🟡 Données reçues:", { bankData, installmentOptions });
-    
+
     setIsProcessingInstallment(true);
     setError(null);
 
@@ -181,14 +181,36 @@ export default function UserCart() {
 
       console.log("✅ Résultat processInstallmentPayment:", result);
 
-      // Succès - afficher le résultat et rediriger
+      // Si on a une URL de checkout, rediriger l'utilisateur pour approuver le mandat
+      if (result.checkoutUrl) {
+        console.log(
+          "🔗 Redirection vers l'approbation Mollie:",
+          result.checkoutUrl,
+        );
+
+        // Sauvegarder les informations dans le localStorage pour les récupérer après retour
+        localStorage.setItem(
+          "pendingInstallmentPayment",
+          JSON.stringify({
+            result: result,
+            items: checkoutItems,
+            timestamp: Date.now(),
+          }),
+        );
+
+        // Rediriger vers Mollie pour l'approbation
+        window.location.href = result.checkoutUrl;
+        return;
+      }
+
+      // Succès sans redirection (cas d'erreur ou paiement sans approbation)
       alert(
         `✅ ${result.message}\nPremier paiement: immédiat\nSuivants: chaque mois`,
       );
       clearCart();
       setShowInstallmentForm(false);
 
-      // Rediriger vers le dashboard ou la page de confirmation
+      // Rediriger vers le dashboard
       window.location.href = `/dashboard`;
     } catch (err: any) {
       const errorMessage =
