@@ -45,44 +45,6 @@ function InfoItem({
   );
 }
 
-// Composant pour afficher les informations du professeur
-// function ProfesseurInfo({ professeur }: { professeur: EquipeRecord }) {
-//   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
-
-//   useEffect(() => {
-//     const fetchPhotoUrl = async () => {
-//       if (professeur.photo) {
-//         const url = await getFileUrl("equipes", professeur.id);
-//         setPhotoUrl(url);
-//       }
-//     };
-//     fetchPhotoUrl();
-//   }, [professeur.id, professeur.photo]);
-
-//   return (
-//     <div class="flex items-start space-x-3">
-//       <span class="mr-3 mt-1 text-lg">👨‍🏫</span>
-//       <div class="flex-1">
-//         <span class="font-semibold text-slate-700">Professeur:</span>
-//         <div class="mt-2 flex items-center space-x-3">
-//           {photoUrl && (
-//             <img
-//               src={photoUrl}
-//               alt={`Photo de ${professeur.prenom} ${professeur.nom}`}
-//               class="h-12 w-12 rounded-full border-2 border-slate-300 object-cover"
-//             />
-//           )}
-//           <div>
-//             <p class="font-medium text-slate-800">
-//               {professeur.prenom} {professeur.nom}
-//             </p>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
 // Composant pour afficher le professeur dans l'en-tête
 function ProfesseurHeader({ professeur }: { professeur: EquipeRecord }) {
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
@@ -123,7 +85,7 @@ type EnrichedItem = {
 
 // Le composant d'affichage utilise maintenant l'item enrichi
 function PurchasedCourseDetails({ item }: { item: EnrichedItem }) {
-  const { cours, tarif } = item;
+  const { cours } = item;
 
   return (
     <li class="overflow-hidden rounded-lg bg-slate-50 shadow-md">
@@ -150,23 +112,24 @@ function PurchasedCourseDetails({ item }: { item: EnrichedItem }) {
         </div>
       </div>
 
-      {/* Corps avec les détails */}
+      {/* Contenu principal */}
       <div class="p-4">
-        <p class="mb-6 text-base leading-relaxed text-slate-700">
-          {cours.description}
-        </p>
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {/* Colonne de gauche: Infos principales */}
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {/* Colonne de gauche: Infos détails */}
           <div class="space-y-4">
-            <InfoItem icon="📍" label="Lieu" value={cours.adresse} />
             <InfoItem
-              icon="📅"
+              icon="calendar"
               label="Jour de répétition"
               value={cours.jourRepetition}
             />
             <InfoItem
-              icon="⭐"
-              label="Dates de spectacle"
+              icon="map-pin"
+              label="Lieu de répétition"
+              value={cours.adresse}
+            />
+            <InfoItem
+              icon="calendar-check"
+              label="Date du spectacle"
               value={cours.dateJeu}
             />
           </div>
@@ -183,22 +146,7 @@ function PurchasedCourseDetails({ item }: { item: EnrichedItem }) {
               label="Un cours d'essai au choix"
               value={cours.courEssai}
             />
-            {/* AFFICHE LE TARIF PAYÉ */}
-            <div class="flex items-start">
-              {/* <Icon
-                icon="lucide:tag"
-                class="mr-3 mt-1 h-5 w-5 text-slate-500"
-              /> */}
-              💰
-              <div class="ml-3.5">
-                <span class="font-semibold text-slate-700">Tarif Payé:</span>
-                {tarif ? (
-                  <p class="font-bold text-slate-800">{tarif}€</p>
-                ) : (
-                  <p class="text-slate-800">Non spécifié</p>
-                )}
-              </div>
-            </div>
+            {/* Retirer l'affichage du tarif individuel car maintenant affiché au niveau commande */}
           </div>
         </div>
       </div>
@@ -206,7 +154,6 @@ function PurchasedCourseDetails({ item }: { item: EnrichedItem }) {
   );
 }
 
-// Type pour la commande complète avec les items enrichis
 type CommandeEnrichie = Commande & {
   enrichedItems: EnrichedItem[];
 };
@@ -239,13 +186,42 @@ export default function CommandesList() {
           return <UserSubscription onSelectCourse={() => ({})} />;
         }
 
+        // Récupérer les plans d'échéance pour les commandes de type "installment"
+        const installmentCommandes = commandesRecords.filter(
+          (c) => c.paymentType === "installment",
+        );
+        let installmentPlans: any[] = [];
+
+        if (installmentCommandes.length > 0) {
+          const commandeIds = installmentCommandes.map((c) => c.id);
+          const filterPlans = commandeIds
+            .map((id) => `commandeId = "${id}"`)
+            .join(" || ");
+
+          try {
+            installmentPlans = await pb
+              .collection("installmentPlans")
+              .getFullList({
+                filter: filterPlans,
+              });
+          } catch (error) {
+            console.warn("Erreur récupération plans d'échéance:", error);
+          }
+        }
+
+        // Créer un map des plans par commandeId
+        const plansMap = new Map();
+        installmentPlans.forEach((plan) => {
+          plansMap.set(plan.commandeId, plan);
+        });
+
         const courseIds = new Set<string>();
         commandesRecords.forEach((commande) => {
-          // Vérification de sécurité : s'assurer que items n'est pas null/undefined
-          if (commande.items && Array.isArray(commande.items)) {
-            commande.items.forEach((item) => {
-              if (item.courseId) {
-                courseIds.add(item.courseId);
+          // Utiliser le nouveau champ courseIds qui est un tableau JSON
+          if (commande.courseIds && Array.isArray(commande.courseIds)) {
+            commande.courseIds.forEach((courseId) => {
+              if (courseId) {
+                courseIds.add(courseId);
               }
             });
           }
@@ -253,7 +229,11 @@ export default function CommandesList() {
 
         if (courseIds.size === 0) {
           setCommandes(
-            commandesRecords.map((c) => ({ ...c, enrichedItems: [] })),
+            commandesRecords.map((c) => ({
+              ...c,
+              enrichedItems: [],
+              installmentPlan: plansMap.get(c.id) || null,
+            })),
           );
           setLoading(false);
           return;
@@ -274,29 +254,50 @@ export default function CommandesList() {
         coursRecords.forEach((cours) => coursMap.set(cours.id, cours));
 
         const commandesEnrichies = commandesRecords.map((commande) => {
-          if (!commande.items || !Array.isArray(commande.items)) {
-            return { ...commande, enrichedItems: [] };
+          if (!commande.courseIds || !Array.isArray(commande.courseIds)) {
+            return {
+              ...commande,
+              enrichedItems: [],
+              installmentPlan: plansMap.get(commande.id) || null,
+            };
           }
 
-          const enrichedItems = commande.items
-            .map((item) => {
-              if (!item || !item.courseId) {
+          const enrichedItems = commande.courseIds
+            .map((courseId) => {
+              if (!courseId) {
                 return null;
               }
 
-              const cours = coursMap.get(item.courseId);
+              const cours = coursMap.get(courseId);
               if (!cours) {
                 return null;
               }
 
+              // Calculer le montant réel de la commande
+              const montantReel = commande.amount || 0;
+              const montantOriginal = commande.originalTotal || 0;
+              const reduction = commande.discountAmount || 0;
+              const montantFinal =
+                montantReel > 0
+                  ? montantReel
+                  : Math.max(0, montantOriginal - reduction);
+
+              // Diviser le montant final par le nombre de cours
+              const nbCours = commande.courseIds?.length || 1;
+              const tarifEstime = montantFinal / nbCours;
+
               return {
                 cours,
-                tarif: item.tarif || 0,
+                tarif: tarifEstime,
               };
             })
             .filter((item): item is EnrichedItem => item !== null);
 
-          return { ...commande, enrichedItems };
+          return {
+            ...commande,
+            enrichedItems,
+            installmentPlan: plansMap.get(commande.id) || null,
+          };
         });
 
         setCommandes(commandesEnrichies);
@@ -322,46 +323,120 @@ export default function CommandesList() {
   return (
     <div class="space-y-8">
       {commandes.length > 0 ? (
-        commandes.map((commande) => (
-          <div
-            key={commande.id}
-            class="overflow-hidden rounded-lg bg-white shadow-lg"
-          >
-            <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 bg-slate-50 p-4 sm:p-6">
-              <div>
-                <h2 class="text-xl font-bold text-slate-900">
-                  Commande du {new Date(commande.created).toLocaleDateString()}
-                </h2>
-              </div>
-              <span
-                class={`rounded-full px-3 py-1 text-sm font-semibold capitalize ${
-                  commande.status === "completed"
-                    ? "bg-green-100 text-green-800"
-                    : "bg-yellow-100 text-yellow-800"
-                }`}
-              >
-                {commande.status}
-              </span>
-            </div>
+        commandes.map((commande) => {
+          // Calculer le montant réel basé sur les données disponibles
+          const montantReel = commande.amount || 0;
+          const montantOriginal = commande.originalTotal || 0;
+          const reduction = commande.discountAmount || 0;
 
-            <div class="p-4 sm:p-6">
-              <ul class="space-y-6">
-                {commande.enrichedItems.length > 0 ? (
-                  commande.enrichedItems.map((item, index) => (
-                    <PurchasedCourseDetails
-                      key={`${item.cours.id}-${index}`}
-                      item={item}
-                    />
-                  ))
-                ) : (
-                  <p class="text-center text-slate-500">
-                    Aucun détail de cours à afficher pour cette commande.
-                  </p>
-                )}
-              </ul>
+          // Si le montant est 0 mais qu'on a un montant original, calculer le montant final
+          const montantFinal =
+            montantReel > 0
+              ? montantReel
+              : Math.max(0, montantOriginal - reduction);
+
+          return (
+            <div
+              key={commande.id}
+              class="overflow-hidden rounded-lg bg-white shadow-lg"
+            >
+              <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 bg-slate-50 p-4 sm:p-6">
+                <div class="flex-1">
+                  <h2 class="text-xl font-bold text-slate-900">
+                    Commande du{" "}
+                    {new Date(commande.created).toLocaleDateString()}
+                  </h2>
+
+                  {/* Informations de tarif et paiement */}
+                  <div class="mt-2 space-y-1">
+                    <div class="flex items-center gap-4 text-sm">
+                      <span class="font-semibold text-slate-700">
+                        Montant total :{" "}
+                        <span class="text-green-600">
+                          {montantFinal.toFixed(2)}€
+                        </span>
+                      </span>
+
+                      {montantOriginal > montantFinal && (
+                        <span class="text-xs text-slate-500">
+                          (Prix initial : {montantOriginal.toFixed(2)}€)
+                        </span>
+                      )}
+
+                      {reduction > 0 && (
+                        <span class="text-xs text-red-600">
+                          Réduction : -{reduction.toFixed(2)}€
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Informations de paiement échelonné */}
+                    {commande.paymentType === "installment" &&
+                      commande.installmentPlan && (
+                        <div class="text-sm text-blue-600">
+                          <Icon
+                            icon="lucide:calendar"
+                            class="mr-1 inline h-4 w-4"
+                          />
+                          Paiement en {commande.installmentPlan.installments}{" "}
+                          mensualités (
+                          {(
+                            montantFinal /
+                            (commande.installmentPlan.installments || 1)
+                          ).toFixed(2)}
+                          €/mois)
+                        </div>
+                      )}
+
+                    {commande.paymentType === "single" && (
+                      <div class="text-sm text-green-600">
+                        <Icon
+                          icon="lucide:check-circle"
+                          class="mr-1 inline h-4 w-4"
+                        />
+                        Paiement en une fois
+                      </div>
+                    )}
+
+                    {commande.promoCode && (
+                      <div class="text-sm text-purple-600">
+                        <Icon icon="lucide:tag" class="mr-1 inline h-4 w-4" />
+                        Code promo : {commande.promoCode}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <span
+                  class={`rounded-full px-3 py-1 text-sm font-semibold capitalize ${
+                    commande.status === "completed"
+                      ? "bg-green-100 text-green-800"
+                      : "bg-yellow-100 text-yellow-800"
+                  }`}
+                >
+                  {commande.status}
+                </span>
+              </div>
+
+              <div class="p-4 sm:p-6">
+                <ul class="space-y-6">
+                  {commande.enrichedItems.length > 0 ? (
+                    commande.enrichedItems.map((item, index) => (
+                      <PurchasedCourseDetails
+                        key={`${item.cours.id}-${index}`}
+                        item={item}
+                      />
+                    ))
+                  ) : (
+                    <p class="text-center text-slate-500">
+                      Aucun détail de cours à afficher pour cette commande.
+                    </p>
+                  )}
+                </ul>
+              </div>
             </div>
-          </div>
-        ))
+          );
+        })
       ) : (
         <div class="rounded-lg border-2 border-dashed border-slate-300 bg-slate-50 p-12 text-center">
           <h3 class="text-xl font-medium text-slate-900">

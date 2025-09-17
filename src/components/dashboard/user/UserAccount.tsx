@@ -102,6 +102,7 @@ export default function UserAccount({ user }: { user: User }) {
   //   return <div>Chargement du profil...</div>;
   // }
 
+
   const ActionsRequis = () => (
     <div class="mb-6 space-y-4 rounded-xl border border-yellow-300 bg-yellow-50 p-4">
       <h3 class="font-bold text-yellow-800">Finalisez votre inscription</h3>

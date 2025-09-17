@@ -54,7 +54,10 @@ export default function InstallmentPaymentForm({
     const cleanBic = bic.trim().toUpperCase();
     const bicRegex = /^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$/;
 
-    return bicRegex.test(cleanBic) && (cleanBic.length === 8 || cleanBic.length === 11);
+    return (
+      bicRegex.test(cleanBic) &&
+      (cleanBic.length === 8 || cleanBic.length === 11)
+    );
   };
 
   const validateForm = (): boolean => {
@@ -173,8 +176,9 @@ export default function InstallmentPaymentForm({
                   accountHolder: (e.target as HTMLInputElement).value,
                 })
               }
-              class={`mt-1 block w-full rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${errors.accountHolder ? "border-red-300" : "border-gray-300"
-                }`}
+              class={`mt-1 block w-full rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${
+                errors.accountHolder ? "border-red-300" : "border-gray-300"
+              }`}
               placeholder="Jean Dupont"
               required
             />
@@ -197,8 +201,9 @@ export default function InstallmentPaymentForm({
                   iban: (e.target as HTMLInputElement).value.toUpperCase(),
                 })
               }
-              class={`mt-1 block w-full rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${errors.iban ? "border-red-300" : "border-gray-300"
-                }`}
+              class={`mt-1 block w-full rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${
+                errors.iban ? "border-red-300" : "border-gray-300"
+              }`}
               placeholder="FR76 3000 1007 9412 3456 7890 185"
               required
             />
@@ -209,7 +214,10 @@ export default function InstallmentPaymentForm({
 
           <div>
             <label for="bic" class="block text-sm font-medium text-gray-700">
-              BIC / SWIFT <span class="text-sm text-gray-500">(optionnel mais recommandé)</span>
+              BIC / SWIFT{" "}
+              <span class="text-sm text-gray-500">
+                (optionnel mais recommandé)
+              </span>
             </label>
             <input
               type="text"
@@ -221,8 +229,9 @@ export default function InstallmentPaymentForm({
                   bic: (e.target as HTMLInputElement).value.toUpperCase(),
                 })
               }
-              class={`mt-1 block w-full rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${errors.bic ? "border-red-300" : "border-gray-300"
-                }`}
+              class={`mt-1 block w-full rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${
+                errors.bic ? "border-red-300" : "border-gray-300"
+              }`}
               placeholder="BNPAFRPP ou BNPAFRPPXXX"
               maxLength={11}
             />

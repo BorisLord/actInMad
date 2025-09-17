@@ -9,7 +9,8 @@ interface BankData {
 interface OrderData {
   total: number;
   discount?: number;
-  items: any[];
+  items: any[]; // Gardé pour la compatibilité avec les anciens appels
+  courseIds?: string[]; // Nouveau champ pour les IDs des cours
   promoCode?: string | null;
 }
 
@@ -24,6 +25,7 @@ interface ProcessResult {
   mandateId: string;
   commandeId: string;
   plan: any;
+  checkoutUrl?: string; // URL pour l'approbation du premier paiement
   message: string;
 }
 
@@ -209,6 +211,62 @@ export const createOrder = async (orderData: OrderData): Promise<string> => {
   }
 };
 
+// Créer un plan de paiement échelonné avec commande intégrée
+export const createInstallmentPlanWithOrder = async (
+  mandateRecordId: string,
+  orderData: OrderData,
+  installments: number,
+  frequency: string,
+): Promise<{ plan: any; checkoutUrl: string; commandeId: string }> => {
+  try {
+    console.log("🔄 Tentative de création plan d'échéances avec commande...");
+    console.log("📅 Données:", {
+      mandateRecordId,
+      totalAmount: orderData.total,
+      installments,
+      frequency,
+      itemsCount: orderData.items.length,
+    });
+
+    const response = await pb.send("/api/installments/create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: {
+        // Données du plan d'échéances
+        mandateRecordId: mandateRecordId,
+        totalAmount: orderData.total,
+        installments: installments,
+        frequency: frequency,
+
+        // Données de la commande (pour création en interne)
+        orderData: {
+          total: orderData.total,
+          discount: orderData.discount || 0,
+          items: orderData.items,
+          promoCode: orderData.promoCode || null,
+        },
+      },
+    });
+
+    console.log("✅ Plan d'échéances avec commande créé:", response);
+    console.log("🔗 URL de checkout reçue:", response.checkoutUrl);
+
+    return {
+      plan: response.plan,
+      checkoutUrl: response.checkoutUrl,
+      commandeId: response.commandeId || response.plan?.commandeId,
+    };
+  } catch (error: any) {
+    console.error("❌ Erreur création plan avec commande:", error);
+    console.error("📋 Détail erreur:", {
+      status: error?.status,
+      message: error?.message,
+      data: error?.data,
+    });
+    throw error;
+  }
+};
+
 // Créer un plan de paiement en plusieurs fois
 export const createInstallmentPlan = async (
   commandeId: string,
@@ -240,7 +298,12 @@ export const createInstallmentPlan = async (
     });
 
     console.log("✅ Plan d'échéances créé:", response.plan);
-    return response.plan;
+    console.log("🔗 URL de checkout reçue:", response.checkoutUrl);
+
+    return {
+      plan: response.plan,
+      checkoutUrl: response.checkoutUrl,
+    };
   } catch (error: any) {
     console.error("❌ Erreur création plan:", error);
     console.error("📋 Détail erreur plan:", {
@@ -280,20 +343,11 @@ export const processInstallmentPayment = async (
     console.log("📝 Étape 2: Création du mandat...");
     const mandateData = await createMandate(customerId, bankData);
 
-    // 3. Attendre la validation du mandat
-    console.log("⏳ Étape 3: Attente de la validation du mandat...");
-    await waitForMandateValidation(customerId, mandateData.mandateId);
-
-    // 4. Créer la commande
-    console.log("🛒 Étape 4: Création de la commande...");
-    const commandeId = await createOrder(orderData);
-
-    // 5. Créer le plan de paiement échelonné
-    console.log("📅 Étape 5: Création du plan d'échéances...");
-    const plan = await createInstallmentPlan(
-      commandeId,
+    // 3. Créer directement le plan de paiement échelonné (qui créera la commande en interne)
+    console.log("📅 Étape 3: Création du plan d'échéances avec commande...");
+    const planResult = await createInstallmentPlanWithOrder(
       mandateData.mandateRecordId,
-      orderData.total,
+      orderData,
       installmentOptions.installments,
       installmentOptions.frequency,
     );
@@ -304,9 +358,10 @@ export const processInstallmentPayment = async (
       success: true,
       customerId: customerId,
       mandateId: mandateData.mandateId,
-      commandeId: commandeId,
-      plan: plan,
-      message: `Plan de paiement créé: ${installmentOptions.installments}x ${plan.amount_per_installment}€`,
+      commandeId: planResult.commandeId,
+      plan: planResult.plan,
+      checkoutUrl: planResult.checkoutUrl,
+      message: `Plan de paiement créé: ${installmentOptions.installments}x ${(orderData.total / installmentOptions.installments).toFixed(2)}€`,
     };
   } catch (error: any) {
     console.error("💥 Erreur dans le processus:", error);
@@ -353,7 +408,10 @@ export const validateBankData = (
     const cleanBic = bankData.bic.trim().toUpperCase();
     const bicRegex = /^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$/;
 
-    if (!bicRegex.test(cleanBic) || (cleanBic.length !== 8 && cleanBic.length !== 11)) {
+    if (
+      !bicRegex.test(cleanBic) ||
+      (cleanBic.length !== 8 && cleanBic.length !== 11)
+    ) {
       errors.push("Format BIC invalide (8 ou 11 caractères alphanumériques)");
     }
   }
