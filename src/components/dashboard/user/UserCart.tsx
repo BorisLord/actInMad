@@ -198,6 +198,10 @@ export default function UserCart() {
           }),
         );
 
+        // Supprimer le panier avant la redirection
+        clearCart();
+        setShowInstallmentForm(false);
+
         // Rediriger vers Mollie pour l'approbation
         window.location.href = result.checkoutUrl;
         return;

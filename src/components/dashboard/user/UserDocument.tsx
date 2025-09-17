@@ -5,7 +5,7 @@ export default function UserDocument() {
         Vos documents bientôt accessibles en un clic
       </h1>
       <p className="mb-6 text-base text-gray-800 md:text-lg">
-        Factures, mandats de prélèvement et autres documents importants
+        Factures, mandats de prélèvement etc ...
       </p>
 
       <h2 className="text-madRed mb-6 font-serif text-lg font-semibold md:text-2xl">
