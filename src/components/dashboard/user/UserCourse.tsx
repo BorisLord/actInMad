@@ -275,7 +275,7 @@ export default function CommandesList() {
 
               // Calculer le montant réel de la commande
               const montantReel = commande.amount || 0;
-              const montantOriginal = commande.originalTotal || 0;
+              const montantOriginal = commande.originalPrice || 0;
               const reduction = commande.discountAmount || 0;
               const montantFinal =
                 montantReel > 0
@@ -326,8 +326,16 @@ export default function CommandesList() {
         commandes.map((commande) => {
           // Calculer le montant réel basé sur les données disponibles
           const montantReel = commande.amount || 0;
-          const montantOriginal = commande.originalTotal || 0;
+          const montantOriginal = commande.originalPrice || 0;
           const reduction = commande.discountAmount || 0;
+
+          console.log("💰 Calcul pour commande:", commande.id, {
+            montantReel,
+            montantOriginal,
+            reduction,
+            amount: commande.amount,
+            originalPrice: commande.originalPrice,
+          });
 
           // Si le montant est 0 mais qu'on a un montant original, calculer le montant final
           const montantFinal =
@@ -373,35 +381,39 @@ export default function CommandesList() {
                     {/* Informations de paiement échelonné */}
                     {commande.paymentType === "installment" &&
                       commande.installmentPlan && (
-                        <div class="text-sm text-blue-600">
+                        <div class="flex text-sm text-blue-600">
                           <Icon
                             icon="lucide:calendar"
                             class="mr-1 inline h-4 w-4"
                           />
-                          Paiement en {commande.installmentPlan.installments}{" "}
-                          mensualités (
-                          {(
-                            montantFinal /
-                            (commande.installmentPlan.installments || 1)
-                          ).toFixed(2)}
-                          €/mois)
+                          <span class="pl-2">
+                            Paiement en {commande.installmentPlan.installments}{" "}
+                            mensualités (
+                            {(
+                              montantFinal /
+                              (commande.installmentPlan.installments || 1)
+                            ).toFixed(2)}
+                            €/mois)
+                          </span>
                         </div>
                       )}
 
                     {commande.paymentType === "single" && (
-                      <div class="text-sm text-green-600">
+                      <div class="flex text-sm text-green-600">
                         <Icon
                           icon="lucide:check-circle"
                           class="mr-1 inline h-4 w-4"
                         />
-                        Paiement en une fois
+                        <span class="pl-2">Paiement en une fois</span>
                       </div>
                     )}
 
                     {commande.promoCode && (
-                      <div class="text-sm text-purple-600">
+                      <div class="flex text-sm text-purple-600">
                         <Icon icon="lucide:tag" class="mr-1 inline h-4 w-4" />
-                        Code promo : {commande.promoCode}
+                        <span class="pl-2">
+                          Code promo : {commande.promoCode}
+                        </span>
                       </div>
                     )}
                   </div>

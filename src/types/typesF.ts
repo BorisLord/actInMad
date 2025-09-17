@@ -121,7 +121,7 @@ export type NavbarProps = {
 };
 
 export type PromoData = {
-  originalTotal: number;
+  originalPrice: number;
   discountAmount: number;
   newTotal: number;
   message: string;
@@ -138,7 +138,7 @@ export type InstallmentPlan = {
   commandeId: string;
   installments: number;
   frequency: string;
-  totalAmount: number;
+  finalAmount: number;
   status: string;
   created: string;
 };
@@ -150,7 +150,7 @@ export type Commande = {
   amount: number | null;
   courseIds: string[] | null; // Nouveau champ avec les IDs des cours
   paymentType?: "single" | "installment";
-  originalTotal?: number | null;
+  originalPrice?: number | null;
   discountAmount?: number | null;
   promoCode?: string;
   created: string;
