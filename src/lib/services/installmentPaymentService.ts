@@ -392,13 +392,17 @@ export const validateBankData = (
   if (!bankData.iban?.trim()) {
     errors.push("L'IBAN est requis");
   } else {
-    // Validation IBAN français : supprimer les espaces et vérifier le format
+    // Validation IBAN européen : supprimer les espaces et vérifier le format
     const cleanIban = bankData.iban.replace(/\s/g, "");
-    const ibanRegex = /^FR\d{25}$/;
+    const ibanRegex = /^[A-Z]{2}[0-9]{2}[A-Z0-9]{1,30}$/;
 
-    if (!ibanRegex.test(cleanIban) || cleanIban.length !== 27) {
+    if (
+      !ibanRegex.test(cleanIban) ||
+      cleanIban.length < 15 ||
+      cleanIban.length > 34
+    ) {
       errors.push(
-        "Format IBAN invalide (27 caractères requis : FR + 25 chiffres)",
+        "Format IBAN invalide (format européen attendu : 2 lettres + 2 chiffres + 1-30 caractères alphanumériques)",
       );
     }
   }

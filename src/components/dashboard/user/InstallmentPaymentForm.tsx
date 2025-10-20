@@ -42,10 +42,14 @@ export default function InstallmentPaymentForm({
     // Supprimer tous les espaces pour la validation
     const cleanIban = iban.replace(/\s/g, "");
 
-    // Validation IBAN français : FR + 2 chiffres + 23 chiffres = 27 caractères total
-    const ibanRegex = /^FR\d{25}$/;
+    // Validation IBAN européen : 2 lettres (pays) + 2 chiffres (clé) + 1-30 caractères alphanumériques
+    const ibanRegex = /^[A-Z]{2}[0-9]{2}[A-Z0-9]{1,30}$/;
 
-    return ibanRegex.test(cleanIban) && cleanIban.length === 27;
+    return (
+      ibanRegex.test(cleanIban) &&
+      cleanIban.length >= 15 &&
+      cleanIban.length <= 34
+    );
   };
 
   const validateBic = (bic: string): boolean => {
@@ -70,7 +74,7 @@ export default function InstallmentPaymentForm({
     if (!bankData.iban.trim()) {
       newErrors.iban = "L'IBAN est requis";
     } else if (!validateIban(bankData.iban)) {
-      newErrors.iban = "IBAN invalide (format français attendu)";
+      newErrors.iban = "IBAN invalide (format européen attendu)";
     }
 
     if (bankData.bic?.trim() && !validateBic(bankData.bic)) {
