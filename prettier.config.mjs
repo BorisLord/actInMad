@@ -9,7 +9,7 @@ export default {
   importOrder: ["<THIRD_PARTY_MODULES>", "^@/(.*)$", "^[./]"],
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
-  tailwindStylesheet: "./styles/global.css",
+  tailwindStylesheet: "./src/styles/global.css",
   overrides: [
     {
       files: "*.astro",

@@ -25,7 +25,7 @@ const ProfessorInfo = ({ prof }: { prof: EquipeRecord }) => {
 
   return (
     <div class="flex items-center space-x-4 rounded-md border border-slate-200 p-3">
-      <div class="h-16 w-16 flex-shrink-0 overflow-hidden rounded-full bg-slate-200">
+      <div class="h-16 w-16 shrink-0 overflow-hidden rounded-full bg-slate-200">
         {photoUrl ? (
           <img
             src={photoUrl}
@@ -252,13 +252,13 @@ export default function CourseDetail({ courseId, onBack }: CourseDetailProps) {
                   <span class="mr-3 mt-1 w-6 text-xl">💰</span>
                   <span class="font-semibold text-slate-700">Tarif:</span>
                 </div>
-                <div class="mt-2 flex-grow pl-9">
+                <div class="mt-2 grow pl-9">
                   {displayTarifs.length > 0 ? (
                     <div class="space-y-1.5">
                       {displayTarifs.map((tarifOption) => (
                         <label
                           key={tarifOption.value}
-                          class="flex cursor-pointer items-center justify-between rounded-md border p-2 transition hover:bg-slate-100 has-[:checked]:border-blue-600 has-[:checked]:bg-blue-50"
+                          class="flex cursor-pointer items-center justify-between rounded-md border p-2 transition hover:bg-slate-100 has-checked:border-blue-600 has-checked:bg-blue-50"
                         >
                           <span class="font-medium text-slate-800">
                             {tarifOption.label}

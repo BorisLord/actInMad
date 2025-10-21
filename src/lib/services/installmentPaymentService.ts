@@ -394,7 +394,7 @@ export const validateBankData = (
   } else {
     // Validation IBAN européen : supprimer les espaces et vérifier le format
     const cleanIban = bankData.iban.replace(/\s/g, "");
-    const ibanRegex = /^[A-Z]{2}[0-9]{2}[A-Z0-9]{1,30}$/;
+    const ibanRegex = /^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$/;
 
     if (
       !ibanRegex.test(cleanIban) ||

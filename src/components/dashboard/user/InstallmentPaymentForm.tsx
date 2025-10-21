@@ -37,17 +37,20 @@ export default function InstallmentPaymentForm({
   });
   const [installments, setInstallments] = useState(2);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  console.log("The error",submitError) 
 
   const validateIban = (iban: string): boolean => {
     // Supprimer tous les espaces pour la validation
     const cleanIban = iban.replace(/\s/g, "");
 
     // Validation IBAN européen : 2 lettres (pays) + 2 chiffres (clé) + 1-30 caractères alphanumériques
-    const ibanRegex = /^[A-Z]{2}[0-9]{2}[A-Z0-9]{1,30}$/;
+    const ibanRegex = /^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$/;
 
-    return (
+    return ( 
       ibanRegex.test(cleanIban) &&
-      cleanIban.length >= 15 &&
+      cleanIban.length >= 15 && 
       cleanIban.length <= 34
     );
   };
@@ -90,6 +93,9 @@ export default function InstallmentPaymentForm({
     console.log("🔵 Début handleSubmit");
     console.log("🔵 Données bancaires:", bankData);
 
+    // Réinitialiser l'erreur de soumission
+    setSubmitError(null);
+
     if (!validateForm()) {
       console.log("❌ Validation échouée");
       return;
@@ -108,8 +114,9 @@ export default function InstallmentPaymentForm({
       console.log("🔵 Appel de onSubmit...");
       await onSubmit(bankData, installmentOptions);
       console.log("✅ onSubmit terminé");
-    } catch (error) {
+    } catch (error: any) {
       console.error("❌ Erreur dans handleSubmit:", error);
+      setSubmitError("Un problème s'est glissé dans vos informations");
     }
   };
 
@@ -117,6 +124,9 @@ export default function InstallmentPaymentForm({
     console.log("🔵 Début handleButtonClick");
     console.log("🔵 Données bancaires:", bankData);
 
+    // Réinitialiser l'erreur de soumission
+    setSubmitError(null);
+
     if (!validateForm()) {
       console.log("❌ Validation échouée");
       return;
@@ -135,8 +145,9 @@ export default function InstallmentPaymentForm({
       console.log("🔵 Appel de onSubmit...");
       await onSubmit(bankData, installmentOptions);
       console.log("✅ onSubmit terminé");
-    } catch (error) {
+    } catch (error: any) {
       console.error("❌ Erreur dans handleButtonClick:", error);
+      setSubmitError("Un problème s'est glissé dans vos informations");
     }
   };
 
@@ -279,6 +290,15 @@ export default function InstallmentPaymentForm({
               </option>
             </select>
           </div>
+
+          {submitError && (
+            <div class="mt-4 rounded-md bg-red-50 border border-red-200 p-3">
+              <div class="flex items-center">
+                <Icon icon="lucide:alert-triangle" class="h-5 w-5 text-red-400 mr-2" />
+                <p class="text-sm text-red-700">{submitError}</p>
+              </div>
+            </div>
+          )}
 
           <div class="mt-6 flex space-x-3">
             <button
