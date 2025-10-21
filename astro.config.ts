@@ -52,7 +52,7 @@ export default defineConfig({
     ],
   },
   vite: {
-    plugins: [tailwindcss(), devtoolsJson()],
+    plugins: [tailwindcss() as any, devtoolsJson()],
   },
   site:
     mode === "production"
