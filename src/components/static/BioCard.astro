@@ -7,7 +7,7 @@ const { name, instaLink, linkedIn, photo, bio } = Astro.props;
 
 <div class="mx-auto max-w-5xl p-4">
   <div class="mb-4 flex w-full items-center justify-between gap-4">
-    <h2 class="text-madText text-2xl font-bold">{name}</h2>
+    <h2 class="text-2xl font-bold text-madText">{name}</h2>
 
     <div class="flex items-center gap-2">
       {
@@ -16,7 +16,7 @@ const { name, instaLink, linkedIn, photo, bio } = Astro.props;
             href={instaLink}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-madBack bg-madRed rounded-md p-1 transition-transform hover:scale-110"
+            class="rounded-md bg-madRed p-1 text-madBack transition-transform hover:scale-110"
             aria-label={`Instagram de ${name}`}
           >
             <Icon name="lucide:instagram" class="h-6 w-6" />
@@ -29,7 +29,7 @@ const { name, instaLink, linkedIn, photo, bio } = Astro.props;
             href={linkedIn}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-madBack bg-madRed rounded-md p-1 transition-transform hover:scale-110"
+            class="rounded-md bg-madRed p-1 text-madBack transition-transform hover:scale-110"
             aria-label={`LinkedIn de ${name}`}
           >
             <Icon name="lucide:linkedin" class="h-6 w-6" />

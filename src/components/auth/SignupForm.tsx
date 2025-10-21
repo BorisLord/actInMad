@@ -110,7 +110,7 @@ const InscriptionForm = () => {
         <p class="font-semibold text-green-600">Inscription réussie !</p>
       )}
       {registrationError && (
-        <p class="text-madEncart text-sm">{registrationError}</p>
+        <p class="text-sm text-madEncart">{registrationError}</p>
       )}
       <div class="flex items-center justify-center" onClick={handleGoogleAuth}>
         <SignUpButton content="S'enregistrer avec Google" />
@@ -131,7 +131,7 @@ const InscriptionForm = () => {
             required
             class="w-full rounded-xl border border-gray-300 p-2"
           />
-          {emailError && <p class="text-madEncart text-sm">{emailError}</p>}
+          {emailError && <p class="text-sm text-madEncart">{emailError}</p>}
         </div>
 
         <div>
@@ -162,7 +162,7 @@ const InscriptionForm = () => {
             </button>
           </div>
           {passwordError && (
-            <p class="text-madEncart text-sm">{passwordError}</p>
+            <p class="text-sm text-madEncart">{passwordError}</p>
           )}
         </div>
 
@@ -194,13 +194,13 @@ const InscriptionForm = () => {
             </button>
           </div>
           {passwordError && (
-            <p class="text-madEncart text-sm">{passwordError}</p>
+            <p class="text-sm text-madEncart">{passwordError}</p>
           )}
         </div>
 
         <button
           type="submit"
-          class="bg-madRed hover:bg-madEncart cursor-pointer rounded-xl px-6 py-2 font-bold text-white transition"
+          class="cursor-pointer rounded-xl bg-madRed px-6 py-2 font-bold text-white transition hover:bg-madEncart"
         >
           S'inscrire
         </button>

@@ -102,7 +102,6 @@ export default function UserAccount({ user }: { user: User }) {
   //   return <div>Chargement du profil...</div>;
   // }
 
-
   const ActionsRequis = () => (
     <div class="mb-6 space-y-4 rounded-xl border border-yellow-300 bg-yellow-50 p-4">
       <h3 class="font-bold text-yellow-800">Finalisez votre inscription</h3>
@@ -119,7 +118,7 @@ export default function UserAccount({ user }: { user: User }) {
           </p>
           <button
             onClick={handleSendVerification}
-            class="bg-madEncart hover:bg-madRed whitespace-nowrap rounded-lg px-3 py-1.5 text-sm font-medium text-white transition"
+            class="rounded-lg bg-madEncart px-3 py-1.5 text-sm font-medium whitespace-nowrap text-white transition hover:bg-madRed"
           >
             Envoyer l'email
           </button>
@@ -227,13 +226,13 @@ export default function UserAccount({ user }: { user: User }) {
                 ref={avatarInputRef}
                 onChange={handleFileChange}
                 accept="image/png, image/jpeg, image/webp"
-                className="file:bg-madRed/10 file:text-madRed hover:file:bg-madRed/20 block w-full cursor-pointer text-sm text-gray-500 file:mr-4 file:rounded-full file:border-0 file:px-4 file:py-2 file:text-sm file:font-semibold"
+                className="block w-full cursor-pointer text-sm text-gray-500 file:mr-4 file:rounded-full file:border-0 file:bg-madRed/10 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-madRed hover:file:bg-madRed/20"
               />
             </div>
           </div>
           <button
             type="submit"
-            class="bg-madRed hover:bg-madEncart cursor-pointer rounded-xl px-6 py-2 font-bold text-white transition"
+            class="cursor-pointer rounded-xl bg-madRed px-6 py-2 font-bold text-white transition hover:bg-madEncart"
           >
             Enregistrer les modifications
           </button>
@@ -315,7 +314,7 @@ export default function UserAccount({ user }: { user: User }) {
           </div>
           <button
             onClick={() => setIsEditing(true)}
-            class="bg-madRed hover:bg-madEncart cursor-pointer rounded-xl px-6 py-2 font-bold text-white transition"
+            class="cursor-pointer rounded-xl bg-madRed px-6 py-2 font-bold text-white transition hover:bg-madEncart"
           >
             Modifier mon profil
           </button>

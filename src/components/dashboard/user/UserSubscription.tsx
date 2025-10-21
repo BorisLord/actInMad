@@ -71,7 +71,7 @@ export default function UserSubscription({
               class="flex flex-col rounded-lg border border-slate-200 bg-white p-6 shadow-md"
             >
               <div class="flex-grow">
-                <span class="mr-2 inline-block rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-semibold capitalize text-blue-800">
+                <span class="mr-2 inline-block rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-800 capitalize">
                   {course.coursType}
                 </span>
                 <h2 class="my-2 text-2xl font-bold text-slate-800">
@@ -79,7 +79,7 @@ export default function UserSubscription({
                 </h2>
                 <p class="mb-4 text-slate-600">{course.description}</p>
                 {course.pieceTheatre && (
-                  <p class="mb-4 text-sm italic text-slate-500">
+                  <p class="mb-4 text-sm text-slate-500 italic">
                     Pièce : {course.pieceTheatre}
                   </p>
                 )}
@@ -117,7 +117,7 @@ export default function UserSubscription({
                 </p>
                 <button
                   onClick={() => onSelectCourse(course.id)}
-                  class="bg-madRed hover:bg-madEncart rounded-md px-4 py-2 font-bold text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-slate-500"
+                  class="rounded-md bg-madRed px-4 py-2 font-bold text-white transition-colors duration-300 hover:bg-madEncart focus:ring-2 focus:ring-slate-500 focus:outline-none"
                 >
                   Détails
                 </button>

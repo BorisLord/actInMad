@@ -64,7 +64,7 @@ const InfoItem = ({
   if (!value) return null;
   return (
     <div class="flex items-start">
-      <span class="mr-3 mt-1 w-6 text-xl">{icon}</span>
+      <span class="mt-1 mr-3 w-6 text-xl">{icon}</span>
       <div>
         <span class="font-semibold text-slate-700">{label}:</span>
         <p class="text-slate-600">{value}</p>
@@ -195,7 +195,7 @@ export default function CourseDetail({ courseId, onBack }: CourseDetailProps) {
           </span>
           <h1 class="text-4xl font-bold text-slate-900">{course.titre}</h1>
           {course.pieceTheatre && (
-            <p class="mt-2 text-lg italic text-slate-600">
+            <p class="mt-2 text-lg text-slate-600 italic">
               Pièce jouée : {course.pieceTheatre}
             </p>
           )}
@@ -249,7 +249,7 @@ export default function CourseDetail({ courseId, onBack }: CourseDetailProps) {
               />
               <div class="flex flex-col pt-2">
                 <div class="flex items-start">
-                  <span class="mr-3 mt-1 w-6 text-xl">💰</span>
+                  <span class="mt-1 mr-3 w-6 text-xl">💰</span>
                   <span class="font-semibold text-slate-700">Tarif:</span>
                 </div>
                 <div class="mt-2 grow pl-9">

@@ -28,7 +28,7 @@ const ViewNewArticle = () => {
           <h1 className="w-full text-center text-3xl font-bold sm:text-left">
             {article.title}
           </h1>
-          <p className="mt-2 w-full whitespace-nowrap text-center text-xs text-gray-500 sm:mt-0 sm:w-auto sm:text-right">
+          <p className="mt-2 w-full text-center text-xs whitespace-nowrap text-gray-500 sm:mt-0 sm:w-auto sm:text-right">
             Publié le{" "}
             {DateTime.fromSQL(article.releaseDate)
               .setLocale("fr")
@@ -40,7 +40,7 @@ const ViewNewArticle = () => {
             <img
               src={`${PUBLIC_PB_URL}/api/files/articles/${article.id}/${article.images[0]}`}
               alt={article.imgDescription}
-              className="float-left mb-6 mr-6 w-full rounded-sm sm:w-1/3"
+              className="float-left mr-6 mb-6 w-full rounded-sm sm:w-1/3"
               loading="lazy"
             />
           )}
@@ -50,7 +50,7 @@ const ViewNewArticle = () => {
           />
         </div>
         {article.extra && (
-          <div className="bg-madRed text-madBack md:mt-22 mt-10 rounded-xl p-4">
+          <div className="mt-10 rounded-xl bg-madRed p-4 text-madBack md:mt-22">
             <article dangerouslySetInnerHTML={{ __html: article.extra }} />
           </div>
         )}

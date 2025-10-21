@@ -39,7 +39,7 @@ export default function InstallmentPaymentForm({
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  console.log("The error",submitError) 
+  console.log("The error", submitError);
 
   const validateIban = (iban: string): boolean => {
     // Supprimer tous les espaces pour la validation
@@ -48,9 +48,9 @@ export default function InstallmentPaymentForm({
     // Validation IBAN européen : 2 lettres (pays) + 2 chiffres (clé) + 1-30 caractères alphanumériques
     const ibanRegex = /^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$/;
 
-    return ( 
+    return (
       ibanRegex.test(cleanIban) &&
-      cleanIban.length >= 15 && 
+      cleanIban.length >= 15 &&
       cleanIban.length <= 34
     );
   };
@@ -154,7 +154,7 @@ export default function InstallmentPaymentForm({
   const amountPerInstallment = (orderTotal / installments).toFixed(2);
 
   return (
-    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black">
       <div class="mx-4 max-w-md rounded-lg bg-white p-6 shadow-xl">
         <div class="mb-4 flex items-center justify-between">
           <h3 class="text-lg font-semibold text-gray-900">
@@ -292,9 +292,12 @@ export default function InstallmentPaymentForm({
           </div>
 
           {submitError && (
-            <div class="mt-4 rounded-md bg-red-50 border border-red-200 p-3">
+            <div class="mt-4 rounded-md border border-red-200 bg-red-50 p-3">
               <div class="flex items-center">
-                <Icon icon="lucide:alert-triangle" class="h-5 w-5 text-red-400 mr-2" />
+                <Icon
+                  icon="lucide:alert-triangle"
+                  class="mr-2 h-5 w-5 text-red-400"
+                />
                 <p class="text-sm text-red-700">{submitError}</p>
               </div>
             </div>
@@ -312,7 +315,7 @@ export default function InstallmentPaymentForm({
               type="button"
               onClick={handleButtonClick}
               disabled={isProcessing}
-              class="flex-1 rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-opacity-50"
+              class="disabled:bg-opacity-50 flex-1 rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-not-allowed"
             >
               {isProcessing ? (
                 <>
