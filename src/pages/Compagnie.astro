@@ -15,7 +15,7 @@ import dossierPresse from "../assets/photos/unAireDeFamille/dossierPresse.pdf";
 <Layout>
   <div class="flex flex-col items-center p-4">
     <div class="mt-5 flex w-full max-w-6xl flex-col p-4 md:flex-row md:p-6">
-      <h1 class="text-madRed text-center text-2xl md:text-left md:text-3xl">
+      <h1 class="text-center text-2xl text-madRed md:text-left md:text-3xl">
         Présentation
       </h1>
     </div>
@@ -41,7 +41,7 @@ import dossierPresse from "../assets/photos/unAireDeFamille/dossierPresse.pdf";
 
     <div class="mb-20 w-full max-w-6xl text-right">
       <h2
-        class="text-madRed whitespace-nowrap px-2 py-2 text-2xl italic md:text-3xl"
+        class="px-2 py-2 text-2xl whitespace-nowrap text-madRed italic md:text-3xl"
       >
         Oser le jeu • Frôler la folie !
       </h2>
@@ -50,80 +50,165 @@ import dossierPresse from "../assets/photos/unAireDeFamille/dossierPresse.pdf";
     <div
       class="-mt-6 flex w-full max-w-6xl flex-col p-4 md:-mb-8 md:flex-row md:p-6"
     >
-      <h1 class="text-madRed text-center text-xl md:text-left md:text-3xl">
+      <h1 class="text-center text-xl text-madRed md:text-left md:text-3xl">
         Les projets de la Compagnie
       </h1>
     </div>
 
+    <!-- Section "Ils parlent de nous" -->
     <div class="flex w-full max-w-6xl flex-col p-4 md:p-6">
-      <div class="flex w-full flex-col gap-6 md:flex-row">
-        <div class="flex items-center justify-center md:w-1/3">
-          <Image
-            src={affiche}
-            alt="Affiche de la pièce 'Un Air de Famille' de Agnès Jaoui et Jean-Pierre Bacri"
-            class="w-full rounded object-cover"
-          />
-        </div>
-        <div class="flex flex-col md:flex-1">
-          <h3 class="text-left text-2xl font-bold md:mb-4">
-            Un air de famille
-          </h3>
-          <div class="flex-1 text-justify leading-snug">
-            <p class="">
-              Une comédie acerbe et savoureuse sur les liens familiaux qui nous
-              unissent... et nous étouffent parfois !
-              <span class="mt-3 block"></span>
-              Chaque vendredi soir, la famille Mesnard se réunit au café familial
-              avant d'aller au restaurant. Mais ce soir, entre rancunes, règlements
-              de comptes et maladresses, l'ambiance vire au chaos, révélant les non-dits
-              et les frustrations enfouies. Cette soirée ordinaire devient inoubliable...
-              <span class="mt-3 block"></span>
-              Ne manquez pas cette pièce culte où chaque réplique fait mouche !
-              <span class="mt-3 block"></span>
-              Une pièce d’Agnès Jaoui et Jean-Pierre Bacri.<br />
-              Mise en scène : Corinne Azzoug <br />
-              Décors : Erwan Daubenfeld
-              <span class="mt-3 block"></span>
-              <strong>DISTRIBUTION</strong>
-              <ul class="">
-                <li>Denis : Fred Eyangoh</li>
-                <li>Henri : Jean-Baptiste Bazin</li>
-                <li>Betty : Elaine Storck</li>
-                <li>Philippe : Christopher Caulier</li>
-                <li>La Mère : Corinne Azzoug</li>
-                <li>Yolande : Maud Plessis</li>
-              </ul>
-              <span class="mt-3 block"></span>
+      <h2 class="text-center text-2xl font-bold md:mb-4">
+        Ils parlent de nous
+      </h2>
+
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <!-- Les avis du Public -->
+        <div>
+          <h3 class="mb-4 text-lg font-bold text-madRed">Les avis du Public</h3>
+          <div class="space-y-3">
+            <div
+              class="rounded-md border border-gray-200 bg-white p-3 shadow-sm"
+            >
               <a
-                href={dossierPresse}
+                href="https://www.billetreduc.com/spectacle/un-air-de-famille-376824/avis#reviewContent"
                 target="_blank"
-                class="text-madBack bg-madRed hover:bg-madEncart rounded-xl px-3 py-2 font-semibold"
-                >Dossier de presse</a
+                class="text-sm font-semibold text-blue-600 transition-colors hover:text-blue-800"
               >
-            </p>
+                🎫 Billet Reduc'
+              </a>
+              <div>
+                <a
+                  href="http://www.tatouvu.com/w/wwa_FicheSpec/public/32363/spectacle-un-air-de-famille.html"
+                  target="_blank"
+                  class="text-sm font-semibold text-blue-600 transition-colors hover:text-blue-800"
+                >
+                  🎫 Tatouvu
+                </a>
+              </div>
+              <a
+                href="https://www.theatreonline.com/Spectacle/Un-air-de-famille/91522#avis"
+                target="_blank"
+                class="text-sm font-semibold text-blue-600 transition-colors hover:text-blue-800"
+              >
+                🎫 THEATREonline
+              </a>
+              <div>
+                <a
+                  href="https://www.ticketac.com/spectacles/28719-un-air-de-famille-avec-lea-drucker-et-catherine-hiegel.htm"
+                  target="_blank"
+                  class="text-sm font-semibold text-blue-600 transition-colors hover:text-blue-800"
+                >
+                  🎫 Ticketac
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Les avis de la Presse -->
+        <div>
+          <h3 class="mb-4 text-lg font-bold text-madRed">
+            Les avis de la Presse
+          </h3>
+          <div class="space-y-3">
+            <div
+              class="rounded-md border border-gray-200 bg-white p-3 shadow-sm"
+            >
+              <a
+                href="https://lautrescene.org/2025/09/21/un-air-de-famille-une-piece-patrimoniale-et-culte/"
+                target="_blank"
+                class="text-sm font-semibold text-blue-600 transition-colors hover:text-blue-800"
+              >
+                📰 L'Autre Scène
+              </a>
+              <p class="mt-1 mb-2 text-xs text-gray-600">
+                "Une pièce patrimoniale et culte"
+              </p>
+              <a
+                href="https://www.surlesplanches.org/theatre-un-air-de-famille-dagnes-jaoui-et-de-jean-pierre-bacri/"
+                target="_blank"
+                class="text-sm font-semibold text-blue-600 transition-colors hover:text-blue-800"
+              >
+                📰 Sur Les Planches
+              </a>
+              <p class="mt-1 text-xs text-gray-600">
+                Critique théâtrale complète
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div
-      class="flex w-full max-w-6xl flex-col items-center gap-4 p-6 md:flex-row"
-    >
-      <Image
-        src={henri}
-        alt="Photo de Denis dans la pièce 'Un Air de Famille'"
-        class="hidden w-full rounded object-cover md:block md:w-1/3"
-      />
-      <Image
-        src={famille}
-        alt="Photo de la troupe entière de 'Un Air de Famille'"
-        class="w-full rounded object-cover md:w-1/3"
-      />
-      <Image
-        src={betty}
-        alt="Photo de Betty dans la pièce 'Un Air de Famille'"
-        class="hidden w-full rounded object-cover md:block md:w-1/3"
-      />
+  <div class="flex w-full max-w-6xl flex-col p-4 md:p-6">
+    <div class="flex w-full flex-col gap-6 md:flex-row">
+      <div class="flex items-center justify-center md:w-1/3">
+        <Image
+          src={affiche}
+          alt="Affiche de la pièce 'Un Air de Famille' de Agnès Jaoui et Jean-Pierre Bacri"
+          class="w-full rounded object-cover"
+        />
+      </div>
+      <div class="flex flex-col md:flex-1">
+        <h3 class="text-left text-2xl font-bold md:mb-4">Un air de famille</h3>
+        <div class="flex-1 text-justify leading-snug">
+          <p class="">
+            Une comédie acerbe et savoureuse sur les liens familiaux qui nous
+            unissent... et nous étouffent parfois !
+            <span class="mt-3 block"></span>
+            Chaque vendredi soir, la famille Mesnard se réunit au café familial avant
+            d'aller au restaurant. Mais ce soir, entre rancunes, règlements de comptes
+            et maladresses, l'ambiance vire au chaos, révélant les non-dits et les
+            frustrations enfouies. Cette soirée ordinaire devient inoubliable...
+            <span class="mt-3 block"></span>
+            Ne manquez pas cette pièce culte où chaque réplique fait mouche !
+            <span class="mt-3 block"></span>
+            Une pièce d’Agnès Jaoui et Jean-Pierre Bacri.<br />
+            Mise en scène : Corinne Azzoug <br />
+            Décors : Erwan Daubenfeld
+            <span class="mt-3 block"></span>
+            <strong>DISTRIBUTION</strong>
+            <ul class="">
+              <li>Denis : Fred Eyangoh</li>
+              <li>Henri : Jean-Baptiste Bazin</li>
+              <li>Betty : Elaine Storck</li>
+              <li>Philippe : Christopher Caulier</li>
+              <li>La Mère : Corinne Azzoug</li>
+              <li>Yolande : Maud Plessis</li>
+            </ul>
+            <span class="mt-3 block"></span>
+            <div class="flex flex-col gap-3">
+              <a
+                href={dossierPresse}
+                target="_blank"
+                class="inline-block w-fit rounded-xl bg-madRed px-3 py-2 font-semibold text-madBack hover:bg-madEncart"
+                >Dossier de presse</a
+              >
+            </div>
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <div
+    class="flex w-full max-w-6xl flex-col items-center gap-4 p-6 md:flex-row"
+  >
+    <Image
+      src={henri}
+      alt="Photo de Denis dans la pièce 'Un Air de Famille'"
+      class="hidden w-full rounded object-cover md:block md:w-1/3"
+    />
+    <Image
+      src={famille}
+      alt="Photo de la troupe entière de 'Un Air de Famille'"
+      class="w-full rounded object-cover md:w-1/3"
+    />
+    <Image
+      src={betty}
+      alt="Photo de Betty dans la pièce 'Un Air de Famille'"
+      class="hidden w-full rounded object-cover md:block md:w-1/3"
+    />
   </div>
 </Layout>

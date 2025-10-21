@@ -37,15 +37,22 @@ export default function InstallmentPaymentForm({
   });
   const [installments, setInstallments] = useState(2);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  console.log("The error", submitError);
 
   const validateIban = (iban: string): boolean => {
     // Supprimer tous les espaces pour la validation
     const cleanIban = iban.replace(/\s/g, "");
 
-    // Validation IBAN français : FR + 2 chiffres + 23 chiffres = 27 caractères total
-    const ibanRegex = /^FR\d{25}$/;
+    // Validation IBAN européen : 2 lettres (pays) + 2 chiffres (clé) + 1-30 caractères alphanumériques
+    const ibanRegex = /^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$/;
 
-    return ibanRegex.test(cleanIban) && cleanIban.length === 27;
+    return (
+      ibanRegex.test(cleanIban) &&
+      cleanIban.length >= 15 &&
+      cleanIban.length <= 34
+    );
   };
 
   const validateBic = (bic: string): boolean => {
@@ -70,7 +77,7 @@ export default function InstallmentPaymentForm({
     if (!bankData.iban.trim()) {
       newErrors.iban = "L'IBAN est requis";
     } else if (!validateIban(bankData.iban)) {
-      newErrors.iban = "IBAN invalide (format français attendu)";
+      newErrors.iban = "IBAN invalide (format européen attendu)";
     }
 
     if (bankData.bic?.trim() && !validateBic(bankData.bic)) {
@@ -86,6 +93,9 @@ export default function InstallmentPaymentForm({
     console.log("🔵 Début handleSubmit");
     console.log("🔵 Données bancaires:", bankData);
 
+    // Réinitialiser l'erreur de soumission
+    setSubmitError(null);
+
     if (!validateForm()) {
       console.log("❌ Validation échouée");
       return;
@@ -104,8 +114,9 @@ export default function InstallmentPaymentForm({
       console.log("🔵 Appel de onSubmit...");
       await onSubmit(bankData, installmentOptions);
       console.log("✅ onSubmit terminé");
-    } catch (error) {
+    } catch (error: any) {
       console.error("❌ Erreur dans handleSubmit:", error);
+      setSubmitError("Un problème s'est glissé dans vos informations");
     }
   };
 
@@ -113,6 +124,9 @@ export default function InstallmentPaymentForm({
     console.log("🔵 Début handleButtonClick");
     console.log("🔵 Données bancaires:", bankData);
 
+    // Réinitialiser l'erreur de soumission
+    setSubmitError(null);
+
     if (!validateForm()) {
       console.log("❌ Validation échouée");
       return;
@@ -131,15 +145,16 @@ export default function InstallmentPaymentForm({
       console.log("🔵 Appel de onSubmit...");
       await onSubmit(bankData, installmentOptions);
       console.log("✅ onSubmit terminé");
-    } catch (error) {
+    } catch (error: any) {
       console.error("❌ Erreur dans handleButtonClick:", error);
+      setSubmitError("Un problème s'est glissé dans vos informations");
     }
   };
 
   const amountPerInstallment = (orderTotal / installments).toFixed(2);
 
   return (
-    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black">
       <div class="mx-4 max-w-md rounded-lg bg-white p-6 shadow-xl">
         <div class="mb-4 flex items-center justify-between">
           <h3 class="text-lg font-semibold text-gray-900">
@@ -276,6 +291,18 @@ export default function InstallmentPaymentForm({
             </select>
           </div>
 
+          {submitError && (
+            <div class="mt-4 rounded-md border border-red-200 bg-red-50 p-3">
+              <div class="flex items-center">
+                <Icon
+                  icon="lucide:alert-triangle"
+                  class="mr-2 h-5 w-5 text-red-400"
+                />
+                <p class="text-sm text-red-700">{submitError}</p>
+              </div>
+            </div>
+          )}
+
           <div class="mt-6 flex space-x-3">
             <button
               type="button"
@@ -288,7 +315,7 @@ export default function InstallmentPaymentForm({
               type="button"
               onClick={handleButtonClick}
               disabled={isProcessing}
-              class="flex-1 rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-opacity-50"
+              class="disabled:bg-opacity-50 flex-1 rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 disabled:cursor-not-allowed"
             >
               {isProcessing ? (
                 <>

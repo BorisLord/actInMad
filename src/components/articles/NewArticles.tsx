@@ -62,7 +62,7 @@ const NewArticles = ({
                 loading="lazy"
               />
             ) : (
-              <div class="h-92 flex w-full items-center justify-center rounded-xl bg-gray-200" />
+              <div class="flex h-92 w-full items-center justify-center rounded-xl bg-gray-200" />
             )}
           </div>
           <div class="flex flex-grow flex-col justify-between">

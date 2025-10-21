@@ -250,7 +250,7 @@ export default function UserCart() {
                   class="flex items-center justify-between py-4"
                 >
                   <div>
-                    <p class="text-xs font-semibold uppercase tracking-wide text-blue-600">
+                    <p class="text-xs font-semibold tracking-wide text-blue-600 uppercase">
                       {item.coursType}
                     </p>
                     <p class="font-medium text-gray-900">{item.titre}</p>
@@ -261,7 +261,7 @@ export default function UserCart() {
                     )}
                   </div>
                   <div class="flex items-center justify-between">
-                    <p class="whitespace-nowrap text-sm font-semibold text-gray-900">
+                    <p class="text-sm font-semibold whitespace-nowrap text-gray-900">
                       {getCoursePrice(item).toFixed()} €
                     </p>
                     <button
@@ -361,7 +361,7 @@ export default function UserCart() {
             <button
               onClick={handleProceedToPayment}
               disabled={isProcessing}
-              class="bg-madRed flex w-full items-center justify-center rounded-md px-4 py-3 text-base font-medium text-white shadow-sm transition hover:bg-red-700 disabled:cursor-not-allowed disabled:bg-opacity-50"
+              class="disabled:bg-opacity-50 flex w-full items-center justify-center rounded-md bg-madRed px-4 py-3 text-base font-medium text-white shadow-sm transition hover:bg-red-700 disabled:cursor-not-allowed"
             >
               {isProcessing ? (
                 <>
@@ -378,7 +378,7 @@ export default function UserCart() {
             <button
               onClick={() => setShowInstallmentForm(true)}
               disabled={isProcessing || isProcessingInstallment}
-              class="bg-madRed mt-2 flex w-full items-center justify-center rounded-md px-4 py-3 text-base font-medium text-white shadow-sm transition hover:bg-red-700 disabled:cursor-not-allowed disabled:bg-opacity-50"
+              class="disabled:bg-opacity-50 mt-2 flex w-full items-center justify-center rounded-md bg-madRed px-4 py-3 text-base font-medium text-white shadow-sm transition hover:bg-red-700 disabled:cursor-not-allowed"
             >
               {isProcessingInstallment ? (
                 <>

@@ -130,7 +130,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className={`${desktopLinkClass(link.href)} hover:text-madRed/75 whitespace-nowrap transition`}
+                    className={`${desktopLinkClass(link.href)} whitespace-nowrap transition hover:text-madRed/75`}
                   >
                     {link.label}
                   </a>
@@ -138,7 +138,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
               ))}
               <a
                 href="/Planning"
-                class="bg-madRed hover:bg-madEncart mx-auto flex w-full max-w-xs items-center justify-center rounded px-3 py-1 text-center text-white"
+                class="mx-auto flex w-full max-w-xs items-center justify-center rounded bg-madRed px-3 py-1 text-center text-white hover:bg-madEncart"
               >
                 Planning 2025/2026
               </a>
@@ -156,15 +156,15 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
                     <img
                       src={user.avatarUrl}
                       alt="Avatar"
-                      className="group-hover:border-madRed h-8 w-8 rounded-full border-2 border-transparent object-cover transition"
+                      className="h-8 w-8 rounded-full border-2 border-transparent object-cover transition group-hover:border-madRed"
                     />
                   ) : (
-                    <div className="bg-madRed group-hover:border-madEncart flex h-8 w-8 items-center justify-center rounded-full border-2 border-transparent text-base font-bold text-white transition">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-transparent bg-madRed text-base font-bold text-white transition group-hover:border-madEncart">
                       {user.firstName?.charAt(0).toUpperCase()}
                     </div>
                   )}
                   <span
-                    className={`group-hover:text-madRed text-xs font-medium transition ${isHomePage ? "text-madBack" : "text-black"}`}
+                    className={`text-xs font-medium transition group-hover:text-madRed ${isHomePage ? "text-madBack" : "text-black"}`}
                   >
                     {user.firstName}
                   </span>
@@ -172,13 +172,13 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
                 {isProfileMenuOpen && (
                   <div
                     ref={profileMenuRef}
-                    className={`absolute right-0 top-full z-50 mt-2 w-48 rounded-xl p-2 shadow-2xl ${isHomePage ? "bg-black" : "bg-madBack"}`}
+                    className={`absolute top-full right-0 z-50 mt-2 w-48 rounded-xl p-2 shadow-2xl ${isHomePage ? "bg-black" : "bg-madBack"}`}
                   >
                     <ul className="flex flex-col gap-1">
                       <li>
                         <a
                           href="/private/Dashboard"
-                          className={`block rounded-md px-3 py-2 transition ${mobileLinkClass("")} hover:text-madEncart w-full text-left hover:bg-white/10`}
+                          className={`block rounded-md px-3 py-2 transition ${mobileLinkClass("")} w-full text-left hover:bg-white/10 hover:text-madEncart`}
                           onClick={() => setProfileMenuOpen(false)}
                         >
                           Mon Espace
@@ -188,7 +188,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
                       <li>
                         <button
                           onClick={handleLogout}
-                          className="text-madRed hover:text-madEncart block w-full cursor-pointer rounded-md px-3 py-2 text-left font-medium transition hover:bg-white/10"
+                          className="block w-full cursor-pointer rounded-md px-3 py-2 text-left font-medium text-madRed transition hover:bg-white/10 hover:text-madEncart"
                         >
                           Déconnexion
                         </button>
@@ -200,7 +200,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
             ) : (
               lastLink && (
                 <button
-                  className="bg-madRed hover:bg-madEncart cursor-pointer rounded-md px-4 py-1 text-white shadow transition"
+                  className="cursor-pointer rounded-md bg-madRed px-4 py-1 text-white shadow transition hover:bg-madEncart"
                   onClick={() => navigate(lastLink.href)}
                 >
                   {lastLink.label.split("/").map((part, index) => (
@@ -223,7 +223,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
                   className="h-8 w-8 rounded-full object-cover"
                 />
               ) : (
-                <div className="bg-madRed flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold text-white">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-madRed text-sm font-bold text-white">
                   {user.firstName?.charAt(0).toUpperCase()}
                 </div>
               )}
@@ -235,7 +235,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
             </a>
           ) : (
             <span
-              className={`whitespace-nowrap font-medium ${isHomePage ? "text-madBack" : "text-madRed"}`}
+              className={`font-medium whitespace-nowrap ${isHomePage ? "text-madBack" : "text-madRed"}`}
             >
               {currentPageLabel}
             </span>
@@ -253,7 +253,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
       </div>
       <nav
         ref={mobileMenuRef}
-        className={`absolute right-4 top-24 z-50 rounded-xl p-4 shadow-2xl ${isHomePage ? "bg-black" : "bg-madBack"} ${isMobileMenuOpen ? "block" : "hidden"}`}
+        className={`absolute top-24 right-4 z-50 rounded-xl p-4 shadow-2xl ${isHomePage ? "bg-black" : "bg-madBack"} ${isMobileMenuOpen ? "block" : "hidden"}`}
       >
         <ul className="flex w-40 flex-col items-center gap-4">
           {mainLinks.map((link) => (
@@ -271,7 +271,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
             {user && user.id ? (
               <button
                 onClick={handleLogout}
-                className="text-madRed hover:text-madEncart cursor-pointer font-medium"
+                className="cursor-pointer font-medium text-madRed hover:text-madEncart"
               >
                 Déconnexion
               </button>
@@ -279,7 +279,7 @@ const Navbar: FunctionalComponent<NavbarProps> = ({
               lastLink && (
                 <a
                   href={lastLink.href}
-                  className="bg-madRed rounded-md px-2 py-2 text-sm font-medium text-white shadow"
+                  className="rounded-md bg-madRed px-2 py-2 text-sm font-medium text-white shadow"
                 >
                   {lastLink.label}
                 </a>

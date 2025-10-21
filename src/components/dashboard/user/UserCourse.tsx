@@ -30,11 +30,11 @@ function InfoItem({
   return (
     <div class="flex items-start">
       {isEmoji ? (
-        <span class="mr-3 mt-1 text-lg">{icon}</span>
+        <span class="mt-1 mr-3 text-lg">{icon}</span>
       ) : (
         <Icon
           icon={`lucide:${icon}`}
-          class="mr-3 mt-1 h-5 w-5 text-slate-500"
+          class="mt-1 mr-3 h-5 w-5 text-slate-500"
         />
       )}
       <div>
@@ -98,7 +98,7 @@ function PurchasedCourseDetails({ item }: { item: EnrichedItem }) {
             </span>
             <h4 class="text-2xl font-bold text-slate-900">{cours.titre}</h4>
             {cours.pieceTheatre && (
-              <p class="mt-1 text-base italic text-slate-600">
+              <p class="mt-1 text-base text-slate-600 italic">
                 Pièce jouée : {cours.pieceTheatre}
               </p>
             )}

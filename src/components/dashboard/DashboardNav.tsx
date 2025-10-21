@@ -26,7 +26,7 @@ const DashboardNav: FunctionalComponent<NavProps> = ({
   const cart = useStore($cart);
 
   return (
-    <nav class="bg-madBack sticky top-24 z-40 shadow-md">
+    <nav class="sticky top-24 z-40 bg-madBack shadow-md">
       <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <ul
           class="-mb-px flex flex-wrap justify-center gap-3"
@@ -39,8 +39,8 @@ const DashboardNav: FunctionalComponent<NavProps> = ({
                 onClick={() => onPageChange(item.id)}
                 class={`flex shrink-0 items-center gap-0.5 rounded-t-lg p-3 text-sm font-medium transition ${
                   currentPage === item.id
-                    ? "border-madRed bg-madRed/5 text-madRed border-b-2 font-bold"
-                    : "hover:text-madRed border-b-2 border-transparent text-gray-600 hover:bg-black/5"
+                    ? "border-b-2 border-madRed bg-madRed/5 font-bold text-madRed"
+                    : "border-b-2 border-transparent text-gray-600 hover:bg-black/5 hover:text-madRed"
                 }`}
                 role="tab"
                 aria-selected={currentPage === item.id}
@@ -57,8 +57,8 @@ const DashboardNav: FunctionalComponent<NavProps> = ({
               onClick={() => onPageChange("UserCart")}
               class={`relative flex shrink-0 items-center gap-0.5 rounded-t-lg p-3 text-sm font-medium transition ${
                 currentPage === "UserCart"
-                  ? "border-madRed bg-madRed/5 text-madRed border-b-2 font-bold"
-                  : "hover:text-madRed border-b-2 border-transparent text-gray-600 hover:bg-black/5"
+                  ? "border-b-2 border-madRed bg-madRed/5 font-bold text-madRed"
+                  : "border-b-2 border-transparent text-gray-600 hover:bg-black/5 hover:text-madRed"
               }`}
               role="tab"
               aria-selected={currentPage === "UserCart"}
@@ -67,7 +67,7 @@ const DashboardNav: FunctionalComponent<NavProps> = ({
               <Icon icon="lucide:shopping-cart" width="20" />
               <span class="hidden sm:inline">Panier</span>
               {cart.length > 0 && (
-                <span class="bg-madRed/60 absolute right-0 top-1 flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold text-white">
+                <span class="absolute top-1 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-madRed/60 text-xs font-bold text-white">
                   {cart.length}
                 </span>
               )}

@@ -92,7 +92,7 @@ const ConnexionForm = () => {
         {loggedIn && (
           <p class="font-semibold text-green-600">Connecté avec succès !</p>
         )}
-        {loginError && <p class="text-madEncart text-sm">{loginError}</p>}
+        {loginError && <p class="text-sm text-madEncart">{loginError}</p>}
 
         <div>
           <label htmlFor="email" class="mb-1 block font-semibold">
@@ -109,7 +109,7 @@ const ConnexionForm = () => {
             required
             class="w-full rounded-xl border border-gray-300 p-2"
           />
-          {emailError && <p class="text-madEncart text-sm">{emailError}</p>}
+          {emailError && <p class="text-sm text-madEncart">{emailError}</p>}
         </div>
         <div>
           <label htmlFor="password" class="mb-1 block font-semibold">
@@ -128,7 +128,7 @@ const ConnexionForm = () => {
 
         <button
           type="submit"
-          class="bg-madRed hover:bg-madEncart cursor-pointer rounded-xl px-6 py-2 font-bold text-white transition"
+          class="cursor-pointer rounded-xl bg-madRed px-6 py-2 font-bold text-white transition hover:bg-madEncart"
         >
           Se connecter
         </button>

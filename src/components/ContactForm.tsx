@@ -99,7 +99,7 @@ export default function ContactForm() {
   return (
     <div class="flex flex-col items-center p-4">
       <div class="mx-auto mt-5 max-w-6xl p-4 text-center md:p-6">
-        <h1 class="text-madRed text-2xl md:text-3xl">
+        <h1 class="text-2xl text-madRed md:text-3xl">
           Posez-nous vos questions !
         </h1>
         <h2 class="text-lg md:text-xl">Inscrivez-vous à Act in Mag' !</h2>
@@ -166,7 +166,7 @@ export default function ContactForm() {
             required
             class="w-full rounded-xl border border-gray-300 p-2"
           />
-          {emailError && <p class="text-madEncart text-sm">{emailError}</p>}
+          {emailError && <p class="text-sm text-madEncart">{emailError}</p>}
         </div>
 
         <div>
@@ -200,7 +200,7 @@ export default function ContactForm() {
 
         <button
           type="submit"
-          class="bg-madRed text-madBack self-start rounded-xl px-6 py-2 font-bold transition hover:opacity-90"
+          class="self-start rounded-xl bg-madRed px-6 py-2 font-bold text-madBack transition hover:opacity-90"
         >
           Envoyer
         </button>
