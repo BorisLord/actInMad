@@ -101,6 +101,13 @@ import dossierPresse from "../assets/photos/unAireDeFamille/dossierPresse.pdf";
                   🎫 Ticketac
                 </a>
               </div>
+              <a
+                href="https://www.offi.fr/theatre/la-divine-comedie-6819/un-air-de-famille-99760.html#onglet-critique"
+                target="_blank"
+                class="text-sm font-semibold text-blue-600 transition-colors hover:text-blue-800"
+              >
+                🎫 L'officiel des spectacles
+              </a>
             </div>
           </div>
         </div>
@@ -110,105 +117,134 @@ import dossierPresse from "../assets/photos/unAireDeFamille/dossierPresse.pdf";
           <h3 class="mb-4 text-lg font-bold text-madRed">
             Les avis de la Presse
           </h3>
-          <div class="space-y-3">
+          <div class="mt-6 space-y-3">
             <div
-              class="rounded-md border border-gray-200 bg-white p-3 shadow-sm"
+              class="space-y-2 rounded-md border border-gray-200 bg-white p-3 shadow-sm"
             >
-              <a
-                href="https://lautrescene.org/2025/09/21/un-air-de-famille-une-piece-patrimoniale-et-culte/"
-                target="_blank"
-                class="text-sm font-semibold text-blue-600 transition-colors hover:text-blue-800"
-              >
-                📰 L'Autre Scène
-              </a>
-              <p class="mt-1 mb-2 text-xs text-gray-600">
-                "Une pièce patrimoniale et culte"
-              </p>
-              <a
-                href="https://www.surlesplanches.org/theatre-un-air-de-famille-dagnes-jaoui-et-de-jean-pierre-bacri/"
-                target="_blank"
-                class="text-sm font-semibold text-blue-600 transition-colors hover:text-blue-800"
-              >
-                📰 Sur Les Planches
-              </a>
-              <p class="mt-1 text-xs text-gray-600">
-                Critique théâtrale complète
-              </p>
+              <div class="flex items-baseline space-x-2">
+                <a
+                  href="https://lautrescene.org/2025/09/21/un-air-de-famille-une-piece-patrimoniale-et-culte/"
+                  target="_blank"
+                  class="shrink-0 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-800"
+                >
+                  📰 L'Autre Scène
+                </a>
+                <p class="text-xs text-gray-600">
+                  - "Une pièce patrimoniale et culte"
+                </p>
+              </div>
+
+              <div class="flex items-baseline space-x-2">
+                <a
+                  href="https://www.surlesplanches.org/theatre-un-air-de-famille-dagnes-jaoui-et-de-jean-pierre-bacri/"
+                  target="_blank"
+                  class="shrink-0 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-800"
+                >
+                  📰 Sur Les Planches
+                </a>
+                <p class="text-xs text-gray-600">
+                  - Critique théâtrale complète
+                </p>
+              </div>
+
+              <div class="flex items-baseline space-x-2">
+                <a
+                  href="https://blogdephaco.blogspot.com/2025/11/un-air-de-famille.html"
+                  target="_blank"
+                  class="shrink-0 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-800"
+                >
+                  📰 Blog de Phaco
+                </a>
+                <p class="text-xs text-gray-600">- La critique de Phaco</p>
+              </div>
+
+              <div class="flex items-baseline space-x-2">
+                <a
+                  href="https://www.regarts.org/Theatre/un-air-de-famille.php"
+                  target="_blank"
+                  class="shrink-0 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-800"
+                >
+                  📰 RegArts
+                </a>
+                <p class="text-xs text-gray-600">- Le regard sur l'art</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="flex w-full max-w-6xl flex-col p-4 md:p-6">
-    <div class="flex w-full flex-col gap-6 md:flex-row">
-      <div class="flex items-center justify-center md:w-1/3">
-        <Image
-          src={affiche}
-          alt="Affiche de la pièce 'Un Air de Famille' de Agnès Jaoui et Jean-Pierre Bacri"
-          class="w-full rounded object-cover"
-        />
-      </div>
-      <div class="flex flex-col md:flex-1">
-        <h3 class="text-left text-2xl font-bold md:mb-4">Un air de famille</h3>
-        <div class="flex-1 text-justify leading-snug">
-          <p class="">
-            Une comédie acerbe et savoureuse sur les liens familiaux qui nous
-            unissent... et nous étouffent parfois !
-            <span class="mt-3 block"></span>
-            Chaque vendredi soir, la famille Mesnard se réunit au café familial avant
-            d'aller au restaurant. Mais ce soir, entre rancunes, règlements de comptes
-            et maladresses, l'ambiance vire au chaos, révélant les non-dits et les
-            frustrations enfouies. Cette soirée ordinaire devient inoubliable...
-            <span class="mt-3 block"></span>
-            Ne manquez pas cette pièce culte où chaque réplique fait mouche !
-            <span class="mt-3 block"></span>
-            Une pièce d’Agnès Jaoui et Jean-Pierre Bacri.<br />
-            Mise en scène : Corinne Azzoug <br />
-            Décors : Erwan Daubenfeld
-            <span class="mt-3 block"></span>
-            <strong>DISTRIBUTION</strong>
-            <ul class="">
-              <li>Denis : Fred Eyangoh</li>
-              <li>Henri : Jean-Baptiste Bazin</li>
-              <li>Betty : Elaine Storck</li>
-              <li>Philippe : Christopher Caulier</li>
-              <li>La Mère : Corinne Azzoug</li>
-              <li>Yolande : Maud Plessis</li>
-            </ul>
-            <span class="mt-3 block"></span>
-            <div class="flex flex-col gap-3">
-              <a
-                href={dossierPresse}
-                target="_blank"
-                class="inline-block w-fit rounded-xl bg-madRed px-3 py-2 font-semibold text-madBack hover:bg-madEncart"
-                >Dossier de presse</a
-              >
-            </div>
-          </p>
+    <div class="flex w-full max-w-6xl flex-col p-4 md:p-6">
+      <div class="flex w-full flex-col gap-6 md:flex-row">
+        <div class="flex items-center justify-center md:w-1/3">
+          <Image
+            src={affiche}
+            alt="Affiche de la pièce 'Un Air de Famille' de Agnès Jaoui et Jean-Pierre Bacri"
+            class="w-full rounded object-cover"
+          />
+        </div>
+        <div class="flex flex-col md:flex-1">
+          <h3 class="text-left text-2xl font-bold md:mb-4">
+            Un air de famille
+          </h3>
+          <div class="flex-1 text-justify leading-snug">
+            <p class="">
+              Une comédie acerbe et savoureuse sur les liens familiaux qui nous
+              unissent... et nous étouffent parfois !
+              <span class="mt-3 block"></span>
+              Chaque vendredi soir, la famille Mesnard se réunit au café familial
+              avant d'aller au restaurant. Mais ce soir, entre rancunes, règlements
+              de comptes et maladresses, l'ambiance vire au chaos, révélant les non-dits
+              et les frustrations enfouies. Cette soirée ordinaire devient inoubliable...
+              <span class="mt-3 block"></span>
+              Ne manquez pas cette pièce culte où chaque réplique fait mouche !
+              <span class="mt-3 block"></span>
+              Une pièce d’Agnès Jaoui et Jean-Pierre Bacri.<br />
+              Mise en scène : Corinne Azzoug <br />
+              Décors : Erwan Daubenfeld
+              <span class="mt-3 block"></span>
+              <strong>DISTRIBUTION</strong>
+              <ul class="">
+                <li>Denis : Fred Eyangoh</li>
+                <li>Henri : Jean-Baptiste Bazin</li>
+                <li>Betty : Elaine Storck</li>
+                <li>Philippe : Christopher Caulier</li>
+                <li>La Mère : Corinne Azzoug</li>
+                <li>Yolande : Maud Plessis</li>
+              </ul>
+              <span class="mt-3 block"></span>
+              <div class="flex flex-col gap-3">
+                <a
+                  href={dossierPresse}
+                  target="_blank"
+                  class="inline-block w-fit rounded-xl bg-madRed px-3 py-2 font-semibold text-madBack hover:bg-madEncart"
+                  >Dossier de presse</a
+                >
+              </div>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div
-    class="flex w-full max-w-6xl flex-col items-center gap-4 p-6 md:flex-row"
-  >
-    <Image
-      src={henri}
-      alt="Photo de Denis dans la pièce 'Un Air de Famille'"
-      class="hidden w-full rounded object-cover md:block md:w-1/3"
-    />
-    <Image
-      src={famille}
-      alt="Photo de la troupe entière de 'Un Air de Famille'"
-      class="w-full rounded object-cover md:w-1/3"
-    />
-    <Image
-      src={betty}
-      alt="Photo de Betty dans la pièce 'Un Air de Famille'"
-      class="hidden w-full rounded object-cover md:block md:w-1/3"
-    />
+    <div
+      class="flex w-full max-w-6xl flex-col items-center gap-4 p-6 md:flex-row"
+    >
+      <Image
+        src={henri}
+        alt="Photo de Denis dans la pièce 'Un Air de Famille'"
+        class="hidden w-full rounded object-cover md:block md:w-1/3"
+      />
+      <Image
+        src={famille}
+        alt="Photo de la troupe entière de 'Un Air de Famille'"
+        class="w-full rounded object-cover md:w-1/3"
+      />
+      <Image
+        src={betty}
+        alt="Photo de Betty dans la pièce 'Un Air de Famille'"
+        class="hidden w-full rounded object-cover md:block md:w-1/3"
+      />
+    </div>
   </div>
 </Layout>
