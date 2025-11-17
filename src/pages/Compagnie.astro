@@ -117,7 +117,7 @@ import dossierPresse from "../assets/photos/unAireDeFamille/dossierPresse.pdf";
           <h3 class="mb-4 text-lg font-bold text-madRed">
             Les avis de la Presse
           </h3>
-          <div class="space-y-3">
+          <div class="mt-6 space-y-3">
             <div
               class="space-y-2 rounded-md border border-gray-200 bg-white p-3 shadow-sm"
             >
@@ -173,76 +173,78 @@ import dossierPresse from "../assets/photos/unAireDeFamille/dossierPresse.pdf";
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="flex w-full max-w-6xl flex-col p-4 md:p-6">
-    <div class="flex w-full flex-col gap-6 md:flex-row">
-      <div class="flex items-center justify-center md:w-1/3">
-        <Image
-          src={affiche}
-          alt="Affiche de la pièce 'Un Air de Famille' de Agnès Jaoui et Jean-Pierre Bacri"
-          class="w-full rounded object-cover"
-        />
-      </div>
-      <div class="flex flex-col md:flex-1">
-        <h3 class="text-left text-2xl font-bold md:mb-4">Un air de famille</h3>
-        <div class="flex-1 text-justify leading-snug">
-          <p class="">
-            Une comédie acerbe et savoureuse sur les liens familiaux qui nous
-            unissent... et nous étouffent parfois !
-            <span class="mt-3 block"></span>
-            Chaque vendredi soir, la famille Mesnard se réunit au café familial avant
-            d'aller au restaurant. Mais ce soir, entre rancunes, règlements de comptes
-            et maladresses, l'ambiance vire au chaos, révélant les non-dits et les
-            frustrations enfouies. Cette soirée ordinaire devient inoubliable...
-            <span class="mt-3 block"></span>
-            Ne manquez pas cette pièce culte où chaque réplique fait mouche !
-            <span class="mt-3 block"></span>
-            Une pièce d’Agnès Jaoui et Jean-Pierre Bacri.<br />
-            Mise en scène : Corinne Azzoug <br />
-            Décors : Erwan Daubenfeld
-            <span class="mt-3 block"></span>
-            <strong>DISTRIBUTION</strong>
-            <ul class="">
-              <li>Denis : Fred Eyangoh</li>
-              <li>Henri : Jean-Baptiste Bazin</li>
-              <li>Betty : Elaine Storck</li>
-              <li>Philippe : Christopher Caulier</li>
-              <li>La Mère : Corinne Azzoug</li>
-              <li>Yolande : Maud Plessis</li>
-            </ul>
-            <span class="mt-3 block"></span>
-            <div class="flex flex-col gap-3">
-              <a
-                href={dossierPresse}
-                target="_blank"
-                class="inline-block w-fit rounded-xl bg-madRed px-3 py-2 font-semibold text-madBack hover:bg-madEncart"
-                >Dossier de presse</a
-              >
-            </div>
-          </p>
+    <div class="flex w-full max-w-6xl flex-col p-4 md:p-6">
+      <div class="flex w-full flex-col gap-6 md:flex-row">
+        <div class="flex items-center justify-center md:w-1/3">
+          <Image
+            src={affiche}
+            alt="Affiche de la pièce 'Un Air de Famille' de Agnès Jaoui et Jean-Pierre Bacri"
+            class="w-full rounded object-cover"
+          />
+        </div>
+        <div class="flex flex-col md:flex-1">
+          <h3 class="text-left text-2xl font-bold md:mb-4">
+            Un air de famille
+          </h3>
+          <div class="flex-1 text-justify leading-snug">
+            <p class="">
+              Une comédie acerbe et savoureuse sur les liens familiaux qui nous
+              unissent... et nous étouffent parfois !
+              <span class="mt-3 block"></span>
+              Chaque vendredi soir, la famille Mesnard se réunit au café familial
+              avant d'aller au restaurant. Mais ce soir, entre rancunes, règlements
+              de comptes et maladresses, l'ambiance vire au chaos, révélant les non-dits
+              et les frustrations enfouies. Cette soirée ordinaire devient inoubliable...
+              <span class="mt-3 block"></span>
+              Ne manquez pas cette pièce culte où chaque réplique fait mouche !
+              <span class="mt-3 block"></span>
+              Une pièce d’Agnès Jaoui et Jean-Pierre Bacri.<br />
+              Mise en scène : Corinne Azzoug <br />
+              Décors : Erwan Daubenfeld
+              <span class="mt-3 block"></span>
+              <strong>DISTRIBUTION</strong>
+              <ul class="">
+                <li>Denis : Fred Eyangoh</li>
+                <li>Henri : Jean-Baptiste Bazin</li>
+                <li>Betty : Elaine Storck</li>
+                <li>Philippe : Christopher Caulier</li>
+                <li>La Mère : Corinne Azzoug</li>
+                <li>Yolande : Maud Plessis</li>
+              </ul>
+              <span class="mt-3 block"></span>
+              <div class="flex flex-col gap-3">
+                <a
+                  href={dossierPresse}
+                  target="_blank"
+                  class="inline-block w-fit rounded-xl bg-madRed px-3 py-2 font-semibold text-madBack hover:bg-madEncart"
+                  >Dossier de presse</a
+                >
+              </div>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div
-    class="flex w-full max-w-6xl flex-col items-center gap-4 p-6 md:flex-row"
-  >
-    <Image
-      src={henri}
-      alt="Photo de Denis dans la pièce 'Un Air de Famille'"
-      class="hidden w-full rounded object-cover md:block md:w-1/3"
-    />
-    <Image
-      src={famille}
-      alt="Photo de la troupe entière de 'Un Air de Famille'"
-      class="w-full rounded object-cover md:w-1/3"
-    />
-    <Image
-      src={betty}
-      alt="Photo de Betty dans la pièce 'Un Air de Famille'"
-      class="hidden w-full rounded object-cover md:block md:w-1/3"
-    />
+    <div
+      class="flex w-full max-w-6xl flex-col items-center gap-4 p-6 md:flex-row"
+    >
+      <Image
+        src={henri}
+        alt="Photo de Denis dans la pièce 'Un Air de Famille'"
+        class="hidden w-full rounded object-cover md:block md:w-1/3"
+      />
+      <Image
+        src={famille}
+        alt="Photo de la troupe entière de 'Un Air de Famille'"
+        class="w-full rounded object-cover md:w-1/3"
+      />
+      <Image
+        src={betty}
+        alt="Photo de Betty dans la pièce 'Un Air de Famille'"
+        class="hidden w-full rounded object-cover md:block md:w-1/3"
+      />
+    </div>
   </div>
 </Layout>
