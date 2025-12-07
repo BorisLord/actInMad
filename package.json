@@ -31,7 +31,7 @@
     "preact": "^10.28.0",
     "preact-iso": "^2.11.0",
     "react": "npm:@preact/compat",
-    "react-day-picker": "^9.11.3",
+    "react-day-picker": "^9.12.0",
     "react-dom": "npm:@preact/compat",
     "schema-dts": "^1.1.5",
     "tailwindcss": "^4.1.17"

@@ -1,3 +1,4 @@
+import { Icon } from "@iconify/react";
 import { navigate } from "astro:transitions/client";
 import type { ChangeEvent, FormEvent } from "preact/compat";
 import { useState } from "preact/hooks";
@@ -7,7 +8,11 @@ import { setUser } from "../../lib/stores/userStore";
 import type { LoginForm } from "../../types/typesF";
 import SignUpButton from "../google/GoogleSignButton";
 
-const ConnexionForm = () => {
+interface ConnexionFormProps {
+  onForgotPassword?: () => void;
+}
+
+const ConnexionForm = ({ onForgotPassword }: ConnexionFormProps) => {
   const [form, setForm] = useState<LoginForm>({
     email: "",
     password: "",
@@ -15,6 +20,11 @@ const ConnexionForm = () => {
   const [emailError, setEmailError] = useState<string>("");
   const [loginError, setLoginError] = useState<string>("");
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target as HTMLInputElement;
@@ -115,15 +125,28 @@ const ConnexionForm = () => {
           <label htmlFor="password" class="mb-1 block font-semibold">
             Mot de passe *
           </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={form.password}
-            onInput={handleChange}
-            required
-            class="w-full rounded-xl border border-gray-300 p-2"
-          />
+          <div class="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              name="password"
+              value={form.password}
+              onInput={handleChange}
+              required
+              class="w-full rounded-xl border border-gray-300 p-2 pr-10"
+            />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400"
+            >
+              {showPassword ? (
+                <Icon icon="lucide:eye" />
+              ) : (
+                <Icon icon="lucide:eye-closed" />
+              )}
+            </button>
+          </div>
         </div>
 
         <button
@@ -132,6 +155,16 @@ const ConnexionForm = () => {
         >
           Se connecter
         </button>
+
+        {onForgotPassword && (
+          <button
+            type="button"
+            onClick={onForgotPassword}
+            class="text-center text-sm text-gray-600 underline hover:text-gray-800"
+          >
+            Mot de passe oublié ?
+          </button>
+        )}
       </form>
     </>
   );
